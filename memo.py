@@ -14,28 +14,16 @@ LIBRARY_ID = []
 class ListCtrlLeft(wx.ListCtrl):
     def __init__(self, parent, i):
         wx.ListCtrl.__init__(self, parent, i, style=wx.LC_REPORT | wx.LC_HRULES | wx.LC_NO_HEADER | wx.LC_SINGLE_SEL)
-        lib_img = wx.Bitmap('images/32/library.png')
-
-        LIBRARY_ID = self.fetch_lib()
         self.parent = parent
-
         self.Bind(wx.EVT_SIZE, self.on_size)
         self.Bind(wx.EVT_LIST_ITEM_SELECTED, self.on_select)
-        self.il = wx.ImageList(32, 32)
-
-        for i in range(len(LIBRARIES)):
-            self.il.Add(lib_img)
-
-        self.SetImageList(self.il, wx.IMAGE_LIST_SMALL)
-        self.InsertColumn(0, '')
-
-        for index, element in enumerate(LIBRARIES):
-            self.InsertStringItem(0, LIBRARIES[element])
-            self.SetItemImage(0, index)
+        # self.Bind(wx.EVT_LIST_ITEM_RIGHT_CLICK, self.on_lib_right_click)
+        self.load_data_left()
 
     @staticmethod
     def fetch_lib():
         conn = DBFun.connect_db('db_pymemo.db')
+        conn.text_factory = str
         select_sql = "SELECT * FROM library"
         cursor = DBFun.select(conn, select_sql)
         result_list = cursor.fetchall()
@@ -48,6 +36,21 @@ class ListCtrlLeft(wx.ListCtrl):
 
         return library_id
 
+    def load_data_left(self):
+        LIBRARY_ID = self.fetch_lib()
+
+        self.il = wx.ImageList(32, 32)
+        lib_img = wx.Bitmap('images/32/library.png')
+        for i in range(len(LIBRARIES)):
+            self.il.Add(lib_img)
+
+        self.SetImageList(self.il, wx.IMAGE_LIST_SMALL)
+        self.InsertColumn(0, '')
+
+        for index, element in enumerate(LIBRARIES):
+            self.InsertStringItem(0, LIBRARIES[element])
+            self.SetItemImage(0, index)
+
     def on_size(self, event):
         size = self.parent.GetSize()
         self.SetColumnWidth(0, size.x - 5)
@@ -59,12 +62,13 @@ class ListCtrlLeft(wx.ListCtrl):
         lib_id = LIBRARY_ID[index]
         # print 'lib_id:', lib_id
         conn = DBFun.connect_db('db_pymemo.db')
+        conn.text_factory = str
         select_sql = "SELECT * FROM record WHERE recordId LIKE '%" + lib_id + "'"
         cursor = DBFun.select(conn, select_sql)
         RECORDS = cursor.fetchall()
         DBFun.close_db(conn)
         # print 'RECORDS: ', RECORDS
-        window.load_data(RECORDS)
+        window.load_data_right(RECORDS)
 
     # def on_lib_right_click(self, event):
     #     menu = wx.Menu()
@@ -94,6 +98,7 @@ class ListCtrlLeft(wx.ListCtrl):
     #     print "delete"
     #     pass
 
+
 class ListCtrlRight(wx.ListCtrl):
     def __init__(self, parent, i):
         wx.ListCtrl.__init__(self, parent, i, style=wx.LC_REPORT | wx.LC_HRULES | wx.LC_SINGLE_SEL)
@@ -102,9 +107,9 @@ class ListCtrlRight(wx.ListCtrl):
         select_sql = 'SELECT * FROM record'
         cursor = DBFun.select(conn, select_sql)
         RECORDS = cursor.fetchall()
-        self.load_data(RECORDS)
+        self.load_data_right(RECORDS)
 
-    def load_data(self, RECORDS):
+    def load_data_right(self, RECORDS):
         self.DeleteAllItems()
         self.DeleteAllColumns()
         self.list_head_name = ['¼ÇÂ¼ID',
@@ -254,6 +259,7 @@ class Memo(wx.Frame):
         panel_left_bottom = wx.Panel(panel_left, -1, style=wx.BORDER_NONE)
         vertical_box_left_bottom = wx.BoxSizer(wx.VERTICAL)
         list_1 = ListCtrlLeft(panel_left_bottom, -1)
+        list_1.SetName('ListControlOnLeft')
         vertical_box_left_bottom.Add(list_1, 1, wx.EXPAND)
         panel_left_bottom.SetSizer(vertical_box_left_bottom)
         panel_left_bottom.SetBackgroundColour('white')
