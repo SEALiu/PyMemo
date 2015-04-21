@@ -1,5 +1,7 @@
 # -*- coding: gbk -*-
+import time
 import wx
+import DBFun
 # import FrameFun
 
 
@@ -243,9 +245,10 @@ class AddNewLib(wx.Dialog):
 
         h_box = wx.BoxSizer(wx.HORIZONTAL)
         ok_button = wx.Button(panel, -1, label='确定')
-        close_button = wx.Button(panel, -1, label='取消')
+        cancel_button = wx.Button(panel, wx.ID_CANCEL, label='取消')
+        self.Bind(wx.EVT_BUTTON, lambda evt, name=lib_name, desc=lib_desc: self.on_submit(evt, name, desc), ok_button)
         h_box.Add(ok_button, 1, wx.RIGHT, border=5)
-        h_box.Add(close_button, 1)
+        h_box.Add(cancel_button, 1)
 
         v_box.Add(name_text, 0, wx.EXPAND | wx.LEFT | wx.RIGHT | wx.TOP, 10)
         v_box.Add(lib_name, 0, wx.EXPAND | wx.ALL, 10)
@@ -256,6 +259,25 @@ class AddNewLib(wx.Dialog):
         panel.SetSizer(v_box)
         self.Centre()
         self.Show(True)
+
+    def on_submit(self, evt, name, desc):
+        lib_name = name.GetValue()
+        lib_desc = desc.GetValue()
+
+        next_lib_id = int(DBFun.max_lib('libId')) + 1
+        lib_id = str(next_lib_id).zfill(3)
+        create_time = time.strftime('%Y/%m/%d %H:%I:%M:%S', time.localtime(time.time()))
+
+        insert_lib_sql = "INSERT INTO library(libId, name, libDesc, createTime) VALUES ('" + lib_id + "', '" + lib_name + "', '" +\
+                         lib_desc + "', '" + create_time + "')"
+        conn = DBFun.connect_db('db_pymemo.db')
+        if DBFun.update(conn, insert_lib_sql):
+            conn.commit()
+            # 刷新左侧的ListCtrlLeft的内容
+
+        conn.close()
+        self.Close()
+
 
 
 class Export(wx.DirDialog):
@@ -321,6 +343,10 @@ class AddNewRecord(wx.Dialog):
 
 
 class StartMemoQues(wx.Dialog):
+    """
+    这里有些问题，应该只刷新 panel_word 和 panel_btn
+    而不是销毁当前的对话框，重新绘制一个新的！！
+    """
     def __init__(self):
         wx.Dialog.__init__(self, None, -1, '学习', size=(-1, 470),
                            style=wx.CAPTION | wx.SYSTEM_MENU | wx.CLOSE_BOX)
@@ -364,6 +390,7 @@ class StartMemoQues(wx.Dialog):
         h_box_info = wx.BoxSizer(wx.HORIZONTAL)
         rest_list = [68, 8, 65]
         rest_text = "剩余卡片："
+
         for label in rest_list:
             rest_text += str(label) + " " * 2
 
