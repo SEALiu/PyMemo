@@ -66,6 +66,33 @@ class ListCtrlLeft(wx.ListCtrl):
         # print 'RECORDS: ', RECORDS
         window.load_data(RECORDS)
 
+    # def on_lib_right_click(self, event):
+    #     menu = wx.Menu()
+    #     item_rename = wx.MenuItem(menu, -1, "修改名称或描述")
+    #     item_setting = wx.MenuItem(menu, -1, '设置')
+    #     item_delete = wx.MenuItem(menu, -1, '删除这个词库')
+    #     self.Bind(wx.EVT_MENU, self.on_lib_rename, item_rename)
+    #     self.Bind(wx.EVT_MENU, self.on_lib_setting, item_setting)
+    #     self.Bind(wx.EVT_MENU, self.on_lib_delete, item_delete)
+    #
+    #     menu.AppendItem(item_rename)
+    #     menu.AppendItem(item_setting)
+    #     menu.AppendItem(item_delete)
+    #
+    #     self.PopupMenu(menu)
+    #     menu.Destroy()
+    #
+    # def on_lib_rename(self, evt):
+    #     print "rename"
+    #     pass
+    #
+    # def on_lib_setting(self, evt):
+    #     print "setting"
+    #     pass
+    #
+    # def on_lib_delete(self, evt):
+    #     print "delete"
+    #     pass
 
 class ListCtrlRight(wx.ListCtrl):
     def __init__(self, parent, i):
@@ -80,7 +107,7 @@ class ListCtrlRight(wx.ListCtrl):
     def load_data(self, RECORDS):
         self.DeleteAllItems()
         self.DeleteAllColumns()
-        self.list_head_name = ['ID',
+        self.list_head_name = ['记录ID',
                                '正面',
                                '反面',
                                '添加时间',
@@ -281,30 +308,28 @@ class Memo(wx.Frame):
         new_lib_dlg.Destroy()
         evt.Skip()
 
-    @staticmethod
-    def on_import(evt):
-        import_dlg = Dialog.Import(None)
+    def on_import(self, evt):
+        import_dlg = Dialog.Import(self)
         import_dlg.ShowModal()
         import_dlg.Destroy()
         evt.Skip()
 
-    @staticmethod
-    def on_export(evt):
-        export_dlg = Dialog.Export(None)
+    def on_export(self, evt):
+        export_dlg = Dialog.Export(self)
         export_dlg.ShowModal()
         export_dlg.Destroy()
         evt.Skip()
 
     @staticmethod
     def on_new_record(evt):
-        new_card_dlg = Dialog.AddNewCard()
+        new_card_dlg = Dialog.AddNewRecord()
         new_card_dlg.ShowModal()
         new_card_dlg.Destroy()
         evt.Skip()
 
     @staticmethod
     def on_study(evt):
-        start_dlg = Dialog.StartMemo()
+        start_dlg = Dialog.StartMemoQues()
         start_dlg.ShowModal()
         start_dlg.Destroy()
         evt.Skip()
