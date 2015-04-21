@@ -27,6 +27,18 @@ def update(conn, sql):
     return conn.execute(sql)
 
 
+def max_lib(column):
+    """返回library中制定列最大值"""
+    select_sql = "SELECT max(" + column + ") FROM library"
+    conn = connect_db('db_pymemo.db')
+    cursor = select(conn, select_sql)
+    result_list = cursor.fetchall()
+    close_db(conn)
+    if result_list[0][0]:
+        return result_list[0][0]
+    else:
+        return '-1'
+
 # reload(sys)
 # sys.setdefaultencoding('gbk')
 # conn = connect_db('db_pymemo.db')
