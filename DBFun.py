@@ -1,6 +1,5 @@
 # -*- coding: gbk -*-
 import sqlite3
-import sys
 
 
 def connect_db(url):
