@@ -39,9 +39,9 @@ def max_lib(column):
     else:
         return '-1'
 
-# reload(sys)
-# sys.setdefaultencoding('gbk')
-# conn = connect_db('db_pymemo.db')
+
+conn = connect_db('db_pymemo.db')
+conn.text_factory = str
 # insertSQL1 = "INSERT INTO library (" \
 #         "libId, name, libDesc, createTime, " \
 #         "maxReviewsPerDay, newCardsPerDay, " \
@@ -60,35 +60,38 @@ def max_lib(column):
 #         "'001', 'library-one', 'The first library'," \
 #         " '2015-04-13', 50, 50, 3, 3650, 30, 1)"
 #
-# insertSQL3 = "INSERT INTO record (" \
-#         "recordId, ques, ans, addTime, " \
-#         "reviewTime, alertTime, " \
-#         "interval, EF, isPaused) " \
-#       "VALUES (" \
-#         "'00000300000', 'pear', 'Àæ', " \
-#         " '2015-04-20', '2015-05-20', '2015-05-20', 16, 1.5, 0)"
+insertSQL3 = "INSERT INTO record (" \
+        "recordId, ques, ans, addTime, " \
+        "reviewTime, alertTime, " \
+        "interval, EF, isPaused) " \
+      "VALUES (" \
+        "'00000100000', 'pear', 'Àæ', " \
+        " '2015-04-20', '2015-05-20', '2015-05-20', 16, 1.5, 0)"
 #
 #
 #
-# deleteSQL1 = "DELETE FROM record where recordId='00000300000'"
-# deleteSQL2 = "DELETE FROM record where "
+# deleteSQL1 = "DELETE FROM record"
+deleteSQL2 = "DELETE FROM library"
 #
 # selectSQL1 = "SELECT * FROM library"
 # selectSQL2 = "SELECT * FROM record"
 # selectSQL3 = "SELECT * FROM record WHERE recordId LIKE '%001'"
 #
-# updateSQL = "UPDATE library set name='¹Â¶ùÔº' where libId=000"
-
+# updateSQL = "UPDATE library set name='¹Â¶ùÔº', libDesc='' where libId = '000'"
+# conn.execute(updateSQL)
 # update(conn, insertSQL1)
 # update(conn, insertSQL2)
 # update(conn, insertSQL3)
 
 # update(conn, deleteSQL1)
 # update(conn, deleteSQL2)
+# update(conn, updateSQL)
 # commit(conn)
-# cursor = select(conn, selectSQL3)
+# cursor = select(conn, "SELECT * FROM library where libId = '000'")
+# for rows in cursor:
+#     print rows[1]
 # print cursor.fetchall()
 # for rows in cursor:
 #     print "libId = ", rows[0]
 #
-# close_db(conn)
+close_db(conn)

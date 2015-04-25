@@ -16,8 +16,7 @@ class ListCtrlLeft(wx.ListCtrl):
         wx.ListCtrl.__init__(self, parent, i, style=wx.LC_REPORT | wx.LC_HRULES | wx.LC_NO_HEADER | wx.LC_SINGLE_SEL)
         self.parent = parent
         self.Bind(wx.EVT_SIZE, self.on_size)
-        self.Bind(wx.EVT_LIST_ITEM_SELECTED, self.on_select)
-        # self.Bind(wx.EVT_LIST_ITEM_RIGHT_CLICK, self.on_lib_right_click)
+        # self.Bind(wx.EVT_LIST_ITEM_SELECTED, self.on_select)
         self.load_data_left()
 
     @staticmethod
@@ -48,55 +47,78 @@ class ListCtrlLeft(wx.ListCtrl):
         self.InsertColumn(0, '')
 
         for index, element in enumerate(LIBRARIES):
+            self.Bind(wx.EVT_LIST_ITEM_SELECTED, self.on_lib_clicked)
             self.InsertStringItem(0, LIBRARIES[element])
             self.SetItemImage(0, index)
+
 
     def on_size(self, event):
         size = self.parent.GetSize()
         self.SetColumnWidth(0, size.x - 5)
         event.Skip()
 
-    def on_select(self, event):
-        window = self.parent.GetGrandParent().FindWindowByName('ListControlOnRight')
+    # def on_select(self, event):
+    #     print 'hi,click me!'
+    #     window = self.parent.GetGrandParent().FindWindowByName('ListControlOnRight')
+    #     index = event.GetIndex()
+    #     lib_id = LIBRARY_ID[index]
+    #     print 'lib_id:', lib_id
+    #     conn = DBFun.connect_db('db_pymemo.db')
+    #     conn.text_factory = str
+    #     select_sql = "SELECT * FROM record WHERE recordId LIKE '%" + lib_id + "'"
+    #     cursor = DBFun.select(conn, select_sql)
+    #     RECORDS = cursor.fetchall()
+    #     DBFun.close_db(conn)
+    #     # print 'RECORDS: ', RECORDS
+    #     window.load_data_right(RECORDS)
+
+    def on_lib_clicked(self, event):
         index = event.GetIndex()
-        lib_id = LIBRARY_ID[index]
-        # print 'lib_id:', lib_id
+        menu = wx.Menu()
+        item_rename = wx.MenuItem(menu, -1, "修改名称或描述")
+        item_check = wx.MenuItem(menu, -1, "查看词库的信息")
+        item_setting = wx.MenuItem(menu, -1, '设置')
+        item_delete = wx.MenuItem(menu, -1, '删除这个词库')
+        self.Bind(wx.EVT_MENU, lambda evt, i=index: self.on_lib_rename(evt, i), item_rename)
+        self.Bind(wx.EVT_MENU, lambda evt, i=index: self.on_lib_check(evt, i), item_check)
+        self.Bind(wx.EVT_MENU, lambda evt, i=index: self.on_lib_setting(evt, i), item_setting)
+        self.Bind(wx.EVT_MENU, lambda evt, i=index: self.on_lib_delete(evt, i), item_delete)
+
+        menu.AppendItem(item_rename)
+        menu.AppendItem(item_check)
+        menu.AppendItem(item_setting)
+        menu.AppendItem(item_delete)
+
+        self.PopupMenu(menu)
+        menu.Destroy()
+
+    def on_lib_rename(self, evt, i):
+        global lib_desc
+        lib_id = LIBRARY_ID[i]
+        lib_name = LIBRARIES[LIBRARY_ID[i]]
         conn = DBFun.connect_db('db_pymemo.db')
         conn.text_factory = str
-        select_sql = "SELECT * FROM record WHERE recordId LIKE '%" + lib_id + "'"
+        select_sql = "SELECT * FROM library WHERE libId = '" + lib_id + "'"
         cursor = DBFun.select(conn, select_sql)
-        RECORDS = cursor.fetchall()
+        for rows in cursor:
+            lib_desc = rows[2]
         DBFun.close_db(conn)
-        # print 'RECORDS: ', RECORDS
-        window.load_data_right(RECORDS)
 
-    # def on_lib_right_click(self, event):
-    #     menu = wx.Menu()
-    #     item_rename = wx.MenuItem(menu, -1, "修改名称或描述")
-    #     item_setting = wx.MenuItem(menu, -1, '设置')
-    #     item_delete = wx.MenuItem(menu, -1, '删除这个词库')
-    #     self.Bind(wx.EVT_MENU, self.on_lib_rename, item_rename)
-    #     self.Bind(wx.EVT_MENU, self.on_lib_setting, item_setting)
-    #     self.Bind(wx.EVT_MENU, self.on_lib_delete, item_delete)
-    #
-    #     menu.AppendItem(item_rename)
-    #     menu.AppendItem(item_setting)
-    #     menu.AppendItem(item_delete)
-    #
-    #     self.PopupMenu(menu)
-    #     menu.Destroy()
-    #
-    # def on_lib_rename(self, evt):
-    #     print "rename"
-    #     pass
-    #
-    # def on_lib_setting(self, evt):
-    #     print "setting"
-    #     pass
-    #
-    # def on_lib_delete(self, evt):
-    #     print "delete"
-    #     pass
+        rename_dlg = Dialog.RenameLib(lib_name, lib_desc, lib_id)
+        rename_dlg.ShowModal()
+        rename_dlg.Destroy()
+        pass
+
+    def on_lib_check(self, evt, i):
+        pass
+
+    def on_lib_setting(self, evt, i):
+        print "setting", LIBRARIES[LIBRARY_ID[i]]
+        pass
+
+    def on_lib_delete(self, evt, i):
+        print "delete", LIBRARIES[LIBRARY_ID[i]]
+        pass
 
 
 class ListCtrlRight(wx.ListCtrl):
@@ -104,6 +126,7 @@ class ListCtrlRight(wx.ListCtrl):
         wx.ListCtrl.__init__(self, parent, i, style=wx.LC_REPORT | wx.LC_HRULES | wx.LC_SINGLE_SEL)
         self.parent = parent
         conn = DBFun.connect_db('db_pymemo.db')
+        conn.text_factory = str
         select_sql = 'SELECT * FROM record'
         cursor = DBFun.select(conn, select_sql)
         RECORDS = cursor.fetchall()
@@ -335,7 +358,7 @@ class Memo(wx.Frame):
 
     @staticmethod
     def on_study(evt):
-        start_dlg = Dialog.StartMemoQues()
+        start_dlg = Dialog.MemoQues()
         start_dlg.ShowModal()
         start_dlg.Destroy()
         evt.Skip()
