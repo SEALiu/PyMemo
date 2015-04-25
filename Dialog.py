@@ -273,11 +273,54 @@ class AddNewLib(wx.Dialog):
         conn = DBFun.connect_db('db_pymemo.db')
         if DBFun.update(conn, insert_lib_sql):
             conn.commit()
-            # 刷新左侧的ListCtrlLeft的内容
-
         conn.close()
         self.Close()
 
+
+class RenameLib(wx.Dialog):
+    def __init__(self, old_name, old_desc, lib_id):
+        wx.Dialog.__init__(self, None, -1, '修改' + old_name + '名称和描述', size=(-1, 270),
+                           style=wx.CAPTION | wx.SYSTEM_MENU | wx.CLOSE_BOX)
+        panel = wx.Panel(self, -1)
+        v_box = wx.BoxSizer(wx.VERTICAL)
+
+        name_text = wx.StaticText(panel, -1, "词库名称：")
+        lib_name = wx.TextCtrl(panel, -1, old_name, style=wx.TE_CAPITALIZE)
+
+        desc_text = wx.StaticText(panel, -1, "词库描述：")
+        lib_desc = wx.TextCtrl(panel, -1, old_desc, size=(-1, 80), style=wx.TE_MULTILINE | wx.TE_NO_VSCROLL)
+
+        h_box = wx.BoxSizer(wx.HORIZONTAL)
+        ok_button = wx.Button(panel, -1, label='确定')
+        cancel_button = wx.Button(panel, wx.ID_CANCEL, label='取消')
+        self.Bind(wx.EVT_BUTTON, lambda evt, name=lib_name, desc=lib_desc, i=lib_id: self.on_submit(evt, name, desc, i), ok_button)
+        h_box.Add(ok_button, 1, wx.RIGHT, border=5)
+        h_box.Add(cancel_button, 1)
+
+        v_box.Add(name_text, 0, wx.EXPAND | wx.LEFT | wx.RIGHT | wx.TOP, 10)
+        v_box.Add(lib_name, 0, wx.EXPAND | wx.ALL, 10)
+        v_box.Add(desc_text, 0, wx.EXPAND | wx.LEFT | wx.RIGHT, 10)
+        v_box.Add(lib_desc, 0, wx.EXPAND | wx.ALL, 10)
+        v_box.Add(h_box, 1, wx.EXPAND | wx.LEFT | wx.RIGHT, 10)
+
+        panel.SetSizer(v_box)
+        self.Centre()
+        self.Show(True)
+
+    def on_submit(self, evt, name, desc, i):
+        lib_name = name.GetValue().encode('utf-8')
+        lib_desc = desc.GetValue().encode('utf-8')
+        update_lib_sql = "UPDATE library SET " \
+                         "name = '" + lib_name + "', libDesc = '" + lib_desc + "' WHERE libId = '" + i + "'"
+        conn = DBFun.connect_db('db_pymemo.db')
+        conn.text_factory = str
+        if DBFun.update(conn, update_lib_sql):
+            print 'update succeed !'
+            conn.commit()
+        else:
+            print 'update fault !'
+        conn.close()
+        self.Close()
 
 
 class Export(wx.DirDialog):
@@ -342,7 +385,7 @@ class AddNewRecord(wx.Dialog):
         self.Show(True)
 
 
-class StartMemoQues(wx.Dialog):
+class MemoQues(wx.Dialog):
     """
     这里有些问题，应该只刷新 panel_word 和 panel_btn
     而不是销毁当前的对话框，重新绘制一个新的！！
@@ -442,13 +485,13 @@ class StartMemoQues(wx.Dialog):
 
     def on_show_ans(self, evt):
         self.Destroy()
-        dlg = StartMemoAns()
+        dlg = MemoAns()
         dlg.ShowModal()
         dlg.Destroy()
         evt.Skip()
 
 
-class StartMemoAns(wx.Dialog):
+class MemoAns(wx.Dialog):
     def __init__(self):
         wx.Dialog.__init__(self, None, -1, '学习', size=(-1, 470),
                            style=wx.CAPTION | wx.SYSTEM_MENU | wx.CLOSE_BOX)
