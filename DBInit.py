@@ -1,4 +1,4 @@
-# # -*- coding: gbk -*-
+# # -*- coding: utf-8 -*-
 # import sqlite3
 #
 # conn = sqlite3.connect('db_pymemo.db')
@@ -14,7 +14,11 @@
 # easyInterval integer DEFAULT 3,
 # maxInterval integer DEFAULT 3650,
 # maxAnswerTime integer DEFAULT 30,
-# isShowAnswerTime boolean DEFAULT True
+# isShowAnswerTime boolean DEFAULT True,
+# isShowInterval boolean DEFAULT True,
+# isShowRest boolean DEFAULT True,
+# isShowDuration boolean DEFAULT True,
+# fontSize integer DEFAULT 14
 # )''')
 #
 # c.execute(
@@ -30,11 +34,11 @@
 # isPaused boolean DEFAULT FALSE
 # )''')
 #
-# c.execute(
-#     '''INSERT INTO library(libId, name, libDesc, createTime) VALUES ('000', '¹Â¶ùÔº',
-# '´æ·ÅÃ»ÓĞ¹éÊô´Ê¿âµÄ¼ÇÂ¼£¬²¢ÇÒ´Ë´Ê¿â²»ÄÜ±»É¾³ı',
-# '2015/04/21 21:09:43:47')
-# ''')
+# # c.execute(
+# #     '''INSERT INTO library(libId, name, libDesc, createTime) VALUES ('000', 'å­¤å„¿é™¢',
+# # 'å­˜æ”¾æ²¡æœ‰å½’å±è¯åº“çš„è®°å½•ï¼Œå¹¶ä¸”æ­¤è¯åº“ä¸èƒ½è¢«åˆ é™¤',
+# # '2015/04/21 21:09:43:47')
+# # ''')
 # conn.commit()
 #
 # c.close()
