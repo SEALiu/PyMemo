@@ -48,7 +48,7 @@ class ListCtrlLeft(wx.ListCtrl):
 
         for index, element in enumerate(LIBRARIES):
             self.Bind(wx.EVT_LIST_ITEM_SELECTED, self.on_lib_clicked)
-            self.InsertStringItem(0, LIBRARIES[element])
+            self.InsertStringItem(0, LIBRARIES[element].decode('utf-8'))
             self.SetItemImage(0, index)
 
 
@@ -76,16 +76,19 @@ class ListCtrlLeft(wx.ListCtrl):
         index = event.GetIndex()
         menu = wx.Menu()
         item_rename = wx.MenuItem(menu, -1, "修改名称或描述")
-        item_check = wx.MenuItem(menu, -1, "查看词库的信息")
+        item_info = wx.MenuItem(menu, -1, "查看词库的信息")
+        item_add = wx.MenuItem(menu, -1, '增加一条记录')
         item_setting = wx.MenuItem(menu, -1, '设置')
         item_delete = wx.MenuItem(menu, -1, '删除这个词库')
         self.Bind(wx.EVT_MENU, lambda evt, i=index: self.on_lib_rename(evt, i), item_rename)
-        self.Bind(wx.EVT_MENU, lambda evt, i=index: self.on_lib_check(evt, i), item_check)
+        self.Bind(wx.EVT_MENU, lambda evt, i=index: self.on_item_info(evt, i), item_info)
+        self.Bind(wx.EVT_MENU, lambda evt, i=index: self.on_item_add(evt, i), item_add)
         self.Bind(wx.EVT_MENU, lambda evt, i=index: self.on_lib_setting(evt, i), item_setting)
         self.Bind(wx.EVT_MENU, lambda evt, i=index: self.on_lib_delete(evt, i), item_delete)
 
         menu.AppendItem(item_rename)
-        menu.AppendItem(item_check)
+        menu.AppendItem(item_info)
+        menu.AppendItem(item_add)
         menu.AppendItem(item_setting)
         menu.AppendItem(item_delete)
 
@@ -95,13 +98,13 @@ class ListCtrlLeft(wx.ListCtrl):
     def on_lib_rename(self, evt, i):
         global lib_desc
         lib_id = LIBRARY_ID[i]
-        lib_name = LIBRARIES[LIBRARY_ID[i]]
+        lib_name = LIBRARIES[LIBRARY_ID[i]].decode('utf-8')
         conn = DBFun.connect_db('db_pymemo.db')
         conn.text_factory = str
         select_sql = "SELECT * FROM library WHERE libId = '" + lib_id + "'"
         cursor = DBFun.select(conn, select_sql)
         for rows in cursor:
-            lib_desc = rows[2]
+            lib_desc = rows[2].decode('utf-8')
         DBFun.close_db(conn)
 
         rename_dlg = Dialog.RenameLib(lib_name, lib_desc, lib_id)
@@ -109,7 +112,10 @@ class ListCtrlLeft(wx.ListCtrl):
         rename_dlg.Destroy()
         pass
 
-    def on_lib_check(self, evt, i):
+    def on_item_info(self, evt, i):
+        pass
+
+    def on_item_add(self, evt, i):
         pass
 
     def on_lib_setting(self, evt, i):
@@ -117,8 +123,18 @@ class ListCtrlLeft(wx.ListCtrl):
         pass
 
     def on_lib_delete(self, evt, i):
-        print "delete", LIBRARIES[LIBRARY_ID[i]]
-        pass
+        lib_id = LIBRARY_ID[i]
+        if lib_id == '000':
+            msg_dlg = wx.MessageDialog(self, '默认词库无法被删除！',
+                               '提示',
+                               wx.OK | wx.ICON_WARNING)
+            msg_dlg.ShowModal()
+            msg_dlg.Destroy()
+        else:
+            lib_name = LIBRARIES[LIBRARY_ID[i]].decode('utf-8')
+            delete_dlg = Dialog.DeleteLib(lib_name, lib_id)
+            delete_dlg.ShowModal()
+            delete_dlg.Destroy()
 
 
 class ListCtrlRight(wx.ListCtrl):
