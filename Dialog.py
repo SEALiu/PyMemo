@@ -26,21 +26,26 @@ class AboutDialog(wx.AboutDialogInfo):
 
 
 class SettingDialog(wx.Dialog):
-    def __init__(self):
+    def __init__(self, LIBRARIES, flag):
         wx.Dialog.__init__(self, None, -1, '词库设置', size=(200, 400),
                            style=wx.CAPTION | wx.SYSTEM_MENU | wx.CLOSE_BOX)
-        v_box = wx.BoxSizer(wx.VERTICAL)
+        # global lib_index
+        lib_items = ['请选择词库']
+        for index, element in enumerate(LIBRARIES):
+            lib_items.append(LIBRARIES[element].decode('utf-8'))
 
+        v_box = wx.BoxSizer(wx.VERTICAL)
         panel_combo = wx.Panel(self, -1)
         h_box_combo = wx.BoxSizer(wx.HORIZONTAL)
         lib_text = wx.StaticText(panel_combo, -1, "你想让这些设置应用在哪个词库上？")
-        lib_items = ['请选择词库',
-                     '词频分级词汇二',
-                     '词频分级词汇三',
-                     '词频分级词汇四',
-                     'CET-4高频词汇']
+
         lib_combo_box = wx.ComboBox(panel_combo, choices=lib_items, style=wx.CB_READONLY)
-        lib_combo_box.SetSelection(0)
+        if flag == -1:
+            lib_combo_box.SetSelection(0)
+        else:
+            lib_index = lib_items.index(LIBRARIES[flag].decode('utf-8'))
+            lib_combo_box.SetSelection(lib_index)
+
         h_box_combo.Add(lib_text, 0, wx.TOP | wx.RIGHT, 10)
         h_box_combo.Add(lib_combo_box, 0, wx.TOP | wx.LEFT, 5)
         panel_combo.SetSizer(h_box_combo)
@@ -121,6 +126,8 @@ class SettingDialog(wx.Dialog):
         old_after_new = wx.RadioButton(panel_left_bottom, -1, "新卡片学习完之后再复习旧卡片")
         new_after_old = wx.RadioButton(panel_left_bottom, -1, "旧卡片复习完之后再学习新卡片")
         new_or_old = wx.RadioButton(panel_left_bottom, -1, "新旧卡片交替出现")
+
+        new_or_old.SetValue(True)
 
         sbs3.Add(old_after_new, 1, wx.EXPAND | wx.LEFT | wx.BOTTOM, border=10)
         sbs3.Add(new_after_old, 1, wx.EXPAND | wx.LEFT | wx.BOTTOM, border=10)
@@ -321,6 +328,55 @@ class RenameLib(wx.Dialog):
             print 'update fault !'
         conn.close()
         self.Close()
+
+
+class LibInfo(wx.Dialog):
+    def __init__(self, lib_info):
+        wx.Dialog.__init__(self, None, -1, lib_info[1].decode('utf-8') + '词库的信息', size=(-1, 300),
+                           style=wx.CAPTION | wx.SYSTEM_MENU | wx.CLOSE_BOX)
+
+        v_box = wx.BoxSizer(wx.VERTICAL)
+
+        panel = wx.Panel(self, -1, style=wx.BORDER)
+        panel.SetBackgroundColour('white')
+        v_box_panel = wx.BoxSizer(wx.VERTICAL)
+        lib_id = wx.StaticText(panel, -1, '词库ID：' + lib_info[0])
+        name_text = wx.StaticText(panel, -1, '词库名称：' + lib_info[1].decode('utf-8'))
+        desc_text = wx.StaticText(panel, -1, '词库描述：' + lib_info[2].decode('utf-8'))
+        create_time = wx.StaticText(panel, -1, '创建时间：' + str(lib_info[3]))
+        max_reviews = wx.StaticText(panel, -1, '每日复习：' + str(lib_info[4]))
+        max_new = wx.StaticText(panel, -1, '每日学习：' + str(lib_info[5]))
+        easy_interval = wx.StaticText(panel, -1, '简单间隔：' + str(lib_info[6]) + '（天）' )
+        max_interval = wx.StaticText(panel, -1, '最大间隔：' + str(lib_info[7]) + '（天）')
+        max_time = wx.StaticText(panel, -1, '最长回答：' + str(lib_info[8]) + '（秒）')
+        is_show_timer = wx.StaticText(panel, -1, '显示计时器：' + lib_info[9])
+
+
+        v_box_panel.Add(lib_id, 0, wx.EXPAND | wx.LEFT | wx.RIGHT | wx.TOP, 10)
+        v_box_panel.Add(name_text, 0, wx.EXPAND | wx.LEFT | wx.RIGHT, 10)
+        v_box_panel.Add(desc_text, 0, wx.EXPAND | wx.LEFT | wx.RIGHT, 10)
+        v_box_panel.Add(create_time, 0, wx.EXPAND | wx.LEFT | wx.RIGHT, 10)
+        v_box_panel.Add(max_reviews, 0, wx.EXPAND | wx.LEFT | wx.RIGHT, 10)
+        v_box_panel.Add(max_new, 0, wx.EXPAND | wx.LEFT | wx.RIGHT, 10)
+        v_box_panel.Add(easy_interval, 0, wx.EXPAND | wx.LEFT | wx.RIGHT, 10)
+        v_box_panel.Add(max_interval, 0, wx.EXPAND | wx.LEFT | wx.RIGHT, 10)
+        v_box_panel.Add(max_time, 0, wx.EXPAND | wx.LEFT | wx.RIGHT, 10)
+        v_box_panel.Add(is_show_timer, 0, wx.EXPAND | wx.LEFT | wx.RIGHT | wx.BOTTOM, 10)
+
+        panel.SetSizer(v_box_panel)
+
+        h_box = wx.BoxSizer(wx.HORIZONTAL)
+        ok_button = wx.Button(self, -1, label='确定')
+        cancel_button = wx.Button(self, wx.ID_CANCEL, label='取消')
+        h_box.Add(ok_button, 1, wx.RIGHT, border=5)
+        h_box.Add(cancel_button, 1)
+
+        v_box.Add(panel, 1, wx.EXPAND | wx.ALL, 10)
+        v_box.Add(h_box, 0, wx.EXPAND | wx.LEFT | wx.RIGHT | wx.BOTTOM, 10)
+
+        self.SetSizer(v_box)
+        self.Centre()
+        self.Show(True)
 
 
 class DeleteLib(wx.Dialog):
