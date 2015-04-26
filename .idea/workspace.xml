@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="09d777a0-516b-4436-9365-587facb31efa" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db_pymemo.db" afterPath="$PROJECT_DIR$/db_pymemo.db" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Dialog.py" afterPath="$PROJECT_DIR$/Dialog.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/memo.py" afterPath="$PROJECT_DIR$/memo.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="PyMemo.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -18,7 +17,7 @@
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/PyMemo$memo.coverage" NAME="memo Coverage Results" MODIFIED="1430024282758" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/PyMemo$memo.coverage" NAME="memo Coverage Results" MODIFIED="1430031334642" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/PyMemo$DBInit.coverage" NAME="DBInit Coverage Results" MODIFIED="1429624303111" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/PyMemo$DBFun.coverage" NAME="DBFun Coverage Results" MODIFIED="1429929136611" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/PyMemo$Frame.coverage" NAME="Frame Coverage Results" MODIFIED="1429455615122" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
@@ -44,37 +43,41 @@
       <file leaf-file-name="memo.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/memo.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.49074075" vertical-offset="1928" max-vertical-offset="3780">
-              <caret line="107" column="28" selection-start-line="107" selection-start-column="28" selection-end-line="107" selection-end-column="28" />
+            <state vertical-scroll-proportion="0.6944444" vertical-offset="1360" max-vertical-offset="2840">
+              <caret line="137" column="29" selection-start-line="137" selection-start-column="29" selection-end-line="137" selection-end-column="29" />
               <folding>
                 <element signature="e#32#42#0" expanded="true" />
-                <element signature="e#3970#3974#0" expanded="false" />
-                <element signature="e#4019#4023#0" expanded="false" />
-                <element signature="e#4071#4125#0" expanded="false" />
-                <element signature="e#4683#5938#0" expanded="false" />
-                <element signature="e#5980#7325#0" expanded="false" />
-                <element signature="e#6019#7325#0" expanded="false" />
-                <element signature="e#7406#7614#0" expanded="false" />
-                <element signature="e#7656#9150#0" expanded="false" />
-                <element signature="e#9192#10545#0" expanded="false" />
-                <element signature="e#10595#12983#0" expanded="false" />
-                <element signature="e#13021#13052#0" expanded="false" />
-                <element signature="e#13275#13388#0" expanded="false" />
-                <element signature="e#13428#13539#0" expanded="false" />
-                <element signature="e#13579#13690#0" expanded="false" />
-                <element signature="e#13746#13865#0" expanded="false" />
-                <element signature="e#13916#14022#0" expanded="false" />
-                <element signature="e#14061#14065#0" expanded="false" />
-                <element signature="e#14104#14284#0" expanded="false" />
-                <element signature="e#14335#14374#0" expanded="false" />
-                <element signature="e#14393#14518#0" expanded="false" />
-                <marker date="1430023937880" expanded="true" signature="644:665" placeholder="SELECT * FRO..library..." />
-                <marker date="1430023937880" expanded="true" signature="2010:2068" placeholder="SELECT * FRO..record..." />
-                <marker date="1430023937880" expanded="true" signature="3579:3614" placeholder="SELECT * FRO..library..." />
-                <marker date="1430023937880" expanded="true" signature="3579:3616" placeholder="SELECT * FRO..library..." />
-                <marker date="1430023937880" expanded="true" signature="3579:3631" placeholder="SELECT * FRO..library..." />
-                <marker date="1430023937880" expanded="true" signature="3579:3632" placeholder="SELECT * FRO..library..." />
-                <marker date="1430023937880" expanded="true" signature="4945:4965" placeholder="SELECT * FRO..record..." />
+                <element signature="e#225#501#0" expanded="false" />
+                <element signature="e#550#948#0" expanded="false" />
+                <element signature="e#2343#3350#0" expanded="false" />
+                <element signature="e#3995#4495#0" expanded="false" />
+                <element signature="e#4540#4544#0" expanded="false" />
+                <element signature="e#4813#5283#0" expanded="false" />
+                <element signature="e#5324#6579#0" expanded="false" />
+                <element signature="e#6621#7966#0" expanded="false" />
+                <element signature="e#6660#7966#0" expanded="false" />
+                <element signature="e#8047#8255#0" expanded="false" />
+                <element signature="e#8297#9791#0" expanded="false" />
+                <element signature="e#9833#11186#0" expanded="false" />
+                <element signature="e#11236#13624#0" expanded="false" />
+                <element signature="e#13662#13693#0" expanded="false" />
+                <element signature="e#13910#14023#0" expanded="false" />
+                <element signature="e#14063#14174#0" expanded="false" />
+                <element signature="e#14214#14325#0" expanded="false" />
+                <element signature="e#14381#14500#0" expanded="false" />
+                <element signature="e#14551#14657#0" expanded="false" />
+                <element signature="e#14696#14700#0" expanded="false" />
+                <element signature="e#14739#14919#0" expanded="false" />
+                <element signature="e#14970#15009#0" expanded="false" />
+                <element signature="e#15028#15173#0" expanded="false" />
+                <marker date="1430030116108" expanded="true" signature="644:665" placeholder="SELECT * FRO..library..." />
+                <marker date="1430030116108" expanded="true" signature="2037:2095" placeholder="SELECT * FRO..record..." />
+                <marker date="1430030116108" expanded="true" signature="3604:3639" placeholder="SELECT * FRO..library..." />
+                <marker date="1430030116108" expanded="true" signature="3604:3641" placeholder="SELECT * FRO..library..." />
+                <marker date="1430030116108" expanded="true" signature="3604:3656" placeholder="SELECT * FRO..library..." />
+                <marker date="1430030116108" expanded="true" signature="3604:3657" placeholder="SELECT * FRO..library..." />
+                <marker date="1430030116108" expanded="true" signature="4202:4254" placeholder="SELECT * FRO..library..." />
+                <marker date="1430030116108" expanded="true" signature="5586:5606" placeholder="SELECT * FRO..record..." />
               </folding>
             </state>
           </provider>
@@ -83,32 +86,28 @@
       <file leaf-file-name="Dialog.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Dialog.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="860">
-              <caret line="345" column="23" selection-start-line="345" selection-start-column="23" selection-end-line="345" selection-end-column="23" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="2256" max-vertical-offset="9440">
+              <caret line="143" column="44" selection-start-line="143" selection-start-column="44" selection-end-line="143" selection-end-column="44" />
               <folding>
                 <element signature="e#22#33#0" expanded="true" />
                 <element signature="e#120#861#0" expanded="false" />
                 <element signature="e#148#861#0" expanded="false" />
-                <element signature="e#900#7321#0" expanded="false" />
-                <element signature="e#7361#9673#0" expanded="false" />
-                <element signature="e#9708#11689#0" expanded="false" />
-                <element signature="e#11049#11689#0" expanded="false" />
-                <element signature="e#11724#13673#0" expanded="false" />
-                <element signature="e#11780#13086#0" expanded="false" />
-                <element signature="e#13141#13673#0" expanded="false" />
-                <element signature="e#13708#14601#0" expanded="false" />
-                <element signature="e#14636#14857#0" expanded="false" />
-                <element signature="e#14893#15257#0" expanded="false" />
-                <element signature="e#15295#17165#0" expanded="false" />
-                <element signature="e#17199#21129#0" expanded="false" />
-                <element signature="e#21162#25466#0" expanded="false" />
-                <marker date="1430024282753" expanded="true" signature="11357:11419" placeholder="INSERT INTO ..." />
-                <marker date="1430024282753" expanded="true" signature="11357:11437" placeholder="INSERT INTO ..." />
-                <marker date="1430024282753" expanded="true" signature="11357:11457" placeholder="INSERT INTO ..." />
-                <marker date="1430024282753" expanded="true" signature="11357:11504" placeholder="INSERT INTO ..." />
-                <marker date="1430024282753" expanded="true" signature="11357:11525" placeholder="INSERT INTO ..." />
-                <marker date="1430024282753" expanded="true" signature="11357:11526" placeholder="INSERT INTO ..." />
-                <marker date="1430024282753" expanded="true" signature="13261:13391" placeholder="UPDATE libra..." />
+                <element signature="e#7593#9905#0" expanded="false" />
+                <element signature="e#9940#11921#0" expanded="false" />
+                <element signature="e#11281#11921#0" expanded="false" />
+                <element signature="e#11956#13905#0" expanded="false" />
+                <element signature="e#13373#13905#0" expanded="false" />
+                <element signature="e#16403#17296#0" expanded="false" />
+                <element signature="e#17331#17552#0" expanded="false" />
+                <element signature="e#17588#17952#0" expanded="false" />
+                <element signature="e#17990#19860#0" expanded="false" />
+                <marker date="1430031301793" expanded="true" signature="11589:11651" placeholder="INSERT INTO ..." />
+                <marker date="1430031301793" expanded="true" signature="11589:11669" placeholder="INSERT INTO ..." />
+                <marker date="1430031301793" expanded="true" signature="11589:11689" placeholder="INSERT INTO ..." />
+                <marker date="1430031301793" expanded="true" signature="11589:11736" placeholder="INSERT INTO ..." />
+                <marker date="1430031301793" expanded="true" signature="11589:11757" placeholder="INSERT INTO ..." />
+                <marker date="1430031301793" expanded="true" signature="11589:11758" placeholder="INSERT INTO ..." />
+                <marker date="1430031301793" expanded="true" signature="13493:13623" placeholder="UPDATE libra..." />
               </folding>
             </state>
           </provider>
@@ -139,8 +138,8 @@
       <file leaf-file-name="DBInit.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/DBInit.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="920">
-              <caret line="7" column="7" selection-start-line="7" selection-start-column="2" selection-end-line="7" selection-end-column="7" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="120" max-vertical-offset="920">
+              <caret line="15" column="35" selection-start-line="15" selection-start-column="35" selection-end-line="15" selection-end-column="35" />
               <folding>
                 <marker date="1429624598835" expanded="true" signature="126:482" placeholder="CREATE TABLE..library..." />
                 <marker date="1429624598835" expanded="true" signature="511:749" placeholder="CREATE TABLE..record..." />
@@ -173,7 +172,7 @@
       <file leaf-file-name="Record.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Record.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="280" max-vertical-offset="1660">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1660">
               <caret line="21" column="25" selection-start-line="21" selection-start-column="25" selection-end-line="21" selection-end-column="25" />
               <folding />
             </state>
@@ -224,9 +223,9 @@
         <option value="$PROJECT_DIR$/Record.py" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/DBInit.py" />
-        <option value="$PROJECT_DIR$/FrameFun.py" />
         <option value="$PROJECT_DIR$/DBFun.py" />
         <option value="$PROJECT_DIR$/memo.py" />
+        <option value="$PROJECT_DIR$/FrameFun.py" />
         <option value="$PROJECT_DIR$/Dialog.py" />
       </list>
     </option>
@@ -737,7 +736,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="754" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -809,7 +808,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="20" />
+      <option name="time" value="22" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -859,33 +858,37 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#32#42#0" expanded="true" />
-            <element signature="e#3970#3974#0" expanded="false" />
-            <element signature="e#4019#4023#0" expanded="false" />
-            <element signature="e#4071#4125#0" expanded="false" />
-            <element signature="e#4683#5938#0" expanded="false" />
-            <element signature="e#5980#7325#0" expanded="false" />
-            <element signature="e#6019#7325#0" expanded="false" />
-            <element signature="e#7406#7614#0" expanded="false" />
-            <element signature="e#7656#9150#0" expanded="false" />
-            <element signature="e#9192#10545#0" expanded="false" />
-            <element signature="e#10595#12983#0" expanded="false" />
-            <element signature="e#13021#13052#0" expanded="false" />
-            <element signature="e#13275#13388#0" expanded="false" />
-            <element signature="e#13428#13539#0" expanded="false" />
-            <element signature="e#13579#13690#0" expanded="false" />
-            <element signature="e#13746#13865#0" expanded="false" />
-            <element signature="e#13916#14022#0" expanded="false" />
-            <element signature="e#14061#14065#0" expanded="false" />
-            <element signature="e#14104#14284#0" expanded="false" />
-            <element signature="e#14335#14374#0" expanded="false" />
-            <element signature="e#14393#14518#0" expanded="false" />
-            <marker date="1430023937880" expanded="true" signature="644:665" placeholder="SELECT * FRO..library..." />
-            <marker date="1430023937880" expanded="true" signature="2010:2068" placeholder="SELECT * FRO..record..." />
-            <marker date="1430023937880" expanded="true" signature="3579:3614" placeholder="SELECT * FRO..library..." />
-            <marker date="1430023937880" expanded="true" signature="3579:3616" placeholder="SELECT * FRO..library..." />
-            <marker date="1430023937880" expanded="true" signature="3579:3631" placeholder="SELECT * FRO..library..." />
-            <marker date="1430023937880" expanded="true" signature="3579:3632" placeholder="SELECT * FRO..library..." />
-            <marker date="1430023937880" expanded="true" signature="4945:4965" placeholder="SELECT * FRO..record..." />
+            <element signature="e#225#501#0" expanded="false" />
+            <element signature="e#550#948#0" expanded="false" />
+            <element signature="e#2343#3350#0" expanded="false" />
+            <element signature="e#3995#4495#0" expanded="false" />
+            <element signature="e#4540#4544#0" expanded="false" />
+            <element signature="e#4813#5283#0" expanded="false" />
+            <element signature="e#5324#6579#0" expanded="false" />
+            <element signature="e#6621#7966#0" expanded="false" />
+            <element signature="e#6660#7966#0" expanded="false" />
+            <element signature="e#8047#8255#0" expanded="false" />
+            <element signature="e#8297#9791#0" expanded="false" />
+            <element signature="e#9833#11186#0" expanded="false" />
+            <element signature="e#11236#13624#0" expanded="false" />
+            <element signature="e#13662#13693#0" expanded="false" />
+            <element signature="e#13910#14023#0" expanded="false" />
+            <element signature="e#14063#14174#0" expanded="false" />
+            <element signature="e#14214#14325#0" expanded="false" />
+            <element signature="e#14381#14500#0" expanded="false" />
+            <element signature="e#14551#14657#0" expanded="false" />
+            <element signature="e#14696#14700#0" expanded="false" />
+            <element signature="e#14739#14919#0" expanded="false" />
+            <element signature="e#14970#15009#0" expanded="false" />
+            <element signature="e#15028#15173#0" expanded="false" />
+            <marker date="1430030116108" expanded="true" signature="644:665" placeholder="SELECT * FRO..library..." />
+            <marker date="1430030116108" expanded="true" signature="2037:2095" placeholder="SELECT * FRO..record..." />
+            <marker date="1430030116108" expanded="true" signature="3604:3639" placeholder="SELECT * FRO..library..." />
+            <marker date="1430030116108" expanded="true" signature="3604:3641" placeholder="SELECT * FRO..library..." />
+            <marker date="1430030116108" expanded="true" signature="3604:3656" placeholder="SELECT * FRO..library..." />
+            <marker date="1430030116108" expanded="true" signature="3604:3657" placeholder="SELECT * FRO..library..." />
+            <marker date="1430030116108" expanded="true" signature="4202:4254" placeholder="SELECT * FRO..library..." />
+            <marker date="1430030116108" expanded="true" signature="5586:5606" placeholder="SELECT * FRO..record..." />
           </folding>
         </state>
       </provider>
@@ -926,26 +929,22 @@
             <element signature="e#22#33#0" expanded="true" />
             <element signature="e#120#861#0" expanded="false" />
             <element signature="e#148#861#0" expanded="false" />
-            <element signature="e#900#7321#0" expanded="false" />
-            <element signature="e#7361#9673#0" expanded="false" />
-            <element signature="e#9708#11689#0" expanded="false" />
-            <element signature="e#11049#11689#0" expanded="false" />
-            <element signature="e#11724#13673#0" expanded="false" />
-            <element signature="e#11780#13086#0" expanded="false" />
-            <element signature="e#13141#13673#0" expanded="false" />
-            <element signature="e#13708#14601#0" expanded="false" />
-            <element signature="e#14636#14857#0" expanded="false" />
-            <element signature="e#14893#15257#0" expanded="false" />
-            <element signature="e#15295#17165#0" expanded="false" />
-            <element signature="e#17199#21129#0" expanded="false" />
-            <element signature="e#21162#25466#0" expanded="false" />
-            <marker date="1430024282753" expanded="true" signature="11357:11419" placeholder="INSERT INTO ..." />
-            <marker date="1430024282753" expanded="true" signature="11357:11437" placeholder="INSERT INTO ..." />
-            <marker date="1430024282753" expanded="true" signature="11357:11457" placeholder="INSERT INTO ..." />
-            <marker date="1430024282753" expanded="true" signature="11357:11504" placeholder="INSERT INTO ..." />
-            <marker date="1430024282753" expanded="true" signature="11357:11525" placeholder="INSERT INTO ..." />
-            <marker date="1430024282753" expanded="true" signature="11357:11526" placeholder="INSERT INTO ..." />
-            <marker date="1430024282753" expanded="true" signature="13261:13391" placeholder="UPDATE libra..." />
+            <element signature="e#7593#9905#0" expanded="false" />
+            <element signature="e#9940#11921#0" expanded="false" />
+            <element signature="e#11281#11921#0" expanded="false" />
+            <element signature="e#11956#13905#0" expanded="false" />
+            <element signature="e#13373#13905#0" expanded="false" />
+            <element signature="e#16403#17296#0" expanded="false" />
+            <element signature="e#17331#17552#0" expanded="false" />
+            <element signature="e#17588#17952#0" expanded="false" />
+            <element signature="e#17990#19860#0" expanded="false" />
+            <marker date="1430031301793" expanded="true" signature="11589:11651" placeholder="INSERT INTO ..." />
+            <marker date="1430031301793" expanded="true" signature="11589:11669" placeholder="INSERT INTO ..." />
+            <marker date="1430031301793" expanded="true" signature="11589:11689" placeholder="INSERT INTO ..." />
+            <marker date="1430031301793" expanded="true" signature="11589:11736" placeholder="INSERT INTO ..." />
+            <marker date="1430031301793" expanded="true" signature="11589:11757" placeholder="INSERT INTO ..." />
+            <marker date="1430031301793" expanded="true" signature="11589:11758" placeholder="INSERT INTO ..." />
+            <marker date="1430031301793" expanded="true" signature="13493:13623" placeholder="UPDATE libra..." />
           </folding>
         </state>
       </provider>
@@ -1005,26 +1004,22 @@
             <element signature="e#22#33#0" expanded="true" />
             <element signature="e#120#861#0" expanded="false" />
             <element signature="e#148#861#0" expanded="false" />
-            <element signature="e#900#7321#0" expanded="false" />
-            <element signature="e#7361#9673#0" expanded="false" />
-            <element signature="e#9708#11689#0" expanded="false" />
-            <element signature="e#11049#11689#0" expanded="false" />
-            <element signature="e#11724#13673#0" expanded="false" />
-            <element signature="e#11780#13086#0" expanded="false" />
-            <element signature="e#13141#13673#0" expanded="false" />
-            <element signature="e#13708#14601#0" expanded="false" />
-            <element signature="e#14636#14857#0" expanded="false" />
-            <element signature="e#14893#15257#0" expanded="false" />
-            <element signature="e#15295#17165#0" expanded="false" />
-            <element signature="e#17199#21129#0" expanded="false" />
-            <element signature="e#21162#25466#0" expanded="false" />
-            <marker date="1430024282753" expanded="true" signature="11357:11419" placeholder="INSERT INTO ..." />
-            <marker date="1430024282753" expanded="true" signature="11357:11437" placeholder="INSERT INTO ..." />
-            <marker date="1430024282753" expanded="true" signature="11357:11457" placeholder="INSERT INTO ..." />
-            <marker date="1430024282753" expanded="true" signature="11357:11504" placeholder="INSERT INTO ..." />
-            <marker date="1430024282753" expanded="true" signature="11357:11525" placeholder="INSERT INTO ..." />
-            <marker date="1430024282753" expanded="true" signature="11357:11526" placeholder="INSERT INTO ..." />
-            <marker date="1430024282753" expanded="true" signature="13261:13391" placeholder="UPDATE libra..." />
+            <element signature="e#7593#9905#0" expanded="false" />
+            <element signature="e#9940#11921#0" expanded="false" />
+            <element signature="e#11281#11921#0" expanded="false" />
+            <element signature="e#11956#13905#0" expanded="false" />
+            <element signature="e#13373#13905#0" expanded="false" />
+            <element signature="e#16403#17296#0" expanded="false" />
+            <element signature="e#17331#17552#0" expanded="false" />
+            <element signature="e#17588#17952#0" expanded="false" />
+            <element signature="e#17990#19860#0" expanded="false" />
+            <marker date="1430031301793" expanded="true" signature="11589:11651" placeholder="INSERT INTO ..." />
+            <marker date="1430031301793" expanded="true" signature="11589:11669" placeholder="INSERT INTO ..." />
+            <marker date="1430031301793" expanded="true" signature="11589:11689" placeholder="INSERT INTO ..." />
+            <marker date="1430031301793" expanded="true" signature="11589:11736" placeholder="INSERT INTO ..." />
+            <marker date="1430031301793" expanded="true" signature="11589:11757" placeholder="INSERT INTO ..." />
+            <marker date="1430031301793" expanded="true" signature="11589:11758" placeholder="INSERT INTO ..." />
+            <marker date="1430031301793" expanded="true" signature="13493:13623" placeholder="UPDATE libra..." />
           </folding>
         </state>
       </provider>
@@ -1081,26 +1076,22 @@
             <element signature="e#22#33#0" expanded="true" />
             <element signature="e#120#861#0" expanded="false" />
             <element signature="e#148#861#0" expanded="false" />
-            <element signature="e#900#7321#0" expanded="false" />
-            <element signature="e#7361#9673#0" expanded="false" />
-            <element signature="e#9708#11689#0" expanded="false" />
-            <element signature="e#11049#11689#0" expanded="false" />
-            <element signature="e#11724#13673#0" expanded="false" />
-            <element signature="e#11780#13086#0" expanded="false" />
-            <element signature="e#13141#13673#0" expanded="false" />
-            <element signature="e#13708#14601#0" expanded="false" />
-            <element signature="e#14636#14857#0" expanded="false" />
-            <element signature="e#14893#15257#0" expanded="false" />
-            <element signature="e#15295#17165#0" expanded="false" />
-            <element signature="e#17199#21129#0" expanded="false" />
-            <element signature="e#21162#25466#0" expanded="false" />
-            <marker date="1430024282753" expanded="true" signature="11357:11419" placeholder="INSERT INTO ..." />
-            <marker date="1430024282753" expanded="true" signature="11357:11437" placeholder="INSERT INTO ..." />
-            <marker date="1430024282753" expanded="true" signature="11357:11457" placeholder="INSERT INTO ..." />
-            <marker date="1430024282753" expanded="true" signature="11357:11504" placeholder="INSERT INTO ..." />
-            <marker date="1430024282753" expanded="true" signature="11357:11525" placeholder="INSERT INTO ..." />
-            <marker date="1430024282753" expanded="true" signature="11357:11526" placeholder="INSERT INTO ..." />
-            <marker date="1430024282753" expanded="true" signature="13261:13391" placeholder="UPDATE libra..." />
+            <element signature="e#7593#9905#0" expanded="false" />
+            <element signature="e#9940#11921#0" expanded="false" />
+            <element signature="e#11281#11921#0" expanded="false" />
+            <element signature="e#11956#13905#0" expanded="false" />
+            <element signature="e#13373#13905#0" expanded="false" />
+            <element signature="e#16403#17296#0" expanded="false" />
+            <element signature="e#17331#17552#0" expanded="false" />
+            <element signature="e#17588#17952#0" expanded="false" />
+            <element signature="e#17990#19860#0" expanded="false" />
+            <marker date="1430031301793" expanded="true" signature="11589:11651" placeholder="INSERT INTO ..." />
+            <marker date="1430031301793" expanded="true" signature="11589:11669" placeholder="INSERT INTO ..." />
+            <marker date="1430031301793" expanded="true" signature="11589:11689" placeholder="INSERT INTO ..." />
+            <marker date="1430031301793" expanded="true" signature="11589:11736" placeholder="INSERT INTO ..." />
+            <marker date="1430031301793" expanded="true" signature="11589:11757" placeholder="INSERT INTO ..." />
+            <marker date="1430031301793" expanded="true" signature="11589:11758" placeholder="INSERT INTO ..." />
+            <marker date="1430031301793" expanded="true" signature="13493:13623" placeholder="UPDATE libra..." />
           </folding>
         </state>
       </provider>
@@ -1157,26 +1148,22 @@
             <element signature="e#22#33#0" expanded="true" />
             <element signature="e#120#861#0" expanded="false" />
             <element signature="e#148#861#0" expanded="false" />
-            <element signature="e#900#7321#0" expanded="false" />
-            <element signature="e#7361#9673#0" expanded="false" />
-            <element signature="e#9708#11689#0" expanded="false" />
-            <element signature="e#11049#11689#0" expanded="false" />
-            <element signature="e#11724#13673#0" expanded="false" />
-            <element signature="e#11780#13086#0" expanded="false" />
-            <element signature="e#13141#13673#0" expanded="false" />
-            <element signature="e#13708#14601#0" expanded="false" />
-            <element signature="e#14636#14857#0" expanded="false" />
-            <element signature="e#14893#15257#0" expanded="false" />
-            <element signature="e#15295#17165#0" expanded="false" />
-            <element signature="e#17199#21129#0" expanded="false" />
-            <element signature="e#21162#25466#0" expanded="false" />
-            <marker date="1430024282753" expanded="true" signature="11357:11419" placeholder="INSERT INTO ..." />
-            <marker date="1430024282753" expanded="true" signature="11357:11437" placeholder="INSERT INTO ..." />
-            <marker date="1430024282753" expanded="true" signature="11357:11457" placeholder="INSERT INTO ..." />
-            <marker date="1430024282753" expanded="true" signature="11357:11504" placeholder="INSERT INTO ..." />
-            <marker date="1430024282753" expanded="true" signature="11357:11525" placeholder="INSERT INTO ..." />
-            <marker date="1430024282753" expanded="true" signature="11357:11526" placeholder="INSERT INTO ..." />
-            <marker date="1430024282753" expanded="true" signature="13261:13391" placeholder="UPDATE libra..." />
+            <element signature="e#7593#9905#0" expanded="false" />
+            <element signature="e#9940#11921#0" expanded="false" />
+            <element signature="e#11281#11921#0" expanded="false" />
+            <element signature="e#11956#13905#0" expanded="false" />
+            <element signature="e#13373#13905#0" expanded="false" />
+            <element signature="e#16403#17296#0" expanded="false" />
+            <element signature="e#17331#17552#0" expanded="false" />
+            <element signature="e#17588#17952#0" expanded="false" />
+            <element signature="e#17990#19860#0" expanded="false" />
+            <marker date="1430031301793" expanded="true" signature="11589:11651" placeholder="INSERT INTO ..." />
+            <marker date="1430031301793" expanded="true" signature="11589:11669" placeholder="INSERT INTO ..." />
+            <marker date="1430031301793" expanded="true" signature="11589:11689" placeholder="INSERT INTO ..." />
+            <marker date="1430031301793" expanded="true" signature="11589:11736" placeholder="INSERT INTO ..." />
+            <marker date="1430031301793" expanded="true" signature="11589:11757" placeholder="INSERT INTO ..." />
+            <marker date="1430031301793" expanded="true" signature="11589:11758" placeholder="INSERT INTO ..." />
+            <marker date="1430031301793" expanded="true" signature="13493:13623" placeholder="UPDATE libra..." />
           </folding>
         </state>
       </provider>
@@ -1213,26 +1200,22 @@
             <element signature="e#22#33#0" expanded="true" />
             <element signature="e#120#861#0" expanded="false" />
             <element signature="e#148#861#0" expanded="false" />
-            <element signature="e#900#7321#0" expanded="false" />
-            <element signature="e#7361#9673#0" expanded="false" />
-            <element signature="e#9708#11689#0" expanded="false" />
-            <element signature="e#11049#11689#0" expanded="false" />
-            <element signature="e#11724#13673#0" expanded="false" />
-            <element signature="e#11780#13086#0" expanded="false" />
-            <element signature="e#13141#13673#0" expanded="false" />
-            <element signature="e#13708#14601#0" expanded="false" />
-            <element signature="e#14636#14857#0" expanded="false" />
-            <element signature="e#14893#15257#0" expanded="false" />
-            <element signature="e#15295#17165#0" expanded="false" />
-            <element signature="e#17199#21129#0" expanded="false" />
-            <element signature="e#21162#25466#0" expanded="false" />
-            <marker date="1430024282753" expanded="true" signature="11357:11419" placeholder="INSERT INTO ..." />
-            <marker date="1430024282753" expanded="true" signature="11357:11437" placeholder="INSERT INTO ..." />
-            <marker date="1430024282753" expanded="true" signature="11357:11457" placeholder="INSERT INTO ..." />
-            <marker date="1430024282753" expanded="true" signature="11357:11504" placeholder="INSERT INTO ..." />
-            <marker date="1430024282753" expanded="true" signature="11357:11525" placeholder="INSERT INTO ..." />
-            <marker date="1430024282753" expanded="true" signature="11357:11526" placeholder="INSERT INTO ..." />
-            <marker date="1430024282753" expanded="true" signature="13261:13391" placeholder="UPDATE libra..." />
+            <element signature="e#7593#9905#0" expanded="false" />
+            <element signature="e#9940#11921#0" expanded="false" />
+            <element signature="e#11281#11921#0" expanded="false" />
+            <element signature="e#11956#13905#0" expanded="false" />
+            <element signature="e#13373#13905#0" expanded="false" />
+            <element signature="e#16403#17296#0" expanded="false" />
+            <element signature="e#17331#17552#0" expanded="false" />
+            <element signature="e#17588#17952#0" expanded="false" />
+            <element signature="e#17990#19860#0" expanded="false" />
+            <marker date="1430031301793" expanded="true" signature="11589:11651" placeholder="INSERT INTO ..." />
+            <marker date="1430031301793" expanded="true" signature="11589:11669" placeholder="INSERT INTO ..." />
+            <marker date="1430031301793" expanded="true" signature="11589:11689" placeholder="INSERT INTO ..." />
+            <marker date="1430031301793" expanded="true" signature="11589:11736" placeholder="INSERT INTO ..." />
+            <marker date="1430031301793" expanded="true" signature="11589:11757" placeholder="INSERT INTO ..." />
+            <marker date="1430031301793" expanded="true" signature="11589:11758" placeholder="INSERT INTO ..." />
+            <marker date="1430031301793" expanded="true" signature="13493:13623" placeholder="UPDATE libra..." />
           </folding>
         </state>
       </provider>
@@ -1253,26 +1236,22 @@
             <element signature="e#22#33#0" expanded="true" />
             <element signature="e#120#861#0" expanded="false" />
             <element signature="e#148#861#0" expanded="false" />
-            <element signature="e#900#7321#0" expanded="false" />
-            <element signature="e#7361#9673#0" expanded="false" />
-            <element signature="e#9708#11689#0" expanded="false" />
-            <element signature="e#11049#11689#0" expanded="false" />
-            <element signature="e#11724#13673#0" expanded="false" />
-            <element signature="e#11780#13086#0" expanded="false" />
-            <element signature="e#13141#13673#0" expanded="false" />
-            <element signature="e#13708#14601#0" expanded="false" />
-            <element signature="e#14636#14857#0" expanded="false" />
-            <element signature="e#14893#15257#0" expanded="false" />
-            <element signature="e#15295#17165#0" expanded="false" />
-            <element signature="e#17199#21129#0" expanded="false" />
-            <element signature="e#21162#25466#0" expanded="false" />
-            <marker date="1430024282753" expanded="true" signature="11357:11419" placeholder="INSERT INTO ..." />
-            <marker date="1430024282753" expanded="true" signature="11357:11437" placeholder="INSERT INTO ..." />
-            <marker date="1430024282753" expanded="true" signature="11357:11457" placeholder="INSERT INTO ..." />
-            <marker date="1430024282753" expanded="true" signature="11357:11504" placeholder="INSERT INTO ..." />
-            <marker date="1430024282753" expanded="true" signature="11357:11525" placeholder="INSERT INTO ..." />
-            <marker date="1430024282753" expanded="true" signature="11357:11526" placeholder="INSERT INTO ..." />
-            <marker date="1430024282753" expanded="true" signature="13261:13391" placeholder="UPDATE libra..." />
+            <element signature="e#7593#9905#0" expanded="false" />
+            <element signature="e#9940#11921#0" expanded="false" />
+            <element signature="e#11281#11921#0" expanded="false" />
+            <element signature="e#11956#13905#0" expanded="false" />
+            <element signature="e#13373#13905#0" expanded="false" />
+            <element signature="e#16403#17296#0" expanded="false" />
+            <element signature="e#17331#17552#0" expanded="false" />
+            <element signature="e#17588#17952#0" expanded="false" />
+            <element signature="e#17990#19860#0" expanded="false" />
+            <marker date="1430031301793" expanded="true" signature="11589:11651" placeholder="INSERT INTO ..." />
+            <marker date="1430031301793" expanded="true" signature="11589:11669" placeholder="INSERT INTO ..." />
+            <marker date="1430031301793" expanded="true" signature="11589:11689" placeholder="INSERT INTO ..." />
+            <marker date="1430031301793" expanded="true" signature="11589:11736" placeholder="INSERT INTO ..." />
+            <marker date="1430031301793" expanded="true" signature="11589:11757" placeholder="INSERT INTO ..." />
+            <marker date="1430031301793" expanded="true" signature="11589:11758" placeholder="INSERT INTO ..." />
+            <marker date="1430031301793" expanded="true" signature="13493:13623" placeholder="UPDATE libra..." />
           </folding>
         </state>
       </provider>
@@ -1301,26 +1280,22 @@
             <element signature="e#22#33#0" expanded="true" />
             <element signature="e#120#861#0" expanded="false" />
             <element signature="e#148#861#0" expanded="false" />
-            <element signature="e#900#7321#0" expanded="false" />
-            <element signature="e#7361#9673#0" expanded="false" />
-            <element signature="e#9708#11689#0" expanded="false" />
-            <element signature="e#11049#11689#0" expanded="false" />
-            <element signature="e#11724#13673#0" expanded="false" />
-            <element signature="e#11780#13086#0" expanded="false" />
-            <element signature="e#13141#13673#0" expanded="false" />
-            <element signature="e#13708#14601#0" expanded="false" />
-            <element signature="e#14636#14857#0" expanded="false" />
-            <element signature="e#14893#15257#0" expanded="false" />
-            <element signature="e#15295#17165#0" expanded="false" />
-            <element signature="e#17199#21129#0" expanded="false" />
-            <element signature="e#21162#25466#0" expanded="false" />
-            <marker date="1430024282753" expanded="true" signature="11357:11419" placeholder="INSERT INTO ..." />
-            <marker date="1430024282753" expanded="true" signature="11357:11437" placeholder="INSERT INTO ..." />
-            <marker date="1430024282753" expanded="true" signature="11357:11457" placeholder="INSERT INTO ..." />
-            <marker date="1430024282753" expanded="true" signature="11357:11504" placeholder="INSERT INTO ..." />
-            <marker date="1430024282753" expanded="true" signature="11357:11525" placeholder="INSERT INTO ..." />
-            <marker date="1430024282753" expanded="true" signature="11357:11526" placeholder="INSERT INTO ..." />
-            <marker date="1430024282753" expanded="true" signature="13261:13391" placeholder="UPDATE libra..." />
+            <element signature="e#7593#9905#0" expanded="false" />
+            <element signature="e#9940#11921#0" expanded="false" />
+            <element signature="e#11281#11921#0" expanded="false" />
+            <element signature="e#11956#13905#0" expanded="false" />
+            <element signature="e#13373#13905#0" expanded="false" />
+            <element signature="e#16403#17296#0" expanded="false" />
+            <element signature="e#17331#17552#0" expanded="false" />
+            <element signature="e#17588#17952#0" expanded="false" />
+            <element signature="e#17990#19860#0" expanded="false" />
+            <marker date="1430031301793" expanded="true" signature="11589:11651" placeholder="INSERT INTO ..." />
+            <marker date="1430031301793" expanded="true" signature="11589:11669" placeholder="INSERT INTO ..." />
+            <marker date="1430031301793" expanded="true" signature="11589:11689" placeholder="INSERT INTO ..." />
+            <marker date="1430031301793" expanded="true" signature="11589:11736" placeholder="INSERT INTO ..." />
+            <marker date="1430031301793" expanded="true" signature="11589:11757" placeholder="INSERT INTO ..." />
+            <marker date="1430031301793" expanded="true" signature="11589:11758" placeholder="INSERT INTO ..." />
+            <marker date="1430031301793" expanded="true" signature="13493:13623" placeholder="UPDATE libra..." />
           </folding>
         </state>
       </provider>
@@ -1341,26 +1316,22 @@
             <element signature="e#22#33#0" expanded="true" />
             <element signature="e#120#861#0" expanded="false" />
             <element signature="e#148#861#0" expanded="false" />
-            <element signature="e#900#7321#0" expanded="false" />
-            <element signature="e#7361#9673#0" expanded="false" />
-            <element signature="e#9708#11689#0" expanded="false" />
-            <element signature="e#11049#11689#0" expanded="false" />
-            <element signature="e#11724#13673#0" expanded="false" />
-            <element signature="e#11780#13086#0" expanded="false" />
-            <element signature="e#13141#13673#0" expanded="false" />
-            <element signature="e#13708#14601#0" expanded="false" />
-            <element signature="e#14636#14857#0" expanded="false" />
-            <element signature="e#14893#15257#0" expanded="false" />
-            <element signature="e#15295#17165#0" expanded="false" />
-            <element signature="e#17199#21129#0" expanded="false" />
-            <element signature="e#21162#25466#0" expanded="false" />
-            <marker date="1430024282753" expanded="true" signature="11357:11419" placeholder="INSERT INTO ..." />
-            <marker date="1430024282753" expanded="true" signature="11357:11437" placeholder="INSERT INTO ..." />
-            <marker date="1430024282753" expanded="true" signature="11357:11457" placeholder="INSERT INTO ..." />
-            <marker date="1430024282753" expanded="true" signature="11357:11504" placeholder="INSERT INTO ..." />
-            <marker date="1430024282753" expanded="true" signature="11357:11525" placeholder="INSERT INTO ..." />
-            <marker date="1430024282753" expanded="true" signature="11357:11526" placeholder="INSERT INTO ..." />
-            <marker date="1430024282753" expanded="true" signature="13261:13391" placeholder="UPDATE libra..." />
+            <element signature="e#7593#9905#0" expanded="false" />
+            <element signature="e#9940#11921#0" expanded="false" />
+            <element signature="e#11281#11921#0" expanded="false" />
+            <element signature="e#11956#13905#0" expanded="false" />
+            <element signature="e#13373#13905#0" expanded="false" />
+            <element signature="e#16403#17296#0" expanded="false" />
+            <element signature="e#17331#17552#0" expanded="false" />
+            <element signature="e#17588#17952#0" expanded="false" />
+            <element signature="e#17990#19860#0" expanded="false" />
+            <marker date="1430031301793" expanded="true" signature="11589:11651" placeholder="INSERT INTO ..." />
+            <marker date="1430031301793" expanded="true" signature="11589:11669" placeholder="INSERT INTO ..." />
+            <marker date="1430031301793" expanded="true" signature="11589:11689" placeholder="INSERT INTO ..." />
+            <marker date="1430031301793" expanded="true" signature="11589:11736" placeholder="INSERT INTO ..." />
+            <marker date="1430031301793" expanded="true" signature="11589:11757" placeholder="INSERT INTO ..." />
+            <marker date="1430031301793" expanded="true" signature="11589:11758" placeholder="INSERT INTO ..." />
+            <marker date="1430031301793" expanded="true" signature="13493:13623" placeholder="UPDATE libra..." />
           </folding>
         </state>
       </provider>
@@ -1373,26 +1344,22 @@
             <element signature="e#22#33#0" expanded="true" />
             <element signature="e#120#861#0" expanded="false" />
             <element signature="e#148#861#0" expanded="false" />
-            <element signature="e#900#7321#0" expanded="false" />
-            <element signature="e#7361#9673#0" expanded="false" />
-            <element signature="e#9708#11689#0" expanded="false" />
-            <element signature="e#11049#11689#0" expanded="false" />
-            <element signature="e#11724#13673#0" expanded="false" />
-            <element signature="e#11780#13086#0" expanded="false" />
-            <element signature="e#13141#13673#0" expanded="false" />
-            <element signature="e#13708#14601#0" expanded="false" />
-            <element signature="e#14636#14857#0" expanded="false" />
-            <element signature="e#14893#15257#0" expanded="false" />
-            <element signature="e#15295#17165#0" expanded="false" />
-            <element signature="e#17199#21129#0" expanded="false" />
-            <element signature="e#21162#25466#0" expanded="false" />
-            <marker date="1430024282753" expanded="true" signature="11357:11419" placeholder="INSERT INTO ..." />
-            <marker date="1430024282753" expanded="true" signature="11357:11437" placeholder="INSERT INTO ..." />
-            <marker date="1430024282753" expanded="true" signature="11357:11457" placeholder="INSERT INTO ..." />
-            <marker date="1430024282753" expanded="true" signature="11357:11504" placeholder="INSERT INTO ..." />
-            <marker date="1430024282753" expanded="true" signature="11357:11525" placeholder="INSERT INTO ..." />
-            <marker date="1430024282753" expanded="true" signature="11357:11526" placeholder="INSERT INTO ..." />
-            <marker date="1430024282753" expanded="true" signature="13261:13391" placeholder="UPDATE libra..." />
+            <element signature="e#7593#9905#0" expanded="false" />
+            <element signature="e#9940#11921#0" expanded="false" />
+            <element signature="e#11281#11921#0" expanded="false" />
+            <element signature="e#11956#13905#0" expanded="false" />
+            <element signature="e#13373#13905#0" expanded="false" />
+            <element signature="e#16403#17296#0" expanded="false" />
+            <element signature="e#17331#17552#0" expanded="false" />
+            <element signature="e#17588#17952#0" expanded="false" />
+            <element signature="e#17990#19860#0" expanded="false" />
+            <marker date="1430031301793" expanded="true" signature="11589:11651" placeholder="INSERT INTO ..." />
+            <marker date="1430031301793" expanded="true" signature="11589:11669" placeholder="INSERT INTO ..." />
+            <marker date="1430031301793" expanded="true" signature="11589:11689" placeholder="INSERT INTO ..." />
+            <marker date="1430031301793" expanded="true" signature="11589:11736" placeholder="INSERT INTO ..." />
+            <marker date="1430031301793" expanded="true" signature="11589:11757" placeholder="INSERT INTO ..." />
+            <marker date="1430031301793" expanded="true" signature="11589:11758" placeholder="INSERT INTO ..." />
+            <marker date="1430031301793" expanded="true" signature="13493:13623" placeholder="UPDATE libra..." />
           </folding>
         </state>
       </provider>
@@ -1457,22 +1424,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Record.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="280" max-vertical-offset="1660">
-          <caret line="21" column="25" selection-start-line="21" selection-start-column="25" selection-end-line="21" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FrameFun.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="484">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Library.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="60" max-vertical-offset="1900">
@@ -1481,15 +1432,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/DBInit.py">
+    <entry file="file://$PROJECT_DIR$/Record.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="920">
-          <caret line="7" column="7" selection-start-line="7" selection-start-column="2" selection-end-line="7" selection-end-column="7" />
-          <folding>
-            <marker date="1429624598835" expanded="true" signature="126:482" placeholder="CREATE TABLE..library..." />
-            <marker date="1429624598835" expanded="true" signature="511:749" placeholder="CREATE TABLE..record..." />
-            <marker date="1429624598835" expanded="true" signature="778:909" placeholder="INSERT INTO ..." />
-          </folding>
+        <state vertical-scroll-proportion="0.0" vertical-offset="280" max-vertical-offset="1660">
+          <caret line="21" column="25" selection-start-line="21" selection-start-column="25" selection-end-line="21" selection-end-column="25" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1513,71 +1460,91 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/DBInit.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="120" max-vertical-offset="920">
+          <caret line="15" column="35" selection-start-line="15" selection-start-column="35" selection-end-line="15" selection-end-column="35" />
+          <folding>
+            <marker date="1429624598835" expanded="true" signature="126:482" placeholder="CREATE TABLE..library..." />
+            <marker date="1429624598835" expanded="true" signature="511:749" placeholder="CREATE TABLE..record..." />
+            <marker date="1429624598835" expanded="true" signature="778:909" placeholder="INSERT INTO ..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FrameFun.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="120">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Dialog.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="860">
-          <caret line="345" column="23" selection-start-line="345" selection-start-column="23" selection-end-line="345" selection-end-column="23" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="2256" max-vertical-offset="9440">
+          <caret line="143" column="44" selection-start-line="143" selection-start-column="44" selection-end-line="143" selection-end-column="44" />
           <folding>
             <element signature="e#22#33#0" expanded="true" />
             <element signature="e#120#861#0" expanded="false" />
             <element signature="e#148#861#0" expanded="false" />
-            <element signature="e#900#7321#0" expanded="false" />
-            <element signature="e#7361#9673#0" expanded="false" />
-            <element signature="e#9708#11689#0" expanded="false" />
-            <element signature="e#11049#11689#0" expanded="false" />
-            <element signature="e#11724#13673#0" expanded="false" />
-            <element signature="e#11780#13086#0" expanded="false" />
-            <element signature="e#13141#13673#0" expanded="false" />
-            <element signature="e#13708#14601#0" expanded="false" />
-            <element signature="e#14636#14857#0" expanded="false" />
-            <element signature="e#14893#15257#0" expanded="false" />
-            <element signature="e#15295#17165#0" expanded="false" />
-            <element signature="e#17199#21129#0" expanded="false" />
-            <element signature="e#21162#25466#0" expanded="false" />
-            <marker date="1430024282753" expanded="true" signature="11357:11419" placeholder="INSERT INTO ..." />
-            <marker date="1430024282753" expanded="true" signature="11357:11437" placeholder="INSERT INTO ..." />
-            <marker date="1430024282753" expanded="true" signature="11357:11457" placeholder="INSERT INTO ..." />
-            <marker date="1430024282753" expanded="true" signature="11357:11504" placeholder="INSERT INTO ..." />
-            <marker date="1430024282753" expanded="true" signature="11357:11525" placeholder="INSERT INTO ..." />
-            <marker date="1430024282753" expanded="true" signature="11357:11526" placeholder="INSERT INTO ..." />
-            <marker date="1430024282753" expanded="true" signature="13261:13391" placeholder="UPDATE libra..." />
+            <element signature="e#7593#9905#0" expanded="false" />
+            <element signature="e#9940#11921#0" expanded="false" />
+            <element signature="e#11281#11921#0" expanded="false" />
+            <element signature="e#11956#13905#0" expanded="false" />
+            <element signature="e#13373#13905#0" expanded="false" />
+            <element signature="e#16403#17296#0" expanded="false" />
+            <element signature="e#17331#17552#0" expanded="false" />
+            <element signature="e#17588#17952#0" expanded="false" />
+            <element signature="e#17990#19860#0" expanded="false" />
+            <marker date="1430031301793" expanded="true" signature="11589:11651" placeholder="INSERT INTO ..." />
+            <marker date="1430031301793" expanded="true" signature="11589:11669" placeholder="INSERT INTO ..." />
+            <marker date="1430031301793" expanded="true" signature="11589:11689" placeholder="INSERT INTO ..." />
+            <marker date="1430031301793" expanded="true" signature="11589:11736" placeholder="INSERT INTO ..." />
+            <marker date="1430031301793" expanded="true" signature="11589:11757" placeholder="INSERT INTO ..." />
+            <marker date="1430031301793" expanded="true" signature="11589:11758" placeholder="INSERT INTO ..." />
+            <marker date="1430031301793" expanded="true" signature="13493:13623" placeholder="UPDATE libra..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/memo.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.49074075" vertical-offset="1928" max-vertical-offset="3780">
-          <caret line="107" column="28" selection-start-line="107" selection-start-column="28" selection-end-line="107" selection-end-column="28" />
+        <state vertical-scroll-proportion="0.6944444" vertical-offset="1360" max-vertical-offset="2840">
+          <caret line="137" column="29" selection-start-line="137" selection-start-column="29" selection-end-line="137" selection-end-column="29" />
           <folding>
             <element signature="e#32#42#0" expanded="true" />
-            <element signature="e#3970#3974#0" expanded="false" />
-            <element signature="e#4019#4023#0" expanded="false" />
-            <element signature="e#4071#4125#0" expanded="false" />
-            <element signature="e#4683#5938#0" expanded="false" />
-            <element signature="e#5980#7325#0" expanded="false" />
-            <element signature="e#6019#7325#0" expanded="false" />
-            <element signature="e#7406#7614#0" expanded="false" />
-            <element signature="e#7656#9150#0" expanded="false" />
-            <element signature="e#9192#10545#0" expanded="false" />
-            <element signature="e#10595#12983#0" expanded="false" />
-            <element signature="e#13021#13052#0" expanded="false" />
-            <element signature="e#13275#13388#0" expanded="false" />
-            <element signature="e#13428#13539#0" expanded="false" />
-            <element signature="e#13579#13690#0" expanded="false" />
-            <element signature="e#13746#13865#0" expanded="false" />
-            <element signature="e#13916#14022#0" expanded="false" />
-            <element signature="e#14061#14065#0" expanded="false" />
-            <element signature="e#14104#14284#0" expanded="false" />
-            <element signature="e#14335#14374#0" expanded="false" />
-            <element signature="e#14393#14518#0" expanded="false" />
-            <marker date="1430023937880" expanded="true" signature="644:665" placeholder="SELECT * FRO..library..." />
-            <marker date="1430023937880" expanded="true" signature="2010:2068" placeholder="SELECT * FRO..record..." />
-            <marker date="1430023937880" expanded="true" signature="3579:3614" placeholder="SELECT * FRO..library..." />
-            <marker date="1430023937880" expanded="true" signature="3579:3616" placeholder="SELECT * FRO..library..." />
-            <marker date="1430023937880" expanded="true" signature="3579:3631" placeholder="SELECT * FRO..library..." />
-            <marker date="1430023937880" expanded="true" signature="3579:3632" placeholder="SELECT * FRO..library..." />
-            <marker date="1430023937880" expanded="true" signature="4945:4965" placeholder="SELECT * FRO..record..." />
+            <element signature="e#225#501#0" expanded="false" />
+            <element signature="e#550#948#0" expanded="false" />
+            <element signature="e#2343#3350#0" expanded="false" />
+            <element signature="e#3995#4495#0" expanded="false" />
+            <element signature="e#4540#4544#0" expanded="false" />
+            <element signature="e#4813#5283#0" expanded="false" />
+            <element signature="e#5324#6579#0" expanded="false" />
+            <element signature="e#6621#7966#0" expanded="false" />
+            <element signature="e#6660#7966#0" expanded="false" />
+            <element signature="e#8047#8255#0" expanded="false" />
+            <element signature="e#8297#9791#0" expanded="false" />
+            <element signature="e#9833#11186#0" expanded="false" />
+            <element signature="e#11236#13624#0" expanded="false" />
+            <element signature="e#13662#13693#0" expanded="false" />
+            <element signature="e#13910#14023#0" expanded="false" />
+            <element signature="e#14063#14174#0" expanded="false" />
+            <element signature="e#14214#14325#0" expanded="false" />
+            <element signature="e#14381#14500#0" expanded="false" />
+            <element signature="e#14551#14657#0" expanded="false" />
+            <element signature="e#14696#14700#0" expanded="false" />
+            <element signature="e#14739#14919#0" expanded="false" />
+            <element signature="e#14970#15009#0" expanded="false" />
+            <element signature="e#15028#15173#0" expanded="false" />
+            <marker date="1430030116108" expanded="true" signature="644:665" placeholder="SELECT * FRO..library..." />
+            <marker date="1430030116108" expanded="true" signature="2037:2095" placeholder="SELECT * FRO..record..." />
+            <marker date="1430030116108" expanded="true" signature="3604:3639" placeholder="SELECT * FRO..library..." />
+            <marker date="1430030116108" expanded="true" signature="3604:3641" placeholder="SELECT * FRO..library..." />
+            <marker date="1430030116108" expanded="true" signature="3604:3656" placeholder="SELECT * FRO..library..." />
+            <marker date="1430030116108" expanded="true" signature="3604:3657" placeholder="SELECT * FRO..library..." />
+            <marker date="1430030116108" expanded="true" signature="4202:4254" placeholder="SELECT * FRO..library..." />
+            <marker date="1430030116108" expanded="true" signature="5586:5606" placeholder="SELECT * FRO..record..." />
           </folding>
         </state>
       </provider>
