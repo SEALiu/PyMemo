@@ -122,7 +122,7 @@ class ListCtrlLeft(wx.ListCtrl):
         cursor = DBFun.select(conn, select_sql)
         for rows in cursor:
             lib_info = rows
-        print lib_info
+        # print lib_info
         info_dlg = Dialog.LibInfo(lib_info)
         info_dlg.ShowModal()
         info_dlg.Destroy()
@@ -132,7 +132,7 @@ class ListCtrlLeft(wx.ListCtrl):
         pass
 
     def on_lib_setting(self, evt, i):
-        print "setting", LIBRARY_ID[i]
+        # print "setting", LIBRARY_ID[i]
         setting_dlg = Dialog.SettingDialog(LIBRARIES, LIBRARY_ID[i])
         setting_dlg.ShowModal()
         setting_dlg.Destroy()
@@ -416,7 +416,6 @@ def main():
     sys.setdefaultencoding('gbk')
     app = wx.App()
     Memo(None, -1, 'PyMemo', (1000, 500))
-    print LIBRARIES
     app.MainLoop()
 
 if __name__ == '__main__':
