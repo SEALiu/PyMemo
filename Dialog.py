@@ -96,15 +96,15 @@ class SettingDialog(wx.Dialog):
 
         study_limit = wx.SpinCtrl(panel_right_top, -1)
         study_limit.SetRange(1, 200)
-        study_limit.SetValue(80)
+        study_limit.SetValue(50)
 
         review_limit = wx.SpinCtrl(panel_right_top, -1)
         review_limit.SetRange(1, 200)
-        review_limit.SetValue(80)
+        review_limit.SetValue(50)
 
         deadline_limit = wx.SpinCtrl(panel_right_top, -1)
         deadline_limit.SetRange(1, 60)
-        deadline_limit.SetValue(10)
+        deadline_limit.SetValue(30)
 
         self.group_ctrl.append((text1, study_limit))
         self.group_ctrl.append((text2, review_limit))
@@ -280,6 +280,7 @@ class AddNewLib(wx.Dialog):
         conn = DBFun.connect_db('db_pymemo.db')
         if DBFun.update(conn, insert_lib_sql):
             conn.commit()
+
         conn.close()
         self.Close()
 
