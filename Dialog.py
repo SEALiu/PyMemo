@@ -261,8 +261,8 @@ class AddNewLib(wx.Dialog):
         self.Show(True)
 
     def on_submit(self, evt, name, desc):
-        lib_name = name.GetValue()
-        lib_desc = desc.GetValue()
+        lib_name = name.GetValue().encode('utf-8')
+        lib_desc = desc.GetValue().encode('utf-8')
 
         next_lib_id = int(DBFun.max_lib('libId')) + 1
         lib_id = str(next_lib_id).zfill(3)
@@ -321,6 +321,29 @@ class RenameLib(wx.Dialog):
             print 'update fault !'
         conn.close()
         self.Close()
+
+
+class DeleteLib(wx.Dialog):
+    def __init__(self, old_name, lib_id):
+        wx.Dialog.__init__(self, None, -1, '删除' + old_name + '词库', size=(-1, 180),
+                           style=wx.CAPTION | wx.SYSTEM_MENU | wx.CLOSE_BOX)
+        panel = wx.Panel(self, -1)
+        panel.SetBackgroundColour('white')
+        v_box = wx.BoxSizer(wx.VERTICAL)
+        info_text = wx.StaticText(panel, -1, old_name + '词库将被删除，词库中的记录会被转移至孤儿院。\n你确定要这样做么？')
+
+        h_box = wx.BoxSizer(wx.HORIZONTAL)
+        ok_button = wx.Button(panel, -1, label='确定')
+        cancel_button = wx.Button(panel, wx.ID_CANCEL, label='取消')
+        h_box.Add(ok_button, 1, wx.RIGHT, border=5)
+        h_box.Add(cancel_button, 1)
+
+        v_box.Add(info_text, 1, wx.EXPAND | wx.LEFT | wx.RIGHT | wx.TOP , 20)
+        v_box.Add(h_box, 0, wx.EXPAND | wx.LEFT | wx.RIGHT | wx.BOTTOM, 20)
+
+        panel.SetSizer(v_box)
+        self.Centre()
+        self.Show(True)
 
 
 class Export(wx.DirDialog):
