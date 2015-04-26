@@ -141,18 +141,18 @@ class SettingDialog(wx.Dialog):
         panel_right_bottom = wx.Panel(self)
         font_setting = wx.StaticBox(panel_right_bottom, -1, label='字体设置')
         sbs4 = wx.StaticBoxSizer(font_setting, orient=wx.VERTICAL)
-        h_box_1 = wx.BoxSizer(wx.HORIZONTAL)
+        # h_box_1 = wx.BoxSizer(wx.HORIZONTAL)
         h_box_2 = wx.BoxSizer(wx.HORIZONTAL)
 
-        font_family_list = ['font-family-one',
-                           'font-family-two',
-                           'font-family-three',
-                           'font-family-flour']
-        font_family_text = wx.StaticText(panel_right_bottom, -1, "字体：",)
-        font_family = wx.Choice(panel_right_bottom, -1, choices=font_family_list)
-
-        h_box_1.Add(font_family_text, 1, wx.LEFT | wx.TOP, border=10)
-        h_box_1.Add(font_family, 3, wx.TOP, border=10)
+        # font_family_list = ['font-family-one',
+        #                    'font-family-two',
+        #                    'font-family-three',
+        #                    'font-family-flour']
+        # font_family_text = wx.StaticText(panel_right_bottom, -1, "字体：",)
+        # font_family = wx.Choice(panel_right_bottom, -1, choices=font_family_list)
+        #
+        # h_box_1.Add(font_family_text, 1, wx.LEFT | wx.TOP, border=10)
+        # h_box_1.Add(font_family, 3, wx.TOP, border=10)
 
         font_size_text = wx.StaticText(panel_right_bottom, -1, "字号：")
         font_size = wx.SpinCtrl(panel_right_bottom, -1)
@@ -162,7 +162,7 @@ class SettingDialog(wx.Dialog):
         h_box_2.Add(font_size_text, 1, wx.LEFT | wx.TOP, border=10)
         h_box_2.Add(font_size, 3, wx.TOP, border=10)
 
-        sbs4.Add(h_box_1, wx.LEFT, border=5)
+        # sbs4.Add(h_box_1, wx.LEFT, border=5)
         sbs4.Add(h_box_2, wx.LEFT, border=5)
 
         panel_right_bottom.SetSizer(sbs4)
@@ -367,10 +367,8 @@ class LibInfo(wx.Dialog):
         panel.SetSizer(v_box_panel)
 
         h_box = wx.BoxSizer(wx.HORIZONTAL)
-        ok_button = wx.Button(self, -1, label='确定')
-        cancel_button = wx.Button(self, wx.ID_CANCEL, label='取消')
+        ok_button = wx.Button(self, wx.ID_OK, label='确定')
         h_box.Add(ok_button, 1, wx.RIGHT, border=5)
-        h_box.Add(cancel_button, 1)
 
         v_box.Add(panel, 1, wx.EXPAND | wx.ALL, 10)
         v_box.Add(h_box, 0, wx.EXPAND | wx.LEFT | wx.RIGHT | wx.BOTTOM, 10)
