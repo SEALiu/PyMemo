@@ -49,8 +49,8 @@ class ListCtrlLeft(wx.ListCtrl):
         for index, element in enumerate(LIBRARIES):
             self.Bind(wx.EVT_LIST_ITEM_SELECTED, self.on_lib_clicked)
             self.InsertStringItem(0, LIBRARIES[element].decode('utf-8'))
+            # print element
             self.SetItemImage(0, index)
-
 
     def on_size(self, event):
         size = self.parent.GetSize()
@@ -96,7 +96,7 @@ class ListCtrlLeft(wx.ListCtrl):
         menu.Destroy()
 
     def on_lib_rename(self, evt, i):
-        global lib_desc
+        lib_desc = ''
         lib_id = LIBRARY_ID[i]
         lib_name = LIBRARIES[LIBRARY_ID[i]].decode('utf-8')
         conn = DBFun.connect_db('db_pymemo.db')
@@ -113,13 +113,29 @@ class ListCtrlLeft(wx.ListCtrl):
         pass
 
     def on_item_info(self, evt, i):
+        lib_info = ()
+        lib_id = LIBRARY_ID[i]
+        lib_name = LIBRARIES[LIBRARY_ID[i]].decode('utf-8')
+        conn = DBFun.connect_db('db_pymemo.db')
+        conn.text_factory = str
+        select_sql = "SELECT * FROM library WHERE libId = '" + lib_id + "'"
+        cursor = DBFun.select(conn, select_sql)
+        for rows in cursor:
+            lib_info = rows
+        print lib_info
+        info_dlg = Dialog.LibInfo(lib_info)
+        info_dlg.ShowModal()
+        info_dlg.Destroy()
         pass
 
     def on_item_add(self, evt, i):
         pass
 
     def on_lib_setting(self, evt, i):
-        print "setting", LIBRARIES[LIBRARY_ID[i]]
+        print "setting", LIBRARY_ID[i]
+        setting_dlg = Dialog.SettingDialog(LIBRARIES, LIBRARY_ID[i])
+        setting_dlg.ShowModal()
+        setting_dlg.Destroy()
         pass
 
     def on_lib_delete(self, evt, i):
@@ -341,10 +357,9 @@ class Memo(wx.Frame):
 
     @staticmethod
     def on_setting(evt):
-        setting_dlg = Dialog.SettingDialog()
+        setting_dlg = Dialog.SettingDialog(LIBRARIES, -1)
         setting_dlg.ShowModal()
         setting_dlg.Destroy()
-        evt.Skip()
 
     @staticmethod
     def on_new_lib(evt):
@@ -401,6 +416,7 @@ def main():
     sys.setdefaultencoding('gbk')
     app = wx.App()
     Memo(None, -1, 'PyMemo', (1000, 500))
+    print LIBRARIES
     app.MainLoop()
 
 if __name__ == '__main__':
