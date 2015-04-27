@@ -420,24 +420,32 @@ class Import(wx.FileDialog):
 
 
 class AddNewRecord(wx.Dialog):
-    def __init__(self):
+    def __init__(self, LIBRARIES, flag):
         wx.Dialog.__init__(self, None, -1, '增加一条记录', size=(-1, 350),
                            style=wx.CAPTION | wx.SYSTEM_MENU | wx.CLOSE_BOX)
         panel = wx.Panel(self, -1)
+        global lib_id
         v_box = wx.BoxSizer(wx.VERTICAL)
         h_box_info = wx.BoxSizer(wx.HORIZONTAL)
 
-        lib_items = ['请选择所属词库',
-                     '词频分级词汇二',
-                     '词频分级词汇三',
-                     '词频分级词汇四',
-                     'CET-4高频词汇']
-        lib_combo_box = wx.ComboBox(panel, choices=lib_items, style=wx.CB_READONLY)
-        lib_combo_box.SetSelection(0)
+        lib_items = ['请选择词库']
+        for index, element in enumerate(LIBRARIES):
+            lib_items.append(LIBRARIES[element].decode('utf-8'))
 
-        preview = wx.BitmapButton(panel, -1, wx.Bitmap('images/32/preview.png'), size=(32, 32), style=wx.NO_BORDER)
-        h_box_info.Add(lib_combo_box, 1, wx.TOP | wx.RIGHT, 10)
-        h_box_info.Add(preview, 0, wx.ALIGN_RIGHT | wx.TOP, 6)
+        lib_combo_box = wx.ComboBox(panel, choices=lib_items, style=wx.CB_READONLY)
+        self.Bind(wx.EVT_COMBOBOX, lambda evt, ob=lib_combo_box: self.test(evt, ob, lib_id), lib_combo_box)
+        global lib_id
+        if flag == -1:
+            lib_index = 0
+            self.set_lib_id(-1)
+        else:
+            lib_index = lib_items.index(LIBRARIES[flag].decode('utf-8'))
+            self.set_lib_id(str(flag).zfill(3))
+        lib_combo_box.SetSelection(lib_index)
+
+        # preview = wx.BitmapButton(panel, -1, wx.Bitmap('images/32/preview.png'), size=(32, 32), style=wx.NO_BORDER)
+        h_box_info.Add(lib_combo_box, 1, wx.TOP, 10)
+        # h_box_info.Add(preview, 0, wx.ALIGN_RIGHT | wx.TOP, 6)
 
         name_text = wx.StaticText(panel, -1, "问题（正面）：")
         record_ques = wx.TextCtrl(panel, -1, "", size=(-1, 80), style=wx.TE_MULTILINE | wx.TE_NO_VSCROLL)
@@ -447,7 +455,9 @@ class AddNewRecord(wx.Dialog):
 
         h_box_btn = wx.BoxSizer(wx.HORIZONTAL)
         ok_button = wx.Button(panel, -1, label='确定')
-        close_button = wx.Button(panel, -1, label='取消')
+        close_button = wx.Button(panel, wx.ID_CANCEL, label='取消')
+
+        self.Bind(wx.EVT_BUTTON, lambda evt, ques=record_ques, ans=record_ans: self.on_submit(evt, ques, ans), ok_button)
         h_box_btn.Add(ok_button, 1, wx.RIGHT, border=5)
         h_box_btn.Add(close_button, 1)
 
@@ -462,6 +472,46 @@ class AddNewRecord(wx.Dialog):
         self.Centre()
         self.Show(True)
 
+    @staticmethod
+    def set_lib_id(value):
+        lib_id = value
+
+    @staticmethod
+    def get_lib_id():
+        return lib_id
+
+    def on_submit(self, evt, ques, ans):
+        if self.get_lib_id() == -1:
+            msg_dlg = wx.MessageDialog(self, '请选择词库！',
+                           '提示',
+                           wx.OK | wx.ICON_WARNING)
+            msg_dlg.ShowModal()
+            msg_dlg.Destroy()
+        else:
+            record_ques = ques.GetValue().encode('utf-8')
+            record_ans = ans.GetValue().encode('utf-8')
+            next_record_id = int(DBFun.max_record('recordId')) + 1
+            record_id = str(next_record_id).zfill(5) + lib_id
+            print record_id
+            create_time = time.strftime('%Y/%m/%d %H:%I:%M:%S', time.localtime(time.time()))
+
+            # insert_lib_sql = "INSERT INTO record(libId, name, libDesc, createTime) VALUES ('" + lib_id + "', '" + lib_name + "', '" +\
+            #                  lib_desc + "', '" + create_time + "')"
+
+    def test(self, evt, ob, lib_id):
+        lib_name = ob.GetValue()
+        print lib_name
+        select_sql = "SELECT libId FROM library WHERE name = '" + lib_name + "'"
+        conn = DBFun.connect_db('db_pymemo.db')
+        cursor = DBFun.select(conn, select_sql)
+        if cursor == None:
+            print '请选择词库'
+        else:
+            for rows in cursor:
+                self.set_lib_id(rows[0])
+                print rows[0]
+        DBFun.close_db(conn)
+        print self.get_lib_id()
 
 class MemoQues(wx.Dialog):
     """
