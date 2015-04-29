@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="09d777a0-516b-4436-9365-587facb31efa" name="Default" comment="" />
+    <list default="true" id="09d777a0-516b-4436-9365-587facb31efa" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
     <ignored path="PyMemo.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -40,8 +42,8 @@
       <file leaf-file-name="memo.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/memo.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.42211056" vertical-offset="2048" max-vertical-offset="3840">
-              <caret line="134" column="0" selection-start-line="134" selection-start-column="0" selection-end-line="134" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.21393842" vertical-offset="0" max-vertical-offset="4224">
+              <caret line="6" column="21" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
               <folding>
                 <element signature="e#32#42#0" expanded="true" />
                 <element signature="e#225#501#0" expanded="false" />
@@ -64,14 +66,6 @@
                 <element signature="e#14700#14704#0" expanded="false" />
                 <element signature="e#14743#14923#0" expanded="false" />
                 <element signature="e#14974#15013#0" expanded="false" />
-                <marker date="1430056358070" expanded="true" signature="644:665" placeholder="SELECT * FRO..library..." />
-                <marker date="1430056358070" expanded="true" signature="2037:2095" placeholder="SELECT * FRO..record..." />
-                <marker date="1430056358070" expanded="true" signature="3604:3639" placeholder="SELECT * FRO..library..." />
-                <marker date="1430056358070" expanded="true" signature="3604:3641" placeholder="SELECT * FRO..library..." />
-                <marker date="1430056358070" expanded="true" signature="3604:3656" placeholder="SELECT * FRO..library..." />
-                <marker date="1430056358070" expanded="true" signature="3604:3657" placeholder="SELECT * FRO..library..." />
-                <marker date="1430056358070" expanded="true" signature="4202:4254" placeholder="SELECT * FRO..library..." />
-                <marker date="1430056358070" expanded="true" signature="5590:5610" placeholder="SELECT * FRO..record..." />
               </folding>
             </state>
           </provider>
@@ -80,7 +74,7 @@
       <file leaf-file-name="Dialog.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Dialog.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="2440" max-vertical-offset="10260">
+            <state vertical-scroll-proportion="0.0" vertical-offset="4750" max-vertical-offset="11476">
               <caret line="354" column="0" selection-start-line="354" selection-start-column="0" selection-end-line="354" selection-end-column="0" />
               <folding>
                 <element signature="e#22#33#0" expanded="true" />
@@ -91,14 +85,6 @@
                 <element signature="e#16337#17230#0" expanded="false" />
                 <element signature="e#17265#17486#0" expanded="false" />
                 <element signature="e#17522#17886#0" expanded="false" />
-                <element signature="e#17924#19794#0" expanded="false" />
-                <marker date="1430056655562" expanded="true" signature="11618:11680" placeholder="INSERT INTO ..." />
-                <marker date="1430056655562" expanded="true" signature="11618:11698" placeholder="INSERT INTO ..." />
-                <marker date="1430056655562" expanded="true" signature="11618:11718" placeholder="INSERT INTO ..." />
-                <marker date="1430056655562" expanded="true" signature="11618:11765" placeholder="INSERT INTO ..." />
-                <marker date="1430056655562" expanded="true" signature="11618:11786" placeholder="INSERT INTO ..." />
-                <marker date="1430056655562" expanded="true" signature="11618:11787" placeholder="INSERT INTO ..." />
-                <marker date="1430056655562" expanded="true" signature="13523:13653" placeholder="UPDATE libra..." />
               </folding>
             </state>
           </provider>
@@ -107,19 +93,9 @@
       <file leaf-file-name="DBFun.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/DBFun.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="802" max-vertical-offset="2040">
+            <state vertical-scroll-proportion="0.0" vertical-offset="969" max-vertical-offset="1938">
               <caret line="51" column="50" selection-start-line="51" selection-start-column="50" selection-end-line="51" selection-end-column="50" />
-              <folding>
-                <marker date="1429930288582" expanded="true" signature="521:560" placeholder="SELECT max(l..library..." />
-                <marker date="1429930288582" expanded="true" signature="1575:1838" placeholder="INSERT INTO ..." />
-                <marker date="1429930288582" expanded="true" signature="1862:1880" placeholder="DELETE FROM ..." />
-                <marker date="1429930288582" expanded="true" signature="1896:1915" placeholder="DELETE FROM ..." />
-                <marker date="1429930288582" expanded="true" signature="1974:1994" placeholder="SELECT * FRO..record..." />
-                <marker date="1429930288582" expanded="true" signature="2078:2117" placeholder="UPDATE libra..." />
-                <marker date="1429930288582" expanded="true" signature="2078:2119" placeholder="UPDATE libra..." />
-                <marker date="1429930288582" expanded="true" signature="2078:2139" placeholder="UPDATE libra..." />
-                <marker date="1429930288582" expanded="true" signature="2369:2410" placeholder="SELECT * FRO..library..." />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -127,13 +103,9 @@
       <file leaf-file-name="DBInit.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/DBInit.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="602" max-vertical-offset="1000">
+            <state vertical-scroll-proportion="0.0" vertical-offset="646" max-vertical-offset="950">
               <caret line="34" column="7" selection-start-line="34" selection-start-column="7" selection-end-line="34" selection-end-column="7" />
-              <folding>
-                <marker date="1430056408151" expanded="true" signature="128:628" placeholder="CREATE TABLE..library..." />
-                <marker date="1430056408151" expanded="true" signature="657:895" placeholder="CREATE TABLE..record..." />
-                <marker date="1430056408151" expanded="true" signature="928:1063" placeholder="INSERT INTO ..." />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -141,7 +113,7 @@
       <file leaf-file-name="FrameFun.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/FrameFun.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="120">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="114">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
@@ -151,7 +123,7 @@
       <file leaf-file-name="Library.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Library.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1900">
+            <state vertical-scroll-proportion="0.0" vertical-offset="342" max-vertical-offset="1805">
               <caret line="18" column="40" selection-start-line="18" selection-start-column="40" selection-end-line="18" selection-end-column="40" />
               <folding />
             </state>
@@ -161,7 +133,7 @@
       <file leaf-file-name="Record.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Record.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="420" max-vertical-offset="1660">
+            <state vertical-scroll-proportion="0.0" vertical-offset="399" max-vertical-offset="1577">
               <caret line="21" column="25" selection-start-line="21" selection-start-column="25" selection-end-line="21" selection-end-column="25" />
               <folding />
             </state>
@@ -170,11 +142,8 @@
       </file>
       <file leaf-file-name="sql" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sql">
-          <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
-            <state />
-          </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="300" max-vertical-offset="780">
+            <state vertical-scroll-proportion="0.0" vertical-offset="285" max-vertical-offset="741">
               <caret line="15" column="28" selection-start-line="15" selection-start-column="28" selection-end-line="15" selection-end-column="28" />
               <folding />
             </state>
@@ -224,8 +193,8 @@
     <detection-done>true</detection-done>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
+    <option name="x" value="335" />
+    <option name="y" value="95" />
     <option name="width" value="1382" />
     <option name="height" value="754" />
   </component>
@@ -276,24 +245,14 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PyMemo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="memo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="D:/software/Git/bin/git.exe" />
-    <property name="options.lastSelected" value="vcs.Git" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="options.lastSelected" value="reference.settingsdialog.IDE.editor.colors.Font" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="recentsLimit" value="5" />
@@ -437,20 +396,6 @@
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
     </configuration>
-    <configuration default="true" type="PyBehaveRunConfigurationType" factoryName="Behave">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="PyMemo" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="ADDITIONAL_ARGS" value="" />
-      <method />
-    </configuration>
     <configuration default="true" type="tests" factoryName="Unittests">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -499,23 +444,6 @@
       <option name="USE_KEYWORD" value="false" />
       <method />
     </configuration>
-    <configuration default="true" type="PyLettuceRunConfigurationType" factoryName="Lettuce">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="PyMemo" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="ADDITIONAL_ARGS" value="" />
-      <method />
-    </configuration>
-    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
-      <method />
-    </configuration>
     <configuration default="true" type="tests" factoryName="Attests">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -556,26 +484,6 @@
       <option name="USE_PATTERN" value="false" />
       <method />
     </configuration>
-    <configuration default="true" type="DjangoTestsConfigurationType" factoryName="Django tests">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="PyMemo" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="TARGET" value="" />
-      <option name="SETTINGS_FILE" value="" />
-      <option name="CUSTOM_SETTINGS" value="false" />
-      <option name="USE_OPTIONS" value="false" />
-      <option name="OPTIONS" value="" />
-      <method />
-    </configuration>
     <configuration default="true" type="tests" factoryName="Nosetests">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -596,15 +504,6 @@
       <option name="USE_PATTERN" value="false" />
       <option name="PARAMS" value="" />
       <option name="USE_PARAM" value="false" />
-      <method />
-    </configuration>
-    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
-      <node-options />
-      <gulpfile />
-      <tasks />
-      <arguments />
-      <pass-parent-envs>true</pass-parent-envs>
-      <envs />
       <method />
     </configuration>
     <configuration default="false" name="main" type="PythonConfigurationType" factoryName="Python">
@@ -726,29 +625,29 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="754" extended-state="7" />
-    <editor active="false" />
+    <frame x="335" y="95" width="1382" height="754" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21669106" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31570512" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21709532" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39325842" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31570512" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.26966292" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39325842" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -803,10 +702,47 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/sql">
-      <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
-        <state />
+    <entry file="file://$PROJECT_DIR$/DBInit.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="646" max-vertical-offset="950">
+          <caret line="34" column="7" selection-start-line="34" selection-start-column="7" selection-end-line="34" selection-end-column="7" />
+          <folding />
+        </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FrameFun.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="114">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Library.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="342" max-vertical-offset="1805">
+          <caret line="18" column="40" selection-start-line="18" selection-start-column="40" selection-end-line="18" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Record.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="399" max-vertical-offset="1577">
+          <caret line="21" column="25" selection-start-line="21" selection-start-column="25" selection-end-line="21" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="285" max-vertical-offset="741">
+          <caret line="15" column="28" selection-start-line="15" selection-start-column="28" selection-end-line="15" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sql">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="300" max-vertical-offset="780">
           <caret line="15" column="28" selection-start-line="15" selection-start-column="28" selection-end-line="15" selection-end-column="28" />
@@ -823,9 +759,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/sql">
-      <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="140" max-vertical-offset="780">
           <caret line="7" column="14" selection-start-line="7" selection-start-column="14" selection-end-line="7" selection-end-column="14" />
@@ -837,11 +770,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="200" max-vertical-offset="740">
           <caret line="10" column="16" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="16" />
-          <folding>
-            <marker date="1430056408151" expanded="true" signature="128:628" placeholder="CREATE TABLE..library..." />
-            <marker date="1430056408151" expanded="true" signature="657:895" placeholder="CREATE TABLE..record..." />
-            <marker date="1430056408151" expanded="true" signature="928:1063" placeholder="INSERT INTO ..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -871,14 +800,6 @@
             <element signature="e#14700#14704#0" expanded="false" />
             <element signature="e#14743#14923#0" expanded="false" />
             <element signature="e#14974#15013#0" expanded="false" />
-            <marker date="1430056358070" expanded="true" signature="644:665" placeholder="SELECT * FRO..library..." />
-            <marker date="1430056358070" expanded="true" signature="2037:2095" placeholder="SELECT * FRO..record..." />
-            <marker date="1430056358070" expanded="true" signature="3604:3639" placeholder="SELECT * FRO..library..." />
-            <marker date="1430056358070" expanded="true" signature="3604:3641" placeholder="SELECT * FRO..library..." />
-            <marker date="1430056358070" expanded="true" signature="3604:3656" placeholder="SELECT * FRO..library..." />
-            <marker date="1430056358070" expanded="true" signature="3604:3657" placeholder="SELECT * FRO..library..." />
-            <marker date="1430056358070" expanded="true" signature="4202:4254" placeholder="SELECT * FRO..library..." />
-            <marker date="1430056358070" expanded="true" signature="5590:5610" placeholder="SELECT * FRO..record..." />
           </folding>
         </state>
       </provider>
@@ -887,17 +808,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="800" max-vertical-offset="1700">
           <caret line="40" column="43" selection-start-line="40" selection-start-column="43" selection-end-line="40" selection-end-column="43" />
-          <folding>
-            <marker date="1429930288582" expanded="true" signature="521:560" placeholder="SELECT max(l..library..." />
-            <marker date="1429930288582" expanded="true" signature="1575:1838" placeholder="INSERT INTO ..." />
-            <marker date="1429930288582" expanded="true" signature="1862:1880" placeholder="DELETE FROM ..." />
-            <marker date="1429930288582" expanded="true" signature="1896:1915" placeholder="DELETE FROM ..." />
-            <marker date="1429930288582" expanded="true" signature="1974:1994" placeholder="SELECT * FRO..record..." />
-            <marker date="1429930288582" expanded="true" signature="2078:2117" placeholder="UPDATE libra..." />
-            <marker date="1429930288582" expanded="true" signature="2078:2119" placeholder="UPDATE libra..." />
-            <marker date="1429930288582" expanded="true" signature="2078:2139" placeholder="UPDATE libra..." />
-            <marker date="1429930288582" expanded="true" signature="2369:2410" placeholder="SELECT * FRO..library..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -922,14 +833,6 @@
             <element signature="e#16337#17230#0" expanded="false" />
             <element signature="e#17265#17486#0" expanded="false" />
             <element signature="e#17522#17886#0" expanded="false" />
-            <element signature="e#17924#19794#0" expanded="false" />
-            <marker date="1430056655562" expanded="true" signature="11618:11680" placeholder="INSERT INTO ..." />
-            <marker date="1430056655562" expanded="true" signature="11618:11698" placeholder="INSERT INTO ..." />
-            <marker date="1430056655562" expanded="true" signature="11618:11718" placeholder="INSERT INTO ..." />
-            <marker date="1430056655562" expanded="true" signature="11618:11765" placeholder="INSERT INTO ..." />
-            <marker date="1430056655562" expanded="true" signature="11618:11786" placeholder="INSERT INTO ..." />
-            <marker date="1430056655562" expanded="true" signature="11618:11787" placeholder="INSERT INTO ..." />
-            <marker date="1430056655562" expanded="true" signature="13523:13653" placeholder="UPDATE libra..." />
           </folding>
         </state>
       </provider>
@@ -951,9 +854,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/sql">
-      <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="140" max-vertical-offset="780">
           <caret line="7" column="14" selection-start-line="7" selection-start-column="14" selection-end-line="7" selection-end-column="14" />
@@ -965,11 +865,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="200" max-vertical-offset="740">
           <caret line="10" column="16" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="16" />
-          <folding>
-            <marker date="1430056408151" expanded="true" signature="128:628" placeholder="CREATE TABLE..library..." />
-            <marker date="1430056408151" expanded="true" signature="657:895" placeholder="CREATE TABLE..record..." />
-            <marker date="1430056408151" expanded="true" signature="928:1063" placeholder="INSERT INTO ..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -994,14 +890,6 @@
             <element signature="e#16337#17230#0" expanded="false" />
             <element signature="e#17265#17486#0" expanded="false" />
             <element signature="e#17522#17886#0" expanded="false" />
-            <element signature="e#17924#19794#0" expanded="false" />
-            <marker date="1430056655562" expanded="true" signature="11618:11680" placeholder="INSERT INTO ..." />
-            <marker date="1430056655562" expanded="true" signature="11618:11698" placeholder="INSERT INTO ..." />
-            <marker date="1430056655562" expanded="true" signature="11618:11718" placeholder="INSERT INTO ..." />
-            <marker date="1430056655562" expanded="true" signature="11618:11765" placeholder="INSERT INTO ..." />
-            <marker date="1430056655562" expanded="true" signature="11618:11786" placeholder="INSERT INTO ..." />
-            <marker date="1430056655562" expanded="true" signature="11618:11787" placeholder="INSERT INTO ..." />
-            <marker date="1430056655562" expanded="true" signature="13523:13653" placeholder="UPDATE libra..." />
           </folding>
         </state>
       </provider>
@@ -1018,17 +906,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1120">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1429930288582" expanded="true" signature="521:560" placeholder="SELECT max(l..library..." />
-            <marker date="1429930288582" expanded="true" signature="1575:1838" placeholder="INSERT INTO ..." />
-            <marker date="1429930288582" expanded="true" signature="1862:1880" placeholder="DELETE FROM ..." />
-            <marker date="1429930288582" expanded="true" signature="1896:1915" placeholder="DELETE FROM ..." />
-            <marker date="1429930288582" expanded="true" signature="1974:1994" placeholder="SELECT * FRO..record..." />
-            <marker date="1429930288582" expanded="true" signature="2078:2117" placeholder="UPDATE libra..." />
-            <marker date="1429930288582" expanded="true" signature="2078:2119" placeholder="UPDATE libra..." />
-            <marker date="1429930288582" expanded="true" signature="2078:2139" placeholder="UPDATE libra..." />
-            <marker date="1429930288582" expanded="true" signature="2369:2410" placeholder="SELECT * FRO..library..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1061,14 +939,6 @@
             <element signature="e#16337#17230#0" expanded="false" />
             <element signature="e#17265#17486#0" expanded="false" />
             <element signature="e#17522#17886#0" expanded="false" />
-            <element signature="e#17924#19794#0" expanded="false" />
-            <marker date="1430056655562" expanded="true" signature="11618:11680" placeholder="INSERT INTO ..." />
-            <marker date="1430056655562" expanded="true" signature="11618:11698" placeholder="INSERT INTO ..." />
-            <marker date="1430056655562" expanded="true" signature="11618:11718" placeholder="INSERT INTO ..." />
-            <marker date="1430056655562" expanded="true" signature="11618:11765" placeholder="INSERT INTO ..." />
-            <marker date="1430056655562" expanded="true" signature="11618:11786" placeholder="INSERT INTO ..." />
-            <marker date="1430056655562" expanded="true" signature="11618:11787" placeholder="INSERT INTO ..." />
-            <marker date="1430056655562" expanded="true" signature="13523:13653" placeholder="UPDATE libra..." />
           </folding>
         </state>
       </provider>
@@ -1085,17 +955,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="480">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1429930288582" expanded="true" signature="521:560" placeholder="SELECT max(l..library..." />
-            <marker date="1429930288582" expanded="true" signature="1575:1838" placeholder="INSERT INTO ..." />
-            <marker date="1429930288582" expanded="true" signature="1862:1880" placeholder="DELETE FROM ..." />
-            <marker date="1429930288582" expanded="true" signature="1896:1915" placeholder="DELETE FROM ..." />
-            <marker date="1429930288582" expanded="true" signature="1974:1994" placeholder="SELECT * FRO..record..." />
-            <marker date="1429930288582" expanded="true" signature="2078:2117" placeholder="UPDATE libra..." />
-            <marker date="1429930288582" expanded="true" signature="2078:2119" placeholder="UPDATE libra..." />
-            <marker date="1429930288582" expanded="true" signature="2078:2139" placeholder="UPDATE libra..." />
-            <marker date="1429930288582" expanded="true" signature="2369:2410" placeholder="SELECT * FRO..library..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1128,14 +988,6 @@
             <element signature="e#16337#17230#0" expanded="false" />
             <element signature="e#17265#17486#0" expanded="false" />
             <element signature="e#17522#17886#0" expanded="false" />
-            <element signature="e#17924#19794#0" expanded="false" />
-            <marker date="1430056655562" expanded="true" signature="11618:11680" placeholder="INSERT INTO ..." />
-            <marker date="1430056655562" expanded="true" signature="11618:11698" placeholder="INSERT INTO ..." />
-            <marker date="1430056655562" expanded="true" signature="11618:11718" placeholder="INSERT INTO ..." />
-            <marker date="1430056655562" expanded="true" signature="11618:11765" placeholder="INSERT INTO ..." />
-            <marker date="1430056655562" expanded="true" signature="11618:11786" placeholder="INSERT INTO ..." />
-            <marker date="1430056655562" expanded="true" signature="11618:11787" placeholder="INSERT INTO ..." />
-            <marker date="1430056655562" expanded="true" signature="13523:13653" placeholder="UPDATE libra..." />
           </folding>
         </state>
       </provider>
@@ -1177,14 +1029,6 @@
             <element signature="e#16337#17230#0" expanded="false" />
             <element signature="e#17265#17486#0" expanded="false" />
             <element signature="e#17522#17886#0" expanded="false" />
-            <element signature="e#17924#19794#0" expanded="false" />
-            <marker date="1430056655562" expanded="true" signature="11618:11680" placeholder="INSERT INTO ..." />
-            <marker date="1430056655562" expanded="true" signature="11618:11698" placeholder="INSERT INTO ..." />
-            <marker date="1430056655562" expanded="true" signature="11618:11718" placeholder="INSERT INTO ..." />
-            <marker date="1430056655562" expanded="true" signature="11618:11765" placeholder="INSERT INTO ..." />
-            <marker date="1430056655562" expanded="true" signature="11618:11786" placeholder="INSERT INTO ..." />
-            <marker date="1430056655562" expanded="true" signature="11618:11787" placeholder="INSERT INTO ..." />
-            <marker date="1430056655562" expanded="true" signature="13523:13653" placeholder="UPDATE libra..." />
           </folding>
         </state>
       </provider>
@@ -1210,14 +1054,6 @@
             <element signature="e#16337#17230#0" expanded="false" />
             <element signature="e#17265#17486#0" expanded="false" />
             <element signature="e#17522#17886#0" expanded="false" />
-            <element signature="e#17924#19794#0" expanded="false" />
-            <marker date="1430056655562" expanded="true" signature="11618:11680" placeholder="INSERT INTO ..." />
-            <marker date="1430056655562" expanded="true" signature="11618:11698" placeholder="INSERT INTO ..." />
-            <marker date="1430056655562" expanded="true" signature="11618:11718" placeholder="INSERT INTO ..." />
-            <marker date="1430056655562" expanded="true" signature="11618:11765" placeholder="INSERT INTO ..." />
-            <marker date="1430056655562" expanded="true" signature="11618:11786" placeholder="INSERT INTO ..." />
-            <marker date="1430056655562" expanded="true" signature="11618:11787" placeholder="INSERT INTO ..." />
-            <marker date="1430056655562" expanded="true" signature="13523:13653" placeholder="UPDATE libra..." />
           </folding>
         </state>
       </provider>
@@ -1251,14 +1087,6 @@
             <element signature="e#16337#17230#0" expanded="false" />
             <element signature="e#17265#17486#0" expanded="false" />
             <element signature="e#17522#17886#0" expanded="false" />
-            <element signature="e#17924#19794#0" expanded="false" />
-            <marker date="1430056655562" expanded="true" signature="11618:11680" placeholder="INSERT INTO ..." />
-            <marker date="1430056655562" expanded="true" signature="11618:11698" placeholder="INSERT INTO ..." />
-            <marker date="1430056655562" expanded="true" signature="11618:11718" placeholder="INSERT INTO ..." />
-            <marker date="1430056655562" expanded="true" signature="11618:11765" placeholder="INSERT INTO ..." />
-            <marker date="1430056655562" expanded="true" signature="11618:11786" placeholder="INSERT INTO ..." />
-            <marker date="1430056655562" expanded="true" signature="11618:11787" placeholder="INSERT INTO ..." />
-            <marker date="1430056655562" expanded="true" signature="13523:13653" placeholder="UPDATE libra..." />
           </folding>
         </state>
       </provider>
@@ -1284,14 +1112,6 @@
             <element signature="e#16337#17230#0" expanded="false" />
             <element signature="e#17265#17486#0" expanded="false" />
             <element signature="e#17522#17886#0" expanded="false" />
-            <element signature="e#17924#19794#0" expanded="false" />
-            <marker date="1430056655562" expanded="true" signature="11618:11680" placeholder="INSERT INTO ..." />
-            <marker date="1430056655562" expanded="true" signature="11618:11698" placeholder="INSERT INTO ..." />
-            <marker date="1430056655562" expanded="true" signature="11618:11718" placeholder="INSERT INTO ..." />
-            <marker date="1430056655562" expanded="true" signature="11618:11765" placeholder="INSERT INTO ..." />
-            <marker date="1430056655562" expanded="true" signature="11618:11786" placeholder="INSERT INTO ..." />
-            <marker date="1430056655562" expanded="true" signature="11618:11787" placeholder="INSERT INTO ..." />
-            <marker date="1430056655562" expanded="true" signature="13523:13653" placeholder="UPDATE libra..." />
           </folding>
         </state>
       </provider>
@@ -1309,14 +1129,6 @@
             <element signature="e#16337#17230#0" expanded="false" />
             <element signature="e#17265#17486#0" expanded="false" />
             <element signature="e#17522#17886#0" expanded="false" />
-            <element signature="e#17924#19794#0" expanded="false" />
-            <marker date="1430056655562" expanded="true" signature="11618:11680" placeholder="INSERT INTO ..." />
-            <marker date="1430056655562" expanded="true" signature="11618:11698" placeholder="INSERT INTO ..." />
-            <marker date="1430056655562" expanded="true" signature="11618:11718" placeholder="INSERT INTO ..." />
-            <marker date="1430056655562" expanded="true" signature="11618:11765" placeholder="INSERT INTO ..." />
-            <marker date="1430056655562" expanded="true" signature="11618:11786" placeholder="INSERT INTO ..." />
-            <marker date="1430056655562" expanded="true" signature="11618:11787" placeholder="INSERT INTO ..." />
-            <marker date="1430056655562" expanded="true" signature="13523:13653" placeholder="UPDATE libra..." />
           </folding>
         </state>
       </provider>
@@ -1324,43 +1136,6 @@
     <entry file="file://$PROJECT_DIR$/images/other-size/search26.png">
       <provider selected="true" editor-type-id="images">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://C:/Python27/Lib/site-packages/wx-3.0-msw/wx/_windows.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="24612" max-vertical-offset="105048">
-          <caret line="1377" column="6" selection-start-line="1377" selection-start-column="6" selection-end-line="1377" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Python27/Lib/site-packages/wx-3.0-msw/wx/_controls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33251834" vertical-offset="68174" max-vertical-offset="141768">
-          <caret line="3796" column="0" selection-start-line="3796" selection-start-column="0" selection-end-line="3796" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Python27/Lib/site-packages/wx-3.0-msw/wx/_core.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33251834" vertical-offset="205284" max-vertical-offset="338760">
-          <caret line="10272" column="8" selection-start-line="10272" selection-start-column="8" selection-end-line="10272" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Python27/Lib/site-packages/wx-3.0-msw/wx/_misc.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="131618" max-vertical-offset="140380">
-          <caret line="6586" column="33" selection-start-line="6586" selection-start-column="33" selection-end-line="6586" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/document/自学/python/wxPython-demo-2.6.0.0/wxPython-2.6.0.0/demo/Main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="35500">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
@@ -1371,9 +1146,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/sql">
-      <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="300" max-vertical-offset="780">
           <caret line="15" column="28" selection-start-line="15" selection-start-column="28" selection-end-line="15" selection-end-column="28" />
@@ -1409,17 +1181,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="802" max-vertical-offset="2040">
           <caret line="51" column="50" selection-start-line="51" selection-start-column="50" selection-end-line="51" selection-end-column="50" />
-          <folding>
-            <marker date="1429930288582" expanded="true" signature="521:560" placeholder="SELECT max(l..library..." />
-            <marker date="1429930288582" expanded="true" signature="1575:1838" placeholder="INSERT INTO ..." />
-            <marker date="1429930288582" expanded="true" signature="1862:1880" placeholder="DELETE FROM ..." />
-            <marker date="1429930288582" expanded="true" signature="1896:1915" placeholder="DELETE FROM ..." />
-            <marker date="1429930288582" expanded="true" signature="1974:1994" placeholder="SELECT * FRO..record..." />
-            <marker date="1429930288582" expanded="true" signature="2078:2117" placeholder="UPDATE libra..." />
-            <marker date="1429930288582" expanded="true" signature="2078:2119" placeholder="UPDATE libra..." />
-            <marker date="1429930288582" expanded="true" signature="2078:2139" placeholder="UPDATE libra..." />
-            <marker date="1429930288582" expanded="true" signature="2369:2410" placeholder="SELECT * FRO..library..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1427,11 +1189,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="602" max-vertical-offset="1000">
           <caret line="34" column="7" selection-start-line="34" selection-start-column="7" selection-end-line="34" selection-end-column="7" />
-          <folding>
-            <marker date="1430056408151" expanded="true" signature="128:628" placeholder="CREATE TABLE..library..." />
-            <marker date="1430056408151" expanded="true" signature="657:895" placeholder="CREATE TABLE..record..." />
-            <marker date="1430056408151" expanded="true" signature="928:1063" placeholder="INSERT INTO ..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1448,22 +1206,14 @@
             <element signature="e#16337#17230#0" expanded="false" />
             <element signature="e#17265#17486#0" expanded="false" />
             <element signature="e#17522#17886#0" expanded="false" />
-            <element signature="e#17924#19794#0" expanded="false" />
-            <marker date="1430056655562" expanded="true" signature="11618:11680" placeholder="INSERT INTO ..." />
-            <marker date="1430056655562" expanded="true" signature="11618:11698" placeholder="INSERT INTO ..." />
-            <marker date="1430056655562" expanded="true" signature="11618:11718" placeholder="INSERT INTO ..." />
-            <marker date="1430056655562" expanded="true" signature="11618:11765" placeholder="INSERT INTO ..." />
-            <marker date="1430056655562" expanded="true" signature="11618:11786" placeholder="INSERT INTO ..." />
-            <marker date="1430056655562" expanded="true" signature="11618:11787" placeholder="INSERT INTO ..." />
-            <marker date="1430056655562" expanded="true" signature="13523:13653" placeholder="UPDATE libra..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/memo.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.42211056" vertical-offset="2048" max-vertical-offset="3840">
-          <caret line="134" column="0" selection-start-line="134" selection-start-column="0" selection-end-line="134" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.21393842" vertical-offset="0" max-vertical-offset="4224">
+          <caret line="6" column="21" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
           <folding>
             <element signature="e#32#42#0" expanded="true" />
             <element signature="e#225#501#0" expanded="false" />
@@ -1486,14 +1236,6 @@
             <element signature="e#14700#14704#0" expanded="false" />
             <element signature="e#14743#14923#0" expanded="false" />
             <element signature="e#14974#15013#0" expanded="false" />
-            <marker date="1430056358070" expanded="true" signature="644:665" placeholder="SELECT * FRO..library..." />
-            <marker date="1430056358070" expanded="true" signature="2037:2095" placeholder="SELECT * FRO..record..." />
-            <marker date="1430056358070" expanded="true" signature="3604:3639" placeholder="SELECT * FRO..library..." />
-            <marker date="1430056358070" expanded="true" signature="3604:3641" placeholder="SELECT * FRO..library..." />
-            <marker date="1430056358070" expanded="true" signature="3604:3656" placeholder="SELECT * FRO..library..." />
-            <marker date="1430056358070" expanded="true" signature="3604:3657" placeholder="SELECT * FRO..library..." />
-            <marker date="1430056358070" expanded="true" signature="4202:4254" placeholder="SELECT * FRO..library..." />
-            <marker date="1430056358070" expanded="true" signature="5590:5610" placeholder="SELECT * FRO..record..." />
           </folding>
         </state>
       </provider>
