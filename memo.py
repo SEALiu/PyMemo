@@ -32,8 +32,6 @@ class ListCtrlLeft(wx.ListCtrl):
         for rows in result_list:
             LIBRARY_ID.append(rows[0])
             LIBRARIES[rows[0]] = rows[1]
-        print LIBRARIES
-
         return library_id
 
     def load_data_left(self):
