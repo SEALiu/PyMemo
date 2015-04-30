@@ -15,6 +15,8 @@ GUI：wxpython2.7.9
 
 IDE：PyCharm
 
+DB: SQLite3
+
 ----
 
 其中的图标大部分都来自：[http://findicons.com](http://findicons.com)
