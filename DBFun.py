@@ -40,7 +40,6 @@ def max_lib(column):
     else:
         return -1
 
-
 def max_record(column):
     """返回record中指定列的最大值"""
     select_sql = "SELECT max(" + column + ") FROM record"
