@@ -28,20 +28,42 @@ def update(conn, sql):
 
 
 def max_lib(column):
-    """返回library中制定列最大值"""
+    """返回library中指定列最大值"""
     select_sql = "SELECT max(" + column + ") FROM library"
     conn = connect_db('db_pymemo.db')
     cursor = select(conn, select_sql)
     result_list = cursor.fetchall()
     close_db(conn)
-    if result_list[0][0]:
-        return result_list[0][0]
+    max_lib_id = result_list[0][0]
+    if max_lib_id:
+        return int(max_lib_id)
     else:
-        return '-1'
+        return -1
 
 
-conn = connect_db('db_pymemo.db')
-conn.text_factory = str
+def max_record(column):
+    """返回record中指定列的最大值"""
+    select_sql = "SELECT max(" + column + ") FROM record"
+    conn = connect_db('db_pymemo.db')
+    cursor = select(conn, select_sql)
+    result_list = cursor.fetchall()
+    close_db(conn)
+    max_record_id = result_list[0][0]
+    if max_record_id:
+        return int(max_record_id[:5])
+    else:
+        return -1
+
+
+
+
+
+
+
+
+
+# conn = connect_db('db_pymemo.db')
+# conn.text_factory = str
 # insertSQL1 = "INSERT INTO library (" \
 #         "libId, name, libDesc, createTime, " \
 #         "maxReviewsPerDay, newCardsPerDay, " \
@@ -60,18 +82,18 @@ conn.text_factory = str
 #         "'001', 'library-one', 'The first library'," \
 #         " '2015-04-13', 50, 50, 3, 3650, 30, 1)"
 #
-insertSQL3 = "INSERT INTO record (" \
-        "recordId, ques, ans, addTime, " \
-        "reviewTime, alertTime, " \
-        "interval, EF, isPaused) " \
-      "VALUES (" \
-        "'00000100000', 'pear', '梨', " \
-        " '2015-04-20', '2015-05-20', '2015-05-20', 16, 1.5, 0)"
+# insertSQL3 = "INSERT INTO record (" \
+#         "recordId, ques, ans, addTime, " \
+#         "reviewTime, alertTime, " \
+#         "interval, EF, isPaused) " \
+#       "VALUES (" \
+#         "'00000100000', 'pear', '梨', " \
+#         " '2015-04-20', '2015-05-20', '2015-05-20', 16, 1.5, 0)"
 #
 #
 #
 # deleteSQL1 = "DELETE FROM record"
-deleteSQL2 = "DELETE FROM library"
+# deleteSQL2 = "DELETE FROM library"
 #
 # selectSQL1 = "SELECT * FROM library"
 # selectSQL2 = "SELECT * FROM record"
@@ -94,4 +116,4 @@ deleteSQL2 = "DELETE FROM library"
 # for rows in cursor:
 #     print "libId = ", rows[0]
 #
-close_db(conn)
+# close_db(conn)
