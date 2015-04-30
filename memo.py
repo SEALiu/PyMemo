@@ -32,6 +32,7 @@ class ListCtrlLeft(wx.ListCtrl):
         for rows in result_list:
             LIBRARY_ID.append(rows[0])
             LIBRARIES[rows[0]] = rows[1]
+        print LIBRARIES
 
         return library_id
 
@@ -57,20 +58,21 @@ class ListCtrlLeft(wx.ListCtrl):
         self.SetColumnWidth(0, size.x - 5)
         event.Skip()
 
-    # def on_select(self, event):
-    #     print 'hi,click me!'
-    #     window = self.parent.GetGrandParent().FindWindowByName('ListControlOnRight')
-    #     index = event.GetIndex()
-    #     lib_id = LIBRARY_ID[index]
-    #     print 'lib_id:', lib_id
-    #     conn = DBFun.connect_db('db_pymemo.db')
-    #     conn.text_factory = str
-    #     select_sql = "SELECT * FROM record WHERE recordId LIKE '%" + lib_id + "'"
-    #     cursor = DBFun.select(conn, select_sql)
-    #     RECORDS = cursor.fetchall()
-    #     DBFun.close_db(conn)
-    #     # print 'RECORDS: ', RECORDS
-    #     window.load_data_right(RECORDS)
+    @staticmethod
+    def on_refresh():
+        # print 'hi,click me!'
+        window = wx.FindWindowByName('ListControlOnRight', parent=None)
+        # index = event.GetIndex()
+        # lib_id = LIBRARY_ID[index]
+        # print 'lib_id:', lib_id
+        conn = DBFun.connect_db('db_pymemo.db')
+        conn.text_factory = str
+        select_sql = "SELECT * FROM record"
+        cursor = DBFun.select(conn, select_sql)
+        RECORDS = cursor.fetchall()
+        DBFun.close_db(conn)
+        # print 'RECORDS: ', RECORDS
+        window.load_data_right(RECORDS)
 
     def on_lib_clicked(self, event):
         index = event.GetIndex()
@@ -95,7 +97,8 @@ class ListCtrlLeft(wx.ListCtrl):
         self.PopupMenu(menu)
         menu.Destroy()
 
-    def on_lib_rename(self, evt, i):
+    @staticmethod
+    def on_lib_rename(evt, i):
         lib_desc = ''
         lib_id = LIBRARY_ID[i]
         lib_name = LIBRARIES[LIBRARY_ID[i]].decode('utf-8')
@@ -112,7 +115,8 @@ class ListCtrlLeft(wx.ListCtrl):
         rename_dlg.Destroy()
         pass
 
-    def on_item_info(self, evt, i):
+    @staticmethod
+    def on_item_info(evt, i):
         lib_info = ()
         lib_id = LIBRARY_ID[i]
         lib_name = LIBRARIES[LIBRARY_ID[i]].decode('utf-8')
@@ -128,10 +132,15 @@ class ListCtrlLeft(wx.ListCtrl):
         info_dlg.Destroy()
         pass
 
-    def on_item_add(self, evt, i):
+    @staticmethod
+    def on_item_add(evt, i):
+        new_card_dlg = Dialog.AddNewRecord(LIBRARIES, LIBRARY_ID[i])
+        new_card_dlg.ShowModal()
+        new_card_dlg.Destroy()
         pass
 
-    def on_lib_setting(self, evt, i):
+    @staticmethod
+    def on_lib_setting(evt, i):
         # print "setting", LIBRARY_ID[i]
         setting_dlg = Dialog.SettingDialog(LIBRARIES, LIBRARY_ID[i])
         setting_dlg.ShowModal()
@@ -151,7 +160,6 @@ class ListCtrlLeft(wx.ListCtrl):
             delete_dlg = Dialog.DeleteLib(lib_name, lib_id)
             delete_dlg.ShowModal()
             delete_dlg.Destroy()
-
 
 class ListCtrlRight(wx.ListCtrl):
     def __init__(self, parent, i):
@@ -183,7 +191,7 @@ class ListCtrlRight(wx.ListCtrl):
         for i in RECORDS:
             index = self.InsertStringItem(sys.maxint, i[0])
             for j in range(len(self.list_head_name)):
-                self.SetStringItem(index, j, str(i[j]))
+                self.SetStringItem(index, j, str(i[j]).decode('utf-8'))
         # print 'RECORDS: ', RECORDS
 
 
@@ -207,7 +215,6 @@ class CombinePanelRight(wx.Panel):
                                     style=wx.CB_READONLY
                                     )
         lib_combo_box.SetSelection(0)
-        # lib_combo_box.Bind(wx.EVT_COMBOBOX, self.on_select)
         go = wx.BitmapButton(self,
                              -1,
                              wx.Bitmap('images/other-size/search26.png'),
@@ -382,7 +389,7 @@ class Memo(wx.Frame):
 
     @staticmethod
     def on_new_record(evt):
-        new_card_dlg = Dialog.AddNewRecord()
+        new_card_dlg = Dialog.AddNewRecord(LIBRARIES, -1)
         new_card_dlg.ShowModal()
         new_card_dlg.Destroy()
         evt.Skip()
