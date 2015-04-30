@@ -34,11 +34,11 @@
 # isPaused boolean DEFAULT FALSE
 # )''')
 #
-# # c.execute(
-# #     '''INSERT INTO library(libId, name, libDesc, createTime) VALUES ('000', '孤儿院',
-# # '存放没有归属词库的记录，并且此词库不能被删除',
-# # '2015/04/21 21:09:43:47')
-# # ''')
+# c.execute(
+#     '''INSERT INTO library(libId, name, libDesc, createTime) VALUES ('000', '孤儿院',
+# '存放没有归属词库的记录，并且此词库不能被删除',
+# '2015/04/21 21:09:43:47')
+# ''')
 # conn.commit()
 #
 # c.close()
