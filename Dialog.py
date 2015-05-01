@@ -2,7 +2,7 @@
 import time
 import wx
 import DBFun
-from memo import ListCtrlLeft
+from memo import ListCtrlLeft, ListCtrlRight
 # import FrameFun
 
 
@@ -274,15 +274,15 @@ class AddNewLib(wx.Dialog):
 
         next_lib_id = DBFun.max_lib('libId') + 1
         lib_id = str(next_lib_id).zfill(3)
-        create_time = time.strftime('%Y/%m/%d %H:%I:%M:%S', time.localtime(time.time()))
+        create_time = time.strftime('%Y/%m/%d %H:%M:%S', time.localtime(time.time()))
 
         insert_lib_sql = "INSERT INTO library(libId, name, libDesc, createTime) VALUES ('" + lib_id + "', '" + lib_name + "', '" +\
                          lib_desc + "', '" + create_time + "')"
         conn = DBFun.connect_db('db_pymemo.db')
         if DBFun.update(conn, insert_lib_sql):
             conn.commit()
-
         conn.close()
+        ListCtrlLeft.on_refresh()
         self.Close()
 
 
@@ -326,6 +326,7 @@ class RenameLib(wx.Dialog):
         if DBFun.update(conn, update_lib_sql):
             print 'update succeed !'
             conn.commit()
+            ListCtrlLeft.on_refresh()
         else:
             print 'update fault !'
         conn.close()
@@ -402,7 +403,6 @@ class DeleteLib(wx.Dialog):
         self.Show(True)
 
     def on_delete(self, evt, i):
-        print i
         conn = DBFun.connect_db('db_pymemo.db')
         delete_lib_sql = "DELETE FROM library WHERE libId='" + i + "'"
         delete_record_sql = "DELETE FROM record WHERE recordId LIKE '%" + i + "'"
@@ -413,7 +413,6 @@ class DeleteLib(wx.Dialog):
         ListCtrlLeft.on_refresh()
         self.Close()
         pass
-
 
 
 class Export(wx.DirDialog):
@@ -517,8 +516,8 @@ class AddNewRecord(wx.Dialog):
                 conn.commit()
             conn.close()
             # on_refresh() 应该写到ListCtrlRight中！！！
-            ListCtrlLeft.on_refresh()
-            self.Close()
+            ListCtrlRight.on_refresh()
+            self.Close()                                                                                                                                                                                     
         pass
 
     def test(self, evt, ob, lib):
