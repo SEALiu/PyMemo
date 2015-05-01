@@ -17,7 +17,7 @@ class ListCtrlLeft(wx.ListCtrl):
         self.parent = parent
         self.Bind(wx.EVT_SIZE, self.on_size)
         # self.Bind(wx.EVT_LIST_ITEM_SELECTED, self.on_select)
-        self.load_data_left()
+        self.load_data_left(LIBRARIES)
 
     @staticmethod
     def fetch_lib():
@@ -27,16 +27,15 @@ class ListCtrlLeft(wx.ListCtrl):
         cursor = DBFun.select(conn, select_sql)
         result_list = cursor.fetchall()
         DBFun.close_db(conn)
-
-        library_id = []
+        LIBRARIES.clear()
+        LIBRARY_ID[:] = []
         for rows in result_list:
             LIBRARY_ID.append(rows[0])
             LIBRARIES[rows[0]] = rows[1]
-        return library_id
 
-    def load_data_left(self):
-        LIBRARY_ID = self.fetch_lib()
-
+    def load_data_left(self, LIBRARIES):
+        self.DeleteAllItems()
+        self.fetch_lib()
         self.il = wx.ImageList(32, 32)
         lib_img = wx.Bitmap('images/32/library.png')
         for i in range(len(LIBRARIES)):
@@ -58,19 +57,11 @@ class ListCtrlLeft(wx.ListCtrl):
 
     @staticmethod
     def on_refresh():
-        # print 'hi,click me!'
-        window = wx.FindWindowByName('ListControlOnRight', parent=None)
-        # index = event.GetIndex()
-        # lib_id = LIBRARY_ID[index]
-        # print 'lib_id:', lib_id
-        conn = DBFun.connect_db('db_pymemo.db')
-        conn.text_factory = str
-        select_sql = "SELECT * FROM record"
-        cursor = DBFun.select(conn, select_sql)
-        RECORDS = cursor.fetchall()
-        DBFun.close_db(conn)
-        # print 'RECORDS: ', RECORDS
-        window.load_data_right(RECORDS)
+        window = wx.FindWindowByName('ListControlOnLeft', parent=None)
+        print LIBRARIES
+        ListCtrlLeft.fetch_lib()
+        window.load_data_left(LIBRARIES)
+        print LIBRARIES
 
     def on_lib_clicked(self, event):
         index = event.GetIndex()
@@ -190,8 +181,16 @@ class ListCtrlRight(wx.ListCtrl):
             index = self.InsertStringItem(sys.maxint, i[0])
             for j in range(len(self.list_head_name)):
                 self.SetStringItem(index, j, str(i[j]).decode('utf-8'))
-        # print 'RECORDS: ', RECORDS
-
+    @staticmethod
+    def on_refresh():
+        window = wx.FindWindowByName('ListControlOnRight', parent=None)
+        conn = DBFun.connect_db('db_pymemo.db')
+        conn.text_factory = str
+        select_sql = "SELECT * FROM record"
+        cursor = DBFun.select(conn, select_sql)
+        RECORDS = cursor.fetchall()
+        DBFun.close_db(conn)
+        window.load_data_right(RECORDS)
 
 class CombinePanelRight(wx.Panel):
     def __init__(self, parent, i):
