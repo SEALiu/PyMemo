@@ -302,7 +302,9 @@ class RenameLib(wx.Dialog):
         h_box = wx.BoxSizer(wx.HORIZONTAL)
         ok_button = wx.Button(panel, -1, label='确定')
         cancel_button = wx.Button(panel, wx.ID_CANCEL, label='取消')
-        self.Bind(wx.EVT_BUTTON, lambda evt, name=lib_name, desc=lib_desc, i=lib_id: self.on_submit(evt, name, desc, i), ok_button)
+        self.Bind(wx.EVT_BUTTON,
+                  lambda evt, name=lib_name, desc=lib_desc, i=lib_id: self.on_submit(evt, name, desc, i),
+                  ok_button)
         h_box.Add(ok_button, 1, wx.RIGHT, border=5)
         h_box.Add(cancel_button, 1)
 
