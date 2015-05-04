@@ -413,6 +413,7 @@ class DeleteLib(wx.Dialog):
         DBFun.commit(conn)
         DBFun.close_db(conn)
         ListCtrlLeft.on_refresh()
+        ListCtrlRight.on_refresh()
         self.Close()
         pass
 

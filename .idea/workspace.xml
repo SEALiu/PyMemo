@@ -4,7 +4,6 @@
     <list default="true" id="09d777a0-516b-4436-9365-587facb31efa" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db_pymemo.db" afterPath="$PROJECT_DIR$/db_pymemo.db" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Dialog.py" afterPath="$PROJECT_DIR$/Dialog.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="PyMemo.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -18,7 +17,7 @@
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/PyMemo$memo.coverage" NAME="memo Coverage Results" MODIFIED="1430056701852" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/PyMemo$memo.coverage" NAME="memo Coverage Results" MODIFIED="1430746349946" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/PyMemo$DBInit.coverage" NAME="DBInit Coverage Results" MODIFIED="1430056400725" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/PyMemo$DBFun.coverage" NAME="DBFun Coverage Results" MODIFIED="1429929136611" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/PyMemo$Frame.coverage" NAME="Frame Coverage Results" MODIFIED="1429455615122" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
@@ -44,15 +43,23 @@
       <file leaf-file-name="memo.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/memo.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="481" max-vertical-offset="7238">
-              <caret line="35" column="40" selection-start-line="35" selection-start-column="40" selection-end-line="35" selection-end-column="40" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3060">
+              <caret line="228" column="23" selection-start-line="228" selection-start-column="23" selection-end-line="228" selection-end-column="23" />
               <folding>
                 <element signature="e#32#42#0" expanded="true" />
+                <element signature="e#186#5112#0" expanded="false" />
                 <element signature="e#1614#1706#0" expanded="false" />
                 <element signature="e#1987#2994#0" expanded="false" />
+                <element signature="e#5152#6775#0" expanded="false" />
                 <element signature="e#6816#8099#0" expanded="false" />
                 <element signature="e#8180#8388#0" expanded="false" />
                 <element signature="e#8430#9924#0" expanded="false" />
+                <element signature="e#9966#11319#0" expanded="false" />
+                <marker date="1430737923818" expanded="true" signature="653:674" placeholder="SELECT * FRO..library..." />
+                <marker date="1430737923818" expanded="true" signature="3260:3312" placeholder="SELECT * FRO..library..." />
+                <marker date="1430737923818" expanded="true" signature="3870:3922" placeholder="SELECT * FRO..library..." />
+                <marker date="1430737923818" expanded="true" signature="5414:5434" placeholder="SELECT * FRO..record..." />
+                <marker date="1430737923818" expanded="true" signature="6601:6621" placeholder="SELECT * FRO..record..." />
               </folding>
             </state>
           </provider>
@@ -61,16 +68,20 @@
       <file leaf-file-name="Dialog.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Dialog.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3329493" vertical-offset="2417" max-vertical-offset="10428">
-              <caret line="330" column="0" selection-start-line="330" selection-start-column="0" selection-end-line="330" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.5300353" vertical-offset="3000" max-vertical-offset="10140">
+              <caret line="415" column="34" selection-start-line="415" selection-start-column="34" selection-end-line="415" selection-end-column="34" />
               <folding>
                 <element signature="e#22#33#0" expanded="true" />
                 <element signature="e#945#7627#0" expanded="false" />
                 <element signature="e#7667#9979#0" expanded="false" />
                 <element signature="e#14150#16446#0" expanded="false" />
-                <element signature="e#16481#17911#0" expanded="false" />
-                <element signature="e#17946#18167#0" expanded="false" />
-                <element signature="e#18203#18567#0" expanded="false" />
+                <element signature="e#17981#18202#0" expanded="false" />
+                <element signature="e#18238#18602#0" expanded="false" />
+                <marker date="1430746403166" expanded="true" signature="11655:11823" placeholder="INSERT INTO ..." />
+                <marker date="1430746403166" expanded="true" signature="13629:13759" placeholder="UPDATE libra..." />
+                <marker date="1430746403166" expanded="true" signature="17572:17615" placeholder="DELETE FROM ..." />
+                <marker date="1430746403166" expanded="true" signature="17646:17697" placeholder="DELETE FROM ..." />
+                <marker date="1430746403166" expanded="true" signature="22110:22282" placeholder="INSERT INTO ..." />
               </folding>
             </state>
           </provider>
@@ -79,7 +90,7 @@
       <file leaf-file-name="DBFun.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/DBFun.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="440" max-vertical-offset="2706">
+            <state vertical-scroll-proportion="0.0" vertical-offset="720" max-vertical-offset="2460">
               <caret line="36" column="34" selection-start-line="36" selection-start-column="34" selection-end-line="36" selection-end-column="34" />
               <folding />
             </state>
@@ -89,7 +100,7 @@
       <file leaf-file-name="DBInit.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/DBInit.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="638" max-vertical-offset="1100">
+            <state vertical-scroll-proportion="0.0" vertical-offset="580" max-vertical-offset="1000">
               <caret line="29" column="18" selection-start-line="29" selection-start-column="18" selection-end-line="29" selection-end-column="18" />
               <folding />
             </state>
@@ -99,7 +110,7 @@
       <file leaf-file-name="FrameFun.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/FrameFun.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="132">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="120">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
@@ -109,7 +120,7 @@
       <file leaf-file-name="Library.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Library.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="396" max-vertical-offset="2090">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1900">
               <caret line="18" column="40" selection-start-line="18" selection-start-column="40" selection-end-line="18" selection-end-column="40" />
               <folding />
             </state>
@@ -119,8 +130,8 @@
       <file leaf-file-name="Record.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Record.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="308" max-vertical-offset="1826">
-              <caret line="14" column="17" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="280" max-vertical-offset="1660">
+              <caret line="25" column="34" selection-start-line="25" selection-start-column="34" selection-end-line="25" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -128,8 +139,11 @@
       </file>
       <file leaf-file-name="sql" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sql">
+          <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
+            <state />
+          </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="330" max-vertical-offset="858">
+            <state vertical-scroll-proportion="0.0" vertical-offset="300" max-vertical-offset="780">
               <caret line="15" column="28" selection-start-line="15" selection-start-column="28" selection-end-line="15" selection-end-column="28" />
               <folding />
             </state>
@@ -179,8 +193,8 @@
     <detection-done>true</detection-done>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="width" value="960" />
-    <option name="height" value="1040" />
+    <option name="width" value="1260" />
+    <option name="height" value="738" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -221,7 +235,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -242,6 +255,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -390,6 +404,20 @@
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
     </configuration>
+    <configuration default="true" type="PyBehaveRunConfigurationType" factoryName="Behave">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="PyMemo" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="ADDITIONAL_ARGS" value="" />
+      <method />
+    </configuration>
     <configuration default="true" type="tests" factoryName="Unittests">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -438,6 +466,23 @@
       <option name="USE_KEYWORD" value="false" />
       <method />
     </configuration>
+    <configuration default="true" type="PyLettuceRunConfigurationType" factoryName="Lettuce">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="PyMemo" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="ADDITIONAL_ARGS" value="" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+      <method />
+    </configuration>
     <configuration default="true" type="tests" factoryName="Attests">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -478,6 +523,26 @@
       <option name="USE_PATTERN" value="false" />
       <method />
     </configuration>
+    <configuration default="true" type="DjangoTestsConfigurationType" factoryName="Django tests">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="PyMemo" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="TARGET" value="" />
+      <option name="SETTINGS_FILE" value="" />
+      <option name="CUSTOM_SETTINGS" value="false" />
+      <option name="USE_OPTIONS" value="false" />
+      <option name="OPTIONS" value="" />
+      <method />
+    </configuration>
     <configuration default="true" type="tests" factoryName="Nosetests">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -498,6 +563,9 @@
       <option name="USE_PATTERN" value="false" />
       <option name="PARAMS" value="" />
       <option name="USE_PARAM" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
       <method />
     </configuration>
     <configuration default="false" name="main" type="PythonConfigurationType" factoryName="Python">
@@ -619,29 +687,29 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="960" height="1040" extended-state="0" />
+    <frame x="0" y="0" width="1260" height="738" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2570499" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.34868422" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.37078652" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39325842" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32540542" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.26966292" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39325842" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -774,11 +842,19 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#32#42#0" expanded="true" />
+            <element signature="e#186#5112#0" expanded="false" />
             <element signature="e#1614#1706#0" expanded="false" />
             <element signature="e#1987#2994#0" expanded="false" />
+            <element signature="e#5152#6775#0" expanded="false" />
             <element signature="e#6816#8099#0" expanded="false" />
             <element signature="e#8180#8388#0" expanded="false" />
             <element signature="e#8430#9924#0" expanded="false" />
+            <element signature="e#9966#11319#0" expanded="false" />
+            <marker date="1430737923818" expanded="true" signature="653:674" placeholder="SELECT * FRO..library..." />
+            <marker date="1430737923818" expanded="true" signature="3260:3312" placeholder="SELECT * FRO..library..." />
+            <marker date="1430737923818" expanded="true" signature="3870:3922" placeholder="SELECT * FRO..library..." />
+            <marker date="1430737923818" expanded="true" signature="5414:5434" placeholder="SELECT * FRO..record..." />
+            <marker date="1430737923818" expanded="true" signature="6601:6621" placeholder="SELECT * FRO..record..." />
           </folding>
         </state>
       </provider>
@@ -808,9 +884,13 @@
             <element signature="e#945#7627#0" expanded="false" />
             <element signature="e#7667#9979#0" expanded="false" />
             <element signature="e#14150#16446#0" expanded="false" />
-            <element signature="e#16481#17911#0" expanded="false" />
-            <element signature="e#17946#18167#0" expanded="false" />
-            <element signature="e#18203#18567#0" expanded="false" />
+            <element signature="e#17981#18202#0" expanded="false" />
+            <element signature="e#18238#18602#0" expanded="false" />
+            <marker date="1430746403166" expanded="true" signature="11655:11823" placeholder="INSERT INTO ..." />
+            <marker date="1430746403166" expanded="true" signature="13629:13759" placeholder="UPDATE libra..." />
+            <marker date="1430746403166" expanded="true" signature="17572:17615" placeholder="DELETE FROM ..." />
+            <marker date="1430746403166" expanded="true" signature="17646:17697" placeholder="DELETE FROM ..." />
+            <marker date="1430746403166" expanded="true" signature="22110:22282" placeholder="INSERT INTO ..." />
           </folding>
         </state>
       </provider>
@@ -864,9 +944,13 @@
             <element signature="e#945#7627#0" expanded="false" />
             <element signature="e#7667#9979#0" expanded="false" />
             <element signature="e#14150#16446#0" expanded="false" />
-            <element signature="e#16481#17911#0" expanded="false" />
-            <element signature="e#17946#18167#0" expanded="false" />
-            <element signature="e#18203#18567#0" expanded="false" />
+            <element signature="e#17981#18202#0" expanded="false" />
+            <element signature="e#18238#18602#0" expanded="false" />
+            <marker date="1430746403166" expanded="true" signature="11655:11823" placeholder="INSERT INTO ..." />
+            <marker date="1430746403166" expanded="true" signature="13629:13759" placeholder="UPDATE libra..." />
+            <marker date="1430746403166" expanded="true" signature="17572:17615" placeholder="DELETE FROM ..." />
+            <marker date="1430746403166" expanded="true" signature="17646:17697" placeholder="DELETE FROM ..." />
+            <marker date="1430746403166" expanded="true" signature="22110:22282" placeholder="INSERT INTO ..." />
           </folding>
         </state>
       </provider>
@@ -912,9 +996,13 @@
             <element signature="e#945#7627#0" expanded="false" />
             <element signature="e#7667#9979#0" expanded="false" />
             <element signature="e#14150#16446#0" expanded="false" />
-            <element signature="e#16481#17911#0" expanded="false" />
-            <element signature="e#17946#18167#0" expanded="false" />
-            <element signature="e#18203#18567#0" expanded="false" />
+            <element signature="e#17981#18202#0" expanded="false" />
+            <element signature="e#18238#18602#0" expanded="false" />
+            <marker date="1430746403166" expanded="true" signature="11655:11823" placeholder="INSERT INTO ..." />
+            <marker date="1430746403166" expanded="true" signature="13629:13759" placeholder="UPDATE libra..." />
+            <marker date="1430746403166" expanded="true" signature="17572:17615" placeholder="DELETE FROM ..." />
+            <marker date="1430746403166" expanded="true" signature="17646:17697" placeholder="DELETE FROM ..." />
+            <marker date="1430746403166" expanded="true" signature="22110:22282" placeholder="INSERT INTO ..." />
           </folding>
         </state>
       </provider>
@@ -960,9 +1048,13 @@
             <element signature="e#945#7627#0" expanded="false" />
             <element signature="e#7667#9979#0" expanded="false" />
             <element signature="e#14150#16446#0" expanded="false" />
-            <element signature="e#16481#17911#0" expanded="false" />
-            <element signature="e#17946#18167#0" expanded="false" />
-            <element signature="e#18203#18567#0" expanded="false" />
+            <element signature="e#17981#18202#0" expanded="false" />
+            <element signature="e#18238#18602#0" expanded="false" />
+            <marker date="1430746403166" expanded="true" signature="11655:11823" placeholder="INSERT INTO ..." />
+            <marker date="1430746403166" expanded="true" signature="13629:13759" placeholder="UPDATE libra..." />
+            <marker date="1430746403166" expanded="true" signature="17572:17615" placeholder="DELETE FROM ..." />
+            <marker date="1430746403166" expanded="true" signature="17646:17697" placeholder="DELETE FROM ..." />
+            <marker date="1430746403166" expanded="true" signature="22110:22282" placeholder="INSERT INTO ..." />
           </folding>
         </state>
       </provider>
@@ -1000,9 +1092,13 @@
             <element signature="e#945#7627#0" expanded="false" />
             <element signature="e#7667#9979#0" expanded="false" />
             <element signature="e#14150#16446#0" expanded="false" />
-            <element signature="e#16481#17911#0" expanded="false" />
-            <element signature="e#17946#18167#0" expanded="false" />
-            <element signature="e#18203#18567#0" expanded="false" />
+            <element signature="e#17981#18202#0" expanded="false" />
+            <element signature="e#18238#18602#0" expanded="false" />
+            <marker date="1430746403166" expanded="true" signature="11655:11823" placeholder="INSERT INTO ..." />
+            <marker date="1430746403166" expanded="true" signature="13629:13759" placeholder="UPDATE libra..." />
+            <marker date="1430746403166" expanded="true" signature="17572:17615" placeholder="DELETE FROM ..." />
+            <marker date="1430746403166" expanded="true" signature="17646:17697" placeholder="DELETE FROM ..." />
+            <marker date="1430746403166" expanded="true" signature="22110:22282" placeholder="INSERT INTO ..." />
           </folding>
         </state>
       </provider>
@@ -1024,9 +1120,13 @@
             <element signature="e#945#7627#0" expanded="false" />
             <element signature="e#7667#9979#0" expanded="false" />
             <element signature="e#14150#16446#0" expanded="false" />
-            <element signature="e#16481#17911#0" expanded="false" />
-            <element signature="e#17946#18167#0" expanded="false" />
-            <element signature="e#18203#18567#0" expanded="false" />
+            <element signature="e#17981#18202#0" expanded="false" />
+            <element signature="e#18238#18602#0" expanded="false" />
+            <marker date="1430746403166" expanded="true" signature="11655:11823" placeholder="INSERT INTO ..." />
+            <marker date="1430746403166" expanded="true" signature="13629:13759" placeholder="UPDATE libra..." />
+            <marker date="1430746403166" expanded="true" signature="17572:17615" placeholder="DELETE FROM ..." />
+            <marker date="1430746403166" expanded="true" signature="17646:17697" placeholder="DELETE FROM ..." />
+            <marker date="1430746403166" expanded="true" signature="22110:22282" placeholder="INSERT INTO ..." />
           </folding>
         </state>
       </provider>
@@ -1056,9 +1156,13 @@
             <element signature="e#945#7627#0" expanded="false" />
             <element signature="e#7667#9979#0" expanded="false" />
             <element signature="e#14150#16446#0" expanded="false" />
-            <element signature="e#16481#17911#0" expanded="false" />
-            <element signature="e#17946#18167#0" expanded="false" />
-            <element signature="e#18203#18567#0" expanded="false" />
+            <element signature="e#17981#18202#0" expanded="false" />
+            <element signature="e#18238#18602#0" expanded="false" />
+            <marker date="1430746403166" expanded="true" signature="11655:11823" placeholder="INSERT INTO ..." />
+            <marker date="1430746403166" expanded="true" signature="13629:13759" placeholder="UPDATE libra..." />
+            <marker date="1430746403166" expanded="true" signature="17572:17615" placeholder="DELETE FROM ..." />
+            <marker date="1430746403166" expanded="true" signature="17646:17697" placeholder="DELETE FROM ..." />
+            <marker date="1430746403166" expanded="true" signature="22110:22282" placeholder="INSERT INTO ..." />
           </folding>
         </state>
       </provider>
@@ -1080,9 +1184,13 @@
             <element signature="e#945#7627#0" expanded="false" />
             <element signature="e#7667#9979#0" expanded="false" />
             <element signature="e#14150#16446#0" expanded="false" />
-            <element signature="e#16481#17911#0" expanded="false" />
-            <element signature="e#17946#18167#0" expanded="false" />
-            <element signature="e#18203#18567#0" expanded="false" />
+            <element signature="e#17981#18202#0" expanded="false" />
+            <element signature="e#18238#18602#0" expanded="false" />
+            <marker date="1430746403166" expanded="true" signature="11655:11823" placeholder="INSERT INTO ..." />
+            <marker date="1430746403166" expanded="true" signature="13629:13759" placeholder="UPDATE libra..." />
+            <marker date="1430746403166" expanded="true" signature="17572:17615" placeholder="DELETE FROM ..." />
+            <marker date="1430746403166" expanded="true" signature="17646:17697" placeholder="DELETE FROM ..." />
+            <marker date="1430746403166" expanded="true" signature="22110:22282" placeholder="INSERT INTO ..." />
           </folding>
         </state>
       </provider>
@@ -1096,9 +1204,13 @@
             <element signature="e#945#7627#0" expanded="false" />
             <element signature="e#7667#9979#0" expanded="false" />
             <element signature="e#14150#16446#0" expanded="false" />
-            <element signature="e#16481#17911#0" expanded="false" />
-            <element signature="e#17946#18167#0" expanded="false" />
-            <element signature="e#18203#18567#0" expanded="false" />
+            <element signature="e#17981#18202#0" expanded="false" />
+            <element signature="e#18238#18602#0" expanded="false" />
+            <marker date="1430746403166" expanded="true" signature="11655:11823" placeholder="INSERT INTO ..." />
+            <marker date="1430746403166" expanded="true" signature="13629:13759" placeholder="UPDATE libra..." />
+            <marker date="1430746403166" expanded="true" signature="17572:17615" placeholder="DELETE FROM ..." />
+            <marker date="1430746403166" expanded="true" signature="17646:17697" placeholder="DELETE FROM ..." />
+            <marker date="1430746403166" expanded="true" signature="22110:22282" placeholder="INSERT INTO ..." />
           </folding>
         </state>
       </provider>
@@ -1109,25 +1221,12 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/sql">
+      <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="300" max-vertical-offset="780">
           <caret line="15" column="28" selection-start-line="15" selection-start-column="28" selection-end-line="15" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Record.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1826">
-          <caret line="14" column="17" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Library.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="60" max-vertical-offset="1900">
-          <caret line="18" column="40" selection-start-line="18" selection-start-column="40" selection-end-line="18" selection-end-column="40" />
           <folding />
         </state>
       </provider>
@@ -1163,33 +1262,61 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Library.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="60" max-vertical-offset="1900">
+          <caret line="18" column="40" selection-start-line="18" selection-start-column="40" selection-end-line="18" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Record.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="280" max-vertical-offset="1660">
+          <caret line="25" column="34" selection-start-line="25" selection-start-column="34" selection-end-line="25" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/memo.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="481" max-vertical-offset="7238">
-          <caret line="35" column="40" selection-start-line="35" selection-start-column="40" selection-end-line="35" selection-end-column="40" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3060">
+          <caret line="228" column="23" selection-start-line="228" selection-start-column="23" selection-end-line="228" selection-end-column="23" />
           <folding>
             <element signature="e#32#42#0" expanded="true" />
+            <element signature="e#186#5112#0" expanded="false" />
             <element signature="e#1614#1706#0" expanded="false" />
             <element signature="e#1987#2994#0" expanded="false" />
+            <element signature="e#5152#6775#0" expanded="false" />
             <element signature="e#6816#8099#0" expanded="false" />
             <element signature="e#8180#8388#0" expanded="false" />
             <element signature="e#8430#9924#0" expanded="false" />
+            <element signature="e#9966#11319#0" expanded="false" />
+            <marker date="1430737923818" expanded="true" signature="653:674" placeholder="SELECT * FRO..library..." />
+            <marker date="1430737923818" expanded="true" signature="3260:3312" placeholder="SELECT * FRO..library..." />
+            <marker date="1430737923818" expanded="true" signature="3870:3922" placeholder="SELECT * FRO..library..." />
+            <marker date="1430737923818" expanded="true" signature="5414:5434" placeholder="SELECT * FRO..record..." />
+            <marker date="1430737923818" expanded="true" signature="6601:6621" placeholder="SELECT * FRO..record..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Dialog.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3329493" vertical-offset="2417" max-vertical-offset="10428">
-          <caret line="330" column="0" selection-start-line="330" selection-start-column="0" selection-end-line="330" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.5300353" vertical-offset="3000" max-vertical-offset="10140">
+          <caret line="415" column="34" selection-start-line="415" selection-start-column="34" selection-end-line="415" selection-end-column="34" />
           <folding>
             <element signature="e#22#33#0" expanded="true" />
             <element signature="e#945#7627#0" expanded="false" />
             <element signature="e#7667#9979#0" expanded="false" />
             <element signature="e#14150#16446#0" expanded="false" />
-            <element signature="e#16481#17911#0" expanded="false" />
-            <element signature="e#17946#18167#0" expanded="false" />
-            <element signature="e#18203#18567#0" expanded="false" />
+            <element signature="e#17981#18202#0" expanded="false" />
+            <element signature="e#18238#18602#0" expanded="false" />
+            <marker date="1430746403166" expanded="true" signature="11655:11823" placeholder="INSERT INTO ..." />
+            <marker date="1430746403166" expanded="true" signature="13629:13759" placeholder="UPDATE libra..." />
+            <marker date="1430746403166" expanded="true" signature="17572:17615" placeholder="DELETE FROM ..." />
+            <marker date="1430746403166" expanded="true" signature="17646:17697" placeholder="DELETE FROM ..." />
+            <marker date="1430746403166" expanded="true" signature="22110:22282" placeholder="INSERT INTO ..." />
           </folding>
         </state>
       </provider>
