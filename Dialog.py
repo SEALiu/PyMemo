@@ -2,6 +2,7 @@
 import time
 import wx
 import DBFun
+import FrameFun
 from memo import ListCtrlLeft, ListCtrlRight
 # import FrameFun
 
@@ -287,7 +288,7 @@ class AddNewLib(wx.Dialog):
 
 
 class RenameLib(wx.Dialog):
-    def __init__(self, old_name, old_desc, lib_id):
+    def __init__(self, old_name, old_desc, lib_id, lib_dic):
         wx.Dialog.__init__(self, None, -1, '修改' + old_name + '名称和描述', size=(-1, 270),
                            style=wx.CAPTION | wx.SYSTEM_MENU | wx.CLOSE_BOX)
         panel = wx.Panel(self, -1)
@@ -303,7 +304,7 @@ class RenameLib(wx.Dialog):
         ok_button = wx.Button(panel, -1, label='确定')
         cancel_button = wx.Button(panel, wx.ID_CANCEL, label='取消')
         self.Bind(wx.EVT_BUTTON,
-                  lambda evt, name=lib_name, desc=lib_desc, i=lib_id: self.on_submit(evt, name, desc, i),
+                  lambda evt, name=lib_name, desc=lib_desc, i=lib_id, lib=lib_dic: self.on_submit(evt, name, desc, i, lib),
                   ok_button)
         h_box.Add(ok_button, 1, wx.RIGHT, border=5)
         h_box.Add(cancel_button, 1)
@@ -318,20 +319,23 @@ class RenameLib(wx.Dialog):
         self.Centre()
         self.Show(True)
 
-    def on_submit(self, evt, name, desc, i):
+    def on_submit(self, evt, name, desc, i, lib):
         lib_name = name.GetValue().encode('utf-8')
         lib_desc = desc.GetValue().encode('utf-8')
-        update_lib_sql = "UPDATE library SET " \
-                         "name = '" + lib_name + "', libDesc = '" + lib_desc + "' WHERE libId = '" + i + "'"
-        conn = DBFun.connect_db('db_pymemo.db')
-        conn.text_factory = str
-        if DBFun.update(conn, update_lib_sql):
-            print 'update succeed !'
-            conn.commit()
-            ListCtrlLeft.on_refresh()
-        else:
-            print 'update fault !'
-        conn.close()
+        FrameFun.add_lib(lib, [i], [lib_name, lib_desc])
+        print lib
+
+
+
+        # update_lib_sql = "UPDATE library SET " \
+        #                  "name = '" + lib_name + "', libDesc = '" + lib_desc + "' WHERE libId = '" + i + "'"
+        # conn = DBFun.connect_db('db_pymemo.db')
+        # conn.text_factory = str
+        # if DBFun.update(conn, update_lib_sql):
+        #     conn.commit()
+        #     ListCtrlLeft.on_refresh()
+        # else:
+        #     conn.close()
         self.Close()
 
 
@@ -415,7 +419,6 @@ class DeleteLib(wx.Dialog):
         ListCtrlLeft.on_refresh()
         ListCtrlRight.on_refresh()
         self.Close()
-        pass
 
 
 class Export(wx.DirDialog):
@@ -527,19 +530,6 @@ class AddNewRecord(wx.Dialog):
         lib_name = ob.GetValue().encode('utf-8')
         if lib_name in lib.keys():
             self.set_lib_id(lib[lib_name])
-            print self.get_lib_id()
-        else:
-            print lib_name
-
-
-        # if cursor == None:
-        #     print '请选择词库'
-        # else:
-        #     for rows in cursor:
-        #         self.set_lib_id(rows[0])
-        # DBFun.close_db(conn)
-        # print self.get_lib_id()
-        pass
 
 
 class MemoQues(wx.Dialog):

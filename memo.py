@@ -5,10 +5,11 @@ import wx
 import Dialog
 import DBFun
 import wx.lib.dialogs
+import FrameFun
 
-LIBRARIES = {}
-RECORDS = []
-LIBRARY_ID = []
+libraries = {}
+records = []
+library_id = []
 
 
 class ListCtrlLeft(wx.ListCtrl):
@@ -17,36 +18,24 @@ class ListCtrlLeft(wx.ListCtrl):
         self.parent = parent
         self.Bind(wx.EVT_SIZE, self.on_size)
         # self.Bind(wx.EVT_LIST_ITEM_SELECTED, self.on_select)
-        self.load_data_left(LIBRARIES)
+        self.load_data_left()
 
-    @staticmethod
-    def fetch_lib():
-        conn = DBFun.connect_db('db_pymemo.db')
-        conn.text_factory = str
-        select_sql = "SELECT * FROM library"
-        cursor = DBFun.select(conn, select_sql)
-        result_list = cursor.fetchall()
-        DBFun.close_db(conn)
-        LIBRARIES.clear()
-        LIBRARY_ID[:] = []
-        for rows in result_list:
-            LIBRARY_ID.append(rows[0])
-            LIBRARIES[rows[0]] = rows[1]
-
-    def load_data_left(self, LIBRARIES):
+    def load_data_left(self):
         self.DeleteAllItems()
-        self.fetch_lib()
+        libraries.clear()
+        library_id[:] = []
+        FrameFun.init_lib(libraries, library_id)
         self.il = wx.ImageList(32, 32)
         lib_img = wx.Bitmap('images/32/library.png')
-        for i in range(len(LIBRARIES)):
+        for i in range(len(libraries)):
             self.il.Add(lib_img)
 
         self.SetImageList(self.il, wx.IMAGE_LIST_SMALL)
         self.InsertColumn(0, '')
 
-        for index, element in enumerate(LIBRARIES):
+        for index, element in enumerate(libraries):
             self.Bind(wx.EVT_LIST_ITEM_SELECTED, self.on_lib_clicked)
-            self.InsertStringItem(0, LIBRARIES[element].decode('utf-8'))
+            self.InsertStringItem(0, libraries[element][0].decode('utf-8'))
             # print element
             self.SetItemImage(0, index)
 
@@ -58,10 +47,7 @@ class ListCtrlLeft(wx.ListCtrl):
     @staticmethod
     def on_refresh():
         window = wx.FindWindowByName('ListControlOnLeft', parent=None)
-        print LIBRARIES
-        ListCtrlLeft.fetch_lib()
-        window.load_data_left(LIBRARIES)
-        print LIBRARIES
+        window.load_data_left()
 
     def on_lib_clicked(self, event):
         index = event.GetIndex()
@@ -88,18 +74,10 @@ class ListCtrlLeft(wx.ListCtrl):
 
     @staticmethod
     def on_lib_rename(evt, i):
-        lib_desc = ''
-        lib_id = LIBRARY_ID[i]
-        lib_name = LIBRARIES[LIBRARY_ID[i]].decode('utf-8')
-        conn = DBFun.connect_db('db_pymemo.db')
-        conn.text_factory = str
-        select_sql = "SELECT * FROM library WHERE libId = '" + lib_id + "'"
-        cursor = DBFun.select(conn, select_sql)
-        for rows in cursor:
-            lib_desc = rows[2].decode('utf-8')
-        DBFun.close_db(conn)
-
-        rename_dlg = Dialog.RenameLib(lib_name, lib_desc, lib_id)
+        lib_id = str(library_id[i])
+        lib_name = libraries[lib_id][0].decode('utf-8')
+        lib_desc = libraries[lib_id][1].decode('utf-8')
+        rename_dlg = Dialog.RenameLib(lib_name, lib_desc, lib_id, libraries)
         rename_dlg.ShowModal()
         rename_dlg.Destroy()
         pass
@@ -107,8 +85,8 @@ class ListCtrlLeft(wx.ListCtrl):
     @staticmethod
     def on_item_info(evt, i):
         lib_info = ()
-        lib_id = LIBRARY_ID[i]
-        lib_name = LIBRARIES[LIBRARY_ID[i]].decode('utf-8')
+        lib_id = library_id[i]
+        lib_name = libraries[library_id[i]].decode('utf-8')
         conn = DBFun.connect_db('db_pymemo.db')
         conn.text_factory = str
         select_sql = "SELECT * FROM library WHERE libId = '" + lib_id + "'"
@@ -123,21 +101,21 @@ class ListCtrlLeft(wx.ListCtrl):
 
     @staticmethod
     def on_item_add(evt, i):
-        new_card_dlg = Dialog.AddNewRecord(LIBRARIES, LIBRARY_ID[i])
+        new_card_dlg = Dialog.AddNewRecord(libraries, library_id[i])
         new_card_dlg.ShowModal()
         new_card_dlg.Destroy()
         pass
 
     @staticmethod
     def on_lib_setting(evt, i):
-        # print "setting", LIBRARY_ID[i]
-        setting_dlg = Dialog.SettingDialog(LIBRARIES, LIBRARY_ID[i])
+        # print "setting", library_id[i]
+        setting_dlg = Dialog.SettingDialog(libraries, library_id[i])
         setting_dlg.ShowModal()
         setting_dlg.Destroy()
         pass
 
     def on_lib_delete(self, evt, i):
-        lib_id = LIBRARY_ID[i]
+        lib_id = library_id[i]
         if lib_id == '000':
             msg_dlg = wx.MessageDialog(self, '默认词库无法被删除！',
                                '提示',
@@ -145,10 +123,11 @@ class ListCtrlLeft(wx.ListCtrl):
             msg_dlg.ShowModal()
             msg_dlg.Destroy()
         else:
-            lib_name = LIBRARIES[LIBRARY_ID[i]].decode('utf-8')
+            lib_name = libraries[library_id[i]].decode('utf-8')
             delete_dlg = Dialog.DeleteLib(lib_name, lib_id)
             delete_dlg.ShowModal()
             delete_dlg.Destroy()
+
 
 class ListCtrlRight(wx.ListCtrl):
     def __init__(self, parent, i):
@@ -158,10 +137,10 @@ class ListCtrlRight(wx.ListCtrl):
         conn.text_factory = str
         select_sql = 'SELECT * FROM record'
         cursor = DBFun.select(conn, select_sql)
-        RECORDS = cursor.fetchall()
-        self.load_data_right(RECORDS)
+        records = cursor.fetchall()
+        self.load_data_right(records)
 
-    def load_data_right(self, RECORDS):
+    def load_data_right(self, records):
         self.DeleteAllItems()
         self.DeleteAllColumns()
         self.list_head_name = ['记录ID',
@@ -177,7 +156,7 @@ class ListCtrlRight(wx.ListCtrl):
         for i in range(len(self.list_head_name)):
             self.InsertColumn(i, self.list_head_name[i], width=wx.LIST_AUTOSIZE)
 
-        for i in RECORDS:
+        for i in records:
             index = self.InsertStringItem(sys.maxint, i[0])
             for j in range(len(self.list_head_name)):
                 self.SetStringItem(index, j, str(i[j]).decode('utf-8'))
@@ -188,9 +167,10 @@ class ListCtrlRight(wx.ListCtrl):
         conn.text_factory = str
         select_sql = "SELECT * FROM record"
         cursor = DBFun.select(conn, select_sql)
-        RECORDS = cursor.fetchall()
+        records = cursor.fetchall()
         DBFun.close_db(conn)
-        window.load_data_right(RECORDS)
+        window.load_data_right(records)
+
 
 class CombinePanelRight(wx.Panel):
     def __init__(self, parent, i):
@@ -361,7 +341,7 @@ class Memo(wx.Frame):
 
     @staticmethod
     def on_setting(evt):
-        setting_dlg = Dialog.SettingDialog(LIBRARIES, -1)
+        setting_dlg = Dialog.SettingDialog(libraries, -1)
         setting_dlg.ShowModal()
         setting_dlg.Destroy()
 
@@ -386,7 +366,7 @@ class Memo(wx.Frame):
 
     @staticmethod
     def on_new_record(evt):
-        new_card_dlg = Dialog.AddNewRecord(LIBRARIES, -1)
+        new_card_dlg = Dialog.AddNewRecord(libraries, -1)
         new_card_dlg.ShowModal()
         new_card_dlg.Destroy()
         evt.Skip()
