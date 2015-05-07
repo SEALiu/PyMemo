@@ -3,7 +3,6 @@ import time
 import wx
 import DBFun
 from memo import ListCtrlLeft, ListCtrlRight
-# import FrameFun
 
 
 # Lib Dialog
