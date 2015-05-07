@@ -65,7 +65,19 @@ class ListCtrlLeft(wx.ListCtrl):
         window.load_data_left(LIBRARIES)
 
     def on_lib_select(self, evt):
-        print "lib select"
+        index = evt.GetIndex()
+        conn = DBFun.connect_db('db_pymemo.db')
+        conn.text_factory = str
+        sql = "SELECT * FROM record WHERE recordId LIKE '%" + LIBRARY_ID[index] + "'"
+        cursor = DBFun.select(conn, sql)
+        r = []
+        for rows in cursor:
+            r.append(rows)
+        conn.commit()
+        DBFun.close_db(conn)
+        RECORDS = r
+        window = wx.FindWindowByName('ListControlOnRight', parent=None)
+        window.load_data_right(RECORDS)
 
     def on_lib_right_click(self, event):
         index = event.GetIndex()
