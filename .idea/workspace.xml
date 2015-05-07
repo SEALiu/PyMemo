@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="09d777a0-516b-4436-9365-587facb31efa" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test2.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db_pymemo.db" afterPath="$PROJECT_DIR$/db_pymemo.db" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Dialog.py" afterPath="$PROJECT_DIR$/Dialog.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/memo.py" afterPath="$PROJECT_DIR$/memo.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test2.py" afterPath="$PROJECT_DIR$/test2.py" />
     </list>
     <ignored path="PyMemo.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -21,14 +16,14 @@
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/PyMemo$test2.coverage" NAME="test2 Coverage Results" MODIFIED="1430987571093" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/PyMemo$test2.coverage" NAME="test2 Coverage Results" MODIFIED="1431010659298" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/PyMemo$memo.coverage" NAME="memo Coverage Results" MODIFIED="1430986014351" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/PyMemo$DBInit.coverage" NAME="DBInit Coverage Results" MODIFIED="1430981636070" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/PyMemo$DBFun.coverage" NAME="DBFun Coverage Results" MODIFIED="1429929136611" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/PyMemo$Frame.coverage" NAME="Frame Coverage Results" MODIFIED="1429455615122" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/PyMemo$FrameFun.coverage" NAME="FrameFun Coverage Results" MODIFIED="1429624804479" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/PyMemo$Dialog.coverage" NAME="Dialog Coverage Results" MODIFIED="1430967791654" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/PyMemo$test.coverage" NAME="test Coverage Results" MODIFIED="1430984736667" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/PyMemo$test.coverage" NAME="test Coverage Results" MODIFIED="1431010512426" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/PyMemo$reader.coverage" NAME="reader Coverage Results" MODIFIED="1429455185871" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/PyMemo$NewFrame.coverage" NAME="NewFrame Coverage Results" MODIFIED="1429431927416" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/PyMemo$NewFrame2.coverage" NAME="NewFrame2 Coverage Results" MODIFIED="1429440767135" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
@@ -49,10 +44,11 @@
       <file leaf-file-name="memo.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/memo.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4520">
-              <caret line="163" column="22" selection-start-line="163" selection-start-column="22" selection-end-line="163" selection-end-column="22" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="178" max-vertical-offset="3780">
+              <caret line="253" column="28" selection-start-line="253" selection-start-column="28" selection-end-line="253" selection-end-column="28" />
               <folding>
                 <element signature="e#32#42#0" expanded="true" />
+                <element signature="e#186#5350#0" expanded="false" />
                 <element signature="e#225#654#0" expanded="false" />
                 <element signature="e#703#1102#0" expanded="false" />
                 <element signature="e#1834#1926#0" expanded="false" />
@@ -63,13 +59,13 @@
                 <element signature="e#4460#4597#0" expanded="false" />
                 <element signature="e#4657#4833#0" expanded="false" />
                 <element signature="e#4880#5350#0" expanded="false" />
+                <element signature="e#5391#8443#0" expanded="false" />
                 <element signature="e#5846#6742#0" expanded="false" />
                 <element signature="e#6792#7132#0" expanded="false" />
                 <element signature="e#7192#7880#0" expanded="false" />
                 <element signature="e#7942#8071#0" expanded="false" />
                 <element signature="e#8131#8252#0" expanded="false" />
                 <element signature="e#8314#8443#0" expanded="false" />
-                <element signature="e#8485#9768#0" expanded="false" />
                 <element signature="e#9849#10057#0" expanded="false" />
                 <element signature="e#10099#11593#0" expanded="false" />
                 <element signature="e#11635#12988#0" expanded="false" />
@@ -83,11 +79,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test2.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="test2.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/test2.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="140" max-vertical-offset="1600">
-              <caret line="19" column="33" selection-start-line="19" selection-start-column="33" selection-end-line="19" selection-end-column="33" />
+            <state vertical-scroll-proportion="1.164557" vertical-offset="0" max-vertical-offset="1720">
+              <caret line="23" column="33" selection-start-line="19" selection-start-column="4" selection-end-line="23" selection-end-column="33" />
               <folding />
             </state>
           </provider>
@@ -96,18 +92,18 @@
       <file leaf-file-name="test.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="120" max-vertical-offset="1240">
-              <caret line="13" column="58" selection-start-line="13" selection-start-column="58" selection-end-line="13" selection-end-column="58" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="240" max-vertical-offset="1240">
+              <caret line="16" column="32" selection-start-line="16" selection-start-column="32" selection-end-line="16" selection-end-column="32" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Dialog.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Dialog.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Dialog.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.8" vertical-offset="2884" max-vertical-offset="3720">
-              <caret line="448" column="34" selection-start-line="448" selection-start-column="34" selection-end-line="448" selection-end-column="34" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="2404" max-vertical-offset="3720">
+              <caret line="429" column="23" selection-start-line="429" selection-start-column="23" selection-end-line="429" selection-end-column="23" />
               <folding>
                 <element signature="e#22#33#0" expanded="true" />
                 <element signature="e#167#2174#0" expanded="false" />
@@ -741,8 +737,8 @@
     <recent_temporary>
       <list size="5">
         <item index="0" class="java.lang.String" itemvalue="Python.test2" />
-        <item index="1" class="java.lang.String" itemvalue="Python.memo" />
-        <item index="2" class="java.lang.String" itemvalue="Python.test" />
+        <item index="1" class="java.lang.String" itemvalue="Python.test" />
+        <item index="2" class="java.lang.String" itemvalue="Python.memo" />
         <item index="3" class="java.lang.String" itemvalue="Python.DBInit" />
         <item index="4" class="java.lang.String" itemvalue="Python.Dialog" />
       </list>
@@ -898,6 +894,7 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#32#42#0" expanded="true" />
+            <element signature="e#186#5350#0" expanded="false" />
             <element signature="e#225#654#0" expanded="false" />
             <element signature="e#703#1102#0" expanded="false" />
             <element signature="e#1834#1926#0" expanded="false" />
@@ -908,13 +905,13 @@
             <element signature="e#4460#4597#0" expanded="false" />
             <element signature="e#4657#4833#0" expanded="false" />
             <element signature="e#4880#5350#0" expanded="false" />
+            <element signature="e#5391#8443#0" expanded="false" />
             <element signature="e#5846#6742#0" expanded="false" />
             <element signature="e#6792#7132#0" expanded="false" />
             <element signature="e#7192#7880#0" expanded="false" />
             <element signature="e#7942#8071#0" expanded="false" />
             <element signature="e#8131#8252#0" expanded="false" />
             <element signature="e#8314#8443#0" expanded="false" />
-            <element signature="e#8485#9768#0" expanded="false" />
             <element signature="e#9849#10057#0" expanded="false" />
             <element signature="e#10099#11593#0" expanded="false" />
             <element signature="e#11635#12988#0" expanded="false" />
@@ -1571,28 +1568,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="120" max-vertical-offset="1240">
-          <caret line="13" column="58" selection-start-line="13" selection-start-column="58" selection-end-line="13" selection-end-column="58" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="140" max-vertical-offset="1600">
-          <caret line="19" column="33" selection-start-line="19" selection-start-column="33" selection-end-line="19" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/memo.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4520">
-          <caret line="163" column="22" selection-start-line="163" selection-start-column="22" selection-end-line="163" selection-end-column="22" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="178" max-vertical-offset="3780">
+          <caret line="253" column="28" selection-start-line="253" selection-start-column="28" selection-end-line="253" selection-end-column="28" />
           <folding>
             <element signature="e#32#42#0" expanded="true" />
+            <element signature="e#186#5350#0" expanded="false" />
             <element signature="e#225#654#0" expanded="false" />
             <element signature="e#703#1102#0" expanded="false" />
             <element signature="e#1834#1926#0" expanded="false" />
@@ -1603,13 +1585,13 @@
             <element signature="e#4460#4597#0" expanded="false" />
             <element signature="e#4657#4833#0" expanded="false" />
             <element signature="e#4880#5350#0" expanded="false" />
+            <element signature="e#5391#8443#0" expanded="false" />
             <element signature="e#5846#6742#0" expanded="false" />
             <element signature="e#6792#7132#0" expanded="false" />
             <element signature="e#7192#7880#0" expanded="false" />
             <element signature="e#7942#8071#0" expanded="false" />
             <element signature="e#8131#8252#0" expanded="false" />
             <element signature="e#8314#8443#0" expanded="false" />
-            <element signature="e#8485#9768#0" expanded="false" />
             <element signature="e#9849#10057#0" expanded="false" />
             <element signature="e#10099#11593#0" expanded="false" />
             <element signature="e#11635#12988#0" expanded="false" />
@@ -1624,8 +1606,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Dialog.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8" vertical-offset="2884" max-vertical-offset="3720">
-          <caret line="448" column="34" selection-start-line="448" selection-start-column="34" selection-end-line="448" selection-end-column="34" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="2404" max-vertical-offset="3720">
+          <caret line="429" column="23" selection-start-line="429" selection-start-column="23" selection-end-line="429" selection-end-column="23" />
           <folding>
             <element signature="e#22#33#0" expanded="true" />
             <element signature="e#167#2174#0" expanded="false" />
@@ -1662,6 +1644,22 @@
             <marker date="1430984012214" expanded="true" signature="19360:19397" placeholder="DELETE FROM ..." />
             <marker date="1430984012214" expanded="true" signature="19360:19407" placeholder="DELETE FROM ..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="240" max-vertical-offset="1240">
+          <caret line="16" column="32" selection-start-line="16" selection-start-column="32" selection-end-line="16" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.164557" vertical-offset="0" max-vertical-offset="1720">
+          <caret line="23" column="33" selection-start-line="19" selection-start-column="4" selection-end-line="23" selection-end-column="33" />
+          <folding />
         </state>
       </provider>
     </entry>
