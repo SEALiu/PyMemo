@@ -13,10 +13,12 @@ LIBRARY_ID = []
 
 class ListCtrlLeft(wx.ListCtrl):
     def __init__(self, parent, i):
-        wx.ListCtrl.__init__(self, parent, i, style=wx.LC_REPORT | wx.LC_HRULES | wx.LC_NO_HEADER | wx.LC_SINGLE_SEL)
+        wx.ListCtrl.__init__(self, parent, i, style=wx.LC_REPORT
+                                                                     | wx.LC_HRULES
+                                                                     | wx.LC_NO_HEADER
+                                                                     | wx.LC_SINGLE_SEL)
         self.parent = parent
         self.Bind(wx.EVT_SIZE, self.on_size)
-        # self.Bind(wx.EVT_LIST_ITEM_SELECTED, self.on_select)
         self.load_data_left(LIBRARIES)
 
     @staticmethod
@@ -45,7 +47,8 @@ class ListCtrlLeft(wx.ListCtrl):
         self.InsertColumn(0, '')
 
         for index, element in enumerate(LIBRARIES):
-            self.Bind(wx.EVT_LIST_ITEM_SELECTED, self.on_lib_clicked)
+            self.Bind(wx.EVT_LIST_ITEM_SELECTED, self.on_lib_select)
+            self.Bind(wx.EVT_LIST_ITEM_RIGHT_CLICK, self.on_lib_right_click)
             self.InsertStringItem(0, LIBRARIES[element].decode('utf-8'))
             # print element
             self.SetItemImage(0, index)
@@ -58,12 +61,13 @@ class ListCtrlLeft(wx.ListCtrl):
     @staticmethod
     def on_refresh():
         window = wx.FindWindowByName('ListControlOnLeft', parent=None)
-        print LIBRARIES
         ListCtrlLeft.fetch_lib()
         window.load_data_left(LIBRARIES)
-        print LIBRARIES
 
-    def on_lib_clicked(self, event):
+    def on_lib_select(self, evt):
+        print "lib select"
+
+    def on_lib_right_click(self, event):
         index = event.GetIndex()
         menu = wx.Menu()
         item_rename = wx.MenuItem(menu, -1, "修改名称或描述")
@@ -199,9 +203,9 @@ class ListCtrlRight(wx.ListCtrl):
         index = evt.GetIndex()
         detail = record[index]
         menu = wx.Menu()
-        record_update = wx.MenuItem(menu, -1, "修改记录")
-        record_info = wx.MenuItem(menu, -1, "查看详细信息")
-        record_delete = wx.MenuItem(menu, -1, '删除这条记录')
+        record_update = wx.MenuItem(menu, -1, "修改")
+        record_info = wx.MenuItem(menu, -1, "详细信息")
+        record_delete = wx.MenuItem(menu, -1, '挂起/删除')
 
         self.Bind(wx.EVT_MENU, lambda e, d=detail: self.on_record_update(e, d), record_update)
         self.Bind(wx.EVT_MENU, lambda e, d=detail: self.on_record_info(e, d), record_info)
@@ -228,7 +232,8 @@ class ListCtrlRight(wx.ListCtrl):
         record_info_dlg.Destroy()
         pass
 
-    def on_record_delete(self, evt, d):
+    @staticmethod
+    def on_record_delete(evt, d):
         record_delete_dlg = Dialog.DeleteRecord(d)
         record_delete_dlg.ShowModal()
         record_delete_dlg.Destroy()

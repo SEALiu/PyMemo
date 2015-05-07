@@ -94,11 +94,8 @@ class RenameLib(wx.Dialog):
         conn = DBFun.connect_db('db_pymemo.db')
         conn.text_factory = str
         if DBFun.update(conn, update_lib_sql):
-            print 'update succeed !'
             conn.commit()
             ListCtrlLeft.on_refresh()
-        else:
-            print 'update fault !'
         conn.close()
         self.Close()
 
@@ -183,7 +180,6 @@ class DeleteLib(wx.Dialog):
         ListCtrlLeft.on_refresh()
         ListCtrlRight.on_refresh()
         self.Close()
-        pass
 
 
 # Record Dialog
@@ -405,7 +401,7 @@ class DeleteRecord(wx.Dialog):
         v_box = wx.BoxSizer(wx.VERTICAL)
         info_text = wx.StaticText(panel, -1,
                                   '挂起记录后，该记录不会在学习中出现，直到你取消挂起'
-                                  '注意，当你挂起这个记录之后，它的学习过程将被重置。'
+                                  '\n注意，当你挂起这个记录之后，它的学习过程将被重置。'
                                   '\n\n删除记录后，该记录将永久消失！')
         h_box = wx.BoxSizer(wx.HORIZONTAL)
 
@@ -445,7 +441,12 @@ class DeleteRecord(wx.Dialog):
         self.Close()
 
     def on_delete(self, evt, i):
-        print i
+        delete_sql = "DELETE FROM record WHERE recordId = '" + i + "'"
+        conn = DBFun.connect_db('db_pymemo.db')
+        DBFun.update(conn, delete_sql)
+        DBFun.commit(conn)
+        DBFun.close_db(conn)
+        ListCtrlRight.on_refresh()
         self.Close()
 
 
