@@ -150,6 +150,7 @@ class ListCtrlLeft(wx.ListCtrl):
             delete_dlg.ShowModal()
             delete_dlg.Destroy()
 
+
 class ListCtrlRight(wx.ListCtrl):
     def __init__(self, parent, i):
         wx.ListCtrl.__init__(self, parent, i, style=wx.LC_REPORT | wx.LC_HRULES | wx.LC_SINGLE_SEL)
@@ -179,8 +180,10 @@ class ListCtrlRight(wx.ListCtrl):
 
         for i in RECORDS:
             index = self.InsertStringItem(sys.maxint, i[0])
+            self.Bind(wx.EVT_LIST_ITEM_RIGHT_CLICK, lambda e, record=RECORDS: self.on_record_right_click(e, record))
             for j in range(len(self.list_head_name)):
                 self.SetStringItem(index, j, str(i[j]).decode('utf-8'))
+
     @staticmethod
     def on_refresh():
         window = wx.FindWindowByName('ListControlOnRight', parent=None)
@@ -191,6 +194,46 @@ class ListCtrlRight(wx.ListCtrl):
         RECORDS = cursor.fetchall()
         DBFun.close_db(conn)
         window.load_data_right(RECORDS)
+
+    def on_record_right_click(self, evt, record):
+        index = evt.GetIndex()
+        detail = record[index]
+        menu = wx.Menu()
+        record_update = wx.MenuItem(menu, -1, "修改记录")
+        record_info = wx.MenuItem(menu, -1, "查看详细信息")
+        record_delete = wx.MenuItem(menu, -1, '删除这条记录')
+
+        self.Bind(wx.EVT_MENU, lambda e, d=detail: self.on_record_update(e, d), record_update)
+        self.Bind(wx.EVT_MENU, lambda e, d=detail: self.on_record_info(e, d), record_info)
+        self.Bind(wx.EVT_MENU, lambda e, d=detail: self.on_record_delete(e, d), record_delete)
+
+        menu.AppendItem(record_update)
+        menu.AppendItem(record_info)
+        menu.AppendItem(record_delete)
+
+        self.PopupMenu(menu)
+        menu.Destroy()
+
+    @staticmethod
+    def on_record_update(evt, d):
+        record_update_dlg = Dialog.UpdateRecord(d)
+        record_update_dlg.ShowModal()
+        record_update_dlg.Destroy()
+        pass
+
+    @staticmethod
+    def on_record_info(evt, d):
+        record_info_dlg = Dialog.RecordInfo(d)
+        record_info_dlg.ShowModal()
+        record_info_dlg.Destroy()
+        pass
+
+    def on_record_delete(self, evt, d):
+        record_delete_dlg = Dialog.DeleteRecord(d)
+        record_delete_dlg.ShowModal()
+        record_delete_dlg.Destroy()
+        pass
+
 
 class CombinePanelRight(wx.Panel):
     def __init__(self, parent, i):
