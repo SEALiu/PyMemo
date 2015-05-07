@@ -31,7 +31,7 @@
 # alertTime text,
 # interval integer DEFAULT -1,
 # EF integer DEFAULT 2.5,
-# isPaused boolean DEFAULT FALSE
+# isPaused text DEFAULT 'False'
 # )''')
 #
 # c.execute(
