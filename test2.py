@@ -10,8 +10,8 @@ class ListCtrlLeft(wx.ListCtrl):
         self.InsertColumn(0, '')
         self.InsertStringItem(0, 'library-one')
         self.InsertStringItem(0, 'library-two')
-        self.Bind(wx.EVT_LIST_COL_CLICK, self.OnColClick)
-        self.Bind(wx.EVT_LIST_COL_CLICK, self.OnColClick)
+        self.Bind(wx.EVT_LEFT_DOWN, self.on_lib_click)
+        self.Bind(wx.EVT_RIGHT_DOWN, self.on_lib_right_click)
 
     def on_size(self, event):
         size = self.parent.GetSize()
