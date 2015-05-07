@@ -10,14 +10,20 @@ class ListCtrlLeft(wx.ListCtrl):
         self.InsertColumn(0, '')
         self.InsertStringItem(0, 'library-one')
         self.InsertStringItem(0, 'library-two')
-        self.Bind(wx.EVT_LIST_ITEM_SELECTED, self.on_lib_select)
-        self.Bind(wx.EVT_LIST_ITEM_RIGHT_CLICK, self.on_lib_right_click)
+        self.Bind(wx.EVT_LIST_COL_CLICK, self.OnColClick)
+        self.Bind(wx.EVT_LIST_COL_CLICK, self.OnColClick)
 
     def on_size(self, event):
         size = self.parent.GetSize()
         self.SetColumnWidth(0, size.x - 5)
 
-    def on_lib_select(self, evt):
+    def OnColClick(self, event):
+        if event.LeftDown():
+            print 'left clicked!'
+        elif event.RightDown():
+            print 'left clicked!'
+
+    def on_lib_click(self, evt):
         print "Item selected"
 
     def on_lib_right_click(self, evt):
