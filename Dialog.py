@@ -1,8 +1,9 @@
 # -*- coding: gbk -*-
 import time
 import wx
-import DBFun
-from memo import ListCtrlLeft, ListCtrlRight
+import FrameFun
+from memo import *
+
 
 
 # Lib Dialog
@@ -360,7 +361,7 @@ class AddNewRecord(wx.Dialog):
             # 重置，避免第二次由于 self.get_lib_id() != -1, 导致没有选择词库也可以插入记录。
             self.set_lib_id(-1)
             # addTime: type is str
-            add_time = time.strftime('%Y/%m/%d %H:%M:%S', time.localtime(time.time()))
+            add_time = time.strftime('%Y/%m/%d', time.localtime(time.time()))
             insert_sql = "INSERT INTO record(recordId, ques, ans, addTime) VALUES" \
                          " ('" + record_id + "', '" + record_ques + "', '" + record_ans + "', '" + add_time + "')"
             conn = DBFun.connect_db('db_pymemo.db')
@@ -875,3 +876,34 @@ class MemoAns(wx.Dialog):
 
     def on_easy(self, evt):
         pass
+
+
+class SelectLib(wx.Dialog):
+    def __init__(self, lib):
+        wx.Dialog.__init__(self, None, -1, '学习',
+                           style=wx.CAPTION | wx.SYSTEM_MENU | wx.CLOSE_BOX)
+
+        print FrameFun.find_new('000')
+
+
+        panel = wx.Panel(self, -1)
+        v_box = wx.BoxSizer(wx.VERTICAL)
+        text_info = wx.StaticText(panel, -1, "选择要学习的词库：")
+
+        list_ctrl = wx.ListCtrl(panel, size=(-1,100),
+                                     style=wx.LC_REPORT
+                                     |wx.BORDER_SUNKEN
+                                     )
+        list_ctrl.InsertColumn(0, '词库名')
+        list_ctrl.InsertColumn(1, '新')
+        list_ctrl.InsertColumn(2, '学习')
+        list_ctrl.InsertColumn(3, '复习')
+
+        for index, rows in enumerate(lib):
+            list_ctrl.InsertStringItem(index, lib[rows].decode('utf-8'))
+
+        v_box.Add(text_info, 0, wx.EXPAND | wx.ALL, 10)
+        v_box.Add(list_ctrl, 0, wx.EXPAND | wx.CENTER | wx.LEFT | wx.RIGHT, 10)
+        panel.SetSizer(v_box)
+        self.Centre()
+        self.Show(True)

@@ -256,11 +256,11 @@ class CombinePanelRight(wx.Panel):
     def __init__(self, parent, i):
         wx.Panel.__init__(self, parent, i, style=wx.BORDER_NONE)
 
-        lib_items = ['请选择筛选条件',
-                     '当前词库所有的',
-                     '正在学习的',
+        filter_list = ['过滤器',
+                     '显示所有记录',
                      '已到期的',
                      '已记住的',
+                     '今天待学习的',
                      '今天已学习的',
                      '始终记不住的',
                      '今天添加的'
@@ -268,9 +268,10 @@ class CombinePanelRight(wx.Panel):
         horizontal_box = wx.BoxSizer(wx.HORIZONTAL)
         lib_combo_box = wx.ComboBox(self,
                                     pos=(0, 5),
-                                    choices=lib_items,
+                                    choices=filter_list,
                                     style=wx.CB_READONLY
                                     )
+        self.Bind(wx.EVT_COMBOBOX, lambda evt, ob=lib_combo_box, f=filter_list: self.on_filter(evt, ob, f), lib_combo_box)
         lib_combo_box.SetSelection(0)
         go = wx.BitmapButton(self,
                              -1,
@@ -278,15 +279,43 @@ class CombinePanelRight(wx.Panel):
                              size=(23, 25),
                              style=wx.NO_BORDER
                              )
-        search_ctrl = wx.TextCtrl(self, -1)
+        search_ctrl = wx.TextCtrl(self, -1, size=(300, -1))
 
-        horizontal_box.Add(lib_combo_box, 1, wx.TOP | wx.LEFT, border=6)
-        horizontal_box.Add(search_ctrl, 1, wx.TOP | wx.LEFT, border=6)
-        horizontal_box.Add(go, 0, wx.ALL, border=6)
+        horizontal_box.Add(lib_combo_box, 0, wx.TOP | wx.LEFT, border=8)
+        horizontal_box.Add(search_ctrl, 0, wx.TOP | wx.LEFT, border=8)
+        horizontal_box.Add(go, 0, wx.ALL, border=8)
 
         self.SetSizer(horizontal_box)
         self.Centre()
         self.Show(True)
+
+    def on_filter(self, e, ob, f):
+        filter_key = 0
+        # filter_dic = {}
+        # 获取到筛选LIST的序号
+        for i, album in enumerate(f):
+            # filter_dic[i] = album
+            if album == ob.GetValue():
+                filter_key = i
+
+        if filter_key == 1:
+            # 所有记录
+            pass
+        elif filter_key == 2:
+            #
+            pass
+        elif filter_key == 3:
+            pass
+        elif filter_key == 4:
+            pass
+        elif filter_key == 5:
+            pass
+        elif filter_key == 6:
+            pass
+        elif filter_key == 7:
+            pass
+        else:
+            pass
 
 
 class Memo(wx.Frame):
@@ -453,12 +482,17 @@ class Memo(wx.Frame):
 
     @staticmethod
     def on_study(evt):
-        start_dlg = Dialog.MemoQues()
+        start_dlg = Dialog.SelectLib(LIBRARIES)
         start_dlg.ShowModal()
         start_dlg.Destroy()
         evt.Skip()
 
     def on_check(self, evt):
+        """
+        检查和优化数据库，包括合并重复的记录，删除空记录
+        :param evt:
+        :return:
+        """
         pass
 
     def on_guide(self, evt):
