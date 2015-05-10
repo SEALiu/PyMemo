@@ -5,7 +5,6 @@ import FrameFun
 from memo import *
 
 
-
 # Lib Dialog
 class AddNewLib(wx.Dialog):
     def __init__(self):
@@ -368,7 +367,6 @@ class AddNewRecord(wx.Dialog):
             if DBFun.update(conn, insert_sql):
                 conn.commit()
             conn.close()
-            # on_refresh() 应该写到ListCtrlRight中！！！
             ListCtrlRight.on_refresh()
             self.Close()
         pass
