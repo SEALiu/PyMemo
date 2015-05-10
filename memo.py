@@ -5,6 +5,7 @@ import wx
 import Dialog
 import DBFun
 import wx.lib.dialogs
+import FrameFun
 
 LIBRARIES = {}
 RECORDS = []
@@ -253,7 +254,7 @@ class ListCtrlRight(wx.ListCtrl):
 
 
 class CombinePanelRight(wx.Panel):
-    def __init__(self, parent, i):
+    def __init__(self, parent, i, records):
         wx.Panel.__init__(self, parent, i, style=wx.BORDER_NONE)
 
         filter_list = ['过滤器',
@@ -263,15 +264,16 @@ class CombinePanelRight(wx.Panel):
                      '今天待学习的',
                      '今天已学习的',
                      '始终记不住的',
-                     '今天添加的'
-                     ]
+                     '今天添加的']
         horizontal_box = wx.BoxSizer(wx.HORIZONTAL)
         lib_combo_box = wx.ComboBox(self,
                                     pos=(0, 5),
                                     choices=filter_list,
                                     style=wx.CB_READONLY
                                     )
-        self.Bind(wx.EVT_COMBOBOX, lambda evt, ob=lib_combo_box, f=filter_list: self.on_filter(evt, ob, f), lib_combo_box)
+        self.Bind(wx.EVT_COMBOBOX,
+                  lambda evt, ob=lib_combo_box, f=filter_list: self.on_filter(evt, ob, f, RECORDS),
+                  lib_combo_box)
         lib_combo_box.SetSelection(0)
         go = wx.BitmapButton(self,
                              -1,
@@ -289,9 +291,9 @@ class CombinePanelRight(wx.Panel):
         self.Centre()
         self.Show(True)
 
-    def on_filter(self, e, ob, f):
+    @staticmethod
+    def on_filter(e, ob, f, r):
         filter_key = 0
-        # filter_dic = {}
         # 获取到筛选LIST的序号
         for i, album in enumerate(f):
             # filter_dic[i] = album
@@ -299,23 +301,31 @@ class CombinePanelRight(wx.Panel):
                 filter_key = i
 
         if filter_key == 1:
-            # 所有记录
+            r = FrameFun.find_all()
             pass
         elif filter_key == 2:
-            #
+            r = FrameFun.find_expired()
             pass
         elif filter_key == 3:
+            r = FrameFun.find_remembered()
             pass
         elif filter_key == 4:
+            new_list = FrameFun.find_new()[:50]
+            review_list = FrameFun.find_expired()[:50]
+            r = new_list + review_list
             pass
         elif filter_key == 5:
+            r = FrameFun.find_learned()
             pass
         elif filter_key == 6:
+            r = FrameFun.find_hard()
             pass
         elif filter_key == 7:
+            r = FrameFun.find_today()
             pass
-        else:
-            pass
+        RECORDS = r
+        window = wx.FindWindowByName('ListControlOnRight', parent=None)
+        window.load_data_right(RECORDS)
 
 
 class Memo(wx.Frame):
@@ -422,7 +432,7 @@ class Memo(wx.Frame):
         panel_right = wx.Panel(splitter, -1)
         vertical_box_right_top = wx.BoxSizer(wx.VERTICAL)
         panel_right_top = wx.Panel(panel_right, size=(-1, 40), style=wx.NO_BORDER)
-        combine = CombinePanelRight(panel_right_top, -1)
+        combine = CombinePanelRight(panel_right_top, -1, RECORDS)
         vertical_box_right_top.Add(combine, 1, wx.EXPAND)
         panel_right_top.SetSizer(vertical_box_right_top)
         # panel_right_top.SetBackgroundColour('#53728c')
