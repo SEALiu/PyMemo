@@ -878,30 +878,72 @@ class MemoAns(wx.Dialog):
 
 class SelectLib(wx.Dialog):
     def __init__(self, lib):
-        wx.Dialog.__init__(self, None, -1, '学习',
+        wx.Dialog.__init__(self, None, -1, '学习', size=(-1, 350),
                            style=wx.CAPTION | wx.SYSTEM_MENU | wx.CLOSE_BOX)
-
-        print FrameFun.find_new('000')
-
-
-        panel = wx.Panel(self, -1)
         v_box = wx.BoxSizer(wx.VERTICAL)
-        text_info = wx.StaticText(panel, -1, "选择要学习的词库：")
+        panel = wx.Panel(self, -1, style=wx.BORDER_SIMPLE)
+        panel.SetBackgroundColour('white')
+        v_box_p = wx.BoxSizer(wx.VERTICAL)
 
-        list_ctrl = wx.ListCtrl(panel, size=(-1,100),
-                                     style=wx.LC_REPORT
-                                     |wx.BORDER_SUNKEN
-                                     )
-        list_ctrl.InsertColumn(0, '词库名')
-        list_ctrl.InsertColumn(1, '新')
-        list_ctrl.InsertColumn(2, '学习')
-        list_ctrl.InsertColumn(3, '复习')
+        info_text = wx.StaticText(panel, -1, "选择要学习的词库：")
+        v_box_p.Add(info_text, 0, wx.EXPAND | wx.TOP | wx.LEFT | wx.RIGHT, 10)
+        for index, content in enumerate(lib):
+            self.button = wx.Button(panel, -1, lib[content].decode('utf-8'))
+            self.button.Bind(wx.EVT_BUTTON, lambda evt, i=content, l=lib: self.on_click(evt, i, l))
+            v_box_p.Add(self.button, 0, wx.EXPAND | wx.ALL, 15)
+        panel.SetSizer(v_box_p)
+        close = wx.Button(self, wx.ID_CANCEL, "关闭", style=wx.BORDER_NONE)
+        v_box.Add(panel, 0, wx.EXPAND | wx.ALL, 10)
+        v_box.Add(close, 0, wx.EXPAND | wx.ALL, 10)
+        self.SetSizer(v_box)
+        self.Centre()
+        self.Show(True)
 
-        for index, rows in enumerate(lib):
-            list_ctrl.InsertStringItem(index, lib[rows].decode('utf-8'))
+    def on_click(self, evt, i, l):
+        self.Close()
+        pre_dlg = Prepare(i, l)
+        pre_dlg.ShowModal()
+        pre_dlg.Destroy()
 
-        v_box.Add(text_info, 0, wx.EXPAND | wx.ALL, 10)
-        v_box.Add(list_ctrl, 0, wx.EXPAND | wx.CENTER | wx.LEFT | wx.RIGHT, 10)
-        panel.SetSizer(v_box)
+
+class Prepare(wx.Dialog):
+    def __init__(self, i, lib):
+        wx.Dialog.__init__(self, None, -1, '准备学习', size=(-1, 350),
+                           style=wx.CAPTION | wx.SYSTEM_MENU | wx.CLOSE_BOX)
+        v_box = wx.BoxSizer(wx.VERTICAL)
+        # -----------------------------------------
+        # panel_1
+        panel_1 = wx.Panel(self, -1, style=wx.BORDER_SIMPLE)
+        panel_1.SetBackgroundColour('white')
+        v_box_1 = wx.BoxSizer(wx.VERTICAL)
+        font_bold = wx.Font(16, wx.FONTFAMILY_SWISS, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_BOLD, False)
+        text_head = wx.StaticText(panel_1, -1, lib[i])
+        text_head.SetFont(font_bold)
+        v_box_1.Add(text_head, 0, wx.EXPAND | wx.TOP | wx.BOTTOM, 10)
+
+
+        gs = wx.GridSizer(rows=3, cols=2, vgap=5, hgap=5)
+        text_statistic = wx.StaticText(panel_1, -1, "今日到期：")
+        text_new = wx.StaticText(panel_1, -1, "新卡片合计：")
+        text_all = wx.StaticText(panel_1, -1, "全部卡片：")
+        gs.Add(text_statistic, 0, wx.EXPAND)
+        gs.Add(wx.StaticText(panel_1, -1, "0 1 10"), 0, wx.EXPAND)
+        gs.Add(text_new, 0, wx.EXPAND)
+        gs.Add(wx.StaticText(panel_1, -1, "0"))
+        gs.Add(text_all, 0, wx.EXPAND)
+        gs.Add(wx.StaticText(panel_1, -1, "1997"))
+
+        v_box_1.Add(gs, 0, wx.EXPAND | wx.ALIGN_CENTER_HORIZONTAL | wx.TOP | wx.BOTTOM, 10)
+
+        panel_1.SetSizer(v_box_1)
+        # -----------------------------------------
+        # panel_2
+        panel_2 = wx.Panel(self, -1, style=wx.BORDER_SIMPLE)
+        panel_2.SetBackgroundColour('white')
+        v_box_2 = wx.BoxSizer(wx.VERTICAL)
+
+        v_box.Add(panel_1, 0, wx.EXPAND | wx.ALIGN_CENTER_VERTICAL | wx.LEFT | wx.RIGHT, 10)
+        v_box.Add(panel_2, 0, wx.EXPAND | wx.ALIGN_CENTER_VERTICAL | wx.LEFT | wx.RIGHT, 10)
+        self.SetSizer(v_box)
         self.Centre()
         self.Show(True)

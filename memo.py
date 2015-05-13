@@ -497,7 +497,8 @@ class Memo(wx.Frame):
         start_dlg.Destroy()
         evt.Skip()
 
-    def on_check(self, evt):
+    @staticmethod
+    def on_check(evt):
         """
         检查和优化数据库，包括合并重复的记录，删除空记录
         :param evt:
@@ -511,7 +512,6 @@ class Memo(wx.Frame):
         f.close()
         dlg = wx.lib.dialogs.ScrolledMessageDialog(self, msg, "用户手册")
         dlg.ShowModal()
-        evt.Skip()
 
     @staticmethod
     def on_about(evt):
