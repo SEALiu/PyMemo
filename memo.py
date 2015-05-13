@@ -24,12 +24,8 @@ class ListCtrlLeft(wx.ListCtrl):
 
     @staticmethod
     def fetch_lib():
-        conn = DBFun.connect_db('db_pymemo.db')
-        conn.text_factory = str
         select_sql = "SELECT * FROM library"
-        cursor = DBFun.select(conn, select_sql)
-        result_list = cursor.fetchall()
-        DBFun.close_db(conn)
+        result_list = DBFun.select('db_pymemo.db', select_sql)
         LIBRARIES.clear()
         LIBRARY_ID[:] = []
         for rows in result_list:
@@ -67,15 +63,11 @@ class ListCtrlLeft(wx.ListCtrl):
 
     def on_lib_select(self, evt):
         index = evt.GetIndex()
-        conn = DBFun.connect_db('db_pymemo.db')
-        conn.text_factory = str
         sql = "SELECT * FROM record WHERE recordId LIKE '%" + LIBRARY_ID[index] + "'"
-        cursor = DBFun.select(conn, sql)
+        cursor = DBFun.select('db_pymemo.db', sql)
         r = []
         for rows in cursor:
             r.append(rows)
-        conn.commit()
-        DBFun.close_db(conn)
         RECORDS = r
         window = wx.FindWindowByName('ListControlOnRight', parent=None)
         window.load_data_right(RECORDS)
@@ -108,14 +100,10 @@ class ListCtrlLeft(wx.ListCtrl):
         lib_desc = ''
         lib_id = LIBRARY_ID[i]
         lib_name = LIBRARIES[LIBRARY_ID[i]].decode('utf-8')
-        conn = DBFun.connect_db('db_pymemo.db')
-        conn.text_factory = str
         select_sql = "SELECT * FROM library WHERE libId = '" + lib_id + "'"
-        cursor = DBFun.select(conn, select_sql)
+        cursor = DBFun.select('db_pymemo.db', select_sql)
         for rows in cursor:
             lib_desc = rows[2].decode('utf-8')
-        DBFun.close_db(conn)
-
         rename_dlg = Dialog.RenameLib(lib_name, lib_desc, lib_id)
         rename_dlg.ShowModal()
         rename_dlg.Destroy()
@@ -126,10 +114,9 @@ class ListCtrlLeft(wx.ListCtrl):
         lib_info = ()
         lib_id = LIBRARY_ID[i]
         lib_name = LIBRARIES[LIBRARY_ID[i]].decode('utf-8')
-        conn = DBFun.connect_db('db_pymemo.db')
-        conn.text_factory = str
+
         select_sql = "SELECT * FROM library WHERE libId = '" + lib_id + "'"
-        cursor = DBFun.select(conn, select_sql)
+        cursor = DBFun.select('db_pymemo.db', select_sql)
         for rows in cursor:
             lib_info = rows
         # print lib_info
@@ -172,11 +159,8 @@ class ListCtrlRight(wx.ListCtrl):
     def __init__(self, parent, i):
         wx.ListCtrl.__init__(self, parent, i, style=wx.LC_REPORT | wx.LC_HRULES | wx.LC_SINGLE_SEL)
         self.parent = parent
-        conn = DBFun.connect_db('db_pymemo.db')
-        conn.text_factory = str
         select_sql = 'SELECT * FROM record'
-        cursor = DBFun.select(conn, select_sql)
-        RECORDS = cursor.fetchall()
+        RECORDS = DBFun.select('db_pymemo.db', select_sql)
         self.load_data_right(RECORDS)
 
     def load_data_right(self, RECORDS):
@@ -204,12 +188,8 @@ class ListCtrlRight(wx.ListCtrl):
     @staticmethod
     def on_refresh():
         window = wx.FindWindowByName('ListControlOnRight', parent=None)
-        conn = DBFun.connect_db('db_pymemo.db')
-        conn.text_factory = str
         select_sql = "SELECT * FROM record"
-        cursor = DBFun.select(conn, select_sql)
-        RECORDS = cursor.fetchall()
-        DBFun.close_db(conn)
+        RECORDS = DBFun.select('db_pymemo.db', select_sql)
         window.load_data_right(RECORDS)
 
     def on_record_right_click(self, evt, record):
@@ -469,33 +449,28 @@ class Memo(wx.Frame):
         new_lib_dlg = Dialog.AddNewLib()
         new_lib_dlg.ShowModal()
         new_lib_dlg.Destroy()
-        evt.Skip()
 
     def on_import(self, evt):
         import_dlg = Dialog.Import(self)
         import_dlg.ShowModal()
         import_dlg.Destroy()
-        evt.Skip()
 
     def on_export(self, evt):
         export_dlg = Dialog.Export(self)
         export_dlg.ShowModal()
         export_dlg.Destroy()
-        evt.Skip()
 
     @staticmethod
     def on_new_record(evt):
         new_card_dlg = Dialog.AddNewRecord(LIBRARIES, -1)
         new_card_dlg.ShowModal()
         new_card_dlg.Destroy()
-        evt.Skip()
 
     @staticmethod
     def on_study(evt):
         start_dlg = Dialog.SelectLib(LIBRARIES)
         start_dlg.ShowModal()
         start_dlg.Destroy()
-        evt.Skip()
 
     @staticmethod
     def on_check(evt):
@@ -515,16 +490,11 @@ class Memo(wx.Frame):
 
     @staticmethod
     def on_about(evt):
-        Dialog.AboutDialog()
-        evt.Skip()
+        about_dlg = Dialog.AboutDialog()
 
-
-def main():
+if __name__ == '__main__':
     reload(sys)
     sys.setdefaultencoding('gbk')
     app = wx.App()
     Memo(None, -1, 'PyMemo', (1000, 500))
     app.MainLoop()
-
-if __name__ == '__main__':
-    main()
