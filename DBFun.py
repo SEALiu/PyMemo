@@ -7,33 +7,28 @@ def connect_db(url):
     return sqlite3.connect(url)
 
 
-def close_db(conn):
-    """close the connection of DB"""
-    conn.close()
-
-
-def commit(conn):
-    """commit operation"""
-    conn.commit()
-
-
-def select(conn, sql):
+def select(url, sql):
     """execute the select sql"""
-    return conn.execute(sql)
+    conn = connect_db(url)
+    conn.text_factory = str
+    r = conn.execute(sql).fetchall()
+    conn.close()
+    return r
 
 
-def update(conn, sql):
+def update(url, sql):
     """execute update, delete and insert SQL"""
-    return conn.execute(sql)
+    conn = connect_db(url)
+    conn.text_factory = str
+    conn.execute(sql)
+    conn.commit()
+    conn.close()
 
 
 def max_lib(column):
     """返回library中指定列最大值"""
     select_sql = "SELECT max(" + column + ") FROM library"
-    conn = connect_db('db_pymemo.db')
-    cursor = select(conn, select_sql)
-    result_list = cursor.fetchall()
-    close_db(conn)
+    result_list = select('db_pymemo.db', select_sql)
     max_lib_id = result_list[0][0]
     if max_lib_id:
         return int(max_lib_id)
@@ -43,10 +38,7 @@ def max_lib(column):
 def max_record(column):
     """返回record中指定列的最大值"""
     select_sql = "SELECT max(" + column + ") FROM record"
-    conn = connect_db('db_pymemo.db')
-    cursor = select(conn, select_sql)
-    result_list = cursor.fetchall()
-    close_db(conn)
+    result_list = select('db_pymemo.db', select_sql)
     max_record_id = result_list[0][0]
     if max_record_id:
         return int(max_record_id[:5])
