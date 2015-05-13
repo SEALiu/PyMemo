@@ -1,7 +1,7 @@
 # -*- coding: gbk -*-
 import time
 import wx
-import FrameFun
+import wx.lib.buttons as buttons
 from memo import *
 
 
@@ -45,10 +45,8 @@ class AddNewLib(wx.Dialog):
 
         insert_lib_sql = "INSERT INTO library(libId, name, libDesc, createTime) VALUES ('" + lib_id + "', '" + lib_name + "', '" +\
                          lib_desc + "', '" + create_time + "')"
-        conn = DBFun.connect_db('db_pymemo.db')
-        if DBFun.update(conn, insert_lib_sql):
-            conn.commit()
-        conn.close()
+
+        DBFun.update('db_pymemo.db', insert_lib_sql)
         ListCtrlLeft.on_refresh()
         self.Close()
 
@@ -90,12 +88,9 @@ class RenameLib(wx.Dialog):
         lib_desc = desc.GetValue().encode('utf-8')
         update_lib_sql = "UPDATE library SET " \
                          "name = '" + lib_name + "', libDesc = '" + lib_desc + "' WHERE libId = '" + i + "'"
-        conn = DBFun.connect_db('db_pymemo.db')
-        conn.text_factory = str
-        if DBFun.update(conn, update_lib_sql):
-            conn.commit()
-            ListCtrlLeft.on_refresh()
-        conn.close()
+
+        DBFun.update('db_pymemo.db', update_lib_sql)
+        ListCtrlLeft.on_refresh()
         self.Close()
 
 
@@ -169,13 +164,13 @@ class DeleteLib(wx.Dialog):
         self.Show(True)
 
     def on_delete(self, evt, i):
-        conn = DBFun.connect_db('db_pymemo.db')
         delete_lib_sql = "DELETE FROM library WHERE libId='" + i + "'"
         delete_record_sql = "DELETE FROM record WHERE recordId LIKE '%" + i + "'"
-        DBFun.update(conn, delete_lib_sql)
-        DBFun.update(conn, delete_record_sql)
-        DBFun.commit(conn)
-        DBFun.close_db(conn)
+
+        # recordId = replace(recordId, substr(recordId, 6, 3), '000')不能用？？
+        update_record_sql = "UPDATE record SET recordId = replace(recordId, substr(recordId, 6, 3), '000'), WHERE recordId LIKE '%" + i + "'"
+        DBFun.update('db_pymemo.db', delete_lib_sql)
+        DBFun.update('db_pymemo.db', delete_record_sql)
         ListCtrlLeft.on_refresh()
         ListCtrlRight.on_refresh()
         self.Close()
@@ -276,12 +271,7 @@ class UpdateRecord(wx.Dialog):
         update_record_sql = "UPDATE record SET" \
                             " ques = '" + ques + "', ans = '" + ans + "', alertTime = '" + alert_time + "' WHERE" \
                             " recordId = '" + i + "'"
-        conn = DBFun.connect_db('db_pymemo.db')
-        conn.text_factory = str
-        if DBFun.update(conn, update_record_sql):
-            conn.commit()
-            ListCtrlRight.on_refresh()
-        conn.close()
+        DBFun.update('db_pymemo.db', update_record_sql)
         self.Close()
 
 
@@ -345,7 +335,6 @@ class AddNewRecord(wx.Dialog):
         return self.lib_id
 
     def on_submit(self, evt, ques, ans):
-        # print self.get_lib_id(), '\n', ques.GetValue().encode('utf-8'), '\n', ans.GetValue().encode('utf-8')
         if self.get_lib_id() == -1:
             msg_dlg = wx.MessageDialog(self, '请确保选择了一个词库！',
                            '提示',
@@ -363,10 +352,8 @@ class AddNewRecord(wx.Dialog):
             add_time = time.strftime('%Y/%m/%d', time.localtime(time.time()))
             insert_sql = "INSERT INTO record(recordId, ques, ans, addTime) VALUES" \
                          " ('" + record_id + "', '" + record_ques + "', '" + record_ans + "', '" + add_time + "')"
-            conn = DBFun.connect_db('db_pymemo.db')
-            if DBFun.update(conn, insert_sql):
-                conn.commit()
-            conn.close()
+
+            DBFun.update('db_pymemo.db', insert_sql)
             ListCtrlRight.on_refresh()
             self.Close()
         pass
@@ -376,18 +363,6 @@ class AddNewRecord(wx.Dialog):
         if lib_name in lib.keys():
             self.set_lib_id(lib[lib_name])
             print self.get_lib_id()
-        else:
-            print lib_name
-
-
-        # if cursor == None:
-        #     print '请选择词库'
-        # else:
-        #     for rows in cursor:
-        #         self.set_lib_id(rows[0])
-        # DBFun.close_db(conn)
-        # print self.get_lib_id()
-        pass
 
 
 class DeleteRecord(wx.Dialog):
@@ -430,20 +405,15 @@ class DeleteRecord(wx.Dialog):
     def on_is_pause(self, evt, i, flag):
         alert_time = time.strftime('%Y/%m/%d %H:%M:%S', time.localtime(time.time()))
         pause_sql = "UPDATE record SET alertTime = '" + alert_time + "', isPaused = '" + flag + "'  WHERE recordId = '" + i + "'"
-        conn = DBFun.connect_db('db_pymemo.db')
-        conn.text_factory = str
-        if DBFun.update(conn, pause_sql):
-            conn.commit()
-            ListCtrlRight.on_refresh()
-        conn.close()
+
+        DBFun.update('db_pymemo.db', pause_sql)
+        ListCtrlRight.on_refresh()
         self.Close()
 
     def on_delete(self, evt, i):
         delete_sql = "DELETE FROM record WHERE recordId = '" + i + "'"
-        conn = DBFun.connect_db('db_pymemo.db')
-        DBFun.update(conn, delete_sql)
-        DBFun.commit(conn)
-        DBFun.close_db(conn)
+        DBFun.update('db_pymemo.db', delete_sql)
+        ListCtrlRight.on_refresh()
         ListCtrlRight.on_refresh()
         self.Close()
 
@@ -585,18 +555,7 @@ class SettingDialog(wx.Dialog):
         panel_right_bottom = wx.Panel(self)
         font_setting = wx.StaticBox(panel_right_bottom, -1, label='字体设置')
         sbs4 = wx.StaticBoxSizer(font_setting, orient=wx.VERTICAL)
-        # h_box_1 = wx.BoxSizer(wx.HORIZONTAL)
         h_box_2 = wx.BoxSizer(wx.HORIZONTAL)
-
-        # font_family_list = ['font-family-one',
-        #                    'font-family-two',
-        #                    'font-family-three',
-        #                    'font-family-flour']
-        # font_family_text = wx.StaticText(panel_right_bottom, -1, "字体：",)
-        # font_family = wx.Choice(panel_right_bottom, -1, choices=font_family_list)
-        #
-        # h_box_1.Add(font_family_text, 1, wx.LEFT | wx.TOP, border=10)
-        # h_box_1.Add(font_family, 3, wx.TOP, border=10)
 
         font_size_text = wx.StaticText(panel_right_bottom, -1, "字号：")
         font_size = wx.SpinCtrl(panel_right_bottom, -1)
@@ -606,7 +565,6 @@ class SettingDialog(wx.Dialog):
         h_box_2.Add(font_size_text, 1, wx.LEFT | wx.TOP, border=10)
         h_box_2.Add(font_size, 3, wx.TOP, border=10)
 
-        # sbs4.Add(h_box_1, wx.LEFT, border=5)
         sbs4.Add(h_box_2, wx.LEFT, border=5)
 
         panel_right_bottom.SetSizer(sbs4)
@@ -674,11 +632,6 @@ class MemoQues(wx.Dialog):
                            wx.FONTWEIGHT_NORMAL,
                            faceName="Consolas",
                            underline=False)
-        # font_ans = wx.Font(12, wx.FONTFAMILY_DEFAULT,
-        #                    wx.FONTSTYLE_NORMAL,
-        #                    wx.FONTWEIGHT_NORMAL,
-        #                    faceName="Consolas",
-        #                    underline=False)
 
         # ------
 
@@ -753,11 +706,10 @@ class MemoQues(wx.Dialog):
         self.Show(True)
 
     def on_show_ans(self, evt):
-        self.Destroy()
+        self.Close()
         dlg = MemoAns()
         dlg.ShowModal()
         dlg.Destroy()
-        evt.Skip()
 
 
 class MemoAns(wx.Dialog):
@@ -910,19 +862,25 @@ class Prepare(wx.Dialog):
     def __init__(self, i, lib):
         wx.Dialog.__init__(self, None, -1, '准备学习', size=(-1, 350),
                            style=wx.CAPTION | wx.SYSTEM_MENU | wx.CLOSE_BOX)
+        # -----------------------------------------
+        # 根据词库id，即i。
+        # 生成（N，S，R）卡片
+        new_list = []
+        study_list = []
+        review_list = []
+
         v_box = wx.BoxSizer(wx.VERTICAL)
         # -----------------------------------------
         # panel_1
         panel_1 = wx.Panel(self, -1, style=wx.BORDER_SIMPLE)
         panel_1.SetBackgroundColour('white')
         v_box_1 = wx.BoxSizer(wx.VERTICAL)
-        font_bold = wx.Font(16, wx.FONTFAMILY_SWISS, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_BOLD, False)
-        text_head = wx.StaticText(panel_1, -1, lib[i])
-        text_head.SetFont(font_bold)
+        big_font_bold = wx.Font(18, wx.DEFAULT, wx.NORMAL, wx.BOLD, False)
+        text_head = wx.StaticText(panel_1, -1, lib[i].decode('utf-8'), style=wx.ALIGN_CENTER_HORIZONTAL)
+        text_head.SetFont(big_font_bold)
         v_box_1.Add(text_head, 0, wx.EXPAND | wx.TOP | wx.BOTTOM, 10)
 
-
-        gs = wx.GridSizer(rows=3, cols=2, vgap=5, hgap=5)
+        gs = wx.GridSizer(rows=3, cols=2, vgap=5, hgap=25)
         text_statistic = wx.StaticText(panel_1, -1, "今日到期：")
         text_new = wx.StaticText(panel_1, -1, "新卡片合计：")
         text_all = wx.StaticText(panel_1, -1, "全部卡片：")
@@ -932,18 +890,54 @@ class Prepare(wx.Dialog):
         gs.Add(wx.StaticText(panel_1, -1, "0"))
         gs.Add(text_all, 0, wx.EXPAND)
         gs.Add(wx.StaticText(panel_1, -1, "1997"))
+        v_box_1.Add(gs, 0, wx.ALIGN_CENTER_HORIZONTAL | wx.TOP | wx.BOTTOM, 10)
 
-        v_box_1.Add(gs, 0, wx.EXPAND | wx.ALIGN_CENTER_HORIZONTAL | wx.TOP | wx.BOTTOM, 10)
+#         done_text = '''恭喜！你已经完成今天的学习计划。
+# 今天的复习数量限制已经达到，但仍有一些卡片需要复习。
+# 为了更好的记忆效果，你可以考虑调整你的学习计划。
+# 点击下面词库选项，调整学习计划'''
+#         tips = wx.StaticText(panel_1, -1, done_text, style=wx.ALIGN_CENTER_HORIZONTAL)
+#         v_box_1.Add(tips, 0, wx.EXPAND | wx.ALL, 10)
 
         panel_1.SetSizer(v_box_1)
         # -----------------------------------------
         # panel_2
         panel_2 = wx.Panel(self, -1, style=wx.BORDER_SIMPLE)
         panel_2.SetBackgroundColour('white')
-        v_box_2 = wx.BoxSizer(wx.VERTICAL)
+        h_box_2 = wx.BoxSizer(wx.HORIZONTAL)
+        temp = wx.Image('images/other-size/flashcard48.jpg', wx.BITMAP_TYPE_JPEG).ConvertToBitmap()
+        flashcard = wx.StaticBitmap(panel_2, -1, temp)
+        h_box_2.Add(flashcard, 0, wx.ALL, 10)
 
-        v_box.Add(panel_1, 0, wx.EXPAND | wx.ALIGN_CENTER_VERTICAL | wx.LEFT | wx.RIGHT, 10)
-        v_box.Add(panel_2, 0, wx.EXPAND | wx.ALIGN_CENTER_VERTICAL | wx.LEFT | wx.RIGHT, 10)
+        start = buttons.GenButton(panel_2, -1, '开始学习')
+        start.SetBezelWidth(0)
+        start.SetBackgroundColour('white')
+        start.Bind(wx.EVT_BUTTON, lambda evt, n=new_list, s=study_list, r=review_list: self.on_study(evt, n, s, r))
+        h_box_2.Add(start, 1, wx.EXPAND | wx.TOP | wx.BOTTOM | wx.RIGHT, 10)
+        panel_2.SetSizer(h_box_2)
+
+        line = wx.StaticLine(self, -1, size=(-1, -1), style=wx.LI_HORIZONTAL)
+
+        v_box.Add(panel_1, 1, wx.EXPAND | wx.TOP | wx.LEFT | wx.RIGHT, 10)
+        v_box.Add(panel_2, 0, wx.EXPAND | wx.TOP | wx.LEFT | wx.RIGHT, 10)
+        v_box.Add(line, 0, wx.EXPAND | wx.TOP | wx.LEFT | wx.RIGHT, 10)
+
+        setting_button = buttons.GenButton(self, -1, "词库选项", style=wx.BORDER_SIMPLE)
+        setting_button.SetBezelWidth(1)
+        setting_button.SetBackgroundColour('white')
+        setting_button.Bind(wx.EVT_BUTTON, lambda evt, l=lib, index=i: self.on_setting(evt, lib, i))
+
+        v_box.Add(setting_button, 0, wx.EXPAND | wx.ALL, 10)
         self.SetSizer(v_box)
         self.Centre()
         self.Show(True)
+
+    @staticmethod
+    def on_setting(evt, lib, i):
+        setting_dlg = Dialog.SettingDialog(lib, i)
+        setting_dlg.ShowModal()
+        setting_dlg.Destroy()
+
+    def on_study(self, evt, n, s, r):
+        print n, s, r
+        self.Close()
