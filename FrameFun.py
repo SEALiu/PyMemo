@@ -9,23 +9,29 @@ def find_all():
     return DBFun.select('db_pymemo.db', sql)
 
 
-def find_new():
+def find_new(flag):
     """
     找到新记录并返回
     :return:
     """
-    sql = "SELECT * FROM record WHERE interval = -1"
+    if flag == -1:
+        sql = "SELECT * FROM record WHERE  interval = -1"
+    else:
+        sql = "SELECT * FROM record WHERE interval = -1 AND recordId LIKE '%" + flag + "'"
     new_record = DBFun.select('db_pymemo.db', sql)
     return new_record
 
 
-def find_expired():
+def find_expired(flag):
     """
     找到已经到期的记录并返回
     :return:
     """
     expired_list = []
-    sql = "SELECT * FROM record WHERE interval != -1"
+    if flag == -1:
+        sql = "SELECT * FROM record WHERE interval != -1"
+    else:
+        sql = "SELECT * FROM record WHERE interval != -1 AND recordId LIKE '%" + flag + "'"
     today = datetime.date.today()
     for rows in DBFun.select('db_pymemo.db', sql):
         interval = rows[6]
@@ -82,3 +88,8 @@ def find_today():
         if add_time == now_time:
             today_record.append(rows)
     return today_record
+
+
+def tuple_add_front(tp, v):
+    tp_list = list(tp)
+    return [v] + tp_list
