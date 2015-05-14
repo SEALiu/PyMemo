@@ -284,14 +284,14 @@ class CombinePanelRight(wx.Panel):
             r = FrameFun.find_all()
             pass
         elif filter_key == 2:
-            r = FrameFun.find_expired()
+            r = FrameFun.find_expired(-1)
             pass
         elif filter_key == 3:
             r = FrameFun.find_remembered()
             pass
         elif filter_key == 4:
-            new_list = FrameFun.find_new()[:50]
-            review_list = FrameFun.find_expired()[:50]
+            new_list = FrameFun.find_new(-1)[:50]
+            review_list = FrameFun.find_expired(-1)[:50]
             r = new_list + review_list
             pass
         elif filter_key == 5:
