@@ -1,7 +1,9 @@
 # -*- coding: gbk -*-
 import time
+import os
 import wx
 import wx.lib.buttons as buttons
+import file
 from memo import *
 
 
@@ -861,10 +863,28 @@ class Prepare(wx.Dialog):
                            style=wx.CAPTION | wx.SYSTEM_MENU | wx.CLOSE_BOX)
         # -----------------------------------------
         # 根据词库id，即i。
-        # 生成（N，S，R）卡片
-        new_list = []
-        study_list = []
-        review_list = []
+        # 看工作目录下是否存在recordstack_i，如果不存在则创建然后写入前三行: NSR的统计数据（0, 0, 0）
+        # 根据设置中每日学习和复习向recordstack_xxx.txt中添加记录信息
+        # 不足设置的每日学习和复习的数量则补足（有多少补多少）
+        file_name = 'recordstack_' + i + '.txt'
+        if file.is_exist(os.getcwd(), file_name) == 0:
+            f = open(file_name, 'w')
+            f.write('N:0\nS:0\nR:0')
+            f.close()
+            pass
+        nsr = file.fetch_statistic(file_name)
+        n_num = nsr['N']
+        r_num = nsr['R']
+        sql = "SELECT * FROM library WHERE libId = '" + i + "'"
+        result = DBFun.select('db_pymemo.db', sql)
+        r_s = result[0][4]
+        n_s = result[0][5]
+        review_list = FrameFun.find_expired(i)[:r_s - r_num]
+        new_list = FrameFun.find_new(i)[:n_s - n_num]
+
+        file.write_rs(file_name, new_list, 'N')
+        file.write_rs(file_name, review_list, 'R')
+        # recordstac_xxx.txt写入完成，现在recordstac_xxx.txt中保存的就是待学习的内容。
 
         v_box = wx.BoxSizer(wx.VERTICAL)
         # -----------------------------------------
@@ -909,7 +929,7 @@ class Prepare(wx.Dialog):
         start = buttons.GenButton(panel_2, -1, '开始学习')
         start.SetBezelWidth(0)
         start.SetBackgroundColour('white')
-        start.Bind(wx.EVT_BUTTON, lambda evt, n=new_list, s=study_list, r=review_list: self.on_study(evt, n, s, r))
+        start.Bind(wx.EVT_BUTTON, lambda evt, n=new_list, r=review_list: self.on_study(evt, n, r))
         h_box_2.Add(start, 1, wx.EXPAND | wx.TOP | wx.BOTTOM | wx.RIGHT, 10)
         panel_2.SetSizer(h_box_2)
 
@@ -935,6 +955,7 @@ class Prepare(wx.Dialog):
         setting_dlg.ShowModal()
         setting_dlg.Destroy()
 
-    def on_study(self, evt, n, s, r):
-        print n, s, r
+    def on_study(self, evt, n, r):
+        print "new:", n
+        print "review:", r
         self.Close()
