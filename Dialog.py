@@ -929,7 +929,7 @@ class Prepare(wx.Dialog):
         start = buttons.GenButton(panel_2, -1, '¿ªÊ¼Ñ§Ï°')
         start.SetBezelWidth(0)
         start.SetBackgroundColour('white')
-        start.Bind(wx.EVT_BUTTON, lambda evt, n=new_list, r=review_list: self.on_study(evt, n, r))
+        start.Bind(wx.EVT_BUTTON, self.on_study)
         h_box_2.Add(start, 1, wx.EXPAND | wx.TOP | wx.BOTTOM | wx.RIGHT, 10)
         panel_2.SetSizer(h_box_2)
 
@@ -955,7 +955,6 @@ class Prepare(wx.Dialog):
         setting_dlg.ShowModal()
         setting_dlg.Destroy()
 
-    def on_study(self, evt, n, r):
-        print "new:", n
-        print "review:", r
+    def on_study(self, evt):
+
         self.Close()
