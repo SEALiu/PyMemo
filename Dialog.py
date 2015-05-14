@@ -165,12 +165,9 @@ class DeleteLib(wx.Dialog):
 
     def on_delete(self, evt, i):
         delete_lib_sql = "DELETE FROM library WHERE libId='" + i + "'"
-        delete_record_sql = "DELETE FROM record WHERE recordId LIKE '%" + i + "'"
-
-        # recordId = replace(recordId, substr(recordId, 6, 3), '000')≤ªƒ‹”√£ø£ø
-        update_record_sql = "UPDATE record SET recordId = replace(recordId, substr(recordId, 6, 3), '000'), WHERE recordId LIKE '%" + i + "'"
+        update_record_sql = "UPDATE record SET recordId = replace(recordId, substr(recordId, 6, 3), '000') WHERE recordId LIKE '%" + i + "'"
         DBFun.update('db_pymemo.db', delete_lib_sql)
-        DBFun.update('db_pymemo.db', delete_record_sql)
+        DBFun.update('db_pymemo.db', update_record_sql)
         ListCtrlLeft.on_refresh()
         ListCtrlRight.on_refresh()
         self.Close()
