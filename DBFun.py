@@ -1,4 +1,4 @@
-# -*- coding: gbk -*-
+# -*- coding: utf-8 -*-
 import sqlite3
 
 
@@ -26,7 +26,7 @@ def update(url, sql):
 
 
 def max_lib(column):
-    """·µ»ØlibraryÖĞÖ¸¶¨ÁĞ×î´óÖµ"""
+    """è¿”å›libraryä¸­æŒ‡å®šåˆ—æœ€å¤§å€¼"""
     select_sql = "SELECT max(" + column + ") FROM library"
     result_list = select('db_pymemo.db', select_sql)
     max_lib_id = result_list[0][0]
@@ -36,7 +36,7 @@ def max_lib(column):
         return -1
 
 def max_record(column):
-    """·µ»ØrecordÖĞÖ¸¶¨ÁĞµÄ×î´óÖµ"""
+    """è¿”å›recordä¸­æŒ‡å®šåˆ—çš„æœ€å¤§å€¼"""
     select_sql = "SELECT max(" + column + ") FROM record"
     result_list = select('db_pymemo.db', select_sql)
     max_record_id = result_list[0][0]
@@ -61,7 +61,7 @@ def max_record(column):
 #         "easyInterval, maxInterval, maxAnswerTime," \
 #         " isShowAnswerTime ) " \
 #       "VALUES (" \
-#         "'000', '¹Â¶ùÔº', '´æ·ÅÃ»ÓĞ¹éÊô´Ê¿âµÄ¼ÇÂ¼£¬²¢ÇÒ´Ë´Ê¿â²»ÄÜ±»É¾³ı'," \
+#         "'000', 'å­¤å„¿é™¢', 'å­˜æ”¾æ²¡æœ‰å½’å±è¯åº“çš„è®°å½•ï¼Œå¹¶ä¸”æ­¤è¯åº“ä¸èƒ½è¢«åˆ é™¤'," \
 #         " '2015-04-13', 50, 50, 3, 3650, 30, 1)"
 #
 # insertSQL2 = "INSERT INTO library (" \
@@ -78,7 +78,7 @@ def max_record(column):
 #         "reviewTime, alertTime, " \
 #         "interval, EF, isPaused) " \
 #       "VALUES (" \
-#         "'00000100000', 'pear', 'Àæ', " \
+#         "'00000100000', 'pear', 'æ¢¨', " \
 #         " '2015-04-20', '2015-05-20', '2015-05-20', 16, 1.5, 0)"
 #
 #
@@ -90,7 +90,7 @@ def max_record(column):
 # selectSQL2 = "SELECT * FROM record"
 # selectSQL3 = "SELECT * FROM record WHERE recordId LIKE '%001'"
 #
-# updateSQL = "UPDATE library set name='¹Â¶ùÔº', libDesc='' where libId = '000'"
+# updateSQL = "UPDATE library set name='å­¤å„¿é™¢', libDesc='' where libId = '000'"
 # conn.execute(updateSQL)
 # update(conn, insertSQL1)
 # update(conn, insertSQL2)
