@@ -1,4 +1,4 @@
-# -*- coding: gbk -*-
+# -*- coding: utf-8 -*-
 import time
 import os
 import wx
@@ -10,19 +10,19 @@ from memo import *
 # Lib Dialog
 class AddNewLib(wx.Dialog):
     def __init__(self):
-        wx.Dialog.__init__(self, None, -1, '–¬Ω®¥ ø‚', size=(-1, 270),
+        wx.Dialog.__init__(self, None, -1, 'Êñ∞Âª∫ËØçÂ∫ì', size=(-1, 270),
                            style=wx.CAPTION | wx.SYSTEM_MENU | wx.CLOSE_BOX)
         panel = wx.Panel(self, -1)
         v_box = wx.BoxSizer(wx.VERTICAL)
-        name_text = wx.StaticText(panel, -1, "¥ ø‚√˚≥∆£∫")
+        name_text = wx.StaticText(panel, -1, "ËØçÂ∫ìÂêçÁß∞Ôºö")
         lib_name = wx.TextCtrl(panel, -1, "", style=wx.TE_CAPITALIZE)
 
-        desc_text = wx.StaticText(panel, -1, "¥ ø‚√Ë ˆ£∫")
+        desc_text = wx.StaticText(panel, -1, "ËØçÂ∫ìÊèèËø∞Ôºö")
         lib_desc = wx.TextCtrl(panel, -1, "", size=(-1, 80), style=wx.TE_MULTILINE | wx.TE_NO_VSCROLL)
 
         h_box = wx.BoxSizer(wx.HORIZONTAL)
-        ok_button = wx.Button(panel, -1, label='»∑∂®')
-        cancel_button = wx.Button(panel, wx.ID_CANCEL, label='»°œ˚')
+        ok_button = wx.Button(panel, -1, label='Á°ÆÂÆö')
+        cancel_button = wx.Button(panel, wx.ID_CANCEL, label='ÂèñÊ∂à')
         self.Bind(wx.EVT_BUTTON, lambda evt, name=lib_name, desc=lib_desc: self.on_submit(evt, name, desc), ok_button)
         h_box.Add(ok_button, 1, wx.RIGHT, border=5)
         h_box.Add(cancel_button, 1)
@@ -55,20 +55,20 @@ class AddNewLib(wx.Dialog):
 
 class RenameLib(wx.Dialog):
     def __init__(self, old_name, old_desc, lib_id):
-        wx.Dialog.__init__(self, None, -1, '–ﬁ∏ƒ' + old_name + '√˚≥∆∫Õ√Ë ˆ', size=(-1, 270),
+        wx.Dialog.__init__(self, None, -1, '‰øÆÊîπ' + old_name + 'ÂêçÁß∞ÂíåÊèèËø∞', size=(-1, 270),
                            style=wx.CAPTION | wx.SYSTEM_MENU | wx.CLOSE_BOX)
         panel = wx.Panel(self, -1)
         v_box = wx.BoxSizer(wx.VERTICAL)
 
-        name_text = wx.StaticText(panel, -1, "¥ ø‚√˚≥∆£∫")
+        name_text = wx.StaticText(panel, -1, "ËØçÂ∫ìÂêçÁß∞Ôºö")
         lib_name = wx.TextCtrl(panel, -1, old_name, style=wx.TE_CAPITALIZE)
 
-        desc_text = wx.StaticText(panel, -1, "¥ ø‚√Ë ˆ£∫")
+        desc_text = wx.StaticText(panel, -1, "ËØçÂ∫ìÊèèËø∞Ôºö")
         lib_desc = wx.TextCtrl(panel, -1, old_desc, size=(-1, 80), style=wx.TE_MULTILINE | wx.TE_NO_VSCROLL)
 
         h_box = wx.BoxSizer(wx.HORIZONTAL)
-        ok_button = wx.Button(panel, -1, label='»∑∂®')
-        cancel_button = wx.Button(panel, wx.ID_CANCEL, label='»°œ˚')
+        ok_button = wx.Button(panel, -1, label='Á°ÆÂÆö')
+        cancel_button = wx.Button(panel, wx.ID_CANCEL, label='ÂèñÊ∂à')
         self.Bind(wx.EVT_BUTTON,
                   lambda evt, name=lib_name, desc=lib_desc, i=lib_id: self.on_submit(evt, name, desc, i),
                   ok_button)
@@ -98,7 +98,7 @@ class RenameLib(wx.Dialog):
 
 class LibInfo(wx.Dialog):
     def __init__(self, lib_info):
-        wx.Dialog.__init__(self, None, -1, lib_info[1].decode('utf-8') + '¥ ø‚µƒ–≈œ¢', size=(-1, 300),
+        wx.Dialog.__init__(self, None, -1, lib_info[1].decode('utf-8') + 'ËØçÂ∫ìÁöÑ‰ø°ÊÅØ', size=(-1, 300),
                            style=wx.CAPTION | wx.SYSTEM_MENU | wx.CLOSE_BOX)
 
         v_box = wx.BoxSizer(wx.VERTICAL)
@@ -106,16 +106,16 @@ class LibInfo(wx.Dialog):
         panel = wx.Panel(self, -1, style=wx.BORDER)
         panel.SetBackgroundColour('white')
         v_box_panel = wx.BoxSizer(wx.VERTICAL)
-        lib_id = wx.StaticText(panel, -1, '¥ ø‚ID£∫' + lib_info[0])
-        name_text = wx.StaticText(panel, -1, '¥ ø‚√˚≥∆£∫' + lib_info[1].decode('utf-8'))
-        desc_text = wx.StaticText(panel, -1, '¥ ø‚√Ë ˆ£∫' + lib_info[2].decode('utf-8'))
-        create_time = wx.StaticText(panel, -1, '¥¥Ω® ±º‰£∫' + str(lib_info[3]))
-        max_reviews = wx.StaticText(panel, -1, '√ø»’∏¥œ∞£∫' + str(lib_info[4]))
-        max_new = wx.StaticText(panel, -1, '√ø»’—ßœ∞£∫' + str(lib_info[5]))
-        easy_interval = wx.StaticText(panel, -1, 'ºÚµ•º‰∏Ù£∫' + str(lib_info[6]) + '£®ÃÏ£©' )
-        max_interval = wx.StaticText(panel, -1, '◊Ó¥Ûº‰∏Ù£∫' + str(lib_info[7]) + '£®ÃÏ£©')
-        max_time = wx.StaticText(panel, -1, '◊Ó≥§ªÿ¥£∫' + str(lib_info[8]) + '£®√Î£©')
-        is_show_timer = wx.StaticText(panel, -1, 'œ‘ æº∆ ±∆˜£∫' + lib_info[9])
+        lib_id = wx.StaticText(panel, -1, 'ËØçÂ∫ìIDÔºö' + lib_info[0])
+        name_text = wx.StaticText(panel, -1, 'ËØçÂ∫ìÂêçÁß∞Ôºö' + lib_info[1].decode('utf-8'))
+        desc_text = wx.StaticText(panel, -1, 'ËØçÂ∫ìÊèèËø∞Ôºö' + lib_info[2].decode('utf-8'))
+        create_time = wx.StaticText(panel, -1, 'ÂàõÂª∫Êó∂Èó¥Ôºö' + str(lib_info[3]))
+        max_reviews = wx.StaticText(panel, -1, 'ÊØèÊó•Â§ç‰π†Ôºö' + str(lib_info[4]))
+        max_new = wx.StaticText(panel, -1, 'ÊØèÊó•Â≠¶‰π†Ôºö' + str(lib_info[5]))
+        easy_interval = wx.StaticText(panel, -1, 'ÁÆÄÂçïÈó¥ÈöîÔºö' + str(lib_info[6]) + 'ÔºàÂ§©Ôºâ' )
+        max_interval = wx.StaticText(panel, -1, 'ÊúÄÂ§ßÈó¥ÈöîÔºö' + str(lib_info[7]) + 'ÔºàÂ§©Ôºâ')
+        max_time = wx.StaticText(panel, -1, 'ÊúÄÈïøÂõûÁ≠îÔºö' + str(lib_info[8]) + 'ÔºàÁßíÔºâ')
+        is_show_timer = wx.StaticText(panel, -1, 'ÊòæÁ§∫ËÆ°Êó∂Âô®Ôºö' + lib_info[9])
 
 
         v_box_panel.Add(lib_id, 0, wx.EXPAND | wx.LEFT | wx.RIGHT | wx.TOP, 10)
@@ -132,7 +132,7 @@ class LibInfo(wx.Dialog):
         panel.SetSizer(v_box_panel)
 
         h_box = wx.BoxSizer(wx.HORIZONTAL)
-        ok_button = wx.Button(self, wx.ID_OK, label='»∑∂®')
+        ok_button = wx.Button(self, wx.ID_OK, label='Á°ÆÂÆö')
         h_box.Add(ok_button, 1, wx.RIGHT, border=5)
 
         v_box.Add(panel, 1, wx.EXPAND | wx.ALL, 10)
@@ -145,16 +145,16 @@ class LibInfo(wx.Dialog):
 
 class DeleteLib(wx.Dialog):
     def __init__(self, lib_name, lib_id):
-        wx.Dialog.__init__(self, None, -1, '…æ≥˝' + lib_name + '¥ ø‚', size=(-1, 180),
+        wx.Dialog.__init__(self, None, -1, 'Âà†Èô§' + lib_name + 'ËØçÂ∫ì', size=(-1, 180),
                            style=wx.CAPTION | wx.SYSTEM_MENU | wx.CLOSE_BOX)
         panel = wx.Panel(self, -1)
         panel.SetBackgroundColour('white')
         v_box = wx.BoxSizer(wx.VERTICAL)
-        info_text = wx.StaticText(panel, -1, lib_name + '¥ ø‚Ω´±ª…æ≥˝£¨¥ ø‚÷–µƒº«¬ºª·±ª◊™“∆÷¡π¬∂˘‘∫°£\nƒ„»∑∂®“™’‚—˘◊ˆ√¥£ø')
+        info_text = wx.StaticText(panel, -1, lib_name + 'ËØçÂ∫ìÂ∞ÜË¢´Âà†Èô§ÔºåËØçÂ∫ì‰∏≠ÁöÑËÆ∞ÂΩï‰ºöË¢´ËΩ¨ÁßªËá≥Â≠§ÂÑøÈô¢„ÄÇ\n‰Ω†Á°ÆÂÆöË¶ÅËøôÊ†∑ÂÅö‰πàÔºü')
         h_box = wx.BoxSizer(wx.HORIZONTAL)
-        ok_button = wx.Button(panel, -1, label='»∑∂®')
+        ok_button = wx.Button(panel, -1, label='Á°ÆÂÆö')
         self.Bind(wx.EVT_BUTTON, lambda evt, i=lib_id: self.on_delete(evt, i), ok_button)
-        cancel_button = wx.Button(panel, wx.ID_CANCEL, label='»°œ˚')
+        cancel_button = wx.Button(panel, wx.ID_CANCEL, label='ÂèñÊ∂à')
         h_box.Add(ok_button, 1, wx.RIGHT, border=5)
         h_box.Add(cancel_button, 1)
 
@@ -178,7 +178,7 @@ class DeleteLib(wx.Dialog):
 # Record Dialog
 class RecordInfo(wx.Dialog):
     def __init__(self, detail):
-        wx.Dialog.__init__(self, None, -1, 'º«¬ºµƒ–≈œ¢', size=(-1, 300),
+        wx.Dialog.__init__(self, None, -1, 'ËÆ∞ÂΩïÁöÑ‰ø°ÊÅØ', size=(-1, 300),
                            style=wx.CAPTION | wx.SYSTEM_MENU | wx.CLOSE_BOX)
 
         v_box = wx.BoxSizer(wx.VERTICAL)
@@ -186,16 +186,16 @@ class RecordInfo(wx.Dialog):
         panel = wx.Panel(self, -1, style=wx.BORDER)
         panel.SetBackgroundColour('white')
         v_box_panel = wx.BoxSizer(wx.VERTICAL)
-        lib_id = wx.StaticText(panel, -1, 'º«¬ºID£∫' + detail[0][0:5])
-        name_text = wx.StaticText(panel, -1, '¥ ø‚ID£∫' + detail[0][5:])
-        desc_text = wx.StaticText(panel, -1, 'Œ Ã‚£®’˝√Ê£©£∫' + detail[1].decode('utf-8'))
-        create_time = wx.StaticText(panel, -1, '¥∞∏£®∑¥√Ê£©£∫' + detail[2].decode('utf-8'))
-        max_reviews = wx.StaticText(panel, -1, 'ÃÌº” ±º‰£∫' + detail[3].decode('utf-8'))
-        max_new = wx.StaticText(panel, -1, '∏¥œ∞ ±º‰£∫' + str(detail[4]).decode('utf-8'))
-        easy_interval = wx.StaticText(panel, -1, '–ﬁ∏ƒ ±º‰£∫' + str(detail[5]).decode('utf-8'))
-        max_interval = wx.StaticText(panel, -1, 'º‰∏Ù£∫' + str(detail[6]) + '£®ÃÏ£©')
-        max_time = wx.StaticText(panel, -1, 'E-Factor£∫' + str(detail[7]))
-        is_show_timer = wx.StaticText(panel, -1, ' «∑Òπ“∆£∫' + detail[8])
+        lib_id = wx.StaticText(panel, -1, 'ËÆ∞ÂΩïIDÔºö' + detail[0][0:5])
+        name_text = wx.StaticText(panel, -1, 'ËØçÂ∫ìIDÔºö' + detail[0][5:])
+        desc_text = wx.StaticText(panel, -1, 'ÈóÆÈ¢òÔºàÊ≠£Èù¢ÔºâÔºö' + detail[1].decode('utf-8'))
+        create_time = wx.StaticText(panel, -1, 'Á≠îÊ°àÔºàÂèçÈù¢ÔºâÔºö' + detail[2].decode('utf-8'))
+        max_reviews = wx.StaticText(panel, -1, 'Ê∑ªÂä†Êó∂Èó¥Ôºö' + detail[3].decode('utf-8'))
+        max_new = wx.StaticText(panel, -1, 'Â§ç‰π†Êó∂Èó¥Ôºö' + str(detail[4]).decode('utf-8'))
+        easy_interval = wx.StaticText(panel, -1, '‰øÆÊîπÊó∂Èó¥Ôºö' + str(detail[5]).decode('utf-8'))
+        max_interval = wx.StaticText(panel, -1, 'Èó¥ÈöîÔºö' + str(detail[6]) + 'ÔºàÂ§©Ôºâ')
+        max_time = wx.StaticText(panel, -1, 'E-FactorÔºö' + str(detail[7]))
+        is_show_timer = wx.StaticText(panel, -1, 'ÊòØÂê¶ÊåÇËµ∑Ôºö' + detail[8])
 
         v_box_panel.Add(lib_id, 0, wx.EXPAND | wx.LEFT | wx.RIGHT | wx.TOP, 10)
         v_box_panel.Add(name_text, 0, wx.EXPAND | wx.LEFT | wx.RIGHT, 10)
@@ -211,7 +211,7 @@ class RecordInfo(wx.Dialog):
         panel.SetSizer(v_box_panel)
 
         h_box = wx.BoxSizer(wx.HORIZONTAL)
-        close_button = wx.Button(self, wx.ID_CANCEL, label='πÿ±’')
+        close_button = wx.Button(self, wx.ID_CANCEL, label='ÂÖ≥Èó≠')
         h_box.Add(close_button, 1, wx.RIGHT, border=5)
 
         v_box.Add(panel, 1, wx.EXPAND | wx.ALL, 10)
@@ -224,31 +224,31 @@ class RecordInfo(wx.Dialog):
 
 class UpdateRecord(wx.Dialog):
     def __init__(self, detail):
-        wx.Dialog.__init__(self, None, -1, '–ﬁ∏ƒº«¬º', size=(-1, 260),
+        wx.Dialog.__init__(self, None, -1, '‰øÆÊîπËÆ∞ÂΩï', size=(-1, 260),
                            style=wx.CAPTION | wx.SYSTEM_MENU | wx.CLOSE_BOX)
         panel = wx.Panel(self, -1)
         v_box = wx.BoxSizer(wx.VERTICAL)
 
-        ques_text = wx.StaticText(panel, -1, "Œ Ã‚£®’˝√Ê£©£∫")
+        ques_text = wx.StaticText(panel, -1, "ÈóÆÈ¢òÔºàÊ≠£Èù¢ÔºâÔºö")
         record_ques = wx.TextCtrl(panel, -1,
                                   detail[1].decode('utf-8'),
                                   size=(-1, 50),
                                   style=wx.TE_MULTILINE)
 
-        ans_text = wx.StaticText(panel, -1, "¥∞∏£®∑¥√Ê£©£∫")
+        ans_text = wx.StaticText(panel, -1, "Á≠îÊ°àÔºàÂèçÈù¢ÔºâÔºö")
         record_ans = wx.TextCtrl(panel, -1,
                                  detail[2].decode('utf-8'),
                                  size=(-1, 50),
                                  style=wx.TE_MULTILINE)
 
         h_box = wx.BoxSizer(wx.HORIZONTAL)
-        ok_button = wx.Button(panel, -1, label='–ﬁ∏ƒ')
+        ok_button = wx.Button(panel, -1, label='‰øÆÊîπ')
         self.Bind(wx.EVT_BUTTON,
                   lambda evt, ques=record_ques, ans=record_ans, i=detail[0]:
                   self.on_submit(evt, ques, ans, i),
                   ok_button)
 
-        cancel_button = wx.Button(panel, wx.ID_CANCEL, label='»°œ˚')
+        cancel_button = wx.Button(panel, wx.ID_CANCEL, label='ÂèñÊ∂à')
 
         h_box.Add(ok_button, 1, wx.RIGHT, border=5)
         h_box.Add(cancel_button, 1)
@@ -276,20 +276,20 @@ class UpdateRecord(wx.Dialog):
 
 class AddNewRecord(wx.Dialog):
     def __init__(self, LIBRARIES, flag):
-        wx.Dialog.__init__(self, None, -1, '‘ˆº”“ªÃıº«¬º', size=(-1, 350),
+        wx.Dialog.__init__(self, None, -1, 'Â¢ûÂä†‰∏ÄÊù°ËÆ∞ÂΩï', size=(-1, 350),
                            style=wx.CAPTION | wx.SYSTEM_MENU | wx.CLOSE_BOX)
         panel = wx.Panel(self, -1)
         self.lib_id = -1
         v_box = wx.BoxSizer(wx.VERTICAL)
         h_box_info = wx.BoxSizer(wx.HORIZONTAL)
 
-        lib_items = ['«Î—°‘Ò¥ ø‚']
+        lib_items = ['ËØ∑ÈÄâÊã©ËØçÂ∫ì']
         for index, element in enumerate(LIBRARIES):
             lib_items.append(LIBRARIES[element].decode('utf-8'))
 
         lib_combo_box = wx.ComboBox(panel, choices=lib_items, style=wx.CB_READONLY)
 
-        # ƒÊ◊™LIBRARIES◊÷µ‰£¨“‘±„”⁄∏˘æ›¥ ø‚√˚≥∆ªÒ»°¥ ø‚µƒID£¨±‹√‚∑√Œ  ˝æ›ø‚°£
+        # ÈÄÜËΩ¨LIBRARIESÂ≠óÂÖ∏Ôºå‰ª•‰æø‰∫éÊ†πÊçÆËØçÂ∫ìÂêçÁß∞Ëé∑ÂèñËØçÂ∫ìÁöÑIDÔºåÈÅøÂÖçËÆøÈóÆÊï∞ÊçÆÂ∫ì„ÄÇ
         reverse_lib = {v: k for k, v in LIBRARIES.items()}
         self.Bind(wx.EVT_COMBOBOX, lambda evt, ob=lib_combo_box, lib=reverse_lib: self.test(evt, ob, lib), lib_combo_box)
         if flag == -1:
@@ -302,15 +302,15 @@ class AddNewRecord(wx.Dialog):
         h_box_info.Add(lib_combo_box, 1, wx.TOP, 10)
         # h_box_info.Add(preview, 0, wx.ALIGN_RIGHT | wx.TOP, 6)
 
-        name_text = wx.StaticText(panel, -1, "Œ Ã‚£®’˝√Ê£©£∫")
+        name_text = wx.StaticText(panel, -1, "ÈóÆÈ¢òÔºàÊ≠£Èù¢ÔºâÔºö")
         record_ques = wx.TextCtrl(panel, -1, "", size=(-1, 80), style=wx.TE_MULTILINE | wx.TE_NO_VSCROLL)
 
-        desc_text = wx.StaticText(panel, -1, "¥∞∏£®∑¥√Ê£©£∫")
+        desc_text = wx.StaticText(panel, -1, "Á≠îÊ°àÔºàÂèçÈù¢ÔºâÔºö")
         record_ans = wx.TextCtrl(panel, -1, "", size=(-1, 80), style=wx.TE_MULTILINE | wx.TE_NO_VSCROLL)
 
         h_box_btn = wx.BoxSizer(wx.HORIZONTAL)
-        ok_button = wx.Button(panel, -1, label='»∑∂®')
-        close_button = wx.Button(panel, wx.ID_CANCEL, label='»°œ˚')
+        ok_button = wx.Button(panel, -1, label='Á°ÆÂÆö')
+        close_button = wx.Button(panel, wx.ID_CANCEL, label='ÂèñÊ∂à')
 
         self.Bind(wx.EVT_BUTTON, lambda evt, ques=record_ques, ans=record_ans: self.on_submit(evt, ques, ans), ok_button)
         h_box_btn.Add(ok_button, 1, wx.RIGHT, border=5)
@@ -335,8 +335,8 @@ class AddNewRecord(wx.Dialog):
 
     def on_submit(self, evt, ques, ans):
         if self.get_lib_id() == -1:
-            msg_dlg = wx.MessageDialog(self, '«Î»∑±£—°‘Ò¡À“ª∏ˆ¥ ø‚£°',
-                           'Ã· æ',
+            msg_dlg = wx.MessageDialog(self, 'ËØ∑Á°Æ‰øùÈÄâÊã©‰∫Ü‰∏Ä‰∏™ËØçÂ∫ìÔºÅ',
+                           'ÊèêÁ§∫',
                            wx.OK | wx.ICON_WARNING)
             msg_dlg.ShowModal()
             msg_dlg.Destroy()
@@ -345,7 +345,7 @@ class AddNewRecord(wx.Dialog):
             record_ans = ans.GetValue().encode('utf-8')
             next_record_id = DBFun.max_record('recordId') + 1
             record_id = str(next_record_id).zfill(5) + self.get_lib_id()
-            # ÷ÿ÷√£¨±‹√‚µ⁄∂˛¥Œ”…”⁄ self.get_lib_id() != -1, µº÷¬√ª”–—°‘Ò¥ ø‚“≤ø…“‘≤Â»Îº«¬º°£
+            # ÈáçÁΩÆÔºåÈÅøÂÖçÁ¨¨‰∫åÊ¨°Áî±‰∫é self.get_lib_id() != -1, ÂØºËá¥Ê≤°ÊúâÈÄâÊã©ËØçÂ∫ì‰πüÂèØ‰ª•ÊèíÂÖ•ËÆ∞ÂΩï„ÄÇ
             self.set_lib_id(-1)
             # addTime: type is str
             add_time = time.strftime('%Y/%m/%d', time.localtime(time.time()))
@@ -366,28 +366,28 @@ class AddNewRecord(wx.Dialog):
 
 class DeleteRecord(wx.Dialog):
     def __init__(self, detail):
-        wx.Dialog.__init__(self, None, -1, 'π“∆/…æ≥˝º«¬º', size=(-1, 180),
+        wx.Dialog.__init__(self, None, -1, 'ÊåÇËµ∑/Âà†Èô§ËÆ∞ÂΩï', size=(-1, 200),
                            style=wx.CAPTION | wx.SYSTEM_MENU | wx.CLOSE_BOX)
         panel = wx.Panel(self, -1)
         panel.SetBackgroundColour('white')
         v_box = wx.BoxSizer(wx.VERTICAL)
         info_text = wx.StaticText(panel, -1,
-                                  'π“∆º«¬º∫Û£¨∏√º«¬º≤ªª·‘⁄—ßœ∞÷–≥ˆœ÷£¨÷±µΩƒ„»°œ˚π“∆'
-                                  '\n◊¢“‚£¨µ±ƒ„π“∆’‚∏ˆº«¬º÷Æ∫Û£¨À¸µƒ—ßœ∞π˝≥ÃΩ´±ª÷ÿ÷√°£'
-                                  '\n\n…æ≥˝º«¬º∫Û£¨∏√º«¬ºΩ´”¿æ√œ˚ ß£°')
+                                  'ÊåÇËµ∑ËÆ∞ÂΩïÂêéÔºåËØ•ËÆ∞ÂΩï‰∏ç‰ºöÂú®Â≠¶‰π†‰∏≠Âá∫Áé∞ÔºåÁõ¥Âà∞‰Ω†ÂèñÊ∂àÊåÇËµ∑'
+                                  '\nÊ≥®ÊÑèÔºåÂΩì‰Ω†ÊåÇËµ∑Ëøô‰∏™ËÆ∞ÂΩï‰πãÂêéÔºåÂÆÉÁöÑÂ≠¶‰π†ËøáÁ®ãÂ∞ÜË¢´ÈáçÁΩÆ„ÄÇ'
+                                  '\n\nÂà†Èô§ËÆ∞ÂΩïÂêéÔºåËØ•ËÆ∞ÂΩïÂ∞ÜÊ∞∏‰πÖÊ∂àÂ§±ÔºÅ')
         h_box = wx.BoxSizer(wx.HORIZONTAL)
 
-        delete_button = wx.Button(panel, -1, label='…æ≥˝')
-        cancel_button = wx.Button(panel, wx.ID_CANCEL, label='»°œ˚')
+        delete_button = wx.Button(panel, -1, label='Âà†Èô§')
+        cancel_button = wx.Button(panel, wx.ID_CANCEL, label='ÂèñÊ∂à')
 
         self.Bind(wx.EVT_BUTTON, lambda evt, i=detail[0]: self.on_delete(evt, i), delete_button)
 
         if detail[-1] == 'True':
-            play_button = wx.Button(panel, -1, label='»°œ˚π“∆')
+            play_button = wx.Button(panel, -1, label='ÂèñÊ∂àÊåÇËµ∑')
             self.Bind(wx.EVT_BUTTON, lambda evt, i=detail[0], flag='False': self.on_is_pause(evt, i, flag), play_button)
             h_box.Add(play_button, 1, wx.RIGHT, border=5)
         else:
-            pause_button = wx.Button(panel, -1, label='π“∆')
+            pause_button = wx.Button(panel, -1, label='ÊåÇËµ∑')
             self.Bind(wx.EVT_BUTTON, lambda evt, i=detail[0], flag='True': self.on_is_pause(evt, i, flag), pause_button)
             h_box.Add(pause_button, 1, wx.RIGHT, border=5)
 
@@ -421,36 +421,36 @@ class DeleteRecord(wx.Dialog):
 class AboutDialog(wx.AboutDialogInfo):
     def __init__(self):
         wx.AboutDialogInfo.__init__(self)
-        description = "PyMemo «“ª∏ˆª˘”⁄÷ÿ∏¥—ßœ∞‘≠¿Ìµƒº«“‰»Ìº˛£¨ºÚµ•“◊”√£¨√‚∑—≤¢ø™‘¥°£\n" \
-            "PyMeomo“‘AGPL3–≠“È∑¢≤º°£\n\n" \
-            "’‚ «Œ“µƒ“ªœÓ±œ“µ…Ëº∆£¨øŒÃ‚Œ™£∫ª˘”⁄Pythonµƒµ•¥ º«“‰»Ìº˛ø™∑¢\n" \
-            "GUIø‚£∫wxpython 2.7.9\n\n" \
-            "ø™∑¢π§æﬂ£∫pyCharm Community Edition 4.0.4\n" \
-            "’‚–©Õº±Í «¿¥◊‘”⁄≤ªÕ¨µƒ¿¥‘¥\n∆‰÷–¥Û≤ø∑÷¿¥◊‘£∫http://findicons.com/\n\n" \
-            "Ãÿ±∏––ª£∫’≈÷Œπ˙¿œ ¶µƒ÷∏µº\n\n" \
-            "œÚÀ˘”–Ã·≥ˆπ˝Ω®“È£¨±®∏ÊBugµƒ»À√«÷¬–ª£°\n\n" \
-            "¡™œµ£∫iliuyang@foxmail.com"
+        description = "PyMemoÊòØ‰∏Ä‰∏™Âü∫‰∫éÈáçÂ§çÂ≠¶‰π†ÂéüÁêÜÁöÑËÆ∞ÂøÜËΩØ‰ª∂ÔºåÁÆÄÂçïÊòìÁî®ÔºåÂÖçË¥πÂπ∂ÂºÄÊ∫ê„ÄÇ\n" \
+            "PyMeomo‰ª•AGPL3ÂçèËÆÆÂèëÂ∏É„ÄÇ\n\n" \
+            "ËøôÊòØÊàëÁöÑ‰∏ÄÈ°πÊØï‰∏öËÆæËÆ°ÔºåËØæÈ¢ò‰∏∫ÔºöÂü∫‰∫éPythonÁöÑÂçïËØçËÆ∞ÂøÜËΩØ‰ª∂ÂºÄÂèë\n" \
+            "GUIÂ∫ìÔºöwxpython 2.7.9\n\n" \
+            "ÂºÄÂèëÂ∑•ÂÖ∑ÔºöpyCharm Community Edition 4.0.4\n" \
+            "Ëøô‰∫õÂõæÊ†áÊòØÊù•Ëá™‰∫é‰∏çÂêåÁöÑÊù•Ê∫ê\nÂÖ∂‰∏≠Â§ßÈÉ®ÂàÜÊù•Ëá™Ôºöhttp://findicons.com/\n\n" \
+            "ÁâπÂà´ÊÑüË∞¢ÔºöÂº†Ê≤ªÂõΩËÄÅÂ∏àÁöÑÊåáÂØº\n\n" \
+            "ÂêëÊâÄÊúâÊèêÂá∫ËøáÂª∫ËÆÆÔºåÊä•ÂëäBugÁöÑ‰∫∫‰ª¨Ëá¥Ë∞¢ÔºÅ\n\n" \
+            "ËÅîÁ≥ªÔºöiliuyang@foxmail.com"
         self.SetIcon(wx.Icon('images/64/PyMemo_logo_white.png', wx.BITMAP_TYPE_PNG))
         self.SetName("PyMemo")
         self.SetVersion('1.0')
         self.SetDescription(description)
-        self.SetCopyright('(c)2015 ¡ı—Û')
+        self.SetCopyright('(c)2015 ÂàòÊ¥ã')
         wx.AboutBox(self)
 
 
 class SettingDialog(wx.Dialog):
     def __init__(self, LIBRARIES, flag):
-        wx.Dialog.__init__(self, None, -1, '¥ ø‚…Ë÷√', size=(200, 400),
+        wx.Dialog.__init__(self, None, -1, 'ËØçÂ∫ìËÆæÁΩÆ', size=(200, 400),
                            style=wx.CAPTION | wx.SYSTEM_MENU | wx.CLOSE_BOX)
         # global lib_index
-        lib_items = ['«Î—°‘Ò¥ ø‚']
+        lib_items = ['ËØ∑ÈÄâÊã©ËØçÂ∫ì']
         for index, element in enumerate(LIBRARIES):
             lib_items.append(LIBRARIES[element].decode('utf-8'))
 
         v_box = wx.BoxSizer(wx.VERTICAL)
         panel_combo = wx.Panel(self, -1)
         h_box_combo = wx.BoxSizer(wx.HORIZONTAL)
-        lib_text = wx.StaticText(panel_combo, -1, "ƒ„œÎ»√’‚–©…Ë÷√”¶”√‘⁄ƒƒ∏ˆ¥ ø‚…œ£ø")
+        lib_text = wx.StaticText(panel_combo, -1, "‰Ω†ÊÉ≥ËÆ©Ëøô‰∫õËÆæÁΩÆÂ∫îÁî®Âú®Âì™‰∏™ËØçÂ∫ì‰∏äÔºü")
 
         lib_combo_box = wx.ComboBox(panel_combo, choices=lib_items, style=wx.CB_READONLY)
         if flag == -1:
@@ -471,17 +471,17 @@ class SettingDialog(wx.Dialog):
         grid_sizer = wx.GridSizer(2, 2, 5, 5)
         # (0, 0)
         panel_left_top = wx.Panel(self)
-        preview_setting = wx.StaticBox(panel_left_top, -1, label='—ßœ∞ø®∆¨ΩÁ√Ê')
+        preview_setting = wx.StaticBox(panel_left_top, -1, label='Â≠¶‰π†Âç°ÁâáÁïåÈù¢')
         sbs1 = wx.StaticBoxSizer(preview_setting, orient=wx.VERTICAL)
 
         show_interval = wx.CheckBox(panel_left_top,
-                            label='‘⁄ªÿ¥∞¥≈•…œœ‘ æœ¬“ª¥Œ∏¥œ∞ ±º‰',
+                            label='Âú®ÂõûÁ≠îÊåâÈíÆ‰∏äÊòæÁ§∫‰∏ã‰∏ÄÊ¨°Â§ç‰π†Êó∂Èó¥',
                             style=wx.CHK_3STATE)
         show_rest = wx.CheckBox(panel_left_top,
-                            label='‘⁄∏¥œ∞µƒ ±∫Úœ‘ æ £”‡ø®∆¨ ˝',
+                            label='Âú®Â§ç‰π†ÁöÑÊó∂ÂÄôÊòæÁ§∫Ââ©‰ΩôÂç°ÁâáÊï∞',
                             style=wx.CHK_3STATE)
         show_duration = wx.CheckBox(panel_left_top,
-                            label='‘⁄∏¥œ∞µƒ ±∫Úœ‘ æÀ˘”√ ±º‰',
+                            label='Âú®Â§ç‰π†ÁöÑÊó∂ÂÄôÊòæÁ§∫ÊâÄÁî®Êó∂Èó¥',
                             style=wx.CHK_3STATE)
         show_interval.SetValue(True)
         show_rest.SetValue(True)
@@ -497,15 +497,15 @@ class SettingDialog(wx.Dialog):
 
         # (0, 1)
         panel_right_top = wx.Panel(self)
-        study_setting = wx.StaticBox(panel_right_top, -1, label='◊‘∂®“Â—ßœ∞ø®∆¨')
+        study_setting = wx.StaticBox(panel_right_top, -1, label='Ëá™ÂÆö‰πâÂ≠¶‰π†Âç°Áâá')
         sbs2 = wx.StaticBoxSizer(study_setting, orient=wx.VERTICAL)
         grid1 = wx.FlexGridSizer(0, 2, 0, 0)
 
         # group of controls:
         self.group_ctrl = []
-        text1 = wx.StaticText(panel_right_top, label="√ø»’—ßœ∞ø®∆¨…œœﬁ£®’≈£©")
-        text2 = wx.StaticText(panel_right_top, label="√ø»’∏¥œ∞ø®∆¨…œœﬁ£®’≈£©")
-        text3 = wx.StaticText(panel_right_top, label="≥¨ ±œ‘ æø®∆¨∑¥√Ê£®√Î£©")
+        text1 = wx.StaticText(panel_right_top, label="ÊØèÊó•Â≠¶‰π†Âç°Áâá‰∏äÈôêÔºàÂº†Ôºâ")
+        text2 = wx.StaticText(panel_right_top, label="ÊØèÊó•Â§ç‰π†Âç°Áâá‰∏äÈôêÔºàÂº†Ôºâ")
+        text3 = wx.StaticText(panel_right_top, label="Ë∂ÖÊó∂ÊòæÁ§∫Âç°ÁâáÂèçÈù¢ÔºàÁßíÔºâ")
 
         study_limit = wx.SpinCtrl(panel_right_top, -1)
         study_limit.SetRange(1, 200)
@@ -533,12 +533,12 @@ class SettingDialog(wx.Dialog):
 
         # (1, 0)
         panel_left_bottom = wx.Panel(self)
-        order_setting = wx.StaticBox(panel_left_bottom, -1, label='—ßœ∞ø®∆¨µƒÀ≥–Ú')
+        order_setting = wx.StaticBox(panel_left_bottom, -1, label='Â≠¶‰π†Âç°ÁâáÁöÑÈ°∫Â∫è')
         sbs3 = wx.StaticBoxSizer(order_setting, orient=wx.VERTICAL)
 
-        old_after_new = wx.RadioButton(panel_left_bottom, -1, "–¬ø®∆¨—ßœ∞ÕÍ÷Æ∫Û‘Ÿ∏¥œ∞æ…ø®∆¨")
-        new_after_old = wx.RadioButton(panel_left_bottom, -1, "æ…ø®∆¨∏¥œ∞ÕÍ÷Æ∫Û‘Ÿ—ßœ∞–¬ø®∆¨")
-        new_or_old = wx.RadioButton(panel_left_bottom, -1, "–¬æ…ø®∆¨ΩªÃÊ≥ˆœ÷")
+        old_after_new = wx.RadioButton(panel_left_bottom, -1, "Êñ∞Âç°ÁâáÂ≠¶‰π†ÂÆå‰πãÂêéÂÜçÂ§ç‰π†ÊóßÂç°Áâá")
+        new_after_old = wx.RadioButton(panel_left_bottom, -1, "ÊóßÂç°ÁâáÂ§ç‰π†ÂÆå‰πãÂêéÂÜçÂ≠¶‰π†Êñ∞Âç°Áâá")
+        new_or_old = wx.RadioButton(panel_left_bottom, -1, "Êñ∞ÊóßÂç°Áâá‰∫§ÊõøÂá∫Áé∞")
 
         new_or_old.SetValue(True)
 
@@ -552,11 +552,11 @@ class SettingDialog(wx.Dialog):
 
         # (1, 1)
         panel_right_bottom = wx.Panel(self)
-        font_setting = wx.StaticBox(panel_right_bottom, -1, label='◊÷ÃÂ…Ë÷√')
+        font_setting = wx.StaticBox(panel_right_bottom, -1, label='Â≠ó‰ΩìËÆæÁΩÆ')
         sbs4 = wx.StaticBoxSizer(font_setting, orient=wx.VERTICAL)
         h_box_2 = wx.BoxSizer(wx.HORIZONTAL)
 
-        font_size_text = wx.StaticText(panel_right_bottom, -1, "◊÷∫≈£∫")
+        font_size_text = wx.StaticText(panel_right_bottom, -1, "Â≠óÂè∑Ôºö")
         font_size = wx.SpinCtrl(panel_right_bottom, -1)
         font_size.SetRange(1, 30)
         font_size.SetValue(12)
@@ -572,9 +572,9 @@ class SettingDialog(wx.Dialog):
 
         # (2, 1)
         h_box = wx.BoxSizer(wx.HORIZONTAL)
-        ok_button = wx.Button(self, -1, label='»∑∂®')
-        apply_button = wx.Button(self, -1, label="”¶”√")
-        close_button = wx.Button(self, -1, label='πÿ±’')
+        ok_button = wx.Button(self, -1, label='Á°ÆÂÆö')
+        apply_button = wx.Button(self, -1, label="Â∫îÁî®")
+        close_button = wx.Button(self, -1, label='ÂÖ≥Èó≠')
         h_box.Add(ok_button, 1, wx.RIGHT, border=5)
         h_box.Add(apply_button, 1, wx.RIGHT, border=5)
         h_box.Add(close_button, 1, wx.RIGHT, border=10)
@@ -595,7 +595,7 @@ class SettingDialog(wx.Dialog):
 
 class Export(wx.DirDialog):
     def __init__(self, parent):
-        wx.DirDialog.__init__(self, parent, "«Î—°‘Ò“ª∏ˆŒƒº˛¿¥±£¥Êµº≥ˆµƒ¥ ø‚£∫",
+        wx.DirDialog.__init__(self, parent, "ËØ∑ÈÄâÊã©‰∏Ä‰∏™Êñá‰ª∂Êù•‰øùÂ≠òÂØºÂá∫ÁöÑËØçÂ∫ìÔºö",
                           style=wx.DD_DEFAULT_STYLE | wx.DD_NEW_DIR_BUTTON)
         self.CentreOnParent()
         self.Show(True)
@@ -603,7 +603,7 @@ class Export(wx.DirDialog):
 
 class Import(wx.FileDialog):
     def __init__(self, parent):
-        wx.FileDialog.__init__(self, parent, "—°‘Òµº»Îµƒ¥ ø‚Œƒº˛",
+        wx.FileDialog.__init__(self, parent, "ÈÄâÊã©ÂØºÂÖ•ÁöÑËØçÂ∫ìÊñá‰ª∂",
                                wildcard="BMP and GIF files (*.bmp*.gif)|*.bmp*.gif|PNG files (*.png)|*.png",
                                style=wx.FD_OPEN | wx.FD_FILE_MUST_EXIST | wx.FD_CHANGE_DIR
                                )
@@ -613,11 +613,11 @@ class Import(wx.FileDialog):
 
 class MemoQues(wx.Dialog):
     """
-    ’‚¿Ô”––©Œ Ã‚£¨”¶∏√÷ªÀ¢–¬ panel_word ∫Õ panel_btn
-    ∂¯≤ª «œ˙ªŸµ±«∞µƒ∂‘ª∞øÚ£¨÷ÿ–¬ªÊ÷∆“ª∏ˆ–¬µƒ£°£°
+    ËøôÈáåÊúâ‰∫õÈóÆÈ¢òÔºåÂ∫îËØ•Âè™Âà∑Êñ∞ panel_word Âíå panel_btn
+    ËÄå‰∏çÊòØÈîÄÊØÅÂΩìÂâçÁöÑÂØπËØùÊ°ÜÔºåÈáçÊñ∞ÁªòÂà∂‰∏Ä‰∏™Êñ∞ÁöÑÔºÅÔºÅ
     """
     def __init__(self):
-        wx.Dialog.__init__(self, None, -1, '—ßœ∞', size=(-1, 470),
+        wx.Dialog.__init__(self, None, -1, 'Â≠¶‰π†', size=(-1, 470),
                            style=wx.CAPTION | wx.SYSTEM_MENU | wx.CLOSE_BOX)
 
         panel = wx.Panel(self, -1)
@@ -637,7 +637,7 @@ class MemoQues(wx.Dialog):
         v_box = wx.BoxSizer(wx.VERTICAL)
 
         h_box_title = wx.BoxSizer(wx.HORIZONTAL)
-        lib_name = wx.StaticText(panel, -1, "µ±«∞—ßœ∞µƒ¥ ø‚√˚≥∆")
+        lib_name = wx.StaticText(panel, -1, "ÂΩìÂâçÂ≠¶‰π†ÁöÑËØçÂ∫ìÂêçÁß∞")
         backward = wx.BitmapButton(panel, -1, wx.Bitmap('images/32/backward.png'), style=wx.NO_BORDER)
         more = wx.BitmapButton(panel, -1, wx.Bitmap('images/other-size/more26.png'), style=wx.NO_BORDER)
 
@@ -653,7 +653,7 @@ class MemoQues(wx.Dialog):
 
         h_box_info = wx.BoxSizer(wx.HORIZONTAL)
         rest_list = [68, 8, 65]
-        rest_text = " £”‡ø®∆¨£∫"
+        rest_text = "Ââ©‰ΩôÂç°ÁâáÔºö"
 
         for label in rest_list:
             rest_text += str(label) + " " * 2
@@ -668,7 +668,7 @@ class MemoQues(wx.Dialog):
 
         ques = "general"
         ipa = "['d?en?r?l]".encode('utf-8')
-        # ans = "[n.] Ω´æ¸\n[adj.]»´ÃÂµƒ£¨◊‹µƒ£¨∆’±Èµƒ"
+        # ans = "[n.] Â∞ÜÂÜõ\n[adj.]ÂÖ®‰ΩìÁöÑÔºåÊÄªÁöÑÔºåÊôÆÈÅçÁöÑ"
         panel_word = wx.Panel(panel, -1, size=(-1, 300), style=wx.BORDER_THEME)
         panel_word.SetBackgroundColour('white')
         v_box_pw = wx.BoxSizer(wx.VERTICAL)
@@ -690,7 +690,7 @@ class MemoQues(wx.Dialog):
 
         panel_btn = wx.Panel(panel, -1)
         h_box_btn = wx.BoxSizer(wx.HORIZONTAL)
-        show_ans = wx.Button(panel_btn, -1, "œ‘ æ¥∞∏")
+        show_ans = wx.Button(panel_btn, -1, "ÊòæÁ§∫Á≠îÊ°à")
         self.Bind(wx.EVT_BUTTON, self.on_show_ans, show_ans)
         h_box_btn.Add(show_ans, 1, wx.EXPAND)
         panel_btn.SetSizer(h_box_btn)
@@ -713,7 +713,7 @@ class MemoQues(wx.Dialog):
 
 class MemoAns(wx.Dialog):
     def __init__(self):
-        wx.Dialog.__init__(self, None, -1, '—ßœ∞', size=(-1, 470),
+        wx.Dialog.__init__(self, None, -1, 'Â≠¶‰π†', size=(-1, 470),
                            style=wx.CAPTION | wx.SYSTEM_MENU | wx.CLOSE_BOX)
         panel = wx.Panel(self, -1)
         font_ques = wx.Font(14, wx.FONTFAMILY_DEFAULT,
@@ -737,7 +737,7 @@ class MemoAns(wx.Dialog):
         v_box = wx.BoxSizer(wx.VERTICAL)
 
         h_box_title = wx.BoxSizer(wx.HORIZONTAL)
-        lib_name = wx.StaticText(panel, -1, "µ±«∞—ßœ∞µƒ¥ ø‚√˚≥∆")
+        lib_name = wx.StaticText(panel, -1, "ÂΩìÂâçÂ≠¶‰π†ÁöÑËØçÂ∫ìÂêçÁß∞")
         backward = wx.BitmapButton(panel, -1, wx.Bitmap('images/32/backward.png'), style=wx.NO_BORDER)
         more = wx.BitmapButton(panel, -1, wx.Bitmap('images/other-size/more26.png'), style=wx.NO_BORDER)
 
@@ -753,7 +753,7 @@ class MemoAns(wx.Dialog):
 
         h_box_info = wx.BoxSizer(wx.HORIZONTAL)
         rest_list = [68, 8, 65]
-        rest_text = " £”‡ø®∆¨£∫"
+        rest_text = "Ââ©‰ΩôÂç°ÁâáÔºö"
         for label in rest_list:
             rest_text += str(label) + " " * 2
 
@@ -767,7 +767,7 @@ class MemoAns(wx.Dialog):
 
         ques = "general"
         ipa = "['d?en?r?l]".encode('utf-8')
-        ans = "[n.] Ω´æ¸\n[adj.]»´ÃÂµƒ£¨◊‹µƒ£¨∆’±Èµƒ"
+        ans = "[n.] Â∞ÜÂÜõ\n[adj.]ÂÖ®‰ΩìÁöÑÔºåÊÄªÁöÑÔºåÊôÆÈÅçÁöÑ"
         panel_word = wx.Panel(panel, -1, size=(-1, 300), style=wx.BORDER_THEME)
         panel_word.SetBackgroundColour('white')
         v_box_pw = wx.BoxSizer(wx.VERTICAL)
@@ -789,10 +789,10 @@ class MemoAns(wx.Dialog):
 
         panel_btn = wx.Panel(panel, -1)
         h_box_btn = wx.BoxSizer(wx.HORIZONTAL)
-        again = wx.Button(panel_btn, -1, "÷ÿ¿¥")
-        hard = wx.Button(panel_btn, -1, "¿ßƒ—")
-        good = wx.Button(panel_btn, -1, "“ª∞„")
-        easy = wx.Button(panel_btn, -1, "ºÚµ•")
+        again = wx.Button(panel_btn, -1, "ÈáçÊù•")
+        hard = wx.Button(panel_btn, -1, "Âõ∞Èöæ")
+        good = wx.Button(panel_btn, -1, "‰∏ÄËà¨")
+        easy = wx.Button(panel_btn, -1, "ÁÆÄÂçï")
 
         self.Bind(wx.EVT_BUTTON, self.on_again, again)
         self.Bind(wx.EVT_BUTTON, self.on_hard, hard)
@@ -829,21 +829,21 @@ class MemoAns(wx.Dialog):
 
 class SelectLib(wx.Dialog):
     def __init__(self, lib):
-        wx.Dialog.__init__(self, None, -1, '—ßœ∞', size=(-1, 350),
+        wx.Dialog.__init__(self, None, -1, 'Â≠¶‰π†', size=(-1, 350),
                            style=wx.CAPTION | wx.SYSTEM_MENU | wx.CLOSE_BOX)
         v_box = wx.BoxSizer(wx.VERTICAL)
         panel = wx.Panel(self, -1, style=wx.BORDER_SIMPLE)
         panel.SetBackgroundColour('white')
         v_box_p = wx.BoxSizer(wx.VERTICAL)
 
-        info_text = wx.StaticText(panel, -1, "—°‘Ò“™—ßœ∞µƒ¥ ø‚£∫")
+        info_text = wx.StaticText(panel, -1, "ÈÄâÊã©Ë¶ÅÂ≠¶‰π†ÁöÑËØçÂ∫ìÔºö")
         v_box_p.Add(info_text, 0, wx.EXPAND | wx.TOP | wx.LEFT | wx.RIGHT, 10)
         for index, content in enumerate(lib):
             self.button = wx.Button(panel, -1, lib[content].decode('utf-8'))
             self.button.Bind(wx.EVT_BUTTON, lambda evt, i=content, l=lib: self.on_click(evt, i, l))
             v_box_p.Add(self.button, 0, wx.EXPAND | wx.ALL, 15)
         panel.SetSizer(v_box_p)
-        close = wx.Button(self, wx.ID_CANCEL, "πÿ±’", style=wx.BORDER_NONE)
+        close = wx.Button(self, wx.ID_CANCEL, "ÂÖ≥Èó≠")
         v_box.Add(panel, 0, wx.EXPAND | wx.ALL, 10)
         v_box.Add(close, 0, wx.EXPAND | wx.ALL, 10)
         self.SetSizer(v_box)
@@ -859,13 +859,19 @@ class SelectLib(wx.Dialog):
 
 class Prepare(wx.Dialog):
     def __init__(self, i, lib):
-        wx.Dialog.__init__(self, None, -1, '◊º±∏—ßœ∞', size=(-1, 350),
+        """
+        ÁúãÂ∑•‰ΩúÁõÆÂΩï‰∏ãÊòØÂê¶Â≠òÂú®recordstack_iÔºåÂ¶ÇÊûú‰∏çÂ≠òÂú®ÂàôÂàõÂª∫ÁÑ∂ÂêéÂÜôÂÖ•Ââç‰∏âË°å: NSRÁöÑÁªüËÆ°Êï∞ÊçÆÔºà0, 0, 0Ôºâ
+        Ê†πÊçÆËÆæÁΩÆ‰∏≠ÊØèÊó•Â≠¶‰π†ÂíåÂ§ç‰π†Âêërecordstack_xxx.txt‰∏≠Ê∑ªÂä†ËÆ∞ÂΩï‰ø°ÊÅØ
+        ‰∏çË∂≥ËÆæÁΩÆÁöÑÊØèÊó•Â≠¶‰π†ÂíåÂ§ç‰π†ÁöÑÊï∞ÈáèÂàôË°•Ë∂≥ÔºàÊúâÂ§öÂ∞ëË°•Â§öÂ∞ëÔºâ
+        :param i: ËØçÂ∫ìid
+        :param lib:
+        :return:
+        """
+        wx.Dialog.__init__(self, None, -1, 'ÂáÜÂ§áÂ≠¶‰π†', size=(-1, 350),
                            style=wx.CAPTION | wx.SYSTEM_MENU | wx.CLOSE_BOX)
+
         # -----------------------------------------
-        # ∏˘æ›¥ ø‚id£¨º¥i°£
-        # ø¥π§◊˜ƒø¬ºœ¬ «∑Ò¥Ê‘⁄recordstack_i£¨»Áπ˚≤ª¥Ê‘⁄‘Ú¥¥Ω®»ª∫Û–¥»Î«∞»˝––: NSRµƒÕ≥º∆ ˝æ›£®0, 0, 0£©
-        # ∏˘æ›…Ë÷√÷–√ø»’—ßœ∞∫Õ∏¥œ∞œÚrecordstack_xxx.txt÷–ÃÌº”º«¬º–≈œ¢
-        # ≤ª◊„…Ë÷√µƒ√ø»’—ßœ∞∫Õ∏¥œ∞µƒ ˝¡ø‘Ú≤π◊„£®”–∂‡…Ÿ≤π∂‡…Ÿ£©
+
         file_name = 'recordstack_' + i + '.txt'
         if file.is_exist(os.getcwd(), file_name) == 0:
             f = open(file_name, 'w')
@@ -874,72 +880,77 @@ class Prepare(wx.Dialog):
             pass
         nsr = file.fetch_statistic(file_name)
         n_num = nsr['N']
+        s_num = nsr['S']
         r_num = nsr['R']
         sql = "SELECT * FROM library WHERE libId = '" + i + "'"
         result = DBFun.select('db_pymemo.db', sql)
         r_s = result[0][4]
         n_s = result[0][5]
-        review_list = FrameFun.find_expired(i)[:r_s - r_num]
-        new_list = FrameFun.find_new(i)[:n_s - n_num]
+        review_list = file.filter_repeat(file_name, FrameFun.find_expired(i))
+        new_list = file.filter_repeat(file_name, FrameFun.find_new(i))
 
-        file.write_rs(file_name, new_list, 'N')
-        file.write_rs(file_name, review_list, 'R')
-        # recordstac_xxx.txt–¥»ÎÕÍ≥…£¨œ÷‘⁄recordstac_xxx.txt÷–±£¥ÊµƒæÕ «¥˝—ßœ∞µƒƒ⁄»›°£
+        file.write_rs(file_name, new_list[:50], 'N')
+        file.write_rs(file_name, review_list[:50], 'R')
+
+        # -----------------------------------------
 
         v_box = wx.BoxSizer(wx.VERTICAL)
-        # -----------------------------------------
         # panel_1
         panel_1 = wx.Panel(self, -1, style=wx.BORDER_SIMPLE)
         panel_1.SetBackgroundColour('white')
         v_box_1 = wx.BoxSizer(wx.VERTICAL)
         big_font_bold = wx.Font(18, wx.DEFAULT, wx.NORMAL, wx.BOLD, False)
-        text_head = wx.StaticText(panel_1, -1, lib[i].decode('utf-8'), style=wx.ALIGN_CENTER_HORIZONTAL)
+        text_head = wx.StaticText(panel_1, -1, lib[i].decode('utf-8'))
         text_head.SetFont(big_font_bold)
         v_box_1.Add(text_head, 0, wx.EXPAND | wx.TOP | wx.BOTTOM, 10)
 
-        gs = wx.GridSizer(rows=3, cols=2, vgap=5, hgap=25)
-        text_statistic = wx.StaticText(panel_1, -1, "ΩÒ»’µΩ∆⁄£∫")
-        text_new = wx.StaticText(panel_1, -1, "–¬ø®∆¨∫œº∆£∫")
-        text_all = wx.StaticText(panel_1, -1, "»´≤øø®∆¨£∫")
-        gs.Add(text_statistic, 0, wx.EXPAND)
-        gs.Add(wx.StaticText(panel_1, -1, "0 1 10"), 0, wx.EXPAND)
-        gs.Add(text_new, 0, wx.EXPAND)
-        gs.Add(wx.StaticText(panel_1, -1, "0"))
-        gs.Add(text_all, 0, wx.EXPAND)
-        gs.Add(wx.StaticText(panel_1, -1, "1997"))
-        v_box_1.Add(gs, 0, wx.ALIGN_CENTER_HORIZONTAL | wx.TOP | wx.BOTTOM, 10)
-
-#         done_text = '''πßœ≤£°ƒ„“—æ≠ÕÍ≥…ΩÒÃÏµƒ—ßœ∞º∆ªÆ°£
-# ΩÒÃÏµƒ∏¥œ∞ ˝¡øœﬁ÷∆“—æ≠¥ÔµΩ£¨µ´»‘”–“ª–©ø®∆¨–Ë“™∏¥œ∞°£
-# Œ™¡À∏¸∫√µƒº«“‰–ßπ˚£¨ƒ„ø…“‘øº¬«µ˜’˚ƒ„µƒ—ßœ∞º∆ªÆ°£
-# µ„ª˜œ¬√Ê¥ ø‚—°œÓ£¨µ˜’˚—ßœ∞º∆ªÆ'''
-#         tips = wx.StaticText(panel_1, -1, done_text, style=wx.ALIGN_CENTER_HORIZONTAL)
-#         v_box_1.Add(tips, 0, wx.EXPAND | wx.ALL, 10)
+        if n_num + r_num + s_num > 0:
+            gs = wx.GridSizer(rows=3, cols=2, vgap=5, hgap=25)
+            text_statistic = wx.StaticText(panel_1, -1, "‰ªäÊó•Âà∞ÊúüÔºö")
+            text_new = wx.StaticText(panel_1, -1, "Êñ∞Âç°ÁâáÂêàËÆ°Ôºö")
+            text_all = wx.StaticText(panel_1, -1, "ÂÖ®ÈÉ®Âç°ÁâáÔºö")
+            gs.Add(text_statistic, 0, wx.EXPAND)
+            gs.Add(wx.StaticText(panel_1, -1, str(n_num) + ' ' + str(s_num) + ' ' + str(r_num)), 0, wx.EXPAND)
+            gs.Add(text_new, 0, wx.EXPAND)
+            gs.Add(wx.StaticText(panel_1, -1, str(len(new_list))))
+            gs.Add(text_all, 0, wx.EXPAND)
+            gs.Add(wx.StaticText(panel_1, -1, str(len(FrameFun.find_all(i)))))
+            v_box_1.Add(gs, 0, wx.ALIGN_CENTER_HORIZONTAL | wx.TOP | wx.BOTTOM, 10)
+        else:
+            done_text = '''ÊÅ≠ÂñúÔºÅ‰Ω†Â∑≤ÁªèÂÆåÊàê‰ªäÂ§©ÁöÑÂ≠¶‰π†ËÆ°Âàí„ÄÇ
+    ‰ªäÂ§©ÁöÑÂ§ç‰π†Êï∞ÈáèÈôêÂà∂Â∑≤ÁªèËææÂà∞Ôºå‰ΩÜ‰ªçÊúâ‰∏Ä‰∫õÂç°ÁâáÈúÄË¶ÅÂ§ç‰π†„ÄÇ
+    ‰∏∫‰∫ÜÊõ¥Â•ΩÁöÑËÆ∞ÂøÜÊïàÊûúÔºå‰Ω†ÂèØ‰ª•ËÄÉËôëË∞ÉÊï¥‰Ω†ÁöÑÂ≠¶‰π†ËÆ°Âàí„ÄÇ
+    ÁÇπÂáª‰∏ãÈù¢ËØçÂ∫ìÈÄâÈ°πÔºåË∞ÉÊï¥Â≠¶‰π†ËÆ°Âàí'''
+            tips = wx.StaticText(panel_1, -1, done_text, style=wx.ALIGN_CENTER_HORIZONTAL)
+            v_box_1.Add(tips, 0, wx.EXPAND | wx.ALL, 10)
 
         panel_1.SetSizer(v_box_1)
+        v_box.Add(panel_1, 1, wx.EXPAND | wx.TOP | wx.LEFT | wx.RIGHT, 10)
         # -----------------------------------------
         # panel_2
-        panel_2 = wx.Panel(self, -1, style=wx.BORDER_SIMPLE)
-        panel_2.SetBackgroundColour('white')
-        h_box_2 = wx.BoxSizer(wx.HORIZONTAL)
-        temp = wx.Image('images/other-size/flashcard48.jpg', wx.BITMAP_TYPE_JPEG).ConvertToBitmap()
-        flashcard = wx.StaticBitmap(panel_2, -1, temp)
-        h_box_2.Add(flashcard, 0, wx.ALL, 10)
+        if n_num + r_num + s_num > 0:
+            panel_2 = wx.Panel(self, -1, style=wx.BORDER_SIMPLE)
+            panel_2.SetBackgroundColour('white')
+            h_box_2 = wx.BoxSizer(wx.HORIZONTAL)
+            temp = wx.Image('images/other-size/flashcard48.jpg', wx.BITMAP_TYPE_JPEG).ConvertToBitmap()
+            flashcard = wx.StaticBitmap(panel_2, -1, temp)
+            h_box_2.Add(flashcard, 0, wx.ALL, 10)
 
-        start = buttons.GenButton(panel_2, -1, 'ø™ º—ßœ∞')
-        start.SetBezelWidth(0)
-        start.SetBackgroundColour('white')
-        start.Bind(wx.EVT_BUTTON, self.on_study)
-        h_box_2.Add(start, 1, wx.EXPAND | wx.TOP | wx.BOTTOM | wx.RIGHT, 10)
-        panel_2.SetSizer(h_box_2)
+            start = buttons.GenButton(panel_2, -1, 'ÂºÄÂßãÂ≠¶‰π†')
+            start.SetBezelWidth(0)
+            start.SetBackgroundColour('white')
+            start.Bind(wx.EVT_BUTTON, self.on_study)
+            h_box_2.Add(start, 1, wx.EXPAND | wx.TOP | wx.BOTTOM | wx.RIGHT, 10)
+
+            panel_2.SetSizer(h_box_2)
+            v_box.Add(panel_2, 0, wx.EXPAND | wx.TOP | wx.LEFT | wx.RIGHT, 10)
+        else:
+            pass
 
         line = wx.StaticLine(self, -1, size=(-1, -1), style=wx.LI_HORIZONTAL)
-
-        v_box.Add(panel_1, 1, wx.EXPAND | wx.TOP | wx.LEFT | wx.RIGHT, 10)
-        v_box.Add(panel_2, 0, wx.EXPAND | wx.TOP | wx.LEFT | wx.RIGHT, 10)
         v_box.Add(line, 0, wx.EXPAND | wx.TOP | wx.LEFT | wx.RIGHT, 10)
 
-        setting_button = buttons.GenButton(self, -1, "¥ ø‚—°œÓ", style=wx.BORDER_SIMPLE)
+        setting_button = buttons.GenButton(self, -1, "ËØçÂ∫ìÈÄâÈ°π", style=wx.BORDER_SIMPLE)
         setting_button.SetBezelWidth(1)
         setting_button.SetBackgroundColour('white')
         setting_button.Bind(wx.EVT_BUTTON, lambda evt, l=lib, index=i: self.on_setting(evt, lib, i))
