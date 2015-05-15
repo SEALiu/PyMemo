@@ -4,8 +4,11 @@ import time
 import datetime
 
 
-def find_all():
-    sql = "SELECT * FROM record"
+def find_all(flag):
+    if flag == -1:
+        sql = "SELECT * FROM record"
+    else:
+        sql = "SELECT * FROM record WHERE recordId LIKE '%" + flag + "'"
     return DBFun.select('db_pymemo.db', sql)
 
 
@@ -18,8 +21,7 @@ def find_new(flag):
         sql = "SELECT * FROM record WHERE  interval = -1"
     else:
         sql = "SELECT * FROM record WHERE interval = -1 AND recordId LIKE '%" + flag + "'"
-    new_record = DBFun.select('db_pymemo.db', sql)
-    return new_record
+    return DBFun.select('db_pymemo.db', sql)
 
 
 def find_expired(flag):
