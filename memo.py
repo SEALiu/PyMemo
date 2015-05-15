@@ -1,4 +1,4 @@
-# -*- coding: gbk -*-
+# -*- coding: utf-8 -*-
 # memo.py
 import sys
 import wx
@@ -55,13 +55,15 @@ class ListCtrlLeft(wx.ListCtrl):
         self.SetColumnWidth(0, size.x - 5)
         event.Skip()
 
+
     @staticmethod
     def on_refresh():
         window = wx.FindWindowByName('ListControlOnLeft', parent=None)
         ListCtrlLeft.fetch_lib()
         window.load_data_left(LIBRARIES)
 
-    def on_lib_select(self, evt):
+    @staticmethod
+    def on_lib_select(evt):
         index = evt.GetIndex()
         sql = "SELECT * FROM record WHERE recordId LIKE '%" + LIBRARY_ID[index] + "'"
         cursor = DBFun.select('db_pymemo.db', sql)
@@ -75,11 +77,11 @@ class ListCtrlLeft(wx.ListCtrl):
     def on_lib_right_click(self, event):
         index = event.GetIndex()
         menu = wx.Menu()
-        item_rename = wx.MenuItem(menu, -1, "ĞŞ¸ÄÃû³Æ»òÃèÊö")
-        item_info = wx.MenuItem(menu, -1, "²é¿´´Ê¿âµÄĞÅÏ¢")
-        item_add = wx.MenuItem(menu, -1, 'Ôö¼ÓÒ»Ìõ¼ÇÂ¼')
-        item_setting = wx.MenuItem(menu, -1, 'ÉèÖÃ')
-        item_delete = wx.MenuItem(menu, -1, 'É¾³ıÕâ¸ö´Ê¿â')
+        item_rename = wx.MenuItem(menu, -1, "ä¿®æ”¹åç§°æˆ–æè¿°")
+        item_info = wx.MenuItem(menu, -1, "æŸ¥çœ‹è¯åº“çš„ä¿¡æ¯")
+        item_add = wx.MenuItem(menu, -1, 'å¢åŠ ä¸€æ¡è®°å½•')
+        item_setting = wx.MenuItem(menu, -1, 'è®¾ç½®')
+        item_delete = wx.MenuItem(menu, -1, 'åˆ é™¤è¿™ä¸ªè¯åº“')
         self.Bind(wx.EVT_MENU, lambda evt, i=index: self.on_lib_rename(evt, i), item_rename)
         self.Bind(wx.EVT_MENU, lambda evt, i=index: self.on_item_info(evt, i), item_info)
         self.Bind(wx.EVT_MENU, lambda evt, i=index: self.on_item_add(evt, i), item_add)
@@ -143,8 +145,8 @@ class ListCtrlLeft(wx.ListCtrl):
     def on_lib_delete(self, evt, i):
         lib_id = LIBRARY_ID[i]
         if lib_id == '000':
-            msg_dlg = wx.MessageDialog(self, 'Ä¬ÈÏ´Ê¿âÎŞ·¨±»É¾³ı£¡',
-                               'ÌáÊ¾',
+            msg_dlg = wx.MessageDialog(self, 'é»˜è®¤è¯åº“æ— æ³•è¢«åˆ é™¤ï¼',
+                               'æç¤º',
                                wx.OK | wx.ICON_WARNING)
             msg_dlg.ShowModal()
             msg_dlg.Destroy()
@@ -166,15 +168,15 @@ class ListCtrlRight(wx.ListCtrl):
     def load_data_right(self, RECORDS):
         self.DeleteAllItems()
         self.DeleteAllColumns()
-        self.list_head_name = ['¼ÇÂ¼ID',
-                               'ÕıÃæ',
-                               '·´Ãæ',
-                               'Ìí¼ÓÊ±¼ä',
-                               '¸´Ï°Ê±¼ä',
-                               'ĞŞ¸ÄÊ±¼ä',
-                               '¼ä¸ôÌìÊı',
+        self.list_head_name = ['è®°å½•ID',
+                               'æ­£é¢',
+                               'åé¢',
+                               'æ·»åŠ æ—¶é—´',
+                               'å¤ä¹ æ—¶é—´',
+                               'ä¿®æ”¹æ—¶é—´',
+                               'é—´éš”å¤©æ•°',
                                'E-Fator',
-                               'ÊÇ·ñ¹ÒÆğ'
+                               'æ˜¯å¦æŒ‚èµ·'
                                ]
         for i in range(len(self.list_head_name)):
             self.InsertColumn(i, self.list_head_name[i], width=wx.LIST_AUTOSIZE)
@@ -196,9 +198,9 @@ class ListCtrlRight(wx.ListCtrl):
         index = evt.GetIndex()
         detail = record[index]
         menu = wx.Menu()
-        record_update = wx.MenuItem(menu, -1, "ĞŞ¸Ä")
-        record_info = wx.MenuItem(menu, -1, "ÏêÏ¸ĞÅÏ¢")
-        record_delete = wx.MenuItem(menu, -1, '¹ÒÆğ/É¾³ı')
+        record_update = wx.MenuItem(menu, -1, "ä¿®æ”¹")
+        record_info = wx.MenuItem(menu, -1, "è¯¦ç»†ä¿¡æ¯")
+        record_delete = wx.MenuItem(menu, -1, 'æŒ‚èµ·/åˆ é™¤')
 
         self.Bind(wx.EVT_MENU, lambda e, d=detail: self.on_record_update(e, d), record_update)
         self.Bind(wx.EVT_MENU, lambda e, d=detail: self.on_record_info(e, d), record_info)
@@ -237,14 +239,14 @@ class CombinePanelRight(wx.Panel):
     def __init__(self, parent, i, records):
         wx.Panel.__init__(self, parent, i, style=wx.BORDER_NONE)
 
-        filter_list = ['¹ıÂËÆ÷',
-                     'ÏÔÊ¾ËùÓĞ¼ÇÂ¼',
-                     'ÒÑµ½ÆÚµÄ',
-                     'ÒÑ¼Ç×¡µÄ',
-                     '½ñÌì´ıÑ§Ï°µÄ',
-                     '½ñÌìÒÑÑ§Ï°µÄ',
-                     'Ê¼ÖÕ¼Ç²»×¡µÄ',
-                     '½ñÌìÌí¼ÓµÄ']
+        filter_list = ['è¿‡æ»¤å™¨',
+                     'æ˜¾ç¤ºæ‰€æœ‰è®°å½•',
+                     'å·²åˆ°æœŸçš„',
+                     'å·²è®°ä½çš„',
+                     'ä»Šå¤©å¾…å­¦ä¹ çš„',
+                     'ä»Šå¤©å·²å­¦ä¹ çš„',
+                     'å§‹ç»ˆè®°ä¸ä½çš„',
+                     'ä»Šå¤©æ·»åŠ çš„']
         horizontal_box = wx.BoxSizer(wx.HORIZONTAL)
         lib_combo_box = wx.ComboBox(self,
                                     pos=(0, 5),
@@ -258,14 +260,13 @@ class CombinePanelRight(wx.Panel):
         go = wx.BitmapButton(self,
                              -1,
                              wx.Bitmap('images/other-size/search26.png'),
-                             size=(23, 25),
-                             style=wx.NO_BORDER
+                             size=(32, 32)
                              )
         search_ctrl = wx.TextCtrl(self, -1, size=(300, -1))
 
-        horizontal_box.Add(lib_combo_box, 0, wx.TOP | wx.LEFT, border=8)
-        horizontal_box.Add(search_ctrl, 0, wx.TOP | wx.LEFT, border=8)
-        horizontal_box.Add(go, 0, wx.ALL, border=8)
+        horizontal_box.Add(lib_combo_box, 0, wx.TOP | wx.LEFT | wx.BOTTOM, border=6)
+        horizontal_box.Add(search_ctrl, 0, wx.TOP | wx.LEFT | wx.BOTTOM, border=6)
+        horizontal_box.Add(go, 0, wx.ALL, border=6)
 
         self.SetSizer(horizontal_box)
         self.Centre()
@@ -274,14 +275,14 @@ class CombinePanelRight(wx.Panel):
     @staticmethod
     def on_filter(e, ob, f, r):
         filter_key = 0
-        # »ñÈ¡µ½É¸Ñ¡LISTµÄĞòºÅ
+        # è·å–åˆ°ç­›é€‰LISTçš„åºå·
         for i, album in enumerate(f):
             # filter_dic[i] = album
             if album == ob.GetValue():
                 filter_key = i
 
         if filter_key == 1:
-            r = FrameFun.find_all()
+            r = FrameFun.find_all(-1)
             pass
         elif filter_key == 2:
             r = FrameFun.find_expired(-1)
@@ -324,25 +325,25 @@ class Memo(wx.Frame):
         tool_menu = wx.Menu()
         help_menu = wx.Menu()
 
-        menu_bar.Append(file_menu, 'ÎÄ¼ş')
-        menu_bar.Append(port_menu, 'ÍØÕ¹')
-        menu_bar.Append(tool_menu, '¹¤¾ß')
-        menu_bar.Append(help_menu, '°ïÖú')
+        menu_bar.Append(file_menu, 'æ–‡ä»¶')
+        menu_bar.Append(port_menu, 'æ‹“å±•')
+        menu_bar.Append(tool_menu, 'å·¥å…·')
+        menu_bar.Append(help_menu, 'å¸®åŠ©')
 
-        new_lib_item = file_menu.Append(-1, 'Ìí¼ÓÒ»¸ö´Ê¿â')
-        new_record_item = file_menu.Append(-1, 'Ìí¼ÓÒ»Ìõ¼ÇÂ¼')
-        setting = file_menu.Append(-1, 'Æ«ºÃÉèÖÃ')
+        new_lib_item = file_menu.Append(-1, 'æ·»åŠ ä¸€ä¸ªè¯åº“')
+        new_record_item = file_menu.Append(-1, 'æ·»åŠ ä¸€æ¡è®°å½•')
+        setting = file_menu.Append(-1, 'åå¥½è®¾ç½®')
         file_menu.AppendSeparator()
-        quit_item = file_menu.Append(-1, 'Àë¿ª')
+        quit_item = file_menu.Append(-1, 'ç¦»å¼€')
 
-        import_lib = port_menu.Append(-1, 'µ¼Èë´Ê¿â...')
-        export_lib = port_menu.Append(-1, 'µ¼³ö´Ê¿â...')
+        import_lib = port_menu.Append(-1, 'å¯¼å…¥è¯åº“...')
+        export_lib = port_menu.Append(-1, 'å¯¼å‡ºè¯åº“...')
 
-        study_item = tool_menu.Append(-1, '¿ªÊ¼Ñ§Ï°')
-        check = tool_menu.Append(-1, '¼ì²é¿Õ¼ÇÂ¼')
+        study_item = tool_menu.Append(-1, 'å¼€å§‹å­¦ä¹ ')
+        check = tool_menu.Append(-1, 'æ£€æŸ¥ç©ºè®°å½•')
 
-        guide_item = help_menu.Append(wx.ID_HELP, 'ÓÃ»§ÊÖ²á')
-        about_item = help_menu.Append(wx.ID_ABOUT, '¹ØÓÚ')
+        guide_item = help_menu.Append(wx.ID_HELP, 'ç”¨æˆ·æ‰‹å†Œ')
+        about_item = help_menu.Append(wx.ID_ABOUT, 'å…³äº')
 
         self.Bind(wx.EVT_MENU, self.on_new_lib, new_lib_item)
         self.Bind(wx.EVT_MENU, self.on_new_record, new_record_item)
@@ -364,14 +365,14 @@ class Memo(wx.Frame):
                    'setting': wx.NewId(),
                    'learn': wx.NewId()}
         tool_bar = self.CreateToolBar(style=wx.TB_FLAT | wx.TB_TEXT | wx.TB_HORZ_LAYOUT)
-        quit_item = tool_bar.AddLabelTool(wx.ID_EXIT, 'ÍË³ö', wx.Bitmap('images/32/quit.png'))
+        quit_item = tool_bar.AddLabelTool(wx.ID_EXIT, 'é€€å‡º', wx.Bitmap('images/32/quit.png'))
         tool_bar.AddSeparator()
-        import_item = tool_bar.AddLabelTool(tool_id['import'], 'µ¼Èë´Ê¿â', wx.Bitmap('images/32/import.png'))
-        new_lib = tool_bar.AddLabelTool(tool_id['new_lib'], 'ĞÂ½¨´Ê¿â', wx.Bitmap('images/32/library_add.png'))
-        new_record = tool_bar.AddLabelTool(tool_id['new_record'], 'Ìí¼Ó¼ÇÂ¼', wx.Bitmap('images/32/card_add.png'))
-        setting = tool_bar.AddLabelTool(tool_id['setting'], 'ÉèÖÃ', wx.Bitmap('images/32/setting.png'))
+        import_item = tool_bar.AddLabelTool(tool_id['import'], 'å¯¼å…¥è¯åº“', wx.Bitmap('images/32/import.png'))
+        new_lib = tool_bar.AddLabelTool(tool_id['new_lib'], 'æ–°å»ºè¯åº“', wx.Bitmap('images/32/library_add.png'))
+        new_record = tool_bar.AddLabelTool(tool_id['new_record'], 'æ·»åŠ è®°å½•', wx.Bitmap('images/32/card_add.png'))
+        setting = tool_bar.AddLabelTool(tool_id['setting'], 'è®¾ç½®', wx.Bitmap('images/32/setting.png'))
         tool_bar.AddSeparator()
-        study = tool_bar.AddLabelTool(tool_id['learn'], '¿ªÊ¼Ñ§Ï°', wx.Bitmap('images/32/words_learn.png'))
+        study = tool_bar.AddLabelTool(tool_id['learn'], 'å¼€å§‹å­¦ä¹ ', wx.Bitmap('images/32/words_learn.png'))
 
         self.Bind(wx.EVT_TOOL, self.on_quit, quit_item)
         self.Bind(wx.EVT_TOOL, self.on_setting, setting)
@@ -389,9 +390,9 @@ class Memo(wx.Frame):
         vertical_box_left = wx.BoxSizer(wx.VERTICAL)
         panel_left = wx.Panel(splitter, -1)
         panel_left.SetBackgroundColour('white')
-        panel_left_top = wx.Panel(panel_left, -1, size=(-1, 30))
+        panel_left_top = wx.Panel(panel_left, -1)
         panel_left_top.SetBackgroundColour('#53728c')
-        panel_left_str = wx.StaticText(panel_left_top, -1, '¼ÇÒä¿â', (5, 5))
+        panel_left_str = wx.StaticText(panel_left_top, -1, 'è®°å¿†åº“', pos=(15, 10), size=(-1, 30))
         panel_left_str.SetForegroundColour('white')
 
         panel_left_bottom = wx.Panel(panel_left, -1, style=wx.BORDER_NONE)
@@ -415,7 +416,6 @@ class Memo(wx.Frame):
         combine = CombinePanelRight(panel_right_top, -1, RECORDS)
         vertical_box_right_top.Add(combine, 1, wx.EXPAND)
         panel_right_top.SetSizer(vertical_box_right_top)
-        # panel_right_top.SetBackgroundColour('#53728c')
 
         panel_right_bottom = wx.Panel(panel_right, -1, style=wx.BORDER_NONE)
         vertical_box_right_bottom = wx.BoxSizer(wx.VERTICAL)
@@ -475,7 +475,7 @@ class Memo(wx.Frame):
     @staticmethod
     def on_check(evt):
         """
-        ¼ì²éºÍÓÅ»¯Êı¾İ¿â£¬°üÀ¨ºÏ²¢ÖØ¸´µÄ¼ÇÂ¼£¬É¾³ı¿Õ¼ÇÂ¼
+        æ£€æŸ¥å’Œä¼˜åŒ–æ•°æ®åº“ï¼ŒåŒ…æ‹¬åˆå¹¶é‡å¤çš„è®°å½•ï¼Œåˆ é™¤ç©ºè®°å½•
         :param evt:
         :return:
         """
@@ -485,7 +485,7 @@ class Memo(wx.Frame):
         f = open("Dialog.py", "r")
         msg = f.read()
         f.close()
-        dlg = wx.lib.dialogs.ScrolledMessageDialog(self, msg, "ÓÃ»§ÊÖ²á")
+        dlg = wx.lib.dialogs.ScrolledMessageDialog(self, msg, "ç”¨æˆ·æ‰‹å†Œ")
         dlg.ShowModal()
 
     @staticmethod
@@ -494,7 +494,7 @@ class Memo(wx.Frame):
 
 if __name__ == '__main__':
     reload(sys)
-    sys.setdefaultencoding('gbk')
+    sys.setdefaultencoding('utf8')
     app = wx.App()
     Memo(None, -1, 'PyMemo', (1000, 500))
     app.MainLoop()
