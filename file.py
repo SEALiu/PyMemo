@@ -107,3 +107,17 @@ def filter_repeat(fn, ls):
     for index in ls_temp:
         ls.remove(index)
     return ls
+
+
+def fetch_nsr(fn, nsr):
+    """
+    获取fn中的NSR_list，并分别返回
+    :param fn: file_name <type str>
+    :param nsr: N, S, R <type str>
+    :return:
+    """
+    nsr_list = []
+    for items in read_rs(fn):
+        if items[0] == nsr:
+            nsr_list.append(items)
+    return nsr_list[1:]
