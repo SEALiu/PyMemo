@@ -600,6 +600,7 @@ class Import(wx.FileDialog):
         self.Show(True)
 
 
+# Study Dialogs
 class MemoDialog(wx.Dialog):
     """
     这里有些问题，应该只刷新 panel_word 和 panel_btn
@@ -612,6 +613,11 @@ class MemoDialog(wx.Dialog):
         panel = wx.Panel(self, -1)
 
         # ------
+        n_list = file.fetch_nsr('recordstack_' + str(i) + '.txt', 'N')
+        s_list = file.fetch_nsr('recordstack_' + str(i) + '.txt', 'S')
+        r_list = file.fetch_nsr('recordstack_' + str(i) + '.txt', 'R')
+
+        # ------
 
         v_box = wx.BoxSizer(wx.VERTICAL)
 
@@ -622,12 +628,13 @@ class MemoDialog(wx.Dialog):
         h_box_title.Add(lib_name, 1, wx.TOP | wx.RIGHT, 10)
         h_box_title.Add(more, 0, wx.ALIGN_RIGHT | wx.LEFT | wx.TOP, 5)
 
-        h_box_info = wx.BoxSizer(wx.HORIZONTAL)
         line_1 = wx.StaticLine(panel, -1, size=(-1, -1), style=wx.LI_HORIZONTAL)
         v_box.Add(h_box_title, 0, wx.EXPAND | wx.LEFT | wx.RIGHT, 10)
         v_box.Add(line_1, 0, wx.EXPAND)
+
         # ------------
 
+        h_box_info = wx.BoxSizer(wx.HORIZONTAL)
         rest_list = ls
         rest_text = "剩余卡片："
 
@@ -755,13 +762,35 @@ class MemoDialog(wx.Dialog):
         self.Centre()
         self.Show(True)
 
+    def select_nsr(self):
+        """
+        抽取一个（N/S/R）卡片，返回他的问题和答案
+        :return:
+        """
+        pass
+
     def load_nsr_data(self, evt):
+        """
+        载入nsr统计数据
+        :param evt:
+        :return:
+        """
         pass
 
     def load_qa_data(self, evt):
+        """
+        载入记录的问题和答案
+        :param evt:
+        :return:
+        """
         pass
 
     def load_btn_data(self, evt):
+        """
+        载入panel_2中的按钮
+        :param evt:
+        :return:
+        """
         pass
 
     def on_show_ans(self, evt):
