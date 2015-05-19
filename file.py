@@ -117,7 +117,12 @@ def fetch_nsr(fn, nsr):
     :return:
     """
     nsr_list = []
+    new_ls = []
     for items in read_rs(fn):
         if items[0] == nsr:
             nsr_list.append(items)
-    return nsr_list[1:]
+    ls = nsr_list[1:]
+
+    for item in ls:
+        new_ls.append(tuple(item.split()))
+    return new_ls
