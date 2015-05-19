@@ -421,20 +421,20 @@ class DeleteRecord(wx.Dialog):
 class AboutDialog(wx.AboutDialogInfo):
     def __init__(self):
         wx.AboutDialogInfo.__init__(self)
-        description = "PyMemo是一个基于重复学习原理的记忆软件，简单易用，免费并开源。\n" \
-            "PyMeomo以AGPL3协议发布。\n\n" \
-            "这是我的一项毕业设计，课题为：基于Python的单词记忆软件开发\n" \
-            "GUI库：wxpython 2.7.9\n\n" \
-            "开发工具：pyCharm Community Edition 4.0.4\n" \
-            "这些图标是来自于不同的来源\n其中大部分来自：http://findicons.com/\n\n" \
-            "特别感谢：张治国老师的指导\n\n" \
-            "向所有提出过建议，报告Bug的人们致谢！\n\n" \
+        description = "这是我的一项毕业设计，《基于Python的单词记忆软件开发》\n\n" \
+            "GUI库：wxpython 2.7.9\n" \
+            "IDE：pyCharm Community Edition 4.0.4\n" \
+            "DB：SQLite3\n\n"\
+            "向所有给予帮组，提出建议，报告Bug的人们致谢！\n\n" \
             "联系：iliuyang@foxmail.com"
         self.SetIcon(wx.Icon('images/64/PyMemo_logo_white.png', wx.BITMAP_TYPE_PNG))
         self.SetName("PyMemo")
         self.SetVersion('1.0')
         self.SetDescription(description)
+        self.WebSite = ("https://github.com/SEALiu/PyMemo", "Code on GitHub")
         self.SetCopyright('(c)2015 刘洋')
+        self.Developers = ["刘洋"]
+        self.Artists = ["刘洋", "图标部分来自：http://findicons.com/"]
         wx.AboutBox(self)
 
 
@@ -602,210 +602,151 @@ class Import(wx.FileDialog):
 
 # Study Dialogs
 class MemoDialog(wx.Dialog):
-    """
-    这里有些问题，应该只刷新 panel_word 和 panel_btn
-    而不是销毁当前的对话框，重新绘制一个新的！！
-    """
-    def __init__(self, lib, i, ls):
-        wx.Dialog.__init__(self, None, -1, '学习', size=(-1, 470),
+    def __init__(self, lib, i):
+        wx.Dialog.__init__(self, None, -1, 'Study', size=(-1, 470),
                            style=wx.CAPTION | wx.SYSTEM_MENU | wx.CLOSE_BOX)
+        self.fn = 'recordstack_' + str(i) + '.txt'
+        self.n_list = file.fetch_nsr(self.fn, 'N')
+        self.s_list = file.fetch_nsr(self.fn, 'S')
+        self.r_list = file.fetch_nsr(self.fn, 'R')
+        self.flag = 1
 
-        panel = wx.Panel(self, -1)
+        self.panel = wx.Panel(self)
+        v_box_main = wx.BoxSizer(wx.VERTICAL)
 
-        # ------
-        n_list = file.fetch_nsr('recordstack_' + str(i) + '.txt', 'N')
-        s_list = file.fetch_nsr('recordstack_' + str(i) + '.txt', 'S')
-        r_list = file.fetch_nsr('recordstack_' + str(i) + '.txt', 'R')
-
-        # ------
-
-        v_box = wx.BoxSizer(wx.VERTICAL)
+        title = wx.StaticText(self.panel, -1, lib[i].encode('utf8'))
+        more = wx.BitmapButton(self.panel, -1, wx.Bitmap('images/other-size/more26.png'), style=wx.NO_BORDER)
+        line_1 = wx.StaticLine(self.panel, -1, size=(-1, -1), style=wx.LI_HORIZONTAL)
 
         h_box_title = wx.BoxSizer(wx.HORIZONTAL)
-        lib_name = wx.StaticText(panel, -1, lib[i].encode('utf8'))
-        more = wx.BitmapButton(panel, -1, wx.Bitmap('images/other-size/more26.png'), style=wx.NO_BORDER)
-
-        h_box_title.Add(lib_name, 1, wx.TOP | wx.RIGHT, 10)
+        h_box_title.Add(title, 1, wx.TOP | wx.RIGHT, 10)
         h_box_title.Add(more, 0, wx.ALIGN_RIGHT | wx.LEFT | wx.TOP, 5)
 
-        line_1 = wx.StaticLine(panel, -1, size=(-1, -1), style=wx.LI_HORIZONTAL)
-        v_box.Add(h_box_title, 0, wx.EXPAND | wx.LEFT | wx.RIGHT, 10)
-        v_box.Add(line_1, 0, wx.EXPAND)
+        v_box_main.Add(h_box_title, 0, wx.EXPAND | wx.LEFT | wx.RIGHT, 10)
+        v_box_main.Add(line_1, 0, wx.EXPAND)
 
-        # ------------
+        # ---------------
 
+        self.cl = wx.StaticText(self.panel, -1, "剩余卡片数: 0 0 0")
         h_box_info = wx.BoxSizer(wx.HORIZONTAL)
-        rest_list = ls
-        rest_text = "剩余卡片："
+        h_box_info.Add(self.cl, 1, wx.RIGHT, 10)
+        v_box_main.Add(h_box_info, 0, wx.EXPAND | wx.ALL, 10)
 
-        for label in rest_list:
-            rest_text += str(label) + " " * 2
+        # ---------------
 
-        rest_label = wx.StaticText(panel, -1, rest_text)
-        h_box_info.Add(rest_label, 1, wx.RIGHT, 10)
-        v_box.Add(h_box_info, 0, wx.EXPAND | wx.TOP | wx.LEFT | wx.RIGHT, 10)
+        panel_qa = wx.Panel(self.panel, -1, style=wx.BORDER_MASK)
+        panel_qa.SetBackgroundColour('white')
+        v_box_qa = wx.BoxSizer(wx.VERTICAL)
 
-        # ------
+        self.ques = wx.StaticText(panel_qa, -1, self.n_list[2][2].encode('utf-8'))
+        self.ans = wx.StaticText(panel_qa, -1, "")
+        line_2 = wx.StaticLine(panel_qa, -1, size=(-1, -1), style=wx.LI_HORIZONTAL)
 
-        panel_1 = wx.Panel(panel, -1, style=wx.BORDER_MASK)
-        panel_1.SetBackgroundColour('white')
-        v_box_1 = wx.BoxSizer(wx.VERTICAL)
-
-        # ---------
-
-        panel_c = wx.Panel(panel_1, -1)
-        panel_c.SetBackgroundColour('white')
-        v_box_c = wx.BoxSizer(wx.VERTICAL)
-        ques = "general"
-        ques_text = wx.StaticText(panel_c, -1, ques)
-        v_box_c.Add(ques_text, 0, wx.ALIGN_CENTER_HORIZONTAL)
-        panel_c.SetSizer(v_box_c)
-        v_box_1.Add(panel_c, 1, wx.EXPAND | wx.TOP, 50)
-
-        # --------
-
-        # panel_ca = wx.Panel(panel_1, -1)
-        # panel_ca.SetBackgroundColour('white')
-        # v_box_ca = wx.BoxSizer(wx.VERTICAL)
-        # ques = "general"
-        # ans = "[n.] 将军\n[adj.]全体的，总的，普遍的"
-        # ques_text = wx.StaticText(panel_ca, -1, ques)
-        # ans_text = wx.StaticText(panel_ca, -1, ans)
-        # line_2 = wx.StaticLine(panel_ca, -1, size=(-1, -1), style=wx.LI_HORIZONTAL)
-        # v_box_ca.Add(ques_text, 0, wx.ALIGN_CENTER_HORIZONTAL)
-        # v_box_ca.Add(line_2, 0, wx.EXPAND | wx.TOP | wx.BOTTOM, 20)
-        # v_box_ca.Add(ans_text, 0, wx.ALIGN_CENTER_HORIZONTAL)
-        # panel_ca.SetSizer(v_box_ca)
-        # v_box_1.Add(panel_ca, 1, wx.EXPAND | wx.TOP, 50)
-
-        # ---------
-
-        panel_1.SetSizer(v_box_1)
-        v_box.Add(panel_1, 10, wx.EXPAND | wx.ALL, 10)
-
-        # ---------
-
-        panel_2 = wx.Panel(panel, -1, style=wx.BORDER_MASK)
-        panel_2.SetBackgroundColour('white')
-
-        h_box_2 = wx.BoxSizer(wx.HORIZONTAL)
-
-        show_ans = buttons.GenButton(panel_2, -1, '显示答案')
-        show_ans.SetBezelWidth(0)
-        show_ans.SetBackgroundColour('white')
-
-        self.Bind(wx.EVT_BUTTON, self.on_show_ans, show_ans)
-        h_box_2.Add(show_ans, 1, wx.EXPAND)
-        panel_2.SetSizer(h_box_2)
-        v_box.Add(panel_2, 2, wx.EXPAND | wx.ALL, 10)
-
-        # ------------
-
-        # panel_3 = wx.Panel(panel, -1)
-        # h_box_3 = wx.BoxSizer(wx.HORIZONTAL)
-        #
-        # again = buttons.GenButton(panel_3, -1, "重来")
-        # again.SetBezelWidth(1)
-        # again.SetBackgroundColour('white')
-        # good = buttons.GenButton(panel_3, -1, "一般")
-        # good.SetBezelWidth(1)
-        # good.SetBackgroundColour('white')
-        # easy = buttons.GenButton(panel_3, -1, "简单")
-        # easy.SetBezelWidth(1)
-        # easy.SetBackgroundColour('white')
-        #
-        # self.Bind(wx.EVT_BUTTON, self.on_again, again)
-        # self.Bind(wx.EVT_BUTTON, self.on_good, good)
-        # self.Bind(wx.EVT_BUTTON, self.on_easy, easy)
-        #
-        # h_box_3.Add(again, 1, wx.EXPAND | wx.RIGHT, 10)
-        # h_box_3.Add(good, 1, wx.EXPAND | wx.RIGHT, 10)
-        # h_box_3.Add(easy, 1, wx.EXPAND)
-        #
-        # panel_3.SetSizer(h_box_3)
-        # v_box.Add(panel_3, 2, wx.EXPAND | wx.ALL, 10)
-
-        # --------------
-
-        # panel_4 = wx.Panel(panel, -1)
-        # h_box_4 = wx.BoxSizer(wx.HORIZONTAL)
-        #
-        # again = buttons.GenButton(panel_4, -1, "重来")
-        # again.SetBezelWidth(1)
-        # again.SetBackgroundColour('white')
-        # hard = buttons.GenButton(panel_4, -1, "困难")
-        # hard.SetBezelWidth(1)
-        # hard.SetBackgroundColour('white')
-        # good = buttons.GenButton(panel_4, -1, "一般")
-        # good.SetBezelWidth(1)
-        # good.SetBackgroundColour('white')
-        # easy = buttons.GenButton(panel_4, -1, "简单")
-        # easy.SetBezelWidth(1)
-        # easy.SetBackgroundColour('white')
-        #
-        # self.Bind(wx.EVT_BUTTON, self.on_again, again)
-        # self.Bind(wx.EVT_BUTTON, self.on_hard, hard)
-        # self.Bind(wx.EVT_BUTTON, self.on_good, good)
-        # self.Bind(wx.EVT_BUTTON, self.on_easy, easy)
-        #
-        # h_box_4.Add(again, 1, wx.EXPAND | wx.RIGHT, 10)
-        # h_box_4.Add(hard, 1, wx.EXPAND | wx.RIGHT, 10)
-        # h_box_4.Add(good, 1, wx.EXPAND | wx.RIGHT, 10)
-        # h_box_4.Add(easy, 1, wx.EXPAND)
-        #
-        # panel_4.SetSizer(h_box_4)
-        # v_box.Add(panel_4, 2, wx.EXPAND | wx.ALL, 10)
+        v_box_qa.Add(self.ques, 0, wx.LEFT | wx.TOP, 20)
+        v_box_qa.Add(line_2, 0, wx.EXPAND | wx.ALL, 10)
+        v_box_qa.Add(self.ans, 0, wx.LEFT, 20)
+        panel_qa.SetSizer(v_box_qa)
+        v_box_main.Add(panel_qa, 18, wx.EXPAND | wx.ALL, 10)
 
         # ----------------
+        self.panel_btn = wx.Panel(self.panel, -1)
 
-        panel.SetSizer(v_box)
+        self.show_ans = buttons.GenButton(self.panel_btn, -1, "显示答案")
+        self.show_ans.SetBezelWidth(1)
+        self.show_ans.SetBackgroundColour('white')
+        self.again = buttons.GenButton(self.panel_btn, -1, "重来")
+        self.again.SetBezelWidth(1)
+        self.again.SetBackgroundColour('white')
+        self.hard = buttons.GenButton(self.panel_btn, -1, "困难")
+        self.hard.SetBezelWidth(1)
+        self.hard.SetBackgroundColour('white')
+        self.good = buttons.GenButton(self.panel_btn, -1, "一般")
+        self.good.SetBezelWidth(1)
+        self.good.SetBackgroundColour('white')
+        self.easy = buttons.GenButton(self.panel_btn, -1, "简单")
+        self.easy.SetBezelWidth(1)
+        self.easy.SetBackgroundColour('white')
+
+        self.LoadBtn()
+        v_box_main.Add(self.panel_btn, 0, wx.EXPAND | wx.ALL, 10)
+
+        self.panel.SetSizer(v_box_main)
         self.Centre()
         self.Show(True)
 
-    def select_nsr(self):
-        """
-        抽取一个（N/S/R）卡片，返回他的问题和答案
-        :return:
-        """
+    def LoadBtn(self):
+        h_box_btn = wx.BoxSizer(wx.HORIZONTAL)
+        print self.flag
+        if self.flag == 1:
+            h_box_btn.Add(self.show_ans, 1, wx.EXPAND)
+            self.Bind(wx.EVT_BUTTON, lambda evt, item=self.n_list[2]: self.OnShowAns(evt, item), self.show_ans)
+        elif self.flag == 2:
+            h_box_btn.Add(self.again, 1, wx.EXPAND)
+            h_box_btn.Add(self.good, 1, wx.EXPAND)
+            self.Bind(wx.EVT_BUTTON, self.OnAgain, self.again)
+            self.Bind(wx.EVT_BUTTON, self.OnGood, self.good)
+        elif self.flag == 3:
+            h_box_btn.Add(self.again, 1, wx.EXPAND)
+            h_box_btn.Add(self.good, 1, wx.EXPAND)
+            h_box_btn.Add(self.easy, 1, wx.EXPAND)
+            self.Bind(wx.EVT_BUTTON, self.OnAgain, self.again)
+            self.Bind(wx.EVT_BUTTON, self.OnGood, self.good)
+            self.Bind(wx.EVT_BUTTON, self.OnEasy, self.easy)
+        elif self.flag == 4:
+            h_box_btn.Add(self.again, 1, wx.EXPAND)
+            h_box_btn.Add(self.hard, 1, wx.EXPAND)
+            h_box_btn.Add(self.good, 1, wx.EXPAND)
+            h_box_btn.Add(self.easy, 1, wx.EXPAND)
+            self.Bind(wx.EVT_BUTTON, self.OnAgain, self.again)
+            self.Bind(wx.EVT_BUTTON, self.OnHard, self.hard)
+            self.Bind(wx.EVT_BUTTON, self.OnGood, self.good)
+            self.Bind(wx.EVT_BUTTON, self.OnEasy, self.easy)
+        self.panel_btn.SetSizer(h_box_btn)
+
+    def OnShowAns(self, evt, i):
+        self.SetAnswer(i[3].encode('utf-8'))
+        self.SetFlag(i[8])
+        self.show_ans.Destroy()
+        self.LoadBtn()
+
+    def SetQuestion(self, ques):
+        self.ques.SetLabel(ques)
+        self.SetAnswer("")
+        self.SetCardsLeft()
+
+    def SetAnswer(self, ans):
+        self.ans.SetLabel(ans)
+
+    def SetFlag(self, ef):
+        if float(ef) < 2.5:
+            self.flag = 2
+        elif float(ef) == 2.5:
+            self.flag = 3
+        elif float(ef) > 2.5:
+            self.flag = 4
+
+    def SetCardsLeft(self):
+        dic = file.fetch_statistic(self.fn)
+        self.cl.SetLabel("剩余卡片数: %d %d %d" % (dic['N'], dic['S'], dic['R']))
+
+    def FetchACard(self, nsr):
+        if nsr == 'N':
+            return self.n_list.pop(0)
+        elif nsr == 'S':
+            return self.s_list.pop(0)
+        elif nsr == 'R':
+            return self.r_list.pop(0)
+
+    def OnAgain(self, evt):
         pass
 
-    def load_nsr_data(self, evt):
-        """
-        载入nsr统计数据
-        :param evt:
-        :return:
-        """
+    def OnHard(self, evt):
         pass
 
-    def load_qa_data(self, evt):
-        """
-        载入记录的问题和答案
-        :param evt:
-        :return:
-        """
+    def OnGood(self, evt):
         pass
 
-    def load_btn_data(self, evt):
-        """
-        载入panel_2中的按钮
-        :param evt:
-        :return:
-        """
-        pass
-
-    def on_show_ans(self, evt):
-        pass
-
-    def on_again(self, evt):
-        pass
-
-    def on_hard(self, evt):
-        pass
-
-    def on_good(self, evt):
-        pass
-
-    def on_easy(self, evt):
+    def OnEasy(self, evt):
         pass
 
 
@@ -923,7 +864,7 @@ class Prepare(wx.Dialog):
             start = buttons.GenButton(panel_2, -1, '开始学习')
             start.SetBezelWidth(0)
             start.SetBackgroundColour('white')
-            start.Bind(wx.EVT_BUTTON, lambda evt, l=lib, index=i, ls=[n_num, s_num, s_num]: self.on_study(evt, lib, i, ls))
+            start.Bind(wx.EVT_BUTTON, lambda evt, l=lib, index=i: self.on_study(evt, l, index))
             h_box_2.Add(start, 1, wx.EXPAND | wx.TOP | wx.BOTTOM | wx.RIGHT, 10)
 
             panel_2.SetSizer(h_box_2)
@@ -951,7 +892,7 @@ class Prepare(wx.Dialog):
         setting_dlg.Destroy()
 
     @staticmethod
-    def on_study(evt, lib, i, ls):
-        memo_dlg = MemoDialog(lib, i, ls)
+    def on_study(evt, lib, i):
+        memo_dlg = MemoDialog(lib, i)
         memo_dlg.ShowModal()
         memo_dlg.Destroy()
