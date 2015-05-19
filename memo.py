@@ -200,7 +200,7 @@ class ListCtrlRight(wx.ListCtrl):
         menu = wx.Menu()
         record_update = wx.MenuItem(menu, -1, "修改")
         record_info = wx.MenuItem(menu, -1, "详细信息")
-        record_delete = wx.MenuItem(menu, -1, '挂起/删除')
+        record_delete = wx.MenuItem(menu, -1, "挂起/删除")
 
         self.Bind(wx.EVT_MENU, lambda e, d=detail: self.on_record_update(e, d), record_update)
         self.Bind(wx.EVT_MENU, lambda e, d=detail: self.on_record_info(e, d), record_info)
