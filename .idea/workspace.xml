@@ -2,13 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="09d777a0-516b-4436-9365-587facb31efa" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test2.py" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/rename.py" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db_pymemo.db" afterPath="$PROJECT_DIR$/db_pymemo.db" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Dialog.py" afterPath="$PROJECT_DIR$/Dialog.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DBFun.py" afterPath="$PROJECT_DIR$/DBFun.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/file.py" afterPath="$PROJECT_DIR$/file.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/memo.py" afterPath="$PROJECT_DIR$/memo.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/recordstack_001.txt" afterPath="$PROJECT_DIR$/recordstack_001.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/recordstack_002.txt" afterPath="$PROJECT_DIR$/recordstack_002.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="PyMemo.iws" />
@@ -55,28 +55,19 @@
       <file leaf-file-name="memo.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/memo.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.2482599" vertical-offset="1678" max-vertical-offset="2109">
-              <caret line="202" column="54" selection-start-line="202" selection-start-column="54" selection-end-line="202" selection-end-column="54" />
+            <state vertical-scroll-proportion="2.1758065" vertical-offset="0" max-vertical-offset="2014">
+              <caret line="288" column="29" selection-start-line="288" selection-start-column="29" selection-end-line="288" selection-end-column="29" />
               <folding>
                 <element signature="e#34#44#0" expanded="true" />
                 <element signature="e#204#5421#0" expanded="false" />
-                <element signature="e#243#672#0" expanded="false" />
-                <element signature="e#1718#1810#0" expanded="false" />
-                <element signature="e#1861#1997#0" expanded="false" />
-                <element signature="e#2053#2414#0" expanded="false" />
-                <element signature="e#2465#3472#0" expanded="false" />
-                <element signature="e#3531#3983#0" expanded="false" />
-                <element signature="e#4041#4474#0" expanded="false" />
-                <element signature="e#4531#4668#0" expanded="false" />
-                <element signature="e#4728#4904#0" expanded="false" />
-                <element signature="e#4951#5421#0" expanded="false" />
-                <element signature="e#8317#10831#0" expanded="false" />
-                <element signature="e#8365#9746#0" expanded="false" />
-                <element signature="e#9806#10831#0" expanded="false" />
-                <element signature="e#10860#17840#0" expanded="false" />
-                <element signature="e#17459#17557#0" expanded="false" />
-                <element signature="e#17596#17757#0" expanded="false" />
-                <element signature="e#17808#17840#0" expanded="false" />
+                <element signature="e#5462#8275#0" expanded="false" />
+                <element signature="e#10848#17828#0" expanded="false" />
+                <element signature="e#11150#12644#0" expanded="false" />
+                <element signature="e#12686#14039#0" expanded="false" />
+                <element signature="e#17299#17396#0" expanded="false" />
+                <element signature="e#17447#17545#0" expanded="false" />
+                <element signature="e#17584#17745#0" expanded="false" />
+                <element signature="e#17796#17828#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -85,8 +76,8 @@
       <file leaf-file-name="Dialog.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Dialog.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="2251" max-vertical-offset="6346">
-              <caret line="679" column="26" selection-start-line="679" selection-start-column="26" selection-end-line="679" selection-end-column="26" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="2128" max-vertical-offset="6878">
+              <caret line="668" column="8" selection-start-line="668" selection-start-column="8" selection-end-line="668" selection-end-column="8" />
               <folding>
                 <element signature="e#24#35#0" expanded="true" />
                 <element signature="e#167#2086#0" expanded="false" />
@@ -107,10 +98,10 @@
                 <element signature="e#19347#24914#0" expanded="false" />
                 <element signature="e#24949#25170#0" expanded="false" />
                 <element signature="e#25206#25573#0" expanded="false" />
-                <element signature="e#30223#30302#0" expanded="false" />
-                <element signature="e#30401#30559#0" expanded="false" />
-                <element signature="e#30750#30928#0" expanded="false" />
-                <marker date="1432037277332" expanded="true" signature="33466:33566" placeholder="..." />
+                <element signature="e#30639#30817#0" expanded="false" />
+                <element signature="e#31444#31572#0" expanded="false" />
+                <element signature="e#31635#32177#0" expanded="false" />
+                <marker date="1432367778511" expanded="true" signature="34550:34650" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -119,18 +110,61 @@
       <file leaf-file-name="file.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/file.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="583" max-vertical-offset="1045">
-              <caret line="128" column="0" selection-start-line="128" selection-start-column="0" selection-end-line="128" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="627">
+              <caret line="66" column="0" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
               <folding>
-                <element signature="e#24#33#0" expanded="true" />
-                <element signature="e#562#945#0" expanded="false" />
-                <element signature="e#977#1334#0" expanded="false" />
-                <element signature="e#1358#1429#0" expanded="false" />
-                <element signature="e#1461#1598#0" expanded="false" />
-                <element signature="e#1623#1870#0" expanded="false" />
-                <element signature="e#1904#2113#0" expanded="false" />
-                <element signature="e#2144#2495#0" expanded="false" />
+                <element signature="e#24#39#0" expanded="true" />
+                <element signature="e#81#509#0" expanded="false" />
+                <element signature="e#81#135#1" expanded="false" />
+                <element signature="e#552#935#0" expanded="false" />
+                <element signature="e#552#641#1" expanded="false" />
+                <element signature="e#967#1324#0" expanded="false" />
+                <element signature="e#1348#1419#0" expanded="false" />
+                <element signature="e#1451#1588#0" expanded="false" />
+                <element signature="e#1613#1860#0" expanded="false" />
+                <element signature="e#1894#2103#0" expanded="false" />
+                <element signature="e#2134#2485#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DBFun.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/DBFun.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="969">
+              <caret line="45" column="17" selection-start-line="45" selection-start-column="17" selection-end-line="45" selection-end-column="17" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DBInit.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/DBInit.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="273" max-vertical-offset="950">
+              <caret line="29" column="2" selection-start-line="29" selection-start-column="2" selection-end-line="29" selection-end-column="18" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="recordstack_001.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/recordstack_001.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="266">
+              <caret line="7" column="26" selection-start-line="7" selection-start-column="26" selection-end-line="7" selection-end-column="26" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="recordstack_002.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/recordstack_002.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="266">
+              <caret line="3" column="33" selection-start-line="3" selection-start-column="33" selection-end-line="3" selection-end-column="33" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -138,8 +172,8 @@
       <file leaf-file-name="test.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1127" max-vertical-offset="1558">
-              <caret line="92" column="0" selection-start-line="92" selection-start-column="0" selection-end-line="95" selection-end-column="14" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="966" max-vertical-offset="1558">
+              <caret line="86" column="0" selection-start-line="86" selection-start-column="0" selection-end-line="86" selection-end-column="0" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
                 <element signature="e#132#408#0" expanded="false" />
@@ -150,29 +184,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test2.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test2.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1260" max-vertical-offset="4009">
-              <caret line="97" column="26" selection-start-line="97" selection-start-column="26" selection-end-line="97" selection-end-column="26" />
-              <folding>
-                <element signature="e#24#33#0" expanded="true" />
-                <element signature="e#154#1086#0" expanded="false" />
-                <element signature="e#7880#7959#0" expanded="false" />
-                <element signature="e#7999#8021#0" expanded="false" />
-                <element signature="e#8058#8216#0" expanded="false" />
-                <element signature="e#8254#8366#0" expanded="false" />
-                <element signature="e#8407#8585#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="FrameFun.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/FrameFun.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1314" max-vertical-offset="1957">
-              <caret line="65" column="25" selection-start-line="65" selection-start-column="25" selection-end-line="65" selection-end-column="25" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1337" max-vertical-offset="1957">
+              <caret line="95" column="22" selection-start-line="95" selection-start-column="4" selection-end-line="95" selection-end-column="22" />
               <folding>
                 <element signature="e#24#36#0" expanded="true" />
               </folding>
@@ -215,16 +231,18 @@
         <option value="$PROJECT_DIR$/png.py" />
         <option value="$PROJECT_DIR$/recordstack_test.py" />
         <option value="$PROJECT_DIR$/recordstack.pm" />
-        <option value="$PROJECT_DIR$/DBFun.py" />
         <option value="$PROJECT_DIR$/recordstack_001.txt" />
         <option value="$PROJECT_DIR$/recordstack_000.txt" />
         <option value="$PROJECT_DIR$/FrameFun.py" />
         <option value="$PROJECT_DIR$/timer.py" />
         <option value="$USER_HOME$/文档/python/wxPython-2.8.9.1/demo/ButtonPanel.py" />
         <option value="$PROJECT_DIR$/test.py" />
-        <option value="$PROJECT_DIR$/file.py" />
         <option value="$PROJECT_DIR$/test2.py" />
+        <option value="$PROJECT_DIR$/rename.py" />
+        <option value="$PROJECT_DIR$/file.py" />
+        <option value="$PROJECT_DIR$/DBFun.py" />
         <option value="$PROJECT_DIR$/memo.py" />
+        <option value="$PROJECT_DIR$/recordstack_002.txt" />
         <option value="$PROJECT_DIR$/Dialog.py" />
       </list>
     </option>
@@ -277,6 +295,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -297,12 +316,11 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="options.lastSelected" value="preferences.lookFeel" />
+    <property name="options.lastSelected" value="configurable.group.appearance" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="recentsLimit" value="5" />
@@ -368,26 +386,6 @@
       <ConfigurationWrapper RunnerId="PythonRunner" />
       <method />
     </configuration>
-    <configuration default="false" name="Main (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$USER_HOME$/文档/python/wxPython-2.8.9.1/demo" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="PyMemo" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$USER_HOME$/文档/python/wxPython-2.8.9.1/demo/Main.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <RunnerSettings RunnerId="PythonRunner" />
-      <ConfigurationWrapper RunnerId="PythonRunner" />
-      <method />
-    </configuration>
     <configuration default="false" name="test2" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -427,6 +425,28 @@
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <RunnerSettings RunnerId="PythonRunner" />
+      <ConfigurationWrapper RunnerId="PythonRunner" />
+      <method />
+    </configuration>
+    <configuration default="false" name="rename" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="PyMemo" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/rename.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <RunnerSettings RunnerId="PyDebugRunner" />
+      <RunnerSettings RunnerId="PythonRunner" />
+      <ConfigurationWrapper RunnerId="PyDebugRunner" />
       <ConfigurationWrapper RunnerId="PythonRunner" />
       <method />
     </configuration>
@@ -649,17 +669,17 @@
       <item index="3" class="java.lang.String" itemvalue="Python.DBFun" />
       <item index="4" class="java.lang.String" itemvalue="Python.memo" />
       <item index="5" class="java.lang.String" itemvalue="Python.test" />
-      <item index="6" class="java.lang.String" itemvalue="Python.Main (1)" />
-      <item index="7" class="java.lang.String" itemvalue="Python.test2" />
-      <item index="8" class="java.lang.String" itemvalue="Python.Dialog" />
+      <item index="6" class="java.lang.String" itemvalue="Python.test2" />
+      <item index="7" class="java.lang.String" itemvalue="Python.Dialog" />
+      <item index="8" class="java.lang.String" itemvalue="Python.rename" />
     </list>
     <recent_temporary>
       <list size="5">
         <item index="0" class="java.lang.String" itemvalue="Python.memo" />
         <item index="1" class="java.lang.String" itemvalue="Python.Dialog" />
-        <item index="2" class="java.lang.String" itemvalue="Python.test2" />
-        <item index="3" class="java.lang.String" itemvalue="Python.test" />
-        <item index="4" class="java.lang.String" itemvalue="Python.Main (1)" />
+        <item index="2" class="java.lang.String" itemvalue="Python.rename" />
+        <item index="3" class="java.lang.String" itemvalue="Python.test2" />
+        <item index="4" class="java.lang.String" itemvalue="Python.test" />
       </list>
     </recent_temporary>
   </component>
@@ -685,10 +705,10 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15247679" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.38674885" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16563468" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.38573745" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27118644" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.201849" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3379205" sideWeight="0.5" order="12" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -706,22 +726,22 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2676282" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.26911315" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39102563" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.38573745" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3379205" sideWeight="0.5" order="12" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.21104388" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3621795" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16563468" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.20128824" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -754,17 +774,133 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/sql">
+    <entry file="file://$PROJECT_DIR$/memo.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="140" max-vertical-offset="780">
-          <caret line="7" column="14" selection-start-line="7" selection-start-column="14" selection-end-line="7" selection-end-column="14" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="1426" max-vertical-offset="2033">
+          <caret line="243" column="28" selection-start-line="243" selection-start-column="28" selection-end-line="243" selection-end-column="28" />
+          <folding>
+            <element signature="e#34#44#0" expanded="true" />
+            <element signature="e#204#5421#0" expanded="false" />
+            <element signature="e#5462#8275#0" expanded="false" />
+            <element signature="e#10848#17828#0" expanded="false" />
+            <element signature="e#11150#12644#0" expanded="false" />
+            <element signature="e#12686#14039#0" expanded="false" />
+            <element signature="e#17299#17396#0" expanded="false" />
+            <element signature="e#17447#17545#0" expanded="false" />
+            <element signature="e#17584#17745#0" expanded="false" />
+            <element signature="e#17796#17828#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Dialog.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3648">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#24#35#0" expanded="true" />
+            <element signature="e#167#2086#0" expanded="false" />
+            <element signature="e#195#1456#0" expanded="false" />
+            <element signature="e#2121#3934#0" expanded="false" />
+            <element signature="e#2177#3519#0" expanded="false" />
+            <element signature="e#3574#3934#0" expanded="false" />
+            <element signature="e#3967#6306#0" expanded="false" />
+            <element signature="e#6341#7771#0" expanded="false" />
+            <element signature="e#6387#7323#0" expanded="false" />
+            <element signature="e#7820#10146#0" expanded="false" />
+            <element signature="e#10184#12318#0" expanded="false" />
+            <element signature="e#12356#16208#0" expanded="false" />
+            <element signature="e#14970#16010#0" expanded="false" />
+            <element signature="e#16246#18495#0" expanded="false" />
+            <element signature="e#17936#18247#0" expanded="false" />
+            <element signature="e#18554#19308#0" expanded="false" />
+            <element signature="e#19347#24914#0" expanded="false" />
+            <element signature="e#24949#25170#0" expanded="false" />
+            <element signature="e#25206#25573#0" expanded="false" />
+            <element signature="e#30639#30817#0" expanded="false" />
+            <element signature="e#31444#31572#0" expanded="false" />
+            <element signature="e#31635#32177#0" expanded="false" />
+            <marker date="1432367778511" expanded="true" signature="34550:34650" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DBFun.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="855" max-vertical-offset="969">
+          <caret line="45" column="17" selection-start-line="45" selection-start-column="17" selection-end-line="45" selection-end-column="17" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/DBInit.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="200" max-vertical-offset="740">
-          <caret line="10" column="16" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="16" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="665" max-vertical-offset="950">
+          <caret line="35" column="1" selection-start-line="35" selection-start-column="1" selection-end-line="35" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/file.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="19" max-vertical-offset="627">
+          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding>
+            <element signature="e#24#39#0" expanded="true" />
+            <element signature="e#81#509#0" expanded="false" />
+            <element signature="e#81#135#1" expanded="false" />
+            <element signature="e#552#935#0" expanded="false" />
+            <element signature="e#552#641#1" expanded="false" />
+            <element signature="e#967#1324#0" expanded="false" />
+            <element signature="e#1348#1419#0" expanded="false" />
+            <element signature="e#1451#1588#0" expanded="false" />
+            <element signature="e#1613#1860#0" expanded="false" />
+            <element signature="e#1894#2103#0" expanded="false" />
+            <element signature="e#2134#2485#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="966" max-vertical-offset="1558">
+          <caret line="86" column="0" selection-start-line="86" selection-start-column="0" selection-end-line="86" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+            <element signature="e#132#408#0" expanded="false" />
+            <element signature="e#438#459#0" expanded="false" />
+            <element signature="e#488#1017#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="475" max-vertical-offset="4807">
+          <caret line="25" column="49" selection-start-line="25" selection-start-column="49" selection-end-line="25" selection-end-column="49" />
+          <folding>
+            <element signature="e#24#33#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FrameFun.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="114" max-vertical-offset="1957">
+          <caret line="18" column="7" selection-start-line="18" selection-start-column="7" selection-end-line="18" selection-end-column="7" />
+          <folding>
+            <element signature="e#24#36#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FrameFun.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1314" max-vertical-offset="1957">
+          <caret line="65" column="25" selection-start-line="65" selection-start-column="25" selection-end-line="65" selection-end-column="25" />
+          <folding>
+            <element signature="e#24#36#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -802,18 +938,11 @@
             <element signature="e#19347#24914#0" expanded="false" />
             <element signature="e#24949#25170#0" expanded="false" />
             <element signature="e#25206#25573#0" expanded="false" />
-            <element signature="e#30223#30302#0" expanded="false" />
-            <element signature="e#30401#30559#0" expanded="false" />
-            <element signature="e#30750#30928#0" expanded="false" />
-            <marker date="1432037277332" expanded="true" signature="33466:33566" placeholder="..." />
+            <element signature="e#30639#30817#0" expanded="false" />
+            <element signature="e#31444#31572#0" expanded="false" />
+            <element signature="e#31635#32177#0" expanded="false" />
+            <marker date="1432367778511" expanded="true" signature="34550:34650" placeholder="..." />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Record.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="180" max-vertical-offset="1340">
-          <caret line="18" column="32" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="32" />
         </state>
       </provider>
     </entry>
@@ -824,13 +953,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Library.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="867" max-vertical-offset="1540">
-          <caret line="60" column="29" selection-start-line="60" selection-start-column="29" selection-end-line="60" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/FrameFun.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="140" max-vertical-offset="300">
@@ -865,18 +987,11 @@
             <element signature="e#19347#24914#0" expanded="false" />
             <element signature="e#24949#25170#0" expanded="false" />
             <element signature="e#25206#25573#0" expanded="false" />
-            <element signature="e#30223#30302#0" expanded="false" />
-            <element signature="e#30401#30559#0" expanded="false" />
-            <element signature="e#30750#30928#0" expanded="false" />
-            <marker date="1432037277332" expanded="true" signature="33466:33566" placeholder="..." />
+            <element signature="e#30639#30817#0" expanded="false" />
+            <element signature="e#31444#31572#0" expanded="false" />
+            <element signature="e#31635#32177#0" expanded="false" />
+            <marker date="1432367778511" expanded="true" signature="34550:34650" placeholder="..." />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Record.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="560" max-vertical-offset="1460">
-          <caret line="28" column="32" selection-start-line="28" selection-start-column="32" selection-end-line="28" selection-end-column="32" />
         </state>
       </provider>
     </entry>
@@ -884,13 +999,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="480">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Library.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="867" max-vertical-offset="1540">
-          <caret line="60" column="29" selection-start-line="60" selection-start-column="29" selection-end-line="60" selection-end-column="29" />
         </state>
       </provider>
     </entry>
@@ -928,25 +1036,11 @@
             <element signature="e#19347#24914#0" expanded="false" />
             <element signature="e#24949#25170#0" expanded="false" />
             <element signature="e#25206#25573#0" expanded="false" />
-            <element signature="e#30223#30302#0" expanded="false" />
-            <element signature="e#30401#30559#0" expanded="false" />
-            <element signature="e#30750#30928#0" expanded="false" />
-            <marker date="1432037277332" expanded="true" signature="33466:33566" placeholder="..." />
+            <element signature="e#30639#30817#0" expanded="false" />
+            <element signature="e#31444#31572#0" expanded="false" />
+            <element signature="e#31635#32177#0" expanded="false" />
+            <marker date="1432367778511" expanded="true" signature="34550:34650" placeholder="..." />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Record.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="466" max-vertical-offset="1060">
-          <caret line="6" column="44" selection-start-line="6" selection-start-column="44" selection-end-line="6" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Library.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1420" max-vertical-offset="1540">
-          <caret line="71" column="36" selection-start-line="71" selection-start-column="36" selection-end-line="71" selection-end-column="36" />
         </state>
       </provider>
     </entry>
@@ -984,18 +1078,11 @@
             <element signature="e#19347#24914#0" expanded="false" />
             <element signature="e#24949#25170#0" expanded="false" />
             <element signature="e#25206#25573#0" expanded="false" />
-            <element signature="e#30223#30302#0" expanded="false" />
-            <element signature="e#30401#30559#0" expanded="false" />
-            <element signature="e#30750#30928#0" expanded="false" />
-            <marker date="1432037277332" expanded="true" signature="33466:33566" placeholder="..." />
+            <element signature="e#30639#30817#0" expanded="false" />
+            <element signature="e#31444#31572#0" expanded="false" />
+            <element signature="e#31635#32177#0" expanded="false" />
+            <marker date="1432367778511" expanded="true" signature="34550:34650" placeholder="..." />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Record.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="300">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1023,10 +1110,10 @@
             <element signature="e#19347#24914#0" expanded="false" />
             <element signature="e#24949#25170#0" expanded="false" />
             <element signature="e#25206#25573#0" expanded="false" />
-            <element signature="e#30223#30302#0" expanded="false" />
-            <element signature="e#30401#30559#0" expanded="false" />
-            <element signature="e#30750#30928#0" expanded="false" />
-            <marker date="1432037277332" expanded="true" signature="33466:33566" placeholder="..." />
+            <element signature="e#30639#30817#0" expanded="false" />
+            <element signature="e#31444#31572#0" expanded="false" />
+            <element signature="e#31635#32177#0" expanded="false" />
+            <marker date="1432367778511" expanded="true" signature="34550:34650" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -1075,10 +1162,10 @@
             <element signature="e#19347#24914#0" expanded="false" />
             <element signature="e#24949#25170#0" expanded="false" />
             <element signature="e#25206#25573#0" expanded="false" />
-            <element signature="e#30223#30302#0" expanded="false" />
-            <element signature="e#30401#30559#0" expanded="false" />
-            <element signature="e#30750#30928#0" expanded="false" />
-            <marker date="1432037277332" expanded="true" signature="33466:33566" placeholder="..." />
+            <element signature="e#30639#30817#0" expanded="false" />
+            <element signature="e#31444#31572#0" expanded="false" />
+            <element signature="e#31635#32177#0" expanded="false" />
+            <marker date="1432367778511" expanded="true" signature="34550:34650" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -1117,10 +1204,10 @@
             <element signature="e#19347#24914#0" expanded="false" />
             <element signature="e#24949#25170#0" expanded="false" />
             <element signature="e#25206#25573#0" expanded="false" />
-            <element signature="e#30223#30302#0" expanded="false" />
-            <element signature="e#30401#30559#0" expanded="false" />
-            <element signature="e#30750#30928#0" expanded="false" />
-            <marker date="1432037277332" expanded="true" signature="33466:33566" placeholder="..." />
+            <element signature="e#30639#30817#0" expanded="false" />
+            <element signature="e#31444#31572#0" expanded="false" />
+            <element signature="e#31635#32177#0" expanded="false" />
+            <marker date="1432367778511" expanded="true" signature="34550:34650" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -1149,10 +1236,10 @@
             <element signature="e#19347#24914#0" expanded="false" />
             <element signature="e#24949#25170#0" expanded="false" />
             <element signature="e#25206#25573#0" expanded="false" />
-            <element signature="e#30223#30302#0" expanded="false" />
-            <element signature="e#30401#30559#0" expanded="false" />
-            <element signature="e#30750#30928#0" expanded="false" />
-            <marker date="1432037277332" expanded="true" signature="33466:33566" placeholder="..." />
+            <element signature="e#30639#30817#0" expanded="false" />
+            <element signature="e#31444#31572#0" expanded="false" />
+            <element signature="e#31635#32177#0" expanded="false" />
+            <marker date="1432367778511" expanded="true" signature="34550:34650" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -1161,20 +1248,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="300" max-vertical-offset="780">
           <caret line="15" column="28" selection-start-line="15" selection-start-column="28" selection-end-line="15" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Library.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="60" max-vertical-offset="1900">
-          <caret line="18" column="40" selection-start-line="18" selection-start-column="40" selection-end-line="18" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Record.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1660">
-          <caret line="59" column="29" selection-start-line="59" selection-start-column="29" selection-end-line="59" selection-end-column="29" />
         </state>
       </provider>
     </entry>
@@ -1204,27 +1277,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/recordstack_001.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="247">
-          <caret line="7" column="26" selection-start-line="7" selection-start-column="26" selection-end-line="7" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/recordstack_002.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="171">
-          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/recordstack_003.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="435">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/lib/python2.7/dist-packages/wx-2.8-gtk2-unicode/wx/_gdi.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33175355" vertical-offset="91649" max-vertical-offset="147516">
@@ -1232,35 +1284,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/DBFun.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5241379" vertical-offset="0" max-vertical-offset="435">
-          <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DBInit.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5678161" vertical-offset="114" max-vertical-offset="950">
-          <caret line="19" column="38" selection-start-line="19" selection-start-column="38" selection-end-line="19" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FrameFun.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1314" max-vertical-offset="1957">
-          <caret line="65" column="25" selection-start-line="65" selection-start-column="25" selection-end-line="65" selection-end-column="25" />
-          <folding>
-            <element signature="e#24#36#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/文档/学习/Python/Codes/PyMemo/ui.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.38426965" vertical-offset="0" max-vertical-offset="1881">
           <caret line="11" column="29" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1268,7 +1295,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="2.983721" vertical-offset="114978" max-vertical-offset="119814">
           <caret line="6119" column="19" selection-start-line="6119" selection-start-column="4" selection-end-line="6119" selection-end-column="19" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1284,7 +1310,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.60697675" vertical-offset="8593" max-vertical-offset="16720">
           <caret line="470" column="55" selection-start-line="470" selection-start-column="45" selection-end-line="470" selection-end-column="55" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1292,7 +1317,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.4275" vertical-offset="0" max-vertical-offset="43757">
           <caret line="9" column="25" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="25" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1300,14 +1324,30 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.18018018" vertical-offset="14349" max-vertical-offset="25403">
           <caret line="751" column="18" selection-start-line="751" selection-start-column="18" selection-end-line="751" selection-end-column="18" />
-          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharm40/system/python_stubs/-1247972723/posix.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="12350" max-vertical-offset="29260">
+          <caret line="658" column="4" selection-start-line="658" selection-start-column="4" selection-end-line="658" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4807">
+          <caret line="25" column="49" selection-start-line="25" selection-start-column="49" selection-end-line="25" selection-end-column="49" />
+          <folding>
+            <element signature="e#24#33#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1127" max-vertical-offset="1558">
-          <caret line="92" column="0" selection-start-line="92" selection-start-column="0" selection-end-line="95" selection-end-column="14" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="1012" max-vertical-offset="1558">
+          <caret line="86" column="0" selection-start-line="86" selection-start-column="0" selection-end-line="86" selection-end-column="0" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
             <element signature="e#132#408#0" expanded="false" />
@@ -1317,43 +1357,36 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/file.py">
+    <entry file="file://$PROJECT_DIR$/recordstack_003.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="583" max-vertical-offset="1064">
-          <caret line="128" column="0" selection-start-line="128" selection-start-column="0" selection-end-line="128" selection-end-column="0" />
-          <folding>
-            <element signature="e#24#33#0" expanded="true" />
-            <element signature="e#562#945#0" expanded="false" />
-            <element signature="e#977#1334#0" expanded="false" />
-            <element signature="e#1358#1429#0" expanded="false" />
-            <element signature="e#1461#1598#0" expanded="false" />
-            <element signature="e#1623#1870#0" expanded="false" />
-            <element signature="e#1904#2113#0" expanded="false" />
-            <element signature="e#2144#2495#0" expanded="false" />
-          </folding>
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="171">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test2.py">
+    <entry file="file://$PROJECT_DIR$/DBInit.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1260" max-vertical-offset="4009">
-          <caret line="97" column="26" selection-start-line="97" selection-start-column="26" selection-end-line="97" selection-end-column="26" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="273" max-vertical-offset="950">
+          <caret line="29" column="2" selection-start-line="29" selection-start-column="2" selection-end-line="29" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FrameFun.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1337" max-vertical-offset="1957">
+          <caret line="95" column="22" selection-start-line="95" selection-start-column="4" selection-end-line="95" selection-end-column="22" />
           <folding>
-            <element signature="e#24#33#0" expanded="true" />
-            <element signature="e#154#1086#0" expanded="false" />
-            <element signature="e#7880#7959#0" expanded="false" />
-            <element signature="e#7999#8021#0" expanded="false" />
-            <element signature="e#8058#8216#0" expanded="false" />
-            <element signature="e#8254#8366#0" expanded="false" />
-            <element signature="e#8407#8585#0" expanded="false" />
+            <element signature="e#24#36#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Dialog.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2251" max-vertical-offset="6346">
-          <caret line="679" column="26" selection-start-line="679" selection-start-column="26" selection-end-line="679" selection-end-column="26" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="2128" max-vertical-offset="6878">
+          <caret line="668" column="8" selection-start-line="668" selection-start-column="8" selection-end-line="668" selection-end-column="8" />
           <folding>
             <element signature="e#24#35#0" expanded="true" />
             <element signature="e#167#2086#0" expanded="false" />
@@ -1374,38 +1407,73 @@
             <element signature="e#19347#24914#0" expanded="false" />
             <element signature="e#24949#25170#0" expanded="false" />
             <element signature="e#25206#25573#0" expanded="false" />
-            <element signature="e#30223#30302#0" expanded="false" />
-            <element signature="e#30401#30559#0" expanded="false" />
-            <element signature="e#30750#30928#0" expanded="false" />
-            <marker date="1432037277332" expanded="true" signature="33466:33566" placeholder="..." />
+            <element signature="e#30639#30817#0" expanded="false" />
+            <element signature="e#31444#31572#0" expanded="false" />
+            <element signature="e#31635#32177#0" expanded="false" />
+            <marker date="1432367778511" expanded="true" signature="34550:34650" placeholder="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/file.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="627">
+          <caret line="66" column="0" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
+          <folding>
+            <element signature="e#24#39#0" expanded="true" />
+            <element signature="e#81#509#0" expanded="false" />
+            <element signature="e#81#135#1" expanded="false" />
+            <element signature="e#552#935#0" expanded="false" />
+            <element signature="e#552#641#1" expanded="false" />
+            <element signature="e#967#1324#0" expanded="false" />
+            <element signature="e#1348#1419#0" expanded="false" />
+            <element signature="e#1451#1588#0" expanded="false" />
+            <element signature="e#1613#1860#0" expanded="false" />
+            <element signature="e#1894#2103#0" expanded="false" />
+            <element signature="e#2134#2485#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DBFun.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="969">
+          <caret line="45" column="17" selection-start-line="45" selection-start-column="17" selection-end-line="45" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/recordstack_001.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="247">
+          <caret line="7" column="26" selection-start-line="7" selection-start-column="26" selection-end-line="7" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/recordstack_002.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="266">
+          <caret line="3" column="33" selection-start-line="3" selection-start-column="33" selection-end-line="3" selection-end-column="33" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/memo.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.2482599" vertical-offset="1678" max-vertical-offset="2109">
-          <caret line="202" column="54" selection-start-line="202" selection-start-column="54" selection-end-line="202" selection-end-column="54" />
+        <state vertical-scroll-proportion="2.1758065" vertical-offset="0" max-vertical-offset="2014">
+          <caret line="288" column="29" selection-start-line="288" selection-start-column="29" selection-end-line="288" selection-end-column="29" />
           <folding>
             <element signature="e#34#44#0" expanded="true" />
             <element signature="e#204#5421#0" expanded="false" />
-            <element signature="e#243#672#0" expanded="false" />
-            <element signature="e#1718#1810#0" expanded="false" />
-            <element signature="e#1861#1997#0" expanded="false" />
-            <element signature="e#2053#2414#0" expanded="false" />
-            <element signature="e#2465#3472#0" expanded="false" />
-            <element signature="e#3531#3983#0" expanded="false" />
-            <element signature="e#4041#4474#0" expanded="false" />
-            <element signature="e#4531#4668#0" expanded="false" />
-            <element signature="e#4728#4904#0" expanded="false" />
-            <element signature="e#4951#5421#0" expanded="false" />
-            <element signature="e#8317#10831#0" expanded="false" />
-            <element signature="e#8365#9746#0" expanded="false" />
-            <element signature="e#9806#10831#0" expanded="false" />
-            <element signature="e#10860#17840#0" expanded="false" />
-            <element signature="e#17459#17557#0" expanded="false" />
-            <element signature="e#17596#17757#0" expanded="false" />
-            <element signature="e#17808#17840#0" expanded="false" />
+            <element signature="e#5462#8275#0" expanded="false" />
+            <element signature="e#10848#17828#0" expanded="false" />
+            <element signature="e#11150#12644#0" expanded="false" />
+            <element signature="e#12686#14039#0" expanded="false" />
+            <element signature="e#17299#17396#0" expanded="false" />
+            <element signature="e#17447#17545#0" expanded="false" />
+            <element signature="e#17584#17745#0" expanded="false" />
+            <element signature="e#17796#17828#0" expanded="false" />
           </folding>
         </state>
       </provider>
