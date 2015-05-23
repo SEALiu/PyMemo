@@ -239,8 +239,7 @@ class CombinePanelRight(wx.Panel):
     def __init__(self, parent, i, records):
         wx.Panel.__init__(self, parent, i, style=wx.BORDER_NONE)
 
-        filter_list = ['过滤器',
-                     '显示所有记录',
+        filter_list = ['显示所有记录',
                      '已到期的',
                      '已记住的',
                      '今天待学习的',
@@ -257,16 +256,16 @@ class CombinePanelRight(wx.Panel):
                   lambda evt, ob=lib_combo_box, f=filter_list: self.on_filter(evt, ob, f, RECORDS),
                   lib_combo_box)
         lib_combo_box.SetSelection(0)
-        go = wx.BitmapButton(self,
-                             -1,
-                             wx.Bitmap('images/other-size/search26.png'),
-                             size=(32, 32)
-                             )
-        search_ctrl = wx.TextCtrl(self, -1, size=(300, -1))
+        # go = wx.BitmapButton(self,
+        #                      -1,
+        #                      wx.Bitmap('images/other-size/search26.png'),
+        #                      size=(32, 32)
+        #                      )
+        # search_ctrl = wx.TextCtrl(self, -1, size=(300, -1))
 
         horizontal_box.Add(lib_combo_box, 0, wx.TOP | wx.LEFT | wx.BOTTOM, border=6)
-        horizontal_box.Add(search_ctrl, 0, wx.TOP | wx.LEFT | wx.BOTTOM, border=6)
-        horizontal_box.Add(go, 0, wx.ALL, border=6)
+        # horizontal_box.Add(search_ctrl, 0, wx.TOP | wx.LEFT | wx.BOTTOM, border=6)
+        # horizontal_box.Add(go, 0, wx.ALL, border=6)
 
         self.SetSizer(horizontal_box)
         self.Centre()
@@ -281,27 +280,27 @@ class CombinePanelRight(wx.Panel):
             if album == ob.GetValue():
                 filter_key = i
 
-        if filter_key == 1:
+        if filter_key == 0:
             r = FrameFun.find_all(-1)
             pass
-        elif filter_key == 2:
+        elif filter_key == 1:
             r = FrameFun.find_expired(-1)
             pass
-        elif filter_key == 3:
+        elif filter_key == 2:
             r = FrameFun.find_remembered()
             pass
-        elif filter_key == 4:
+        elif filter_key == 3:
             new_list = FrameFun.find_new(-1)[:50]
             review_list = FrameFun.find_expired(-1)[:50]
             r = new_list + review_list
             pass
-        elif filter_key == 5:
+        elif filter_key == 4:
             r = FrameFun.find_learned()
             pass
-        elif filter_key == 6:
+        elif filter_key == 5:
             r = FrameFun.find_hard()
             pass
-        elif filter_key == 7:
+        elif filter_key == 6:
             r = FrameFun.find_today()
             pass
         RECORDS = r
