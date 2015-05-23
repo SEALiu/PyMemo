@@ -609,7 +609,6 @@ class MemoDialog(wx.Dialog):
         self.n_list = file.fetch_nsr(self.fn, 'N')
         self.s_list = file.fetch_nsr(self.fn, 'S')
         self.r_list = file.fetch_nsr(self.fn, 'R')
-        self.flag = 1
 
         self.panel = wx.Panel(self)
         v_box_main = wx.BoxSizer(wx.VERTICAL)
@@ -650,64 +649,62 @@ class MemoDialog(wx.Dialog):
 
         # ----------------
         self.panel_btn = wx.Panel(self.panel, -1)
+        v_box_btn = wx.BoxSizer(wx.VERTICAL)
+        h_box_btn = wx.BoxSizer(wx.HORIZONTAL)
 
         self.show_ans = buttons.GenButton(self.panel_btn, -1, "显示答案")
         self.show_ans.SetBezelWidth(1)
         self.show_ans.SetBackgroundColour('white')
+        self.show_ans.Enable()
+
+        line_3 = wx.StaticLine(self.panel_btn, -1, size=(-1, -1), style=wx.LI_HORIZONTAL)
+
         self.again = buttons.GenButton(self.panel_btn, -1, "重来")
         self.again.SetBezelWidth(1)
         self.again.SetBackgroundColour('white')
+        self.again.Disable()
+
         self.hard = buttons.GenButton(self.panel_btn, -1, "困难")
         self.hard.SetBezelWidth(1)
         self.hard.SetBackgroundColour('white')
+        self.hard.Disable()
+
         self.good = buttons.GenButton(self.panel_btn, -1, "一般")
         self.good.SetBezelWidth(1)
         self.good.SetBackgroundColour('white')
+        self.good.Disable()
+
         self.easy = buttons.GenButton(self.panel_btn, -1, "简单")
         self.easy.SetBezelWidth(1)
         self.easy.SetBackgroundColour('white')
+        self.easy.Disable()
 
-        self.LoadBtn()
+        self.show_ans.Bind(wx.EVT_BUTTON, lambda evt, qa=self.n_list[0]: self.OnShowAns(evt, qa))
+        self.again.Bind(wx.EVT_BUTTON, lambda evt, qa=self.n_list[0]: self.OnAgain(evt, qa))
+        self.hard.Bind(wx.EVT_BUTTON, lambda evt, qa=self.n_list[0]: self.OnHard(evt, qa))
+        self.good.Bind(wx.EVT_BUTTON, lambda evt, qa=self.n_list[0]: self.OnGood(evt, qa))
+        self.easy.Bind(wx.EVT_BUTTON, lambda evt, qa=self.n_list[0]: self.OnEasy(evt, qa))
+
+        h_box_btn.Add(self.again, 1, wx.RIGHT, 5)
+        h_box_btn.Add(self.hard, 1, wx.RIGHT, 5)
+        h_box_btn.Add(self.good, 1, wx.RIGHT, 5)
+        h_box_btn.Add(self.easy, 1, wx.RIGHT, 5)
+
+        v_box_btn.Add(self.show_ans, 1, wx.EXPAND)
+        v_box_btn.Add(line_3, 1, wx.EXPAND)
+        v_box_btn.Add(h_box_btn, 1, wx.EXPAND)
+        self.panel_btn.SetSizer(v_box_btn)
+
         v_box_main.Add(self.panel_btn, 0, wx.EXPAND | wx.ALL, 10)
 
         self.panel.SetSizer(v_box_main)
         self.Centre()
         self.Show(True)
 
-    def LoadBtn(self):
-        h_box_btn = wx.BoxSizer(wx.HORIZONTAL)
-        print self.flag
-        if self.flag == 1:
-            h_box_btn.Add(self.show_ans, 1, wx.EXPAND)
-            self.Bind(wx.EVT_BUTTON, lambda evt, item=self.n_list[2]: self.OnShowAns(evt, item), self.show_ans)
-        elif self.flag == 2:
-            h_box_btn.Add(self.again, 1, wx.EXPAND)
-            h_box_btn.Add(self.good, 1, wx.EXPAND)
-            self.Bind(wx.EVT_BUTTON, self.OnAgain, self.again)
-            self.Bind(wx.EVT_BUTTON, self.OnGood, self.good)
-        elif self.flag == 3:
-            h_box_btn.Add(self.again, 1, wx.EXPAND)
-            h_box_btn.Add(self.good, 1, wx.EXPAND)
-            h_box_btn.Add(self.easy, 1, wx.EXPAND)
-            self.Bind(wx.EVT_BUTTON, self.OnAgain, self.again)
-            self.Bind(wx.EVT_BUTTON, self.OnGood, self.good)
-            self.Bind(wx.EVT_BUTTON, self.OnEasy, self.easy)
-        elif self.flag == 4:
-            h_box_btn.Add(self.again, 1, wx.EXPAND)
-            h_box_btn.Add(self.hard, 1, wx.EXPAND)
-            h_box_btn.Add(self.good, 1, wx.EXPAND)
-            h_box_btn.Add(self.easy, 1, wx.EXPAND)
-            self.Bind(wx.EVT_BUTTON, self.OnAgain, self.again)
-            self.Bind(wx.EVT_BUTTON, self.OnHard, self.hard)
-            self.Bind(wx.EVT_BUTTON, self.OnGood, self.good)
-            self.Bind(wx.EVT_BUTTON, self.OnEasy, self.easy)
-        self.panel_btn.SetSizer(h_box_btn)
-
-    def OnShowAns(self, evt, i):
-        self.SetAnswer(i[3].encode('utf-8'))
-        self.SetFlag(i[8])
-        self.show_ans.Destroy()
-        self.LoadBtn()
+    def OnShowAns(self, evt, qa):
+        self.SetAnswer(qa[3].encode('utf-8'))
+        self.SetBtnAble(qa[8])
+        self.show_ans.Disable()
 
     def SetQuestion(self, ques):
         self.ques.SetLabel(ques)
@@ -717,13 +714,19 @@ class MemoDialog(wx.Dialog):
     def SetAnswer(self, ans):
         self.ans.SetLabel(ans)
 
-    def SetFlag(self, ef):
+    def SetBtnAble(self, ef):
         if float(ef) < 2.5:
-            self.flag = 2
+            self.again.Enable()
+            self.good.Enable()
         elif float(ef) == 2.5:
-            self.flag = 3
+            self.again.Enable()
+            self.good.Enable()
+            self.easy.Enable()
         elif float(ef) > 2.5:
-            self.flag = 4
+            self.again.Enable()
+            self.hard.Enable()
+            self.good.Enable()
+            self.easy.Enable()
 
     def SetCardsLeft(self):
         dic = file.fetch_statistic(self.fn)
@@ -737,17 +740,59 @@ class MemoDialog(wx.Dialog):
         elif nsr == 'R':
             return self.r_list.pop(0)
 
-    def OnAgain(self, evt):
+    def OnAgain(self, evt, qa):
+        print "before", qa
+        qa[-2] = self.ef(qa[-2], 0)
+        qa[-3] = self.interval(qa[-2], qa[-3], 0)
+        # print "after", qa
         pass
 
-    def OnHard(self, evt):
+    def OnHard(self, evt, qa):
+        qa[-2] = self.ef(qa[-2], 3)
+        qa[-3] = self.interval(qa[-2], qa[-3], 3)
         pass
 
-    def OnGood(self, evt):
+    def OnGood(self, evt, qa):
+        qa[-2] = self.ef(qa[-2], 4)
+        qa[-3] = self.interval(qa[-2], qa[-3], 4)
         pass
 
-    def OnEasy(self, evt):
+    def OnEasy(self, evt, qa):
+        qa[-2] = self.ef(qa[-2], 5)
+        qa[-3] = self.interval(qa[-2], qa[-3], 5)
         pass
+
+    @staticmethod
+    def ef(ef, q):
+        new_ef = float(ef) - 0.8 + 0.28 * q - 0.02 * q ** 2
+        if new_ef < 1.3:
+            new_ef = 1.3
+        return str(new_ef)
+
+    @staticmethod
+    def interval(ef, interval, q):
+        ef_f = float(ef)
+        interval_i = int(interval)
+        if interval_i == -1:
+            # N
+            if q == 0:
+                return '0'
+            elif q == 4:
+                return '1'
+            elif q == 5:
+                return '3'
+        elif interval_i == 0:
+            # S
+            if q == 0:
+                return '0'
+            elif q == 4:
+                return '1'
+        else:
+            # R
+            if q == 0:
+                return '0'
+            else:
+                return str(interval_i * ef_f)
 
 
 class SelectLib(wx.Dialog):
