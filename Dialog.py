@@ -271,6 +271,7 @@ class UpdateRecord(wx.Dialog):
                             " ques = '" + ques + "', ans = '" + ans + "', alertTime = '" + alert_time + "' WHERE" \
                             " recordId = '" + i + "'"
         DBFun.update('db_pymemo.db', update_record_sql)
+        ListCtrlRight.on_refresh()
         self.Close()
 
 
@@ -625,8 +626,8 @@ class MemoDialog(wx.Dialog):
         v_box_main.Add(line_1, 0, wx.EXPAND)
 
         # ---------------
-
-        self.cl = wx.StaticText(self.panel, -1, "剩余卡片数: 0 0 0")
+        dic = file.fetch_statistic(self.fn)
+        self.cl = wx.StaticText(self.panel, -1, "剩余卡片数: %d %d %d" % (dic['N'], dic['S'], dic['R']))
         h_box_info = wx.BoxSizer(wx.HORIZONTAL)
         h_box_info.Add(self.cl, 1, wx.RIGHT, 10)
         v_box_main.Add(h_box_info, 0, wx.EXPAND | wx.ALL, 10)
@@ -637,7 +638,9 @@ class MemoDialog(wx.Dialog):
         panel_qa.SetBackgroundColour('white')
         v_box_qa = wx.BoxSizer(wx.VERTICAL)
 
-        self.ques = wx.StaticText(panel_qa, -1, self.n_list[2][2].encode('utf-8'))
+        self.nrs_list = self.fetch()
+
+        self.ques = wx.StaticText(panel_qa, -1, self.nrs_list[2].encode('utf-8'))
         self.ans = wx.StaticText(panel_qa, -1, "")
         line_2 = wx.StaticLine(panel_qa, -1, size=(-1, -1), style=wx.LI_HORIZONTAL)
 
@@ -679,11 +682,11 @@ class MemoDialog(wx.Dialog):
         self.easy.SetBackgroundColour('white')
         self.easy.Disable()
 
-        self.show_ans.Bind(wx.EVT_BUTTON, lambda evt, qa=self.n_list[0]: self.OnShowAns(evt, qa))
-        self.again.Bind(wx.EVT_BUTTON, lambda evt, qa=self.n_list[0]: self.OnAgain(evt, qa))
-        self.hard.Bind(wx.EVT_BUTTON, lambda evt, qa=self.n_list[0]: self.OnHard(evt, qa))
-        self.good.Bind(wx.EVT_BUTTON, lambda evt, qa=self.n_list[0]: self.OnGood(evt, qa))
-        self.easy.Bind(wx.EVT_BUTTON, lambda evt, qa=self.n_list[0]: self.OnEasy(evt, qa))
+        self.show_ans.Bind(wx.EVT_BUTTON, lambda evt, qa=self.nrs_list: self.OnShowAns(evt, qa))
+        self.again.Bind(wx.EVT_BUTTON, lambda evt, qa=self.nrs_list: self.OnAgain(evt, qa))
+        self.hard.Bind(wx.EVT_BUTTON, lambda evt, qa=self.nrs_list: self.OnHard(evt, qa))
+        self.good.Bind(wx.EVT_BUTTON, lambda evt, qa=self.nrs_list: self.OnGood(evt, qa))
+        self.easy.Bind(wx.EVT_BUTTON, lambda evt, qa=self.nrs_list: self.OnEasy(evt, qa))
 
         h_box_btn.Add(self.again, 1, wx.RIGHT, 5)
         h_box_btn.Add(self.hard, 1, wx.RIGHT, 5)
@@ -744,23 +747,26 @@ class MemoDialog(wx.Dialog):
         print "before", qa
         qa[-2] = self.ef(qa[-2], 0)
         qa[-3] = self.interval(qa[-2], qa[-3], 0)
-        # print "after", qa
-        pass
+        self.nrs_list = self.fetch()
+        print "after", qa
 
     def OnHard(self, evt, qa):
+        print "before", qa
         qa[-2] = self.ef(qa[-2], 3)
         qa[-3] = self.interval(qa[-2], qa[-3], 3)
-        pass
+        print "after", qa
 
     def OnGood(self, evt, qa):
+        print "before", qa
         qa[-2] = self.ef(qa[-2], 4)
         qa[-3] = self.interval(qa[-2], qa[-3], 4)
-        pass
+        print "after", qa
 
     def OnEasy(self, evt, qa):
+        print "after", qa
         qa[-2] = self.ef(qa[-2], 5)
         qa[-3] = self.interval(qa[-2], qa[-3], 5)
-        pass
+        print "after", qa
 
     @staticmethod
     def ef(ef, q):
@@ -793,6 +799,14 @@ class MemoDialog(wx.Dialog):
                 return '0'
             else:
                 return str(interval_i * ef_f)
+
+    def fetch(self):
+        if self.n_list:
+            return list(self.n_list.pop(0))
+        elif self.r_list:
+            return list(self.r_list.pop(0))
+        elif self.s_list:
+            return list(self.s_list.pop(0))
 
 
 class SelectLib(wx.Dialog):
@@ -870,7 +884,7 @@ class Prepare(wx.Dialog):
         big_font_bold = wx.Font(18, wx.DEFAULT, wx.NORMAL, wx.BOLD, False)
         text_head = wx.StaticText(panel_1, -1, lib[i].decode('utf-8'))
         text_head.SetFont(big_font_bold)
-        v_box_1.Add(text_head, 0, wx.EXPAND | wx.TOP | wx.BOTTOM, 10)
+        v_box_1.Add(text_head, 0, wx.TOP | wx.BOTTOM | wx.ALIGN_CENTER_HORIZONTAL, 10)
 
         if n_num + r_num + s_num > 0:
             gs = wx.GridSizer(rows=3, cols=2, vgap=5, hgap=25)
