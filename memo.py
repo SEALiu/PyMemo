@@ -320,12 +320,10 @@ class Memo(wx.Frame):
     def _create_menu_bar(self):
         menu_bar = wx.MenuBar()
         file_menu = wx.Menu()
-        port_menu = wx.Menu()
         tool_menu = wx.Menu()
         help_menu = wx.Menu()
 
         menu_bar.Append(file_menu, '文件')
-        menu_bar.Append(port_menu, '拓展')
         menu_bar.Append(tool_menu, '工具')
         menu_bar.Append(help_menu, '帮助')
 
@@ -335,9 +333,6 @@ class Memo(wx.Frame):
         file_menu.AppendSeparator()
         quit_item = file_menu.Append(-1, '离开')
 
-        import_lib = port_menu.Append(-1, '导入词库...')
-        export_lib = port_menu.Append(-1, '导出词库...')
-
         study_item = tool_menu.Append(-1, '开始学习')
         check = tool_menu.Append(-1, '检查空记录')
 
@@ -346,8 +341,6 @@ class Memo(wx.Frame):
 
         self.Bind(wx.EVT_MENU, self.on_new_lib, new_lib_item)
         self.Bind(wx.EVT_MENU, self.on_new_record, new_record_item)
-        self.Bind(wx.EVT_MENU, self.on_import, import_lib)
-        self.Bind(wx.EVT_MENU, self.on_export, export_lib)
         self.Bind(wx.EVT_MENU, self.on_setting, setting)
         self.Bind(wx.EVT_MENU, self.on_quit, quit_item)
         self.Bind(wx.EVT_MENU, self.on_study, study_item)
@@ -366,7 +359,7 @@ class Memo(wx.Frame):
         tool_bar = self.CreateToolBar(style=wx.TB_FLAT | wx.TB_TEXT | wx.TB_HORZ_LAYOUT)
         quit_item = tool_bar.AddLabelTool(wx.ID_EXIT, '退出', wx.Bitmap('images/32/quit.png'))
         tool_bar.AddSeparator()
-        import_item = tool_bar.AddLabelTool(tool_id['import'], '导入词库', wx.Bitmap('images/32/import.png'))
+        # import_item = tool_bar.AddLabelTool(tool_id['import'], '导入词库', wx.Bitmap('images/32/import.png'))
         new_lib = tool_bar.AddLabelTool(tool_id['new_lib'], '新建词库', wx.Bitmap('images/32/library_add.png'))
         new_record = tool_bar.AddLabelTool(tool_id['new_record'], '添加记录', wx.Bitmap('images/32/card_add.png'))
         setting = tool_bar.AddLabelTool(tool_id['setting'], '设置', wx.Bitmap('images/32/setting.png'))
@@ -376,7 +369,7 @@ class Memo(wx.Frame):
         self.Bind(wx.EVT_TOOL, self.on_quit, quit_item)
         self.Bind(wx.EVT_TOOL, self.on_setting, setting)
         self.Bind(wx.EVT_TOOL, self.on_new_lib, new_lib)
-        self.Bind(wx.EVT_TOOL, self.on_import, import_item)
+        # self.Bind(wx.EVT_TOOL, self.on_import, import_item)
         self.Bind(wx.EVT_TOOL, self.on_new_record, new_record)
         self.Bind(wx.EVT_TOOL, self.on_study, study)
 
