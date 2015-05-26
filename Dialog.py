@@ -114,8 +114,7 @@ class LibInfo(wx.Dialog):
         max_new = wx.StaticText(panel, -1, '每日学习：' + str(lib_info[5]))
         easy_interval = wx.StaticText(panel, -1, '简单间隔：' + str(lib_info[6]) + '（天）' )
         max_interval = wx.StaticText(panel, -1, '最大间隔：' + str(lib_info[7]) + '（天）')
-        max_time = wx.StaticText(panel, -1, '最长回答：' + str(lib_info[8]) + '（秒）')
-        is_show_timer = wx.StaticText(panel, -1, '显示计时器：' + lib_info[9])
+        is_show_timer = wx.StaticText(panel, -1, '是否显示剩余卡片：' + lib_info[-3])
 
 
         v_box_panel.Add(lib_id, 0, wx.EXPAND | wx.LEFT | wx.RIGHT | wx.TOP, 10)
@@ -362,7 +361,8 @@ class AddNewRecord(wx.Dialog):
         lib_name = ob.GetValue().encode('utf-8')
         if lib_name in lib.keys():
             self.set_lib_id(lib[lib_name])
-            print self.get_lib_id()
+        else:
+            self.set_lib_id(-1)
 
 
 class DeleteRecord(wx.Dialog):
@@ -441,146 +441,159 @@ class AboutDialog(wx.AboutDialogInfo):
 
 class SettingDialog(wx.Dialog):
     def __init__(self, LIBRARIES, flag):
-        wx.Dialog.__init__(self, None, -1, '词库设置', size=(200, 400),
+        wx.Dialog.__init__(self, None, -1, '词库设置', size=(400, 240),
                            style=wx.CAPTION | wx.SYSTEM_MENU | wx.CLOSE_BOX)
+
+        self.lib_id = -1
+        self.old_setting = []
+        panel = wx.Panel(self)
+        v_box = wx.BoxSizer(wx.VERTICAL)
+        h_box_combo = wx.BoxSizer(wx.HORIZONTAL)
+
+        panel_combo = wx.Panel(panel)
         # global lib_index
         lib_items = ['请选择词库']
         for index, element in enumerate(LIBRARIES):
             lib_items.append(LIBRARIES[element].decode('utf-8'))
 
-        v_box = wx.BoxSizer(wx.VERTICAL)
-        panel_combo = wx.Panel(self, -1)
-        h_box_combo = wx.BoxSizer(wx.HORIZONTAL)
-        lib_text = wx.StaticText(panel_combo, -1, "你想让这些设置应用在哪个词库上？")
-
+        lib_text = wx.StaticText(panel_combo, -1, "选择设置词库：")
         lib_combo_box = wx.ComboBox(panel_combo, choices=lib_items, style=wx.CB_READONLY)
+
+        # 逆转LIBRARIES字典，以便于根据词库名称获取词库的ID，避免访问数据库。
+        reverse_lib = {v: k for k, v in LIBRARIES.items()}
+        self.Bind(wx.EVT_COMBOBOX, lambda evt, ob=lib_combo_box, lib=reverse_lib: self.test(evt, ob, lib), lib_combo_box)
+
         if flag == -1:
             lib_combo_box.SetSelection(0)
         else:
             lib_index = lib_items.index(LIBRARIES[flag].decode('utf-8'))
             lib_combo_box.SetSelection(lib_index)
+            self.lib_id = str(flag).zfill(3)
+            self.old_setting = self.fetch_setting(self.lib_id)
+        if self.old_setting:
+            print self.old_setting
+        else:
+            print self.old_setting
 
-        h_box_combo.Add(lib_text, 0, wx.TOP | wx.RIGHT, 10)
-        h_box_combo.Add(lib_combo_box, 0, wx.TOP | wx.LEFT, 5)
+        h_box_combo.Add(lib_text, 0, wx.ALIGN_CENTER_VERTICAL)
+        h_box_combo.Add(lib_combo_box, 0, wx.LEFT | wx.RIGHT, 10)
+
         panel_combo.SetSizer(h_box_combo)
+        v_box.Add(panel_combo, 0, wx.EXPAND | wx.ALL, 10)
+        line_1 = wx.StaticLine(panel, -1, size=(-1, -1), style=wx.LI_HORIZONTAL)
+        v_box.Add(line_1, 0, wx.EXPAND)
 
-        v_box.Add(panel_combo, 0, wx.TOP | wx.LEFT | wx.RIGHT, 10)
+        panel_top = wx.Panel(panel, -1, style=wx.BORDER_MASK)
+        panel_top.SetBackgroundColour('white')
+        v_box_t = wx.BoxSizer(wx.VERTICAL)
+        h_box_g1 = wx.BoxSizer(wx.HORIZONTAL)
+        h_box_g2 = wx.BoxSizer(wx.HORIZONTAL)
 
-        line_1 = wx.StaticLine(self, -1, size=(-1, -1), style=wx.LI_HORIZONTAL)
-        v_box.Add(line_1, 0, wx.EXPAND | wx.ALL, 10)
-
-        grid_sizer = wx.GridSizer(2, 2, 5, 5)
-        # (0, 0)
-        panel_left_top = wx.Panel(self)
-        preview_setting = wx.StaticBox(panel_left_top, -1, label='学习卡片界面')
-        sbs1 = wx.StaticBoxSizer(preview_setting, orient=wx.VERTICAL)
-
-        show_interval = wx.CheckBox(panel_left_top,
-                            label='在回答按钮上显示下一次复习时间',
-                            style=wx.CHK_3STATE)
-        show_rest = wx.CheckBox(panel_left_top,
+        self.show_rest = wx.CheckBox(panel_top,
                             label='在复习的时候显示剩余卡片数',
                             style=wx.CHK_3STATE)
-        show_interval.SetValue(True)
-        show_rest.SetValue(True)
+        if self.old_setting:
+            if self.old_setting[2] == 'True':
+                self.show_rest.SetValue(True)
+            elif self.old_setting[2] == 'False':
+                self.show_rest.SetValue(False)
+        else:
+            self.show_rest.SetValue(True)
 
-        sbs1.Add(show_interval, 1, wx.EXPAND | wx.LEFT | wx.BOTTOM, border=10)
-        sbs1.Add(show_rest, 1, wx.EXPAND | wx.LEFT | wx.BOTTOM, border=10)
+        text1 = wx.StaticText(panel_top, label="每日学习卡片上限（张）")
+        text2 = wx.StaticText(panel_top, label="每日复习卡片上限（张）")
 
-        panel_left_top.SetSizer(sbs1)
+        self.study_limit = wx.SpinCtrl(panel_top, -1)
+        self.study_limit.SetRange(1, 200)
+        if self.old_setting:
+            self.study_limit.SetValue(int(self.old_setting[1]))
+        else:
+            self.study_limit.SetValue(50)
 
-        grid_sizer.Add(panel_left_top, 3, wx.EXPAND | wx.ALL, border=10)
+        self.review_limit = wx.SpinCtrl(panel_top, -1)
+        self.review_limit.SetRange(1, 200)
+        if self.old_setting:
+            self.review_limit.SetValue(int(self.old_setting[0]))
+        else:
+            self.review_limit.SetValue(50)
 
-        # (0, 1)
-        panel_right_top = wx.Panel(self)
-        study_setting = wx.StaticBox(panel_right_top, -1, label='自定义学习卡片')
-        sbs2 = wx.StaticBoxSizer(study_setting, orient=wx.VERTICAL)
-        grid1 = wx.FlexGridSizer(0, 2, 0, 0)
+        h_box_g1.Add(text1, 0, wx.ALIGN_CENTER_VERTICAL)
+        h_box_g1.Add(self.study_limit, 0, wx.LEFT, 15)
 
-        # group of controls:
-        self.group_ctrl = []
-        text1 = wx.StaticText(panel_right_top, label="每日学习卡片上限（张）")
-        text2 = wx.StaticText(panel_right_top, label="每日复习卡片上限（张）")
+        h_box_g2.Add(text2, 0)
+        h_box_g2.Add(self.review_limit, 0, wx.LEFT, 15)
 
-        study_limit = wx.SpinCtrl(panel_right_top, -1)
-        study_limit.SetRange(1, 200)
-        study_limit.SetValue(50)
+        v_box_t.Add(self.show_rest, 0, wx.LEFT | wx.TOP, 10)
+        v_box_t.Add(h_box_g1, 0, wx.EXPAND | wx.LEFT | wx.RIGHT | wx.TOP, 10)
+        v_box_t.Add(h_box_g2, 0, wx.EXPAND | wx.LEFT | wx.RIGHT | wx.TOP | wx.BOTTOM, 10)
 
-        review_limit = wx.SpinCtrl(panel_right_top, -1)
-        review_limit.SetRange(1, 200)
-        review_limit.SetValue(50)
+        panel_top.SetSizer(v_box_t)
+        v_box.Add(panel_top, 0, wx.EXPAND | wx.ALL, 10)
 
-        self.group_ctrl.append((text1, study_limit))
-        self.group_ctrl.append((text2, review_limit))
+        # ----------
+        h_box_btn = wx.BoxSizer(wx.HORIZONTAL)
 
-        for text, spin_ctrl in self.group_ctrl:
-            grid1.Add(text, 0, wx.ALIGN_CENTRE | wx.LEFT | wx.RIGHT | wx.TOP, 5)
-            grid1.Add(spin_ctrl, 0, wx.ALIGN_CENTRE | wx.LEFT | wx.RIGHT | wx.TOP, 5)
+        ok_button = buttons.GenButton(panel, -1, "确定")
+        ok_button.SetBezelWidth(1)
+        ok_button.SetBackgroundColour('white')
 
-        sbs2.Add(grid1, 0, wx.ALIGN_CENTER | wx.ALL, 5)
-        panel_right_top.SetSizer(sbs2)
-        grid_sizer.Add(panel_right_top, 1, wx.EXPAND | wx.ALL, border=10)
+        close_button = buttons.GenButton(panel, -1, "关闭")
+        close_button.SetBezelWidth(1)
+        close_button.SetBackgroundColour('white')
 
-        # (1, 0)
-        panel_left_bottom = wx.Panel(self)
-        order_setting = wx.StaticBox(panel_left_bottom, -1, label='学习卡片的顺序')
-        sbs3 = wx.StaticBoxSizer(order_setting, orient=wx.VERTICAL)
+        h_box_btn.Add(ok_button, 1)
+        h_box_btn.Add(close_button, 1, wx.LEFT, 10)
 
-        old_after_new = wx.RadioButton(panel_left_bottom, -1, "新卡片学习完之后再复习旧卡片")
-        new_after_old = wx.RadioButton(panel_left_bottom, -1, "旧卡片复习完之后再学习新卡片")
-        new_or_old = wx.RadioButton(panel_left_bottom, -1, "新旧卡片交替出现")
+        v_box.Add(h_box_btn, 0, wx.EXPAND | wx.BOTTOM | wx.LEFT | wx.RIGHT, border=10)
 
-        new_or_old.SetValue(True)
+        ok_button.Bind(wx.EVT_BUTTON, self.OnSubmit)
+        close_button.Bind(wx.EVT_BUTTON, self.on_close)
 
-        sbs3.Add(old_after_new, 1, wx.EXPAND | wx.LEFT | wx.BOTTOM, border=10)
-        sbs3.Add(new_after_old, 1, wx.EXPAND | wx.LEFT | wx.BOTTOM, border=10)
-        sbs3.Add(new_or_old, 1, wx.EXPAND | wx.LEFT | wx.BOTTOM, border=10)
-
-        panel_left_bottom.SetSizer(sbs3)
-
-        grid_sizer.Add(panel_left_bottom, 1, wx.EXPAND | wx.ALL, border=10)
-
-        # (1, 1)
-        panel_right_bottom = wx.Panel(self)
-        font_setting = wx.StaticBox(panel_right_bottom, -1, label='字体设置')
-        sbs4 = wx.StaticBoxSizer(font_setting, orient=wx.VERTICAL)
-        h_box_2 = wx.BoxSizer(wx.HORIZONTAL)
-
-        font_size_text = wx.StaticText(panel_right_bottom, -1, "字号：")
-        font_size = wx.SpinCtrl(panel_right_bottom, -1)
-        font_size.SetRange(1, 30)
-        font_size.SetValue(12)
-
-        h_box_2.Add(font_size_text, 1, wx.LEFT | wx.TOP, border=10)
-        h_box_2.Add(font_size, 3, wx.TOP, border=10)
-
-        sbs4.Add(h_box_2, wx.LEFT, border=5)
-
-        panel_right_bottom.SetSizer(sbs4)
-        grid_sizer.Add(panel_right_bottom, 1, wx.EXPAND | wx.ALL, border=10)
-        v_box.Add(grid_sizer, 1)
-
-        # (2, 1)
-        h_box = wx.BoxSizer(wx.HORIZONTAL)
-        ok_button = wx.Button(self, -1, label='确定')
-        apply_button = wx.Button(self, -1, label="应用")
-        close_button = wx.Button(self, -1, label='关闭')
-        h_box.Add(ok_button, 1, wx.RIGHT, border=5)
-        h_box.Add(apply_button, 1, wx.RIGHT, border=5)
-        h_box.Add(close_button, 1, wx.RIGHT, border=10)
-
-        v_box.Add(h_box, 0, wx.ALIGN_RIGHT | wx.BOTTOM, border=10)
-
-        self.Bind(wx.EVT_BUTTON, self.on_close, close_button)
-
-        self.SetSizer(v_box)
-        self.Fit()
+        panel.SetSizer(v_box)
         self.Centre()
-        self.Show(True)
+
+    def test(self, evt, ob, lib):
+        lib_name = ob.GetValue().encode('utf-8')
+        if lib_name in lib.keys():
+            self.lib_id = lib[lib_name]
+        else:
+            self.lib_id = -1
 
     def on_close(self, e):
         self.Destroy()
-        e.Skip()
+
+    def OnSubmit(self, evt):
+        if self.lib_id == -1:
+            msg_dlg = wx.MessageDialog(self, '请确保选择了一个词库！',
+                           '提示',
+                           wx.OK | wx.ICON_WARNING)
+            msg_dlg.ShowModal()
+            msg_dlg.Destroy()
+        else:
+            if self.show_rest.GetValue():
+                sr = 'True'
+            else:
+                sr = 'False'
+            sl = str(self.study_limit.GetValue())
+            rl = str(self.review_limit.GetValue())
+            li = self.lib_id
+            sql = "UPDATE library SET " \
+                         "maxReviewsPerDay = '" + rl + "', newCardsPerDay = '" + sl + "', isShowRest = '" + sr + "' " \
+                         "WHERE libId = '" + li + "'"
+            DBFun.update('db_pymemo.db', sql)
+            # 重置，避免第二次由于 self.get_lib_id() != -1, 导致没有选择词库也可以插入记录。
+            self.lib_id = -1
+            self.Close()
+
+    def fetch_setting(self, i):
+        ls = []
+        select_sql = "SELECT * FROM library WHERE libId = '" + i + "'"
+        result_list = DBFun.select('db_pymemo.db', select_sql)
+        for rows in result_list:
+            ls.append(rows[4])
+            ls.append(rows[5])
+            ls.append(rows[-3])
+        return ls
 
 
 class Export(wx.DirDialog):
