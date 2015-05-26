@@ -334,7 +334,7 @@ class Memo(wx.Frame):
         quit_item = file_menu.Append(-1, '离开')
 
         study_item = tool_menu.Append(-1, '开始学习')
-        check = tool_menu.Append(-1, '检查空记录')
+        check = tool_menu.Append(-1, '优化数据库')
 
         guide_item = help_menu.Append(wx.ID_HELP, '用户手册')
         about_item = help_menu.Append(wx.ID_ABOUT, '关于')
@@ -466,12 +466,9 @@ class Memo(wx.Frame):
 
     @staticmethod
     def on_check(evt):
-        """
-        检查和优化数据库，包括合并重复的记录，删除空记录
-        :param evt:
-        :return:
-        """
-        pass
+        check_dlg = Dialog.Check()
+        check_dlg.ShowModal()
+        check_dlg.Destroy()
 
     def on_guide(self, evt):
         f = open("Dialog.py", "r")
