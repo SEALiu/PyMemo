@@ -471,7 +471,7 @@ class Memo(wx.Frame):
         check_dlg.Destroy()
 
     def on_guide(self, evt):
-        f = open("Dialog.py", "r")
+        f = open("README.md", "r")
         msg = f.read()
         f.close()
         dlg = wx.lib.dialogs.ScrolledMessageDialog(self, msg, "用户手册")
