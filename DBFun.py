@@ -20,9 +20,14 @@ def update(url, sql):
     """execute update, delete and insert SQL"""
     conn = connect_db(url)
     conn.text_factory = str
-    conn.execute(sql)
+    result = conn.execute(sql)
     conn.commit()
+
+    num = 0
+    for rows in result:
+        num += 1
     conn.close()
+    return num
 
 
 def max_lib(column):
