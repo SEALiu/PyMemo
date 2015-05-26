@@ -114,7 +114,7 @@ class LibInfo(wx.Dialog):
         max_new = wx.StaticText(panel, -1, '每日学习：' + str(lib_info[5]))
         easy_interval = wx.StaticText(panel, -1, '简单间隔：' + str(lib_info[6]) + '（天）' )
         max_interval = wx.StaticText(panel, -1, '最大间隔：' + str(lib_info[7]) + '（天）')
-        is_show_timer = wx.StaticText(panel, -1, '是否显示剩余卡片：' + lib_info[-3])
+        is_show_left = wx.StaticText(panel, -1, '是否显示剩余卡片：' + lib_info[-3])
 
 
         v_box_panel.Add(lib_id, 0, wx.EXPAND | wx.LEFT | wx.RIGHT | wx.TOP, 10)
@@ -125,8 +125,7 @@ class LibInfo(wx.Dialog):
         v_box_panel.Add(max_new, 0, wx.EXPAND | wx.LEFT | wx.RIGHT, 10)
         v_box_panel.Add(easy_interval, 0, wx.EXPAND | wx.LEFT | wx.RIGHT, 10)
         v_box_panel.Add(max_interval, 0, wx.EXPAND | wx.LEFT | wx.RIGHT, 10)
-        v_box_panel.Add(max_time, 0, wx.EXPAND | wx.LEFT | wx.RIGHT, 10)
-        v_box_panel.Add(is_show_timer, 0, wx.EXPAND | wx.LEFT | wx.RIGHT | wx.BOTTOM, 10)
+        v_box_panel.Add(is_show_left, 0, wx.EXPAND | wx.LEFT | wx.RIGHT | wx.BOTTOM, 10)
 
         panel.SetSizer(v_box_panel)
 
@@ -613,6 +612,74 @@ class Import(wx.FileDialog):
         self.Centre()
         self.Show(True)
 
+
+class Check(wx.Dialog):
+    def __init__(self):
+        wx.Dialog.__init__(self, None, -1, '优化数据库', size=(400, 370),
+                           style=wx.CAPTION | wx.SYSTEM_MENU | wx.CLOSE_BOX)
+        panel = wx.Panel(self)
+        v_box = wx.BoxSizer(wx.VERTICAL)
+
+        # -----------
+        h_box = wx.BoxSizer(wx.HORIZONTAL)
+
+        check_button = buttons.GenButton(panel, -1, "开始优化")
+        check_button.SetBezelWidth(1)
+        check_button.SetBackgroundColour('white')
+        check_button.Bind(wx.EVT_BUTTON, self.OnCheck)
+
+        cancel_button = buttons.GenButton(panel, wx.ID_CANCEL, "取消")
+        cancel_button.SetBezelWidth(1)
+        cancel_button.SetBackgroundColour('white')
+
+        h_box.Add(check_button, 1, wx.EXPAND)
+        h_box.Add(cancel_button, 1, wx.EXPAND | wx.LEFT, 10)
+        line = wx.StaticLine(panel, -1, size=(-1, -1), style=wx.LI_HORIZONTAL)
+
+        v_box.Add(h_box, 0, wx.EXPAND | wx.TOP | wx.LEFT | wx.RIGHT, 10)
+        v_box.Add(line, 0, wx.EXPAND | wx.TOP | wx.BOTTOM, 10)
+
+
+        # -----------
+        text = "优化数据库是指：\n清除空卡片\n重置由于程序错误或设置不当造成信息错乱的词库\n点击开始优化按钮进行优化"
+        self.tc = wx.TextCtrl(panel, -1, text, style=wx.TE_RICH | wx.TE_MULTILINE | wx.TE_READONLY)
+        v_box.Add(self.tc, 1, wx.EXPAND | wx.ALL, 10)
+
+        panel.SetSizer(v_box)
+        self.Center()
+
+    def OnCheck(self, evt):
+        ls = []
+        self.tc.Clear()
+        self.tc.AppendText("开始清除空卡片...\n\n")
+        num = self.ClearBlank()
+        self.tc.AppendText("成功清除空卡片" + str(num) + '张！\n\n')
+        self.tc.AppendText("开始重置由于程序运行错误或设置不当信息错乱的词库...\n\n")
+        ls = self.Reset()
+        self.tc.AppendText("成功重置容易间隔少于3天的词库" + str(ls[0]) + '个！\n')
+        self.tc.AppendText("成功重置最大间隔多于10年的词库" + str(ls[1]) + '个！\n')
+        self.tc.AppendText("成功重置每日最大复习数量大于200的词库" + str(ls[2]) + '个！\n')
+        self.tc.AppendText("成功重置每日最大学习数量大于200的词库" + str(ls[3]) + '个！\n\n')
+        self.tc.AppendText('数据库已经保持最佳运行状态！\n')
+
+    def ClearBlank(self):
+        sql = "DELETE FROM record WHERE ques=''"
+        num = DBFun.update('db_pymemo.db', sql)
+        ListCtrlRight.on_refresh()
+        return num
+
+    def Reset(self):
+        sql1 = "UPDATE library SET easyInterval = 3 WHERE easyInterval < 3"
+        sql2 = "UPDATE library SET maxInterval = 3650 WHERE maxInterval > 3650"
+        sql3 = "UPDATE library SET maxReviewsPerDay = 50 WHERE maxReviewsPerDay > 200"
+        sql4 = "UPDATE library SET newCardsPerDay = 50 WHERE newCardsPerDay > 200"
+
+        ei_num = DBFun.update('db_pymemo.db', sql1)
+        mi_num = DBFun.update('db_pymemo.db', sql2)
+        mrpd_num = DBFun.update('db_pymemo.db', sql3)
+        ncpd_num = DBFun.update('db_pymemo.db', sql4)
+        ListCtrlLeft.on_refresh()
+        return [ei_num, mi_num, mrpd_num, ncpd_num]
 
 # Study Dialogs
 class MemoDialog(wx.Dialog):
