@@ -154,10 +154,6 @@ def reset_nsr(fn):
     f.close()
 
 
-def delete_nsr(fn):
-    os.remove(fn)
-
-
 def no_blank(fn):
     """
     清除文件中的空行
