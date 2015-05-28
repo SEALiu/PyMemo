@@ -47,7 +47,6 @@ class ListCtrlLeft(wx.ListCtrl):
             self.Bind(wx.EVT_LIST_ITEM_SELECTED, self.on_lib_select)
             self.Bind(wx.EVT_LIST_ITEM_RIGHT_CLICK, self.on_lib_right_click)
             self.InsertStringItem(0, LIBRARIES[element].decode('utf-8'))
-            # print element
             self.SetItemImage(0, index)
 
     def on_size(self, event):
@@ -121,7 +120,7 @@ class ListCtrlLeft(wx.ListCtrl):
         cursor = DBFun.select('db_pymemo.db', select_sql)
         for rows in cursor:
             lib_info = rows
-        # print lib_info
+
         info_dlg = Dialog.LibInfo(lib_info)
         info_dlg.ShowModal()
         info_dlg.Destroy()
@@ -136,7 +135,6 @@ class ListCtrlLeft(wx.ListCtrl):
 
     @staticmethod
     def on_lib_setting(evt, i):
-        # print "setting", LIBRARY_ID[i]
         setting_dlg = Dialog.SettingDialog(LIBRARIES, LIBRARY_ID[i])
         setting_dlg.ShowModal()
         setting_dlg.Destroy()
