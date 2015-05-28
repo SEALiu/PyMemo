@@ -5,6 +5,7 @@ import os.path
 import wx
 import wx.lib.buttons as buttons
 import file
+import math
 from memo import *
 
 
@@ -115,7 +116,7 @@ class LibInfo(wx.Dialog):
         max_new = wx.StaticText(panel, -1, '每日学习：' + str(lib_info[5]))
         easy_interval = wx.StaticText(panel, -1, '简单间隔：' + str(lib_info[6]) + '（天）' )
         max_interval = wx.StaticText(panel, -1, '最大间隔：' + str(lib_info[7]) + '（天）')
-        is_show_left = wx.StaticText(panel, -1, '是否显示剩余卡片：' + lib_info[-3])
+        is_Show_Rest = wx.StaticText(panel, -1, '是否显示剩余卡片：' + lib_info[-1])
 
 
         v_box_panel.Add(lib_id, 0, wx.EXPAND | wx.LEFT | wx.RIGHT | wx.TOP, 10)
@@ -126,7 +127,7 @@ class LibInfo(wx.Dialog):
         v_box_panel.Add(max_new, 0, wx.EXPAND | wx.LEFT | wx.RIGHT, 10)
         v_box_panel.Add(easy_interval, 0, wx.EXPAND | wx.LEFT | wx.RIGHT, 10)
         v_box_panel.Add(max_interval, 0, wx.EXPAND | wx.LEFT | wx.RIGHT, 10)
-        v_box_panel.Add(is_show_left, 0, wx.EXPAND | wx.LEFT | wx.RIGHT | wx.BOTTOM, 10)
+        v_box_panel.Add(is_Show_Rest, 0, wx.EXPAND | wx.LEFT | wx.RIGHT | wx.BOTTOM, 10)
 
         panel.SetSizer(v_box_panel)
 
@@ -268,7 +269,7 @@ class UpdateRecord(wx.Dialog):
     def on_submit(self, e, q, a, i):
         ques = q.GetValue().encode('utf-8')
         ans = a.GetValue().encode('utf-8')
-        alert_time = time.strftime('%Y/%m/%d %H:%M:%S', time.localtime(time.time()))
+        alert_time = time.strftime('%Y/%m/%d', time.localtime(time.time()))
         update_record_sql = "UPDATE record SET" \
                             " ques = '" + ques + "', ans = '" + ans + "', alertTime = '" + alert_time + "' WHERE" \
                             " recordId = '" + i + "'"
@@ -306,24 +307,24 @@ class AddNewRecord(wx.Dialog):
         # h_box_info.Add(preview, 0, wx.ALIGN_RIGHT | wx.TOP, 6)
 
         name_text = wx.StaticText(panel, -1, "问题（正面）：")
-        record_ques = wx.TextCtrl(panel, -1, "", size=(-1, 80), style=wx.TE_MULTILINE | wx.TE_NO_VSCROLL)
+        self.record_ques = wx.TextCtrl(panel, -1, "", size=(-1, 80), style=wx.TE_MULTILINE | wx.TE_NO_VSCROLL)
 
         desc_text = wx.StaticText(panel, -1, "答案（反面）：")
-        record_ans = wx.TextCtrl(panel, -1, "", size=(-1, 80), style=wx.TE_MULTILINE | wx.TE_NO_VSCROLL)
+        self.record_ans = wx.TextCtrl(panel, -1, "", size=(-1, 80), style=wx.TE_MULTILINE | wx.TE_NO_VSCROLL)
 
         h_box_btn = wx.BoxSizer(wx.HORIZONTAL)
         ok_button = wx.Button(panel, -1, label='确定')
         close_button = wx.Button(panel, wx.ID_CANCEL, label='取消')
 
-        self.Bind(wx.EVT_BUTTON, lambda evt, ques=record_ques, ans=record_ans: self.on_submit(evt, ques, ans), ok_button)
+        self.Bind(wx.EVT_BUTTON, lambda evt, ques=self.record_ques, ans=self.record_ans: self.on_submit(evt, ques, ans), ok_button)
         h_box_btn.Add(ok_button, 1, wx.RIGHT, border=5)
         h_box_btn.Add(close_button, 1)
 
         v_box.Add(h_box_info, 0, wx.EXPAND | wx.LEFT | wx.RIGHT, 10)
         v_box.Add(name_text, 0, wx.EXPAND | wx.LEFT | wx.RIGHT | wx.TOP, 10)
-        v_box.Add(record_ques, 0, wx.EXPAND | wx.ALL, 10)
+        v_box.Add(self.record_ques, 0, wx.EXPAND | wx.ALL, 10)
         v_box.Add(desc_text, 0, wx.EXPAND | wx.LEFT | wx.RIGHT, 10)
-        v_box.Add(record_ans, 0, wx.EXPAND | wx.ALL, 10)
+        v_box.Add(self.record_ans, 0, wx.EXPAND | wx.ALL, 10)
         v_box.Add(h_box_btn, 1, wx.EXPAND | wx.LEFT | wx.RIGHT, 10)
 
         panel.SetSizer(v_box)
@@ -346,6 +347,8 @@ class AddNewRecord(wx.Dialog):
         else:
             record_ques = ques.GetValue().encode('utf-8')
             record_ans = ans.GetValue().encode('utf-8')
+            self.record_ques.SetValue('')
+            self.record_ans.SetValue('')
             next_record_id = DBFun.max_record('recordId') + 1
             record_id = str(next_record_id).zfill(5) + self.get_lib_id()
             # 重置，避免第二次由于 self.get_lib_id() != -1, 导致没有选择词库也可以插入记录。
@@ -357,8 +360,7 @@ class AddNewRecord(wx.Dialog):
 
             DBFun.update('db_pymemo.db', insert_sql)
             ListCtrlRight.on_refresh()
-            self.Close()
-        pass
+
 
     def test(self, evt, ob, lib):
         lib_name = ob.GetValue().encode('utf-8')
@@ -473,10 +475,6 @@ class SettingDialog(wx.Dialog):
             lib_combo_box.SetSelection(lib_index)
             self.lib_id = str(flag).zfill(3)
             self.old_setting = self.fetch_setting(self.lib_id)
-        if self.old_setting:
-            print self.old_setting
-        else:
-            print self.old_setting
 
         h_box_combo.Add(lib_text, 0, wx.ALIGN_CENTER_VERTICAL)
         h_box_combo.Add(lib_combo_box, 0, wx.LEFT | wx.RIGHT, 10)
@@ -643,7 +641,6 @@ class Check(wx.Dialog):
         v_box.Add(h_box, 0, wx.EXPAND | wx.TOP | wx.LEFT | wx.RIGHT, 10)
         v_box.Add(line, 0, wx.EXPAND | wx.TOP | wx.BOTTOM, 10)
 
-
         # -----------
         text = "优化数据库是指：\n清除空卡片\n重置由于程序错误或设置不当造成信息错乱的词库\n点击开始优化按钮进行优化"
         self.tc = wx.TextCtrl(panel, -1, text, style=wx.TE_RICH | wx.TE_MULTILINE | wx.TE_READONLY)
@@ -687,6 +684,7 @@ class Check(wx.Dialog):
         ListCtrlLeft.on_refresh()
         return [ei_num, mi_num, mrpd_num, ncpd_num]
 
+
 # Study Dialogs
 class MemoDialog(wx.Dialog):
     def __init__(self, lib, i):
@@ -696,6 +694,10 @@ class MemoDialog(wx.Dialog):
         self.n_list = file.fetch_nsr(self.fn, 'N')
         self.s_list = file.fetch_nsr(self.fn, 'S')
         self.r_list = file.fetch_nsr(self.fn, 'R')
+        self.done = []
+        self.undone = []
+        self.lib = lib
+        self.i = i
 
         self.panel = wx.Panel(self)
         v_box_main = wx.BoxSizer(wx.VERTICAL)
@@ -770,10 +772,10 @@ class MemoDialog(wx.Dialog):
         self.easy.Disable()
 
         self.show_ans.Bind(wx.EVT_BUTTON, self.OnShowAns)
-        self.again.Bind(wx.EVT_BUTTON, lambda evt, qa=self.nrs_list: self.OnAgain(evt, qa))
-        self.hard.Bind(wx.EVT_BUTTON, lambda evt, qa=self.nrs_list: self.OnHard(evt, qa))
-        self.good.Bind(wx.EVT_BUTTON, lambda evt, qa=self.nrs_list: self.OnGood(evt, qa))
-        self.easy.Bind(wx.EVT_BUTTON, lambda evt, qa=self.nrs_list: self.OnEasy(evt, qa))
+        self.again.Bind(wx.EVT_BUTTON, self.OnAgain)
+        self.hard.Bind(wx.EVT_BUTTON, self.OnHard)
+        self.good.Bind(wx.EVT_BUTTON, self.OnGood)
+        self.easy.Bind(wx.EVT_BUTTON, self.OnEasy)
 
         h_box_btn.Add(self.again, 1, wx.RIGHT, 5)
         h_box_btn.Add(self.hard, 1, wx.RIGHT, 5)
@@ -788,6 +790,7 @@ class MemoDialog(wx.Dialog):
         v_box_main.Add(self.panel_btn, 0, wx.EXPAND | wx.ALL, 10)
 
         self.panel.SetSizer(v_box_main)
+        self.Bind(wx.EVT_CLOSE, self.OnClose)
         self.Centre()
         self.Show(True)
 
@@ -797,8 +800,8 @@ class MemoDialog(wx.Dialog):
         self.show_ans.Disable()
 
     def NextCard(self):
-        if self.fetch():
-            self.nrs_list = self.fetch()
+        self.nrs_list = self.fetch()
+        if self.nrs_list:
             self.ques.SetLabel(self.nrs_list[2].encode('utf-8'))
             self.SetAnswer('')
             self.show_ans.Enable()
@@ -806,8 +809,18 @@ class MemoDialog(wx.Dialog):
             self.hard.Disable()
             self.good.Disable()
             self.easy.Disable()
+            self.SetCardsLeft()
         else:
             # 任务完成
+            # 写入数据库
+            self.write_db()
+            # reset recordstack_xxx.txt
+            file.reset_nsr(self.fn)
+            # 显示任务完成页面
+            self.Destroy()
+            prepare_dlg = Prepare(self.i, self.lib)
+            # 刷新卡片记录界面
+            ListCtrlRight.on_refresh()
             pass
 
     def SetAnswer(self, ans):
@@ -829,35 +842,38 @@ class MemoDialog(wx.Dialog):
 
     def SetCardsLeft(self):
         dic = file.fetch_statistic(self.fn)
-        self.cl.SetLabel("剩余卡片数: %d %d %d" % (dic['N'], dic['S'], dic['R']))
+        self.cl.SetLabel("剩余卡片数: %d %d %d" % (len(self.n_list), len(self.s_list), len(self.r_list)))
 
-    def OnAgain(self, evt, qa):
-        print "before", qa
-        qa[-2] = self.ef(qa[-2], 0)
-        qa[-3] = self.interval(qa[-2], qa[-3], 0)
+    def OnAgain(self, evt):
+        self.nrs_list[-2] = self.ef(self.nrs_list[-2], 0)
+        self.nrs_list[-3] = self.interval(self.nrs_list[-2], self.nrs_list[-3], 0)
+        self.nrs_list[0] = 'S'
+        self.s_list.append(self.nrs_list)
+        if self.undone.count(self.nrs_list) == 0:
+            self.undone.append(self.nrs_list)
         self.NextCard()
-        print "after", qa
 
-    def OnHard(self, evt, qa):
-        print "before", qa
-        qa[-2] = self.ef(qa[-2], 3)
-        qa[-3] = self.interval(qa[-2], qa[-3], 3)
+    def OnHard(self, evt):
+        self.nrs_list[-2] = self.ef(self.nrs_list[-2], 3)
+        self.nrs_list[-3] = self.interval(self.nrs_list[-2], self.nrs_list[-3], 3)
+        self.nrs_list[0] = 'S'
+        self.s_list.append(self.nrs_list)
+        self.undone.append(self.nrs_list)
         self.NextCard()
-        print "after", qa
 
-    def OnGood(self, evt, qa):
-        print "before", qa
-        qa[-2] = self.ef(qa[-2], 4)
-        qa[-3] = self.interval(qa[-2], qa[-3], 4)
+    def OnGood(self, evt):
+        self.nrs_list[-2] = self.ef(self.nrs_list[-2], 4)
+        self.nrs_list[-3] = self.interval(self.nrs_list[-2], self.nrs_list[-3], 4)
+        self.nrs_list[0] = 'R'
+        self.done.append(self.nrs_list)
         self.NextCard()
-        print "after", qa
 
-    def OnEasy(self, evt, qa):
-        print "after", qa
-        qa[-2] = self.ef(qa[-2], 5)
-        qa[-3] = self.interval(qa[-2], qa[-3], 5)
+    def OnEasy(self, evt):
+        self.nrs_list[-2] = self.ef(self.nrs_list[-2], 5)
+        self.nrs_list[-3] = self.interval(self.nrs_list[-2], self.nrs_list[-3], 5)
+        self.nrs_list[0] = 'R'
+        self.done.append(self.nrs_list)
         self.NextCard()
-        print "after", qa
 
     @staticmethod
     def ef(ef, q):
@@ -868,8 +884,7 @@ class MemoDialog(wx.Dialog):
 
     @staticmethod
     def interval(ef, interval, q):
-        ef_f = float(ef)
-        interval_i = int(interval)
+        interval_i = math.ceil(float(interval))
         if interval_i == -1:
             # N
             if q == 0:
@@ -889,7 +904,7 @@ class MemoDialog(wx.Dialog):
             if q == 0:
                 return '0'
             else:
-                return str(interval_i * ef_f)
+                return str(math.ceil(interval_i * float(ef)))
 
     def fetch(self):
         if self.n_list:
@@ -900,6 +915,46 @@ class MemoDialog(wx.Dialog):
             return list(self.s_list.pop(0))
         else:
             return False
+
+    def OnClose(self, evt):
+        # 将现在的self.n_list, self.r_list, self.s_list写入recordstack_xxx.txt
+        file.reset_nsr(self.fn)
+
+        # 关闭时当前显示的卡片被弹出（pop）但是却没有给出评价，需要让其回到原来的list
+        if self.nrs_list[0] == 'N':
+            self.n_list.append(self.nrs_list)
+        elif self.nrs_list[0] == 'S':
+            self.s_list.append(self.nrs_list)
+        elif self.nrs_list[0] == 'R':
+            self.r_list.append(self.nrs_list)
+
+        # 没有背完的卡片应该写回recordstack_xxx.txt中
+        file.write_nsr(self.fn, self.n_list, 'N')
+        file.write_nsr(self.fn, self.s_list, 'S')
+        file.write_nsr(self.fn, self.r_list, 'R')
+        # 写入数据库
+        self.write_db()
+        # 刷新界面
+        ListCtrlRight.on_refresh()
+        # 关闭窗口
+        self.Destroy()
+        pass
+
+    def write_db(self):
+        now = time.strftime('%Y/%m/%d', time.localtime(time.time()))
+
+        if self.undone:
+            for rows in self.undone:
+                sql = "UPDATE record SET" \
+                            " reviewTime = '" + now + "', interval = '" + rows[-3] + "', EF = '" + rows[-2] + "' WHERE" \
+                            " recordId = '" + rows[1] + "'"
+                DBFun.update('db_pymemo.db', sql)
+        if self.done:
+            for rows in self.done:
+                sql = "UPDATE record SET" \
+                            " reviewTime = '" + now + "', interval = '" + rows[-3] + "', EF = '" + rows[-2] + "' WHERE" \
+                            " recordId = '" + rows[1] + "'"
+                DBFun.update('db_pymemo.db', sql)
 
 
 class SelectLib(wx.Dialog):
@@ -953,6 +1008,7 @@ class Prepare(wx.Dialog):
             f.write('N:0\nS:0\nR:0')
             f.close()
             pass
+        file.no_blank(file_name)
         nsr = file.fetch_statistic(file_name)
         n_num = nsr['N']
         s_num = nsr['S']
@@ -1043,8 +1099,8 @@ class Prepare(wx.Dialog):
         setting_dlg.ShowModal()
         setting_dlg.Destroy()
 
-    @staticmethod
-    def on_study(evt, lib, i):
+    def on_study(self, evt, lib, i):
         memo_dlg = MemoDialog(lib, i)
         memo_dlg.ShowModal()
         memo_dlg.Destroy()
+        self.Destroy()
