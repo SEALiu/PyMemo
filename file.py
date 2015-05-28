@@ -125,3 +125,55 @@ def fetch_nsr(fn, nsr):
     for item in ls:
         new_ls.append(tuple(item.split()))
     return new_ls
+
+
+def write_nsr(fn, ls, v):
+    """
+    将结果写入fn文件中
+    :param fn:
+    :param nsr:
+    :return:
+    """
+    f = open(fn, 'a')
+    for rows in ls:
+        f.write('\n')
+        for item in rows:
+            f.write('%s%s' % (item, ' '))
+    f.close()
+    set_statistic(fn, v, fetch_statistic(fn)[v])
+
+
+def reset_nsr(fn):
+    """
+    重置recordstack_xxx.txt文件
+    :param fn:
+    :return:
+    """
+    f = open(fn, 'w')
+    f.write('N:0\nS:0\nR:0')
+    f.close()
+
+
+def delete_nsr(fn):
+    os.remove(fn)
+
+
+def no_blank(fn):
+    """
+    清除文件中的空行
+    :param fn:
+    :return:
+    """
+    name = fn
+    f = open(fn, 'r')
+    f2 = open('no_blank.txt', 'w')
+    while True:
+        text = f.readline()
+        if text == '':
+            break
+        elif text == os.linesep:
+            pass
+        else:
+            f2.write(text)
+    os.remove(fn)
+    os.rename('no_blank.txt', name)
