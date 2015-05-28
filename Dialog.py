@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import time
 import os
+import os.path
 import wx
 import wx.lib.buttons as buttons
 import file
@@ -43,7 +44,7 @@ class AddNewLib(wx.Dialog):
 
         next_lib_id = DBFun.max_lib('libId') + 1
         lib_id = str(next_lib_id).zfill(3)
-        create_time = time.strftime('%Y/%m/%d %H:%M:%S', time.localtime(time.time()))
+        create_time = time.strftime('%Y/%m/%d', time.localtime(time.time()))
 
         insert_lib_sql = "INSERT INTO library(libId, name, libDesc, createTime) VALUES ('" + lib_id + "', '" + lib_name + "', '" +\
                          lib_desc + "', '" + create_time + "')"
@@ -170,6 +171,9 @@ class DeleteLib(wx.Dialog):
         DBFun.update('db_pymemo.db', update_record_sql)
         ListCtrlLeft.on_refresh()
         ListCtrlRight.on_refresh()
+        f = 'recordstack_' + str(i) + '.txt'
+        if os.path.exists(f):
+            os.remove(f)
         self.Close()
 
 
@@ -662,13 +666,15 @@ class Check(wx.Dialog):
         self.tc.AppendText("成功重置每日最大学习数量大于200的词库" + str(ls[3]) + '个！\n\n')
         self.tc.AppendText('数据库已经保持最佳运行状态！\n')
 
-    def ClearBlank(self):
-        sql = "DELETE FROM record WHERE ques=''"
+    @staticmethod
+    def ClearBlank():
+        sql = "DELETE FROM record WHERE ques='' OR ans=''"
         num = DBFun.update('db_pymemo.db', sql)
         ListCtrlRight.on_refresh()
         return num
 
-    def Reset(self):
+    @staticmethod
+    def Reset():
         sql1 = "UPDATE library SET easyInterval = 3 WHERE easyInterval < 3"
         sql2 = "UPDATE library SET maxInterval = 3650 WHERE maxInterval > 3650"
         sql3 = "UPDATE library SET maxReviewsPerDay = 50 WHERE maxReviewsPerDay > 200"
@@ -718,6 +724,7 @@ class MemoDialog(wx.Dialog):
         panel_qa.SetBackgroundColour('white')
         v_box_qa = wx.BoxSizer(wx.VERTICAL)
 
+        # 当前显示的卡片的详细信息
         self.nrs_list = self.fetch()
 
         self.ques = wx.StaticText(panel_qa, -1, self.nrs_list[2].encode('utf-8'))
@@ -762,7 +769,7 @@ class MemoDialog(wx.Dialog):
         self.easy.SetBackgroundColour('white')
         self.easy.Disable()
 
-        self.show_ans.Bind(wx.EVT_BUTTON, lambda evt, qa=self.nrs_list: self.OnShowAns(evt, qa))
+        self.show_ans.Bind(wx.EVT_BUTTON, self.OnShowAns)
         self.again.Bind(wx.EVT_BUTTON, lambda evt, qa=self.nrs_list: self.OnAgain(evt, qa))
         self.hard.Bind(wx.EVT_BUTTON, lambda evt, qa=self.nrs_list: self.OnHard(evt, qa))
         self.good.Bind(wx.EVT_BUTTON, lambda evt, qa=self.nrs_list: self.OnGood(evt, qa))
@@ -784,15 +791,24 @@ class MemoDialog(wx.Dialog):
         self.Centre()
         self.Show(True)
 
-    def OnShowAns(self, evt, qa):
-        self.SetAnswer(qa[3].encode('utf-8'))
-        self.SetBtnAble(qa[8])
+    def OnShowAns(self, evt):
+        self.SetAnswer(self.nrs_list[3].encode('utf-8'))
+        self.SetBtnAble(self.nrs_list[8])
         self.show_ans.Disable()
 
-    def SetQuestion(self, ques):
-        self.ques.SetLabel(ques)
-        self.SetAnswer("")
-        self.SetCardsLeft()
+    def NextCard(self):
+        if self.fetch():
+            self.nrs_list = self.fetch()
+            self.ques.SetLabel(self.nrs_list[2].encode('utf-8'))
+            self.SetAnswer('')
+            self.show_ans.Enable()
+            self.again.Disable()
+            self.hard.Disable()
+            self.good.Disable()
+            self.easy.Disable()
+        else:
+            # 任务完成
+            pass
 
     def SetAnswer(self, ans):
         self.ans.SetLabel(ans)
@@ -815,37 +831,32 @@ class MemoDialog(wx.Dialog):
         dic = file.fetch_statistic(self.fn)
         self.cl.SetLabel("剩余卡片数: %d %d %d" % (dic['N'], dic['S'], dic['R']))
 
-    def FetchACard(self, nsr):
-        if nsr == 'N':
-            return self.n_list.pop(0)
-        elif nsr == 'S':
-            return self.s_list.pop(0)
-        elif nsr == 'R':
-            return self.r_list.pop(0)
-
     def OnAgain(self, evt, qa):
         print "before", qa
         qa[-2] = self.ef(qa[-2], 0)
         qa[-3] = self.interval(qa[-2], qa[-3], 0)
-        self.nrs_list = self.fetch()
+        self.NextCard()
         print "after", qa
 
     def OnHard(self, evt, qa):
         print "before", qa
         qa[-2] = self.ef(qa[-2], 3)
         qa[-3] = self.interval(qa[-2], qa[-3], 3)
+        self.NextCard()
         print "after", qa
 
     def OnGood(self, evt, qa):
         print "before", qa
         qa[-2] = self.ef(qa[-2], 4)
         qa[-3] = self.interval(qa[-2], qa[-3], 4)
+        self.NextCard()
         print "after", qa
 
     def OnEasy(self, evt, qa):
         print "after", qa
         qa[-2] = self.ef(qa[-2], 5)
         qa[-3] = self.interval(qa[-2], qa[-3], 5)
+        self.NextCard()
         print "after", qa
 
     @staticmethod
@@ -887,6 +898,8 @@ class MemoDialog(wx.Dialog):
             return list(self.r_list.pop(0))
         elif self.s_list:
             return list(self.s_list.pop(0))
+        else:
+            return False
 
 
 class SelectLib(wx.Dialog):
