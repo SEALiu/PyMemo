@@ -1,5 +1,6 @@
 # # -*- coding: utf-8 -*-
 # import sqlite3
+# import time
 #
 # conn = sqlite3.connect('db_pymemo.db')
 # c = conn.cursor()
@@ -13,12 +14,7 @@
 # newCardsPerDay integer DEFAULT 50,
 # easyInterval integer DEFAULT 3,
 # maxInterval integer DEFAULT 3650,
-# maxAnswerTime integer DEFAULT 30,
-# isShowAnswerTime boolean DEFAULT True,
-# isShowInterval boolean DEFAULT True,
-# isShowRest boolean DEFAULT True,
-# isShowDuration boolean DEFAULT True,
-# fontSize integer DEFAULT 14
+# isShowRest text DEFAULT 'True'
 # )''')
 #
 # c.execute(
@@ -29,16 +25,15 @@
 # addTime text,
 # reviewTime text,
 # alertTime text,
-# interval integer DEFAULT -1,
-# EF integer DEFAULT 2.5,
+# interval REAL DEFAULT -1.0,
+# EF REAL DEFAULT 2.5,
 # isPaused text DEFAULT 'False'
 # )''')
 #
-# c.execute(
-#     '''INSERT INTO library(libId, name, libDesc, createTime) VALUES ('000', '孤儿院',
-# '存放没有归属词库的记录，并且此词库不能被删除',
-# '2015/04/21 21:09:43:47')
-# ''')
+# create_time = time.strftime('%Y/%m/%d', time.localtime(time.time()))
+# insert_lib_sql = "INSERT INTO library(libId, name, libDesc, createTime) " \
+#                  "VALUES ('000', '孤儿院', '存放没有归属词库的记录，并且此词库不能被删除', '" + create_time + "')"
+# c.execute(insert_lib_sql)
 # conn.commit()
 #
 # c.close()

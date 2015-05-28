@@ -1,9 +1,0 @@
-N:6
-S:0
-R:0
-N 00008002 index 索引 2015/05/22 None None -1 2.5 False 
-N 00009002 filter 过滤器 2015/05/22 None None -1 2.5 False 
-N 00010002 dialog 对话，对话框 2015/05/22 None None -1 2.5 False 
-N 00011002 dababase 数据库 2015/05/22 None None -1 2.5 False 
-N 00012002 python 莽蛇 2015/05/22 None None -1 2.5 False 
-N 00013002 record 记录 2015/05/22 None None -1 2.5 False 
