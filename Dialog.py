@@ -372,15 +372,13 @@ class AddNewRecord(wx.Dialog):
 
 class DeleteRecord(wx.Dialog):
     def __init__(self, detail):
-        wx.Dialog.__init__(self, None, -1, '挂起/删除记录', size=(-1, 200),
+        wx.Dialog.__init__(self, None, -1, '挂起/删除记录', size=(-1, 160),
                            style=wx.CAPTION | wx.SYSTEM_MENU | wx.CLOSE_BOX)
         panel = wx.Panel(self, -1)
-        panel.SetBackgroundColour('white')
         v_box = wx.BoxSizer(wx.VERTICAL)
         info_text = wx.StaticText(panel, -1,
-                                  '挂起记录后，该记录不会在学习中出现，直到你取消挂起'
-                                  '\n注意，当你挂起这个记录之后，它的学习过程将被重置。'
-                                  '\n\n删除记录后，该记录将永久消失！')
+                                  '当你挂起这个记录之后，它的学习过程不会被重置。取消挂起之后继续学习'
+                                  '\n删除记录后，该记录将永久消失！')
         h_box = wx.BoxSizer(wx.HORIZONTAL)
 
         delete_button = wx.Button(panel, -1, label='删除')
@@ -427,12 +425,26 @@ class DeleteRecord(wx.Dialog):
 class AboutDialog(wx.AboutDialogInfo):
     def __init__(self):
         wx.AboutDialogInfo.__init__(self)
-        description = "这是我的一项毕业设计，《基于Python的单词记忆软件开发》\n\n" \
+        description = "这是我的毕业设计成果，《基于Python的单词记忆软件开发》\n\n" \
             "GUI库：wxpython 2.7.9\n" \
             "IDE：pyCharm Community Edition 4.0.4\n" \
             "DB：SQLite3\n\n"\
-            "向所有给予帮组，提出建议，报告Bug的人们致谢！\n\n" \
+            "向所有给予帮助，提出建议，报告Bug的人们致谢！\n\n" \
             "联系：iliuyang@foxmail.com"
+        licence = """PyMemo is free software; you can redistribute
+it and/or modify it under the terms of the GNU General Public License as
+published by the Free Software Foundation; either version 2 of the License,
+or (at your option) any later version.
+翻译：PyMemo是个开源软件，你可以基于GNU随便修改和二次发行。
+
+PyMemo is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+See the GNU General Public License for more details.
+翻译：但是我不负责软件的可靠性。（大概就这意思！）
+
+"""
+
         self.SetIcon(wx.Icon('images/64/PyMemo_logo_white.png', wx.BITMAP_TYPE_PNG))
         self.SetName("PyMemo")
         self.SetVersion('1.0')
@@ -441,6 +453,7 @@ class AboutDialog(wx.AboutDialogInfo):
         self.SetCopyright('(c)2015 刘洋')
         self.Developers = ["刘洋"]
         self.Artists = ["刘洋", "图标部分来自：http://findicons.com/"]
+        self.SetLicence(licence)
         wx.AboutBox(self)
 
 
