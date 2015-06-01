@@ -23,9 +23,7 @@ def update(url, sql):
     result = conn.execute(sql)
     conn.commit()
 
-    num = 0
-    for rows in result:
-        num += 1
+    num = conn.total_changes
     conn.close()
     return num
 
