@@ -1,4 +1,3 @@
-N:1
+N:0
 S:0
 R:0
-N 00004001 star 星星 2015/05/28 None None -1.0 2.5 False 
