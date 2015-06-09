@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-# memo.py
 import sys
 import wx
 import Dialog
@@ -76,11 +75,11 @@ class ListCtrlLeft(wx.ListCtrl):
     def on_lib_right_click(self, event):
         index = event.GetIndex()
         menu = wx.Menu()
-        item_rename = wx.MenuItem(menu, -1, "修改名称或描述")
-        item_info = wx.MenuItem(menu, -1, "查看词库的信息")
-        item_add = wx.MenuItem(menu, -1, '增加一条记录')
-        item_setting = wx.MenuItem(menu, -1, '设置')
-        item_delete = wx.MenuItem(menu, -1, '删除这个词库')
+        item_rename = wx.MenuItem(menu, -1, "修改名称或描述".decode('utf-8'))
+        item_info = wx.MenuItem(menu, -1, "查看词库的信息".decode('utf-8'))
+        item_add = wx.MenuItem(menu, -1, '增加一条记录'.decode('utf-8'))
+        item_setting = wx.MenuItem(menu, -1, '设置'.decode('utf-8'))
+        item_delete = wx.MenuItem(menu, -1, '删除这个词库'.decode('utf-8'))
         self.Bind(wx.EVT_MENU, lambda evt, i=index: self.on_lib_rename(evt, i), item_rename)
         self.Bind(wx.EVT_MENU, lambda evt, i=index: self.on_item_info(evt, i), item_info)
         self.Bind(wx.EVT_MENU, lambda evt, i=index: self.on_item_add(evt, i), item_add)
@@ -143,8 +142,8 @@ class ListCtrlLeft(wx.ListCtrl):
     def on_lib_delete(self, evt, i):
         lib_id = LIBRARY_ID[i]
         if lib_id == '000':
-            msg_dlg = wx.MessageDialog(self, '默认词库无法被删除！',
-                               '提示',
+            msg_dlg = wx.MessageDialog(self, '默认词库无法被删除！'.decode('utf-8'),
+                               '提示'.decode('utf-8'),
                                wx.OK | wx.ICON_WARNING)
             msg_dlg.ShowModal()
             msg_dlg.Destroy()
@@ -166,15 +165,15 @@ class ListCtrlRight(wx.ListCtrl):
     def load_data_right(self, RECORDS):
         self.DeleteAllItems()
         self.DeleteAllColumns()
-        self.list_head_name = ['记录ID',
-                               '正面',
-                               '反面',
-                               '添加时间',
-                               '复习时间',
-                               '修改时间',
-                               '间隔天数',
+        self.list_head_name = ['记录ID'.decode('utf-8'),
+                               '正面'.decode('utf-8'),
+                               '反面'.decode('utf-8'),
+                               '添加时间'.decode('utf-8'),
+                               '复习时间'.decode('utf-8'),
+                               '修改时间'.decode('utf-8'),
+                               '间隔天数'.decode('utf-8'),
                                'E-Fator',
-                               '是否挂起'
+                               '是否挂起'.decode('utf-8')
                                ]
         for i in range(len(self.list_head_name)):
             self.InsertColumn(i, self.list_head_name[i], width=wx.LIST_AUTOSIZE)
@@ -196,9 +195,9 @@ class ListCtrlRight(wx.ListCtrl):
         index = evt.GetIndex()
         detail = record[index]
         menu = wx.Menu()
-        record_update = wx.MenuItem(menu, -1, "修改")
-        record_info = wx.MenuItem(menu, -1, "详细信息")
-        record_delete = wx.MenuItem(menu, -1, "挂起/删除")
+        record_update = wx.MenuItem(menu, -1, "修改".decode('utf-8'))
+        record_info = wx.MenuItem(menu, -1, "详细信息".decode('utf-8'))
+        record_delete = wx.MenuItem(menu, -1, "挂起/删除".decode('utf-8'))
 
         self.Bind(wx.EVT_MENU, lambda e, d=detail: self.on_record_update(e, d), record_update)
         self.Bind(wx.EVT_MENU, lambda e, d=detail: self.on_record_info(e, d), record_info)
@@ -237,13 +236,13 @@ class CombinePanelRight(wx.Panel):
     def __init__(self, parent, i, records):
         wx.Panel.__init__(self, parent, i, style=wx.BORDER_NONE)
 
-        filter_list = ['显示所有记录',
-                     '已到期的',
-                     '已记住的',
-                     '今天待学习的',
-                     '今天已学习的',
-                     '始终记不住的',
-                     '今天添加的']
+        filter_list = ['显示所有记录'.decode('utf-8'),
+                     '已到期的'.decode('utf-8'),
+                     '已记住的'.decode('utf-8'),
+                     '今天待学习的'.decode('utf-8'),
+                     '今天已学习的'.decode('utf-8'),
+                     '始终记不住的'.decode('utf-8'),
+                     '今天添加的'.decode('utf-8')]
         horizontal_box = wx.BoxSizer(wx.HORIZONTAL)
         lib_combo_box = wx.ComboBox(self,
                                     pos=(0, 5),
@@ -321,21 +320,21 @@ class Memo(wx.Frame):
         tool_menu = wx.Menu()
         help_menu = wx.Menu()
 
-        menu_bar.Append(file_menu, '文件')
-        menu_bar.Append(tool_menu, '工具')
-        menu_bar.Append(help_menu, '帮助')
+        menu_bar.Append(file_menu, '文件'.decode('utf-8'))
+        menu_bar.Append(tool_menu, '工具'.decode('utf-8'))
+        menu_bar.Append(help_menu, '帮助'.decode('utf-8'))
 
-        new_lib_item = file_menu.Append(-1, '添加一个词库')
-        new_record_item = file_menu.Append(-1, '添加一条记录')
-        setting = file_menu.Append(-1, '偏好设置')
+        new_lib_item = file_menu.Append(-1, '添加一个词库'.decode('utf-8'))
+        new_record_item = file_menu.Append(-1, '添加一条记录'.decode('utf-8'))
+        setting = file_menu.Append(-1, '偏好设置'.decode('utf-8'))
         file_menu.AppendSeparator()
-        quit_item = file_menu.Append(-1, '离开')
+        quit_item = file_menu.Append(-1, '离开'.decode('utf-8'))
 
-        study_item = tool_menu.Append(-1, '开始学习')
-        check = tool_menu.Append(-1, '优化数据库')
+        study_item = tool_menu.Append(-1, '开始学习'.decode('utf-8'))
+        check = tool_menu.Append(-1, '优化数据库'.decode('utf-8'))
 
-        guide_item = help_menu.Append(wx.ID_HELP, '用户手册')
-        about_item = help_menu.Append(wx.ID_ABOUT, '关于')
+        guide_item = help_menu.Append(wx.ID_HELP, '用户手册'.decode('utf-8'))
+        about_item = help_menu.Append(wx.ID_ABOUT, '关于'.decode('utf-8'))
 
         self.Bind(wx.EVT_MENU, self.on_new_lib, new_lib_item)
         self.Bind(wx.EVT_MENU, self.on_new_record, new_record_item)
@@ -355,14 +354,14 @@ class Memo(wx.Frame):
                    'setting': wx.NewId(),
                    'learn': wx.NewId()}
         tool_bar = self.CreateToolBar(style=wx.TB_FLAT | wx.TB_TEXT | wx.TB_HORZ_LAYOUT)
-        quit_item = tool_bar.AddLabelTool(wx.ID_EXIT, '退出', wx.Bitmap('images/32/quit.png'))
+        quit_item = tool_bar.AddLabelTool(wx.ID_EXIT, '退出'.decode('utf-8'), wx.Bitmap('images/32/quit.png'))
         tool_bar.AddSeparator()
         # import_item = tool_bar.AddLabelTool(tool_id['import'], '导入词库', wx.Bitmap('images/32/import.png'))
-        new_lib = tool_bar.AddLabelTool(tool_id['new_lib'], '新建词库', wx.Bitmap('images/32/library_add.png'))
-        new_record = tool_bar.AddLabelTool(tool_id['new_record'], '添加记录', wx.Bitmap('images/32/card_add.png'))
-        setting = tool_bar.AddLabelTool(tool_id['setting'], '设置', wx.Bitmap('images/32/setting.png'))
+        new_lib = tool_bar.AddLabelTool(tool_id['new_lib'], '新建词库'.decode('utf-8'), wx.Bitmap('images/32/library_add.png'))
+        new_record = tool_bar.AddLabelTool(tool_id['new_record'], '添加记录'.decode('utf-8'), wx.Bitmap('images/32/card_add.png'))
+        setting = tool_bar.AddLabelTool(tool_id['setting'], '设置'.decode('utf-8'), wx.Bitmap('images/32/setting.png'))
         tool_bar.AddSeparator()
-        study = tool_bar.AddLabelTool(tool_id['learn'], '开始学习', wx.Bitmap('images/32/words_learn.png'))
+        study = tool_bar.AddLabelTool(tool_id['learn'], '开始学习'.decode('utf-8'), wx.Bitmap('images/32/words_learn.png'))
 
         self.Bind(wx.EVT_TOOL, self.on_quit, quit_item)
         self.Bind(wx.EVT_TOOL, self.on_setting, setting)
@@ -382,7 +381,7 @@ class Memo(wx.Frame):
         panel_left.SetBackgroundColour('white')
         panel_left_top = wx.Panel(panel_left, -1)
         panel_left_top.SetBackgroundColour('#53728c')
-        panel_left_str = wx.StaticText(panel_left_top, -1, '记忆库', pos=(15, 10), size=(-1, 30))
+        panel_left_str = wx.StaticText(panel_left_top, -1, '记忆库'.decode('utf-8'), pos=(15, 10), size=(-1, 30))
         panel_left_str.SetForegroundColour('white')
 
         panel_left_bottom = wx.Panel(panel_left, -1, style=wx.BORDER_NONE)
@@ -470,9 +469,9 @@ class Memo(wx.Frame):
 
     def on_guide(self, evt):
         f = open("README.md", "r")
-        msg = f.read()
+        msg = f.read().decode('utf-8')
         f.close()
-        dlg = wx.lib.dialogs.ScrolledMessageDialog(self, msg, "用户手册")
+        dlg = wx.lib.dialogs.ScrolledMessageDialog(self, msg, "用户手册".decode('utf-8'))
         dlg.ShowModal()
 
     @staticmethod
@@ -481,7 +480,7 @@ class Memo(wx.Frame):
 
 if __name__ == '__main__':
     reload(sys)
-    sys.setdefaultencoding('utf8')
+    sys.setdefaultencoding('utf-8')
     app = wx.App()
     Memo(None, -1, 'PyMemo', (1000, 500))
     app.MainLoop()

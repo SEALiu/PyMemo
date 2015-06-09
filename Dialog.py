@@ -12,19 +12,19 @@ from memo import *
 # Lib Dialog
 class AddNewLib(wx.Dialog):
     def __init__(self):
-        wx.Dialog.__init__(self, None, -1, '新建词库', size=(-1, 270),
+        wx.Dialog.__init__(self, None, -1, '新建词库'.decode('utf-8'), size=(-1, 270),
                            style=wx.CAPTION | wx.SYSTEM_MENU | wx.CLOSE_BOX)
         panel = wx.Panel(self, -1)
         v_box = wx.BoxSizer(wx.VERTICAL)
-        name_text = wx.StaticText(panel, -1, "词库名称：")
-        lib_name = wx.TextCtrl(panel, -1, "", style=wx.TE_CAPITALIZE)
+        name_text = wx.StaticText(panel, -1, "词库名称：".decode('utf-8'))
+        lib_name = wx.TextCtrl(panel, -1, "".decode('utf-8'), style=wx.TE_CAPITALIZE)
 
-        desc_text = wx.StaticText(panel, -1, "词库描述：")
-        lib_desc = wx.TextCtrl(panel, -1, "", size=(-1, 80), style=wx.TE_MULTILINE | wx.TE_NO_VSCROLL)
+        desc_text = wx.StaticText(panel, -1, "词库描述：".decode('utf-8'))
+        lib_desc = wx.TextCtrl(panel, -1, "".decode('utf-8'), size=(-1, 80), style=wx.TE_MULTILINE | wx.TE_NO_VSCROLL)
 
         h_box = wx.BoxSizer(wx.HORIZONTAL)
-        ok_button = wx.Button(panel, -1, label='确定')
-        cancel_button = wx.Button(panel, wx.ID_CANCEL, label='取消')
+        ok_button = wx.Button(panel, -1, label='确定'.decode('utf-8'))
+        cancel_button = wx.Button(panel, wx.ID_CANCEL, label='取消'.decode('utf-8'))
         self.Bind(wx.EVT_BUTTON, lambda evt, name=lib_name, desc=lib_desc: self.on_submit(evt, name, desc), ok_button)
         h_box.Add(ok_button, 1, wx.RIGHT, border=5)
         h_box.Add(cancel_button, 1)
@@ -57,20 +57,20 @@ class AddNewLib(wx.Dialog):
 
 class RenameLib(wx.Dialog):
     def __init__(self, old_name, old_desc, lib_id):
-        wx.Dialog.__init__(self, None, -1, '修改' + old_name + '名称和描述', size=(-1, 270),
+        wx.Dialog.__init__(self, None, -1, '修改'.decode('utf-8') + old_name.decode('utf-8') + '名称和描述'.decode('utf-8'), size=(-1, 270),
                            style=wx.CAPTION | wx.SYSTEM_MENU | wx.CLOSE_BOX)
         panel = wx.Panel(self, -1)
         v_box = wx.BoxSizer(wx.VERTICAL)
 
-        name_text = wx.StaticText(panel, -1, "词库名称：")
+        name_text = wx.StaticText(panel, -1, "词库名称：".decode('utf-8'))
         lib_name = wx.TextCtrl(panel, -1, old_name, style=wx.TE_CAPITALIZE)
 
-        desc_text = wx.StaticText(panel, -1, "词库描述：")
+        desc_text = wx.StaticText(panel, -1, "词库描述：".decode('utf-8'))
         lib_desc = wx.TextCtrl(panel, -1, old_desc, size=(-1, 80), style=wx.TE_MULTILINE | wx.TE_NO_VSCROLL)
 
         h_box = wx.BoxSizer(wx.HORIZONTAL)
-        ok_button = wx.Button(panel, -1, label='确定')
-        cancel_button = wx.Button(panel, wx.ID_CANCEL, label='取消')
+        ok_button = wx.Button(panel, -1, label='确定'.decode('utf-8'))
+        cancel_button = wx.Button(panel, wx.ID_CANCEL, label='取消'.decode('utf-8'))
         self.Bind(wx.EVT_BUTTON,
                   lambda evt, name=lib_name, desc=lib_desc, i=lib_id: self.on_submit(evt, name, desc, i),
                   ok_button)
@@ -100,23 +100,23 @@ class RenameLib(wx.Dialog):
 
 class LibInfo(wx.Dialog):
     def __init__(self, lib_info):
-        wx.Dialog.__init__(self, None, -1, lib_info[1].decode('utf-8') + '词库的信息', size=(-1, 300),
+        wx.Dialog.__init__(self, None, -1, lib_info[1].decode('utf-8') + '词库的信息'.decode('utf-8'), size=(-1, 300),
                            style=wx.CAPTION | wx.SYSTEM_MENU | wx.CLOSE_BOX)
 
         v_box = wx.BoxSizer(wx.VERTICAL)
 
-        panel = wx.Panel(self, -1, style=wx.BORDER_MASK)
+        panel = wx.Panel(self, -1)
         panel.SetBackgroundColour('white')
         v_box_panel = wx.BoxSizer(wx.VERTICAL)
-        lib_id = wx.StaticText(panel, -1, '词库ID：' + lib_info[0])
-        name_text = wx.StaticText(panel, -1, '词库名称：' + lib_info[1].decode('utf-8'))
-        desc_text = wx.StaticText(panel, -1, '词库描述：' + lib_info[2].decode('utf-8'))
-        create_time = wx.StaticText(panel, -1, '创建时间：' + str(lib_info[3]))
-        max_reviews = wx.StaticText(panel, -1, '每日复习：' + str(lib_info[4]))
-        max_new = wx.StaticText(panel, -1, '每日学习：' + str(lib_info[5]))
-        easy_interval = wx.StaticText(panel, -1, '简单间隔：' + str(lib_info[6]) + '（天）' )
-        max_interval = wx.StaticText(panel, -1, '最大间隔：' + str(lib_info[7]) + '（天）')
-        is_Show_Rest = wx.StaticText(panel, -1, '是否显示剩余卡片：' + lib_info[-1])
+        lib_id = wx.StaticText(panel, -1, '词库ID：'.decode('utf-8') + lib_info[0])
+        name_text = wx.StaticText(panel, -1, '词库名称：'.decode('utf-8') + lib_info[1].decode('utf-8'))
+        desc_text = wx.StaticText(panel, -1, '词库描述：'.decode('utf-8') + lib_info[2].decode('utf-8'))
+        create_time = wx.StaticText(panel, -1, '创建时间：'.decode('utf-8') + str(lib_info[3]))
+        max_reviews = wx.StaticText(panel, -1, '每日复习：'.decode('utf-8') + str(lib_info[4]))
+        max_new = wx.StaticText(panel, -1, '每日学习：'.decode('utf-8') + str(lib_info[5]))
+        easy_interval = wx.StaticText(panel, -1, '简单间隔：'.decode('utf-8') + str(lib_info[6]) + '（天）'.decode('utf-8'))
+        max_interval = wx.StaticText(panel, -1, '最大间隔：'.decode('utf-8') + str(lib_info[7]) + '（天）'.decode('utf-8'))
+        is_Show_Rest = wx.StaticText(panel, -1, '是否显示剩余卡片：'.decode('utf-8') + lib_info[-1])
 
 
         v_box_panel.Add(lib_id, 0, wx.EXPAND | wx.LEFT | wx.RIGHT | wx.TOP, 10)
@@ -132,7 +132,7 @@ class LibInfo(wx.Dialog):
         panel.SetSizer(v_box_panel)
 
         h_box = wx.BoxSizer(wx.HORIZONTAL)
-        ok_button = wx.Button(self, wx.ID_OK, label='确定')
+        ok_button = wx.Button(self, wx.ID_OK, label='确定'.decode('utf-8'))
         h_box.Add(ok_button, 1, wx.RIGHT, border=5)
 
         v_box.Add(panel, 1, wx.EXPAND | wx.ALL, 10)
@@ -145,16 +145,16 @@ class LibInfo(wx.Dialog):
 
 class DeleteLib(wx.Dialog):
     def __init__(self, lib_name, lib_id):
-        wx.Dialog.__init__(self, None, -1, '删除' + lib_name + '词库', size=(-1, 180),
+        wx.Dialog.__init__(self, None, -1, '删除'.decode('utf-8') + lib_name + '词库'.decode('utf-8'), size=(-1, 180),
                            style=wx.CAPTION | wx.SYSTEM_MENU | wx.CLOSE_BOX)
         panel = wx.Panel(self, -1)
         panel.SetBackgroundColour('white')
         v_box = wx.BoxSizer(wx.VERTICAL)
-        info_text = wx.StaticText(panel, -1, lib_name + '词库将被删除，词库中的记录会被转移至孤儿院。\n你确定要这样做么？')
+        info_text = wx.StaticText(panel, -1, lib_name + '词库将被删除，词库中的记录会被转移至孤儿院。\n你确定要这样做么？'.decode('utf-8'))
         h_box = wx.BoxSizer(wx.HORIZONTAL)
-        ok_button = wx.Button(panel, -1, label='确定')
+        ok_button = wx.Button(panel, -1, label='确定'.decode('utf-8'))
         self.Bind(wx.EVT_BUTTON, lambda evt, i=lib_id: self.on_delete(evt, i), ok_button)
-        cancel_button = wx.Button(panel, wx.ID_CANCEL, label='取消')
+        cancel_button = wx.Button(panel, wx.ID_CANCEL, label='取消'.decode('utf-8'))
         h_box.Add(ok_button, 1, wx.RIGHT, border=5)
         h_box.Add(cancel_button, 1)
 
@@ -181,7 +181,7 @@ class DeleteLib(wx.Dialog):
 # Record Dialog
 class RecordInfo(wx.Dialog):
     def __init__(self, detail):
-        wx.Dialog.__init__(self, None, -1, '记录的信息', size=(-1, 300),
+        wx.Dialog.__init__(self, None, -1, '记录的信息'.decode('utf-8'), size=(-1, 300),
                            style=wx.CAPTION | wx.SYSTEM_MENU | wx.CLOSE_BOX)
 
         v_box = wx.BoxSizer(wx.VERTICAL)
@@ -189,16 +189,16 @@ class RecordInfo(wx.Dialog):
         panel = wx.Panel(self, -1, style=wx.BORDER)
         panel.SetBackgroundColour('white')
         v_box_panel = wx.BoxSizer(wx.VERTICAL)
-        lib_id = wx.StaticText(panel, -1, '记录ID：' + detail[0][0:5])
-        name_text = wx.StaticText(panel, -1, '词库ID：' + detail[0][5:])
-        desc_text = wx.StaticText(panel, -1, '问题（正面）：' + detail[1].decode('utf-8'))
-        create_time = wx.StaticText(panel, -1, '答案（反面）：' + detail[2].decode('utf-8'))
-        max_reviews = wx.StaticText(panel, -1, '添加时间：' + detail[3].decode('utf-8'))
-        max_new = wx.StaticText(panel, -1, '复习时间：' + str(detail[4]).decode('utf-8'))
-        easy_interval = wx.StaticText(panel, -1, '修改时间：' + str(detail[5]).decode('utf-8'))
-        max_interval = wx.StaticText(panel, -1, '间隔：' + str(detail[6]) + '（天）')
-        max_time = wx.StaticText(panel, -1, 'E-Factor：' + str(detail[7]))
-        is_show_timer = wx.StaticText(panel, -1, '是否挂起：' + detail[8])
+        lib_id = wx.StaticText(panel, -1, '记录ID：'.decode('utf-8') + detail[0][0:5])
+        name_text = wx.StaticText(panel, -1, '词库ID：'.decode('utf-8') + detail[0][5:])
+        desc_text = wx.StaticText(panel, -1, '问题（正面）：'.decode('utf-8') + detail[1].decode('utf-8'))
+        create_time = wx.StaticText(panel, -1, '答案（反面）：'.decode('utf-8') + detail[2].decode('utf-8'))
+        max_reviews = wx.StaticText(panel, -1, '添加时间：'.decode('utf-8') + detail[3].decode('utf-8'))
+        max_new = wx.StaticText(panel, -1, '复习时间：'.decode('utf-8') + str(detail[4]).decode('utf-8'))
+        easy_interval = wx.StaticText(panel, -1, '修改时间：'.decode('utf-8') + str(detail[5]).decode('utf-8'))
+        max_interval = wx.StaticText(panel, -1, '间隔：'.decode('utf-8') + str(detail[6]) + '（天）'.decode('utf-8'))
+        max_time = wx.StaticText(panel, -1, 'E-Factor：'.decode('utf-8') + str(detail[7]).decode('utf-8'))
+        is_show_timer = wx.StaticText(panel, -1, '是否挂起：'.decode('utf-8') + detail[8].decode('utf-8'))
 
         v_box_panel.Add(lib_id, 0, wx.EXPAND | wx.LEFT | wx.RIGHT | wx.TOP, 10)
         v_box_panel.Add(name_text, 0, wx.EXPAND | wx.LEFT | wx.RIGHT, 10)
@@ -214,7 +214,7 @@ class RecordInfo(wx.Dialog):
         panel.SetSizer(v_box_panel)
 
         h_box = wx.BoxSizer(wx.HORIZONTAL)
-        close_button = wx.Button(self, wx.ID_CANCEL, label='关闭')
+        close_button = wx.Button(self, wx.ID_CANCEL, label='关闭'.decode('utf-8'))
         h_box.Add(close_button, 1, wx.RIGHT, border=5)
 
         v_box.Add(panel, 1, wx.EXPAND | wx.ALL, 10)
@@ -227,31 +227,31 @@ class RecordInfo(wx.Dialog):
 
 class UpdateRecord(wx.Dialog):
     def __init__(self, detail):
-        wx.Dialog.__init__(self, None, -1, '修改记录', size=(-1, 260),
+        wx.Dialog.__init__(self, None, -1, '修改记录'.decode('utf-8'), size=(-1, 260),
                            style=wx.CAPTION | wx.SYSTEM_MENU | wx.CLOSE_BOX)
         panel = wx.Panel(self, -1)
         v_box = wx.BoxSizer(wx.VERTICAL)
 
-        ques_text = wx.StaticText(panel, -1, "问题（正面）：")
+        ques_text = wx.StaticText(panel, -1, "问题（正面）：".decode('utf-8'))
         record_ques = wx.TextCtrl(panel, -1,
                                   detail[1].decode('utf-8'),
                                   size=(-1, 50),
                                   style=wx.TE_MULTILINE)
 
-        ans_text = wx.StaticText(panel, -1, "答案（反面）：")
+        ans_text = wx.StaticText(panel, -1, "答案（反面）：".decode('utf-8'))
         record_ans = wx.TextCtrl(panel, -1,
                                  detail[2].decode('utf-8'),
                                  size=(-1, 50),
                                  style=wx.TE_MULTILINE)
 
         h_box = wx.BoxSizer(wx.HORIZONTAL)
-        ok_button = wx.Button(panel, -1, label='修改')
+        ok_button = wx.Button(panel, -1, label='修改'.decode('utf-8'))
         self.Bind(wx.EVT_BUTTON,
                   lambda evt, ques=record_ques, ans=record_ans, i=detail[0]:
                   self.on_submit(evt, ques, ans, i),
                   ok_button)
 
-        cancel_button = wx.Button(panel, wx.ID_CANCEL, label='取消')
+        cancel_button = wx.Button(panel, wx.ID_CANCEL, label='取消'.decode('utf-8'))
 
         h_box.Add(ok_button, 1, wx.RIGHT, border=5)
         h_box.Add(cancel_button, 1)
@@ -280,14 +280,14 @@ class UpdateRecord(wx.Dialog):
 
 class AddNewRecord(wx.Dialog):
     def __init__(self, LIBRARIES, flag):
-        wx.Dialog.__init__(self, None, -1, '增加一条记录', size=(-1, 350),
+        wx.Dialog.__init__(self, None, -1, '增加一条记录'.decode('utf-8'), size=(-1, 350),
                            style=wx.CAPTION | wx.SYSTEM_MENU | wx.CLOSE_BOX)
         panel = wx.Panel(self, -1)
         self.lib_id = -1
         v_box = wx.BoxSizer(wx.VERTICAL)
         h_box_info = wx.BoxSizer(wx.HORIZONTAL)
 
-        lib_items = ['请选择词库']
+        lib_items = ['请选择词库'.decode('utf-8')]
         for index, element in enumerate(LIBRARIES):
             lib_items.append(LIBRARIES[element].decode('utf-8'))
 
@@ -306,15 +306,15 @@ class AddNewRecord(wx.Dialog):
         h_box_info.Add(lib_combo_box, 1, wx.TOP, 10)
         # h_box_info.Add(preview, 0, wx.ALIGN_RIGHT | wx.TOP, 6)
 
-        name_text = wx.StaticText(panel, -1, "问题（正面）：")
-        self.record_ques = wx.TextCtrl(panel, -1, "", size=(-1, 80), style=wx.TE_MULTILINE | wx.TE_NO_VSCROLL)
+        name_text = wx.StaticText(panel, -1, "问题（正面）：".decode('utf-8'))
+        self.record_ques = wx.TextCtrl(panel, -1, "".decode('utf-8'), size=(-1, 80), style=wx.TE_MULTILINE | wx.TE_NO_VSCROLL)
 
-        desc_text = wx.StaticText(panel, -1, "答案（反面）：")
-        self.record_ans = wx.TextCtrl(panel, -1, "", size=(-1, 80), style=wx.TE_MULTILINE | wx.TE_NO_VSCROLL)
+        desc_text = wx.StaticText(panel, -1, "答案（反面）：".decode('utf-8'))
+        self.record_ans = wx.TextCtrl(panel, -1, "".decode('utf-8'), size=(-1, 80), style=wx.TE_MULTILINE | wx.TE_NO_VSCROLL)
 
         h_box_btn = wx.BoxSizer(wx.HORIZONTAL)
-        ok_button = wx.Button(panel, -1, label='确定')
-        close_button = wx.Button(panel, wx.ID_CANCEL, label='取消')
+        ok_button = wx.Button(panel, -1, label='确定'.decode('utf-8'))
+        close_button = wx.Button(panel, wx.ID_CANCEL, label='取消'.decode('utf-8'))
 
         self.Bind(wx.EVT_BUTTON, lambda evt, ques=self.record_ques, ans=self.record_ans: self.on_submit(evt, ques, ans), ok_button)
         h_box_btn.Add(ok_button, 1, wx.RIGHT, border=5)
@@ -339,8 +339,8 @@ class AddNewRecord(wx.Dialog):
 
     def on_submit(self, evt, ques, ans):
         if self.get_lib_id() == -1:
-            msg_dlg = wx.MessageDialog(self, '请确保选择了一个词库！',
-                           '提示',
+            msg_dlg = wx.MessageDialog(self, '请确保选择了一个词库！'.decode('utf-8'),
+                           '提示'.decode('utf-8'),
                            wx.OK | wx.ICON_WARNING)
             msg_dlg.ShowModal()
             msg_dlg.Destroy()
@@ -372,26 +372,26 @@ class AddNewRecord(wx.Dialog):
 
 class DeleteRecord(wx.Dialog):
     def __init__(self, detail):
-        wx.Dialog.__init__(self, None, -1, '挂起/删除记录', size=(-1, 160),
+        wx.Dialog.__init__(self, None, -1, '挂起/删除记录'.decode('utf-8'), size=(-1, 160),
                            style=wx.CAPTION | wx.SYSTEM_MENU | wx.CLOSE_BOX)
         panel = wx.Panel(self, -1)
         v_box = wx.BoxSizer(wx.VERTICAL)
         info_text = wx.StaticText(panel, -1,
                                   '当你挂起这个记录之后，它的学习过程不会被重置。取消挂起之后继续学习'
-                                  '\n删除记录后，该记录将永久消失！')
+                                  '\n删除记录后，该记录将永久消失！'.decode('utf-8'))
         h_box = wx.BoxSizer(wx.HORIZONTAL)
 
-        delete_button = wx.Button(panel, -1, label='删除')
-        cancel_button = wx.Button(panel, wx.ID_CANCEL, label='取消')
+        delete_button = wx.Button(panel, -1, label='删除'.decode('utf-8'))
+        cancel_button = wx.Button(panel, wx.ID_CANCEL, label='取消'.decode('utf-8'))
 
         self.Bind(wx.EVT_BUTTON, lambda evt, i=detail[0]: self.on_delete(evt, i), delete_button)
 
         if detail[-1] == 'True':
-            play_button = wx.Button(panel, -1, label='取消挂起')
+            play_button = wx.Button(panel, -1, label='取消挂起'.decode('utf-8'))
             self.Bind(wx.EVT_BUTTON, lambda evt, i=detail[0], flag='False': self.on_is_pause(evt, i, flag), play_button)
             h_box.Add(play_button, 1, wx.RIGHT, border=5)
         else:
-            pause_button = wx.Button(panel, -1, label='挂起')
+            pause_button = wx.Button(panel, -1, label='挂起'.decode('utf-8'))
             self.Bind(wx.EVT_BUTTON, lambda evt, i=detail[0], flag='True': self.on_is_pause(evt, i, flag), pause_button)
             h_box.Add(pause_button, 1, wx.RIGHT, border=5)
 
@@ -459,7 +459,7 @@ See the GNU General Public License for more details.
 
 class SettingDialog(wx.Dialog):
     def __init__(self, LIBRARIES, flag):
-        wx.Dialog.__init__(self, None, -1, '词库设置', size=(400, 240),
+        wx.Dialog.__init__(self, None, -1, '词库设置'.decode('utf-8'), size=(400, 240),
                            style=wx.CAPTION | wx.SYSTEM_MENU | wx.CLOSE_BOX)
 
         self.lib_id = -1
@@ -470,11 +470,11 @@ class SettingDialog(wx.Dialog):
 
         panel_combo = wx.Panel(panel)
         # global lib_index
-        lib_items = ['请选择词库']
+        lib_items = ['请选择词库'.decode('utf-8')]
         for index, element in enumerate(LIBRARIES):
             lib_items.append(LIBRARIES[element].decode('utf-8'))
 
-        lib_text = wx.StaticText(panel_combo, -1, "选择设置词库：")
+        lib_text = wx.StaticText(panel_combo, -1, "选择设置词库：".decode('utf-8'))
         lib_combo_box = wx.ComboBox(panel_combo, choices=lib_items, style=wx.CB_READONLY)
 
         # 逆转LIBRARIES字典，以便于根据词库名称获取词库的ID，避免访问数据库。
@@ -497,14 +497,14 @@ class SettingDialog(wx.Dialog):
         line_1 = wx.StaticLine(panel, -1, size=(-1, -1), style=wx.LI_HORIZONTAL)
         v_box.Add(line_1, 0, wx.EXPAND)
 
-        panel_top = wx.Panel(panel, -1, style=wx.BORDER_MASK)
+        panel_top = wx.Panel(panel, -1)
         panel_top.SetBackgroundColour('white')
         v_box_t = wx.BoxSizer(wx.VERTICAL)
         h_box_g1 = wx.BoxSizer(wx.HORIZONTAL)
         h_box_g2 = wx.BoxSizer(wx.HORIZONTAL)
 
         self.show_rest = wx.CheckBox(panel_top,
-                            label='在复习的时候显示剩余卡片数',
+                            label='在复习的时候显示剩余卡片数'.decode('utf-8'),
                             style=wx.CHK_3STATE)
         if self.old_setting:
             if self.old_setting[2] == 'True':
@@ -514,8 +514,8 @@ class SettingDialog(wx.Dialog):
         else:
             self.show_rest.SetValue(True)
 
-        text1 = wx.StaticText(panel_top, label="每日学习卡片上限（张）")
-        text2 = wx.StaticText(panel_top, label="每日复习卡片上限（张）")
+        text1 = wx.StaticText(panel_top, label="每日学习卡片上限（张）".decode('utf-8'))
+        text2 = wx.StaticText(panel_top, label="每日复习卡片上限（张）".decode('utf-8'))
 
         self.study_limit = wx.SpinCtrl(panel_top, -1)
         self.study_limit.SetRange(1, 200)
@@ -547,11 +547,11 @@ class SettingDialog(wx.Dialog):
         # ----------
         h_box_btn = wx.BoxSizer(wx.HORIZONTAL)
 
-        ok_button = buttons.GenButton(panel, -1, "确定")
+        ok_button = buttons.GenButton(panel, -1, "确定".decode('utf-8'))
         ok_button.SetBezelWidth(1)
         ok_button.SetBackgroundColour('white')
 
-        close_button = buttons.GenButton(panel, -1, "关闭")
+        close_button = buttons.GenButton(panel, -1, "关闭".decode('utf-8'))
         close_button.SetBezelWidth(1)
         close_button.SetBackgroundColour('white')
 
@@ -578,8 +578,8 @@ class SettingDialog(wx.Dialog):
 
     def OnSubmit(self, evt):
         if self.lib_id == -1:
-            msg_dlg = wx.MessageDialog(self, '请确保选择了一个词库！',
-                           '提示',
+            msg_dlg = wx.MessageDialog(self, '请确保选择了一个词库！'.decode('utf-8'),
+                           '提示'.decode('utf-8'),
                            wx.OK | wx.ICON_WARNING)
             msg_dlg.ShowModal()
             msg_dlg.Destroy()
@@ -612,7 +612,7 @@ class SettingDialog(wx.Dialog):
 
 class Export(wx.DirDialog):
     def __init__(self, parent):
-        wx.DirDialog.__init__(self, parent, "请选择一个文件来保存导出的词库：",
+        wx.DirDialog.__init__(self, parent, "请选择一个文件来保存导出的词库：".decode('utf-8'),
                           style=wx.DD_DEFAULT_STYLE | wx.DD_NEW_DIR_BUTTON)
         self.CentreOnParent()
         self.Show(True)
@@ -620,7 +620,7 @@ class Export(wx.DirDialog):
 
 class Import(wx.FileDialog):
     def __init__(self, parent):
-        wx.FileDialog.__init__(self, parent, "选择导入的词库文件",
+        wx.FileDialog.__init__(self, parent, "选择导入的词库文件".decode('utf-8'),
                                wildcard="BMP and GIF files (*.bmp*.gif)|*.bmp*.gif|PNG files (*.png)|*.png",
                                style=wx.FD_OPEN | wx.FD_FILE_MUST_EXIST | wx.FD_CHANGE_DIR
                                )
@@ -630,7 +630,7 @@ class Import(wx.FileDialog):
 
 class Check(wx.Dialog):
     def __init__(self):
-        wx.Dialog.__init__(self, None, -1, '优化数据库', size=(400, 370),
+        wx.Dialog.__init__(self, None, -1, '优化数据库'.decode('utf-8'), size=(400, 370),
                            style=wx.CAPTION | wx.SYSTEM_MENU | wx.CLOSE_BOX)
         panel = wx.Panel(self)
         v_box = wx.BoxSizer(wx.VERTICAL)
@@ -638,12 +638,12 @@ class Check(wx.Dialog):
         # -----------
         h_box = wx.BoxSizer(wx.HORIZONTAL)
 
-        check_button = buttons.GenButton(panel, -1, "开始优化")
+        check_button = buttons.GenButton(panel, -1, "开始优化".decode('utf-8'))
         check_button.SetBezelWidth(1)
         check_button.SetBackgroundColour('white')
         check_button.Bind(wx.EVT_BUTTON, self.OnCheck)
 
-        cancel_button = buttons.GenButton(panel, wx.ID_CANCEL, "取消")
+        cancel_button = buttons.GenButton(panel, wx.ID_CANCEL, "取消".decode('utf-8'))
         cancel_button.SetBezelWidth(1)
         cancel_button.SetBackgroundColour('white')
 
@@ -655,7 +655,7 @@ class Check(wx.Dialog):
         v_box.Add(line, 0, wx.EXPAND | wx.TOP | wx.BOTTOM, 10)
 
         # -----------
-        text = "优化数据库是指：\n清除空卡片\n重置由于程序错误或设置不当造成信息错乱的词库\n点击开始优化按钮进行优化"
+        text = "优化数据库是指：\n清除空卡片\n重置由于程序错误或设置不当造成信息错乱的词库\n点击开始优化按钮进行优化".decode('utf-8')
         self.tc = wx.TextCtrl(panel, -1, text, style=wx.TE_RICH | wx.TE_MULTILINE | wx.TE_READONLY)
         v_box.Add(self.tc, 1, wx.EXPAND | wx.ALL, 10)
 
@@ -665,16 +665,16 @@ class Check(wx.Dialog):
     def OnCheck(self, evt):
         ls = []
         self.tc.Clear()
-        self.tc.AppendText("开始清除空卡片...\n\n")
+        self.tc.AppendText("开始清除空卡片...\n\n".decode('utf-8'))
         num = self.ClearBlank()
-        self.tc.AppendText("成功清除空卡片" + str(num) + '张！\n\n')
-        self.tc.AppendText("开始重置由于程序运行错误或设置不当信息错乱的词库...\n\n")
+        self.tc.AppendText("成功清除空卡片" + str(num) + '张！\n\n'.decode('utf-8'))
+        self.tc.AppendText("开始重置由于程序运行错误或设置不当信息错乱的词库...\n\n".decode('utf-8'))
         ls = self.Reset()
-        self.tc.AppendText("成功重置容易间隔少于3天的词库" + str(ls[0]) + '个！\n')
-        self.tc.AppendText("成功重置最大间隔多于10年的词库" + str(ls[1]) + '个！\n')
-        self.tc.AppendText("成功重置每日最大复习数量大于200的词库" + str(ls[2]) + '个！\n')
-        self.tc.AppendText("成功重置每日最大学习数量大于200的词库" + str(ls[3]) + '个！\n\n')
-        self.tc.AppendText('数据库已经保持最佳运行状态！\n')
+        self.tc.AppendText("成功重置容易间隔少于3天的词库" + str(ls[0]) + '个！\n'.decode('utf-8'))
+        self.tc.AppendText("成功重置最大间隔多于10年的词库" + str(ls[1]) + '个！\n'.decode('utf-8'))
+        self.tc.AppendText("成功重置每日最大复习数量大于200的词库" + str(ls[2]) + '个！\n'.decode('utf-8'))
+        self.tc.AppendText("成功重置每日最大学习数量大于200的词库" + str(ls[3]) + '个！\n\n'.decode('utf-8'))
+        self.tc.AppendText('数据库已经保持最佳运行状态！\n'.decode('utf-8'))
 
     @staticmethod
     def ClearBlank():
@@ -701,7 +701,7 @@ class Check(wx.Dialog):
 # Study Dialogs
 class MemoDialog(wx.Dialog):
     def __init__(self, lib, i):
-        wx.Dialog.__init__(self, None, -1, 'Study', size=(-1, 470),
+        wx.Dialog.__init__(self, None, -1, '学习'.decode('utf-8'), size=(-1, 470),
                            style=wx.CAPTION | wx.SYSTEM_MENU | wx.CLOSE_BOX)
         self.fn = 'recordstack_' + str(i) + '.txt'
         self.n_list = file.fetch_nsr(self.fn, 'N')
@@ -715,7 +715,7 @@ class MemoDialog(wx.Dialog):
         self.panel = wx.Panel(self)
         v_box_main = wx.BoxSizer(wx.VERTICAL)
 
-        title = wx.StaticText(self.panel, -1, lib[i].encode('utf8'))
+        title = wx.StaticText(self.panel, -1, lib[i].decode('utf-8'))
         more = wx.BitmapButton(self.panel, -1, wx.Bitmap('images/other-size/more26.png'), style=wx.NO_BORDER)
         line_1 = wx.StaticLine(self.panel, -1, size=(-1, -1), style=wx.LI_HORIZONTAL)
 
@@ -728,22 +728,22 @@ class MemoDialog(wx.Dialog):
 
         # ---------------
         dic = file.fetch_statistic(self.fn)
-        self.cl = wx.StaticText(self.panel, -1, "剩余卡片数: %d %d %d" % (dic['N'], dic['S'], dic['R']))
+        self.cl = wx.StaticText(self.panel, -1, "剩余卡片数: %d %d %d".decode('utf-8') % (dic['N'], dic['S'], dic['R']))
         h_box_info = wx.BoxSizer(wx.HORIZONTAL)
         h_box_info.Add(self.cl, 1, wx.RIGHT, 10)
         v_box_main.Add(h_box_info, 0, wx.EXPAND | wx.ALL, 10)
 
         # ---------------
 
-        panel_qa = wx.Panel(self.panel, -1, style=wx.BORDER_MASK)
+        panel_qa = wx.Panel(self.panel, -1)
         panel_qa.SetBackgroundColour('white')
         v_box_qa = wx.BoxSizer(wx.VERTICAL)
 
         # 当前显示的卡片的详细信息
         self.nrs_list = self.fetch()
 
-        self.ques = wx.StaticText(panel_qa, -1, self.nrs_list[2].encode('utf-8'))
-        self.ans = wx.StaticText(panel_qa, -1, "")
+        self.ques = wx.StaticText(panel_qa, -1, self.nrs_list[2].decode('utf-8'))
+        self.ans = wx.StaticText(panel_qa, -1, "".decode('utf-8'))
         line_2 = wx.StaticLine(panel_qa, -1, size=(-1, -1), style=wx.LI_HORIZONTAL)
 
         v_box_qa.Add(self.ques, 0, wx.LEFT | wx.TOP, 20)
@@ -757,29 +757,29 @@ class MemoDialog(wx.Dialog):
         v_box_btn = wx.BoxSizer(wx.VERTICAL)
         h_box_btn = wx.BoxSizer(wx.HORIZONTAL)
 
-        self.show_ans = buttons.GenButton(self.panel_btn, -1, "显示答案")
+        self.show_ans = buttons.GenButton(self.panel_btn, -1, "显示答案".decode('utf-8'))
         self.show_ans.SetBezelWidth(1)
         self.show_ans.SetBackgroundColour('white')
         self.show_ans.Enable()
 
         line_3 = wx.StaticLine(self.panel_btn, -1, size=(-1, -1), style=wx.LI_HORIZONTAL)
 
-        self.again = buttons.GenButton(self.panel_btn, -1, "重来")
+        self.again = buttons.GenButton(self.panel_btn, -1, "重来".decode('utf-8'))
         self.again.SetBezelWidth(1)
         self.again.SetBackgroundColour('white')
         self.again.Disable()
 
-        self.hard = buttons.GenButton(self.panel_btn, -1, "困难")
+        self.hard = buttons.GenButton(self.panel_btn, -1, "困难".decode('utf-8'))
         self.hard.SetBezelWidth(1)
         self.hard.SetBackgroundColour('white')
         self.hard.Disable()
 
-        self.good = buttons.GenButton(self.panel_btn, -1, "一般")
+        self.good = buttons.GenButton(self.panel_btn, -1, "一般".decode('utf-8'))
         self.good.SetBezelWidth(1)
         self.good.SetBackgroundColour('white')
         self.good.Disable()
 
-        self.easy = buttons.GenButton(self.panel_btn, -1, "简单")
+        self.easy = buttons.GenButton(self.panel_btn, -1, "简单".decode('utf-8'))
         self.easy.SetBezelWidth(1)
         self.easy.SetBackgroundColour('white')
         self.easy.Disable()
@@ -808,15 +808,15 @@ class MemoDialog(wx.Dialog):
         self.Show(True)
 
     def OnShowAns(self, evt):
-        self.SetAnswer(self.nrs_list[3].encode('utf-8'))
+        self.SetAnswer(self.nrs_list[3].decode('utf-8'))
         self.SetBtnAble(self.nrs_list[8])
         self.show_ans.Disable()
 
     def NextCard(self):
         self.nrs_list = self.fetch()
         if self.nrs_list:
-            self.ques.SetLabel(self.nrs_list[2].encode('utf-8'))
-            self.SetAnswer('')
+            self.ques.SetLabel(self.nrs_list[2].decode('utf-8'))
+            self.SetAnswer(''.decode('utf-8'))
             self.show_ans.Enable()
             self.again.Disable()
             self.hard.Disable()
@@ -830,8 +830,10 @@ class MemoDialog(wx.Dialog):
             # reset recordstack_xxx.txt
             file.reset_nsr(self.fn)
             # 显示任务完成页面
-            self.Destroy()
             prepare_dlg = Prepare(self.i, self.lib)
+            prepare_dlg.ShowModal()
+            prepare_dlg.Destroy()
+            self.Destroy()
             # 刷新卡片记录界面
             ListCtrlRight.on_refresh()
             pass
@@ -855,7 +857,7 @@ class MemoDialog(wx.Dialog):
 
     def SetCardsLeft(self):
         dic = file.fetch_statistic(self.fn)
-        self.cl.SetLabel("剩余卡片数: %d %d %d" % (len(self.n_list), len(self.s_list), len(self.r_list)))
+        self.cl.SetLabel("剩余卡片数: %d %d %d".decode('utf-8') % (len(self.n_list), len(self.s_list), len(self.r_list)))
 
     def OnAgain(self, evt):
         self.nrs_list[-2] = self.ef(self.nrs_list[-2], 0)
@@ -972,21 +974,21 @@ class MemoDialog(wx.Dialog):
 
 class SelectLib(wx.Dialog):
     def __init__(self, lib):
-        wx.Dialog.__init__(self, None, -1, '学习', size=(-1, 350),
+        wx.Dialog.__init__(self, None, -1, '学习'.decode('utf-8'), size=(-1, 350),
                            style=wx.CAPTION | wx.SYSTEM_MENU | wx.CLOSE_BOX)
         v_box = wx.BoxSizer(wx.VERTICAL)
-        panel = wx.Panel(self, -1, style=wx.BORDER_MASK)
+        panel = wx.Panel(self, -1)
         panel.SetBackgroundColour('white')
         v_box_p = wx.BoxSizer(wx.VERTICAL)
 
-        info_text = wx.StaticText(panel, -1, "选择要学习的词库：")
+        info_text = wx.StaticText(panel, -1, "选择要学习的词库：".decode('utf-8'))
         v_box_p.Add(info_text, 0, wx.EXPAND | wx.TOP | wx.LEFT | wx.RIGHT, 10)
         for index, content in enumerate(lib):
             self.button = wx.Button(panel, -1, lib[content].decode('utf-8'))
             self.button.Bind(wx.EVT_BUTTON, lambda evt, i=content, l=lib: self.on_click(evt, i, l))
             v_box_p.Add(self.button, 0, wx.EXPAND | wx.ALL, 15)
         panel.SetSizer(v_box_p)
-        close = wx.Button(self, wx.ID_CANCEL, "关闭")
+        close = wx.Button(self, wx.ID_CANCEL, "关闭".decode('utf-8'))
         v_box.Add(panel, 0, wx.EXPAND | wx.ALL, 10)
         v_box.Add(close, 0, wx.EXPAND | wx.ALL, 10)
         self.SetSizer(v_box)
@@ -1010,7 +1012,7 @@ class Prepare(wx.Dialog):
         :param lib:
         :return:
         """
-        wx.Dialog.__init__(self, None, -1, '准备学习', size=(-1, 350),
+        wx.Dialog.__init__(self, None, -1, '准备学习'.decode('utf-8'), size=(-1, 350),
                            style=wx.CAPTION | wx.SYSTEM_MENU | wx.CLOSE_BOX)
 
         # -----------------------------------------
@@ -1020,7 +1022,6 @@ class Prepare(wx.Dialog):
             f = open(file_name, 'w')
             f.write('N:0\nS:0\nR:0')
             f.close()
-            pass
         file.no_blank(file_name)
         nsr = file.fetch_statistic(file_name)
         n_num = nsr['N']
@@ -1040,7 +1041,7 @@ class Prepare(wx.Dialog):
 
         v_box = wx.BoxSizer(wx.VERTICAL)
         # panel_1
-        panel_1 = wx.Panel(self, -1, style=wx.BORDER_MASK)
+        panel_1 = wx.Panel(self, -1)
         panel_1.SetBackgroundColour('white')
         v_box_1 = wx.BoxSizer(wx.VERTICAL)
         big_font_bold = wx.Font(18, wx.DEFAULT, wx.NORMAL, wx.BOLD, False)
@@ -1050,9 +1051,9 @@ class Prepare(wx.Dialog):
 
         if n_num + r_num + s_num > 0:
             gs = wx.GridSizer(rows=3, cols=2, vgap=5, hgap=25)
-            text_statistic = wx.StaticText(panel_1, -1, "今日到期：")
-            text_new = wx.StaticText(panel_1, -1, "新卡片合计：")
-            text_all = wx.StaticText(panel_1, -1, "全部卡片：")
+            text_statistic = wx.StaticText(panel_1, -1, "今日到期：".decode('utf-8'))
+            text_new = wx.StaticText(panel_1, -1, "新卡片合计：".decode('utf-8'))
+            text_all = wx.StaticText(panel_1, -1, "全部卡片：".decode('utf-8'))
             gs.Add(text_statistic, 0, wx.EXPAND)
             gs.Add(wx.StaticText(panel_1, -1, str(n_num) + ' ' + str(s_num) + ' ' + str(r_num)), 0, wx.EXPAND)
             gs.Add(text_new, 0, wx.EXPAND)
@@ -1064,7 +1065,7 @@ class Prepare(wx.Dialog):
             done_text = '''恭喜！你已经完成今天的学习计划。
     今天的复习数量限制已经达到，但仍有一些卡片需要复习。
     为了更好的记忆效果，你可以考虑调整你的学习计划。
-    点击下面词库选项，调整学习计划'''
+    点击下面词库选项，调整学习计划'''.decode('utf-8')
             tips = wx.StaticText(panel_1, -1, done_text, style=wx.ALIGN_CENTER_HORIZONTAL)
             v_box_1.Add(tips, 0, wx.EXPAND | wx.ALL, 10)
 
@@ -1075,14 +1076,14 @@ class Prepare(wx.Dialog):
         # panel_2
 
         if n_num + r_num + s_num > 0:
-            panel_2 = wx.Panel(self, -1, style=wx.BORDER_MASK)
+            panel_2 = wx.Panel(self, -1)
             panel_2.SetBackgroundColour('white')
             h_box_2 = wx.BoxSizer(wx.HORIZONTAL)
             temp = wx.Image('images/other-size/flashcard48.jpg', wx.BITMAP_TYPE_JPEG).ConvertToBitmap()
             flashcard = wx.StaticBitmap(panel_2, -1, temp)
             h_box_2.Add(flashcard, 0, wx.ALL, 10)
 
-            start = buttons.GenButton(panel_2, -1, '开始学习')
+            start = buttons.GenButton(panel_2, -1, '开始学习'.decode('utf-8'))
             start.SetBezelWidth(0)
             start.SetBackgroundColour('white')
             start.Bind(wx.EVT_BUTTON, lambda evt, l=lib, index=i: self.on_study(evt, l, index))
@@ -1096,7 +1097,7 @@ class Prepare(wx.Dialog):
         line = wx.StaticLine(self, -1, size=(-1, -1), style=wx.LI_HORIZONTAL)
         v_box.Add(line, 0, wx.EXPAND | wx.TOP | wx.LEFT | wx.RIGHT, 10)
 
-        setting_button = buttons.GenButton(self, -1, "词库选项")
+        setting_button = buttons.GenButton(self, -1, "词库选项".decode('utf-8'))
         setting_button.SetBezelWidth(1)
         setting_button.SetBackgroundColour('white')
         setting_button.Bind(wx.EVT_BUTTON, lambda evt, l=lib, index=i: self.on_setting(evt, lib, i))
