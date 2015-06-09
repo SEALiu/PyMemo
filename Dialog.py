@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# Copyright (c) 2015 - sealiu <iliuyang@foxmail.com>
 import time
 import os
 import os.path
@@ -11,6 +12,9 @@ from memo import *
 
 # Lib Dialog
 class AddNewLib(wx.Dialog):
+    """
+    增加一个词库对话框
+    """
     def __init__(self):
         wx.Dialog.__init__(self, None, -1, '新建词库'.decode('utf-8'), size=(-1, 270),
                            style=wx.CAPTION | wx.SYSTEM_MENU | wx.CLOSE_BOX)
@@ -40,6 +44,13 @@ class AddNewLib(wx.Dialog):
         self.Show(True)
 
     def on_submit(self, evt, name, desc):
+        """
+        提交函数
+        :param evt:
+        :param name:
+        :param desc:
+        :return:
+        """
         lib_name = name.GetValue().encode('utf-8')
         lib_desc = desc.GetValue().encode('utf-8')
 
@@ -56,6 +67,9 @@ class AddNewLib(wx.Dialog):
 
 
 class RenameLib(wx.Dialog):
+    """
+    修改词库名称和描述对话框
+    """
     def __init__(self, old_name, old_desc, lib_id):
         wx.Dialog.__init__(self, None, -1, '修改'.decode('utf-8') + old_name.decode('utf-8') + '名称和描述'.decode('utf-8'), size=(-1, 270),
                            style=wx.CAPTION | wx.SYSTEM_MENU | wx.CLOSE_BOX)
@@ -88,6 +102,14 @@ class RenameLib(wx.Dialog):
         self.Show(True)
 
     def on_submit(self, evt, name, desc, i):
+        """
+        提交函数
+        :param evt:
+        :param name: 未修改之前的名称
+        :param desc: 未修改之前的描述
+        :param i:
+        :return:
+        """
         lib_name = name.GetValue().encode('utf-8')
         lib_desc = desc.GetValue().encode('utf-8')
         update_lib_sql = "UPDATE library SET " \
@@ -99,6 +121,9 @@ class RenameLib(wx.Dialog):
 
 
 class LibInfo(wx.Dialog):
+    """
+    词库信息对话框
+    """
     def __init__(self, lib_info):
         wx.Dialog.__init__(self, None, -1, lib_info[1].decode('utf-8') + '词库的信息'.decode('utf-8'), size=(-1, 300),
                            style=wx.CAPTION | wx.SYSTEM_MENU | wx.CLOSE_BOX)
@@ -144,6 +169,9 @@ class LibInfo(wx.Dialog):
 
 
 class DeleteLib(wx.Dialog):
+    """
+    删除词库对话框
+    """
     def __init__(self, lib_name, lib_id):
         wx.Dialog.__init__(self, None, -1, '删除'.decode('utf-8') + lib_name + '词库'.decode('utf-8'), size=(-1, 180),
                            style=wx.CAPTION | wx.SYSTEM_MENU | wx.CLOSE_BOX)
@@ -166,6 +194,12 @@ class DeleteLib(wx.Dialog):
         self.Show(True)
 
     def on_delete(self, evt, i):
+        """
+        确认删除函数
+        :param evt:
+        :param i:
+        :return:
+        """
         delete_lib_sql = "DELETE FROM library WHERE libId='" + i + "'"
         update_record_sql = "UPDATE record SET recordId = replace(recordId, substr(recordId, 6, 3), '000') WHERE recordId LIKE '%" + i + "'"
         DBFun.update('db_pymemo.db', delete_lib_sql)
@@ -180,6 +214,9 @@ class DeleteLib(wx.Dialog):
 
 # Record Dialog
 class RecordInfo(wx.Dialog):
+    """
+    单词卡片详细信息对话框
+    """
     def __init__(self, detail):
         wx.Dialog.__init__(self, None, -1, '记录的信息'.decode('utf-8'), size=(-1, 300),
                            style=wx.CAPTION | wx.SYSTEM_MENU | wx.CLOSE_BOX)
@@ -226,6 +263,9 @@ class RecordInfo(wx.Dialog):
 
 
 class UpdateRecord(wx.Dialog):
+    """
+    修改单词卡片对话框
+    """
     def __init__(self, detail):
         wx.Dialog.__init__(self, None, -1, '修改记录'.decode('utf-8'), size=(-1, 260),
                            style=wx.CAPTION | wx.SYSTEM_MENU | wx.CLOSE_BOX)
@@ -267,6 +307,14 @@ class UpdateRecord(wx.Dialog):
         self.Show(True)
 
     def on_submit(self, e, q, a, i):
+        """
+        提交函数
+        :param e:
+        :param q: 修改后的问题
+        :param a: 修改后的答案
+        :param i: 单词卡片id
+        :return:
+        """
         ques = q.GetValue().encode('utf-8')
         ans = a.GetValue().encode('utf-8')
         alert_time = time.strftime('%Y/%m/%d', time.localtime(time.time()))
@@ -279,6 +327,9 @@ class UpdateRecord(wx.Dialog):
 
 
 class AddNewRecord(wx.Dialog):
+    """
+    向指定词库增加一个新的单词卡片
+    """
     def __init__(self, LIBRARIES, flag):
         wx.Dialog.__init__(self, None, -1, '增加一条记录'.decode('utf-8'), size=(-1, 350),
                            style=wx.CAPTION | wx.SYSTEM_MENU | wx.CLOSE_BOX)
@@ -332,12 +383,29 @@ class AddNewRecord(wx.Dialog):
         self.Show(True)
 
     def set_lib_id(self, value):
+        """
+        指定插入单词卡片的词库id
+        :param value:
+        :return:
+        """
         self.lib_id = value
 
     def get_lib_id(self):
+        """
+        获取插入单词卡片的词库id
+        :return:
+        """
         return self.lib_id
 
     def on_submit(self, evt, ques, ans):
+        """
+        确认插入函数
+        确保已经选择了一个插入单词卡片的词库
+        :param evt:
+        :param ques:
+        :param ans:
+        :return:
+        """
         if self.get_lib_id() == -1:
             msg_dlg = wx.MessageDialog(self, '请确保选择了一个词库！'.decode('utf-8'),
                            '提示'.decode('utf-8'),
@@ -361,8 +429,14 @@ class AddNewRecord(wx.Dialog):
             DBFun.update('db_pymemo.db', insert_sql)
             ListCtrlRight.on_refresh()
 
-
     def test(self, evt, ob, lib):
+        """
+        其实这个和get/set_lib_id都没有什么卵用
+        :param evt:
+        :param ob:
+        :param lib:
+        :return:
+        """
         lib_name = ob.GetValue().encode('utf-8')
         if lib_name in lib.keys():
             self.set_lib_id(lib[lib_name])
@@ -371,7 +445,15 @@ class AddNewRecord(wx.Dialog):
 
 
 class DeleteRecord(wx.Dialog):
+    """
+    删除单词卡片对话框
+    """
     def __init__(self, detail):
+        """
+        初始化界面，并绑定相关函数
+        :param detail:
+        :return:
+        """
         wx.Dialog.__init__(self, None, -1, '挂起/删除记录'.decode('utf-8'), size=(-1, 160),
                            style=wx.CAPTION | wx.SYSTEM_MENU | wx.CLOSE_BOX)
         panel = wx.Panel(self, -1)
@@ -406,6 +488,13 @@ class DeleteRecord(wx.Dialog):
         self.Show(True)
 
     def on_is_pause(self, evt, i, flag):
+        """
+        挂起函数
+        :param evt:
+        :param i:
+        :param flag:
+        :return:
+        """
         alert_time = time.strftime('%Y/%m/%d %H:%M:%S', time.localtime(time.time()))
         pause_sql = "UPDATE record SET alertTime = '" + alert_time + "', isPaused = '" + flag + "'  WHERE recordId = '" + i + "'"
 
@@ -414,6 +503,12 @@ class DeleteRecord(wx.Dialog):
         self.Close()
 
     def on_delete(self, evt, i):
+        """
+        删除函数
+        :param evt:
+        :param i:
+        :return:
+        """
         delete_sql = "DELETE FROM record WHERE recordId = '" + i + "'"
         DBFun.update('db_pymemo.db', delete_sql)
         ListCtrlRight.on_refresh()
@@ -423,6 +518,9 @@ class DeleteRecord(wx.Dialog):
 
 # Other Dialogs
 class AboutDialog(wx.AboutDialogInfo):
+    """
+    关于对话框
+    """
     def __init__(self):
         wx.AboutDialogInfo.__init__(self)
         description = "这是我的毕业设计成果，《基于Python的单词记忆软件开发》\n\n" \
@@ -430,7 +528,7 @@ class AboutDialog(wx.AboutDialogInfo):
             "IDE：pyCharm Community Edition 4.0.4\n" \
             "DB：SQLite3\n\n"\
             "向所有给予帮助，提出建议，报告Bug的人们致谢！\n\n" \
-            "联系：iliuyang@foxmail.com"
+            "联系：iliuyang@foxmail.com".decode('utf-8')
         licence = """PyMemo is free software; you can redistribute
 it and/or modify it under the terms of the GNU General Public License as
 published by the Free Software Foundation; either version 2 of the License,
@@ -442,22 +540,24 @@ but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 See the GNU General Public License for more details.
 翻译：但是我不负责软件的可靠性。（大概就这意思！）
-
-"""
+""".decode('utf-8')
 
         self.SetIcon(wx.Icon('images/64/PyMemo_logo_white.png', wx.BITMAP_TYPE_PNG))
         self.SetName("PyMemo")
         self.SetVersion('1.0')
         self.SetDescription(description)
         self.WebSite = ("https://github.com/SEALiu/PyMemo", "Code on GitHub")
-        self.SetCopyright('(c)2015 刘洋')
-        self.Developers = ["刘洋"]
-        self.Artists = ["刘洋", "图标部分来自：http://findicons.com/"]
+        self.SetCopyright('(c)2015 刘洋'.decode('utf-8'))
+        self.Developers = ["刘洋".decode('utf-8')]
+        self.Artists = ["刘洋".decode('utf-8'), "图标部分来自：http://findicons.com/".decode('utf-8')]
         self.SetLicence(licence)
         wx.AboutBox(self)
 
 
 class SettingDialog(wx.Dialog):
+    """
+    设置对话框
+    """
     def __init__(self, LIBRARIES, flag):
         wx.Dialog.__init__(self, None, -1, '词库设置'.decode('utf-8'), size=(400, 240),
                            style=wx.CAPTION | wx.SYSTEM_MENU | wx.CLOSE_BOX)
@@ -567,6 +667,13 @@ class SettingDialog(wx.Dialog):
         self.Centre()
 
     def test(self, evt, ob, lib):
+        """
+        和上面那个一样没卵用
+        :param evt:
+        :param ob:
+        :param lib:
+        :return:
+        """
         lib_name = ob.GetValue().encode('utf-8')
         if lib_name in lib.keys():
             self.lib_id = lib[lib_name]
@@ -574,9 +681,19 @@ class SettingDialog(wx.Dialog):
             self.lib_id = -1
 
     def on_close(self, e):
+        """
+        关闭函数
+        :param e:
+        :return:
+        """
         self.Destroy()
 
     def OnSubmit(self, evt):
+        """
+        确认设置函数
+        :param evt:
+        :return:
+        """
         if self.lib_id == -1:
             msg_dlg = wx.MessageDialog(self, '请确保选择了一个词库！'.decode('utf-8'),
                            '提示'.decode('utf-8'),
@@ -600,6 +717,11 @@ class SettingDialog(wx.Dialog):
             self.Close()
 
     def fetch_setting(self, i):
+        """
+        获取未修改之前的词库设置
+        :param i:
+        :return:
+        """
         ls = []
         select_sql = "SELECT * FROM library WHERE libId = '" + i + "'"
         result_list = DBFun.select('db_pymemo.db', select_sql)
@@ -611,6 +733,9 @@ class SettingDialog(wx.Dialog):
 
 
 class Export(wx.DirDialog):
+    """
+    导出数据库
+    """
     def __init__(self, parent):
         wx.DirDialog.__init__(self, parent, "请选择一个文件来保存导出的词库：".decode('utf-8'),
                           style=wx.DD_DEFAULT_STYLE | wx.DD_NEW_DIR_BUTTON)
@@ -619,6 +744,9 @@ class Export(wx.DirDialog):
 
 
 class Import(wx.FileDialog):
+    """
+    导入数据库
+    """
     def __init__(self, parent):
         wx.FileDialog.__init__(self, parent, "选择导入的词库文件".decode('utf-8'),
                                wildcard="BMP and GIF files (*.bmp*.gif)|*.bmp*.gif|PNG files (*.png)|*.png",
@@ -629,6 +757,9 @@ class Import(wx.FileDialog):
 
 
 class Check(wx.Dialog):
+    """
+    优化数据库
+    """
     def __init__(self):
         wx.Dialog.__init__(self, None, -1, '优化数据库'.decode('utf-8'), size=(400, 370),
                            style=wx.CAPTION | wx.SYSTEM_MENU | wx.CLOSE_BOX)
@@ -663,6 +794,11 @@ class Check(wx.Dialog):
         self.Center()
 
     def OnCheck(self, evt):
+        """
+        执行优化函数
+        :param evt:
+        :return:
+        """
         ls = []
         self.tc.Clear()
         self.tc.AppendText("开始清除空卡片...\n\n".decode('utf-8'))
@@ -678,6 +814,10 @@ class Check(wx.Dialog):
 
     @staticmethod
     def ClearBlank():
+        """
+        清除空卡片
+        :return:
+        """
         sql = "DELETE FROM record WHERE ques='' OR ans=''"
         num = DBFun.update('db_pymemo.db', sql)
         ListCtrlRight.on_refresh()
@@ -685,6 +825,10 @@ class Check(wx.Dialog):
 
     @staticmethod
     def Reset():
+        """
+        重置词库的设置
+        :return:
+        """
         sql1 = "UPDATE library SET easyInterval = 3 WHERE easyInterval < 3"
         sql2 = "UPDATE library SET maxInterval = 3650 WHERE maxInterval > 3650"
         sql3 = "UPDATE library SET maxReviewsPerDay = 50 WHERE maxReviewsPerDay > 200"
@@ -700,7 +844,16 @@ class Check(wx.Dialog):
 
 # Study Dialogs
 class MemoDialog(wx.Dialog):
+    """
+    单词卡片的记忆对话框
+    """
     def __init__(self, lib, i):
+        """
+        初始化界面并对一些组件绑定相关函数
+        :param lib:
+        :param i:
+        :return:
+        """
         wx.Dialog.__init__(self, None, -1, '学习'.decode('utf-8'), size=(-1, 470),
                            style=wx.CAPTION | wx.SYSTEM_MENU | wx.CLOSE_BOX)
         self.fn = 'recordstack_' + str(i) + '.txt'
@@ -808,11 +961,23 @@ class MemoDialog(wx.Dialog):
         self.Show(True)
 
     def OnShowAns(self, evt):
+        """
+        显示答案事件
+        显示答案（调用SetAnswer函数），禁用show_ans按钮
+        :param evt:
+        :return:
+        """
         self.SetAnswer(self.nrs_list[3].decode('utf-8'))
         self.SetBtnAble(self.nrs_list[8])
         self.show_ans.Disable()
 
     def NextCard(self):
+        """
+        抽取下一张单词卡片（调用fetch()函数），跟新剩余卡片数量（调用SetCardsLeft()）
+        当抽取完之后将记忆的结果写入到recordstack_xxx.txt，并写入到数据库。
+
+        :return:
+        """
         self.nrs_list = self.fetch()
         if self.nrs_list:
             self.ques.SetLabel(self.nrs_list[2].decode('utf-8'))
@@ -839,9 +1004,19 @@ class MemoDialog(wx.Dialog):
             pass
 
     def SetAnswer(self, ans):
+        """
+        设置答案显示内容
+        :param ans: 要显示的答案
+        :return:
+        """
         self.ans.SetLabel(ans)
 
     def SetBtnAble(self, ef):
+        """
+        根据单词卡片的ef值设置哪些评价按钮可点击，哪些不可点击。
+        :param ef:
+        :return:
+        """
         if float(ef) < 2.5:
             self.again.Enable()
             self.good.Enable()
@@ -856,10 +1031,19 @@ class MemoDialog(wx.Dialog):
             self.easy.Enable()
 
     def SetCardsLeft(self):
+        """
+        改变剩余卡片数量的显示
+        :return:
+        """
         dic = file.fetch_statistic(self.fn)
         self.cl.SetLabel("剩余卡片数: %d %d %d".decode('utf-8') % (len(self.n_list), len(self.s_list), len(self.r_list)))
 
     def OnAgain(self, evt):
+        """
+        对单词卡片进行0分评价的操作
+        :param evt:
+        :return:
+        """
         self.nrs_list[-2] = self.ef(self.nrs_list[-2], 0)
         self.nrs_list[-3] = self.interval(self.nrs_list[-2], self.nrs_list[-3], 0)
         self.nrs_list[0] = 'S'
@@ -869,6 +1053,11 @@ class MemoDialog(wx.Dialog):
         self.NextCard()
 
     def OnHard(self, evt):
+        """
+        对单词卡片进行3分评价
+        :param evt:
+        :return:
+        """
         self.nrs_list[-2] = self.ef(self.nrs_list[-2], 3)
         self.nrs_list[-3] = self.interval(self.nrs_list[-2], self.nrs_list[-3], 3)
         self.nrs_list[0] = 'S'
@@ -877,6 +1066,11 @@ class MemoDialog(wx.Dialog):
         self.NextCard()
 
     def OnGood(self, evt):
+        """
+        对单词卡片进行4分评价
+        :param evt:
+        :return:
+        """
         self.nrs_list[-2] = self.ef(self.nrs_list[-2], 4)
         self.nrs_list[-3] = self.interval(self.nrs_list[-2], self.nrs_list[-3], 4)
         self.nrs_list[0] = 'R'
@@ -884,6 +1078,11 @@ class MemoDialog(wx.Dialog):
         self.NextCard()
 
     def OnEasy(self, evt):
+        """
+        对单词卡片进行5分评价
+        :param evt:
+        :return:
+        """
         self.nrs_list[-2] = self.ef(self.nrs_list[-2], 5)
         self.nrs_list[-3] = self.interval(self.nrs_list[-2], self.nrs_list[-3], 5)
         self.nrs_list[0] = 'R'
@@ -892,6 +1091,12 @@ class MemoDialog(wx.Dialog):
 
     @staticmethod
     def ef(ef, q):
+        """
+        计算EF值
+        :param ef:
+        :param q:
+        :return:
+        """
         new_ef = float(ef) - 0.8 + 0.28 * q - 0.02 * q ** 2
         if new_ef < 1.3:
             new_ef = 1.3
@@ -899,6 +1104,13 @@ class MemoDialog(wx.Dialog):
 
     @staticmethod
     def interval(ef, interval, q):
+        """
+        计算间隔天数
+        :param ef:
+        :param interval:
+        :param q:
+        :return:
+        """
         interval_i = math.ceil(float(interval))
         if interval_i == -1:
             # N
@@ -922,6 +1134,10 @@ class MemoDialog(wx.Dialog):
                 return str(math.ceil(interval_i * float(ef)))
 
     def fetch(self):
+        """
+        抽取卡片，其顺序是：新的，复习，正在学习
+        :return:
+        """
         if self.n_list:
             return list(self.n_list.pop(0))
         elif self.r_list:
@@ -932,10 +1148,17 @@ class MemoDialog(wx.Dialog):
             return False
 
     def OnClose(self, evt):
-        # 将现在的self.n_list, self.r_list, self.s_list写入recordstack_xxx.txt
+        """
+        关闭函数，关闭时候将现在的self.n_list, self.r_list, self.s_list写入recordstack_xxx.txt
+        关闭时当前显示的卡片被弹出（pop）但是却没有给出评价，需要让其回到原来的list
+        没有背完的卡片应该写回recordstack_xxx.txt中
+        写入数据库
+        刷新界面
+        :param evt:
+        :return:
+        """
         file.reset_nsr(self.fn)
 
-        # 关闭时当前显示的卡片被弹出（pop）但是却没有给出评价，需要让其回到原来的list
         if self.nrs_list[0] == 'N':
             self.n_list.append(self.nrs_list)
         elif self.nrs_list[0] == 'S':
@@ -943,19 +1166,19 @@ class MemoDialog(wx.Dialog):
         elif self.nrs_list[0] == 'R':
             self.r_list.append(self.nrs_list)
 
-        # 没有背完的卡片应该写回recordstack_xxx.txt中
         file.write_nsr(self.fn, self.n_list, 'N')
         file.write_nsr(self.fn, self.s_list, 'S')
         file.write_nsr(self.fn, self.r_list, 'R')
-        # 写入数据库
         self.write_db()
-        # 刷新界面
         ListCtrlRight.on_refresh()
-        # 关闭窗口
         self.Destroy()
         pass
 
     def write_db(self):
+        """
+        写入数据库函数
+        :return:
+        """
         now = time.strftime('%Y/%m/%d', time.localtime(time.time()))
 
         if self.undone:
@@ -973,6 +1196,9 @@ class MemoDialog(wx.Dialog):
 
 
 class SelectLib(wx.Dialog):
+    """
+    开始记忆词库选择对话框
+    """
     def __init__(self, lib):
         wx.Dialog.__init__(self, None, -1, '学习'.decode('utf-8'), size=(-1, 350),
                            style=wx.CAPTION | wx.SYSTEM_MENU | wx.CLOSE_BOX)
@@ -996,6 +1222,13 @@ class SelectLib(wx.Dialog):
         self.Show(True)
 
     def on_click(self, evt, i, l):
+        """
+        处理点击事件，点了哪个词库即开始学习那个词库中的内容
+        :param evt:
+        :param i:
+        :param l:
+        :return:
+        """
         self.Close()
         pre_dlg = Prepare(i, l)
         pre_dlg.ShowModal()
@@ -1003,15 +1236,13 @@ class SelectLib(wx.Dialog):
 
 
 class Prepare(wx.Dialog):
+    """
+    展示选择开始记忆的词库的相关信息（有多少新卡片，多少正在学习的卡片，多少需要复习的卡片）
+    看工作目录下是否存在recordstack_i，如果不存在则创建然后写入前三行: NSR的统计数据（0, 0, 0）
+    根据设置中每日学习和复习向recordstack_xxx.txt中添加记录信息
+    不足设置的每日学习和复习的数量则补足（有多少补多少）
+    """
     def __init__(self, i, lib):
-        """
-        看工作目录下是否存在recordstack_i，如果不存在则创建然后写入前三行: NSR的统计数据（0, 0, 0）
-        根据设置中每日学习和复习向recordstack_xxx.txt中添加记录信息
-        不足设置的每日学习和复习的数量则补足（有多少补多少）
-        :param i: 词库id
-        :param lib:
-        :return:
-        """
         wx.Dialog.__init__(self, None, -1, '准备学习'.decode('utf-8'), size=(-1, 350),
                            style=wx.CAPTION | wx.SYSTEM_MENU | wx.CLOSE_BOX)
 
@@ -1109,11 +1340,25 @@ class Prepare(wx.Dialog):
 
     @staticmethod
     def on_setting(evt, lib, i):
+        """
+        设置词库学习计划函数
+        :param evt:
+        :param lib:
+        :param i:
+        :return:
+        """
         setting_dlg = SettingDialog(lib, i)
         setting_dlg.ShowModal()
         setting_dlg.Destroy()
 
     def on_study(self, evt, lib, i):
+        """
+        开始学习函数
+        :param evt:
+        :param lib:
+        :param i:
+        :return:
+        """
         memo_dlg = MemoDialog(lib, i)
         memo_dlg.ShowModal()
         memo_dlg.Destroy()

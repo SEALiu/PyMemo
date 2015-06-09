@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# Copyright (c) 2015 - sealiu <iliuyang@foxmail.com>
 import sys
 import wx
 import Dialog
@@ -12,7 +13,16 @@ LIBRARY_ID = []
 
 
 class ListCtrlLeft(wx.ListCtrl):
+    """
+    初始化主界面左侧的词库列表
+    """
     def __init__(self, parent, i):
+        """
+        继承wx.ListCtrl，并载入词库列表
+        :param parent:
+        :param i:
+        :return:
+        """
         wx.ListCtrl.__init__(self, parent, i, style=wx.LC_REPORT
                                                                      | wx.LC_HRULES
                                                                      | wx.LC_NO_HEADER
@@ -23,6 +33,10 @@ class ListCtrlLeft(wx.ListCtrl):
 
     @staticmethod
     def fetch_lib():
+        """
+        获取词库，并初始化全局变量LIBRARIES（字典）和LIBRARY_ID（列表）
+        :return:
+        """
         select_sql = "SELECT * FROM library"
         result_list = DBFun.select('db_pymemo.db', select_sql)
         LIBRARIES.clear()
@@ -32,6 +46,11 @@ class ListCtrlLeft(wx.ListCtrl):
             LIBRARIES[rows[0]] = rows[1]
 
     def load_data_left(self, LIBRARIES):
+        """
+        初始化词库列表，内容为全局变量字典LIBRARIES
+        :param LIBRARIES:
+        :return:
+        """
         self.DeleteAllItems()
         self.fetch_lib()
         self.il = wx.ImageList(32, 32)
@@ -49,6 +68,11 @@ class ListCtrlLeft(wx.ListCtrl):
             self.SetItemImage(0, index)
 
     def on_size(self, event):
+        """
+        控制列表项宽度占满整个列表，避免词库名称过长而显示不全
+        :param event:
+        :return:
+        """
         size = self.parent.GetSize()
         self.SetColumnWidth(0, size.x - 5)
         event.Skip()
@@ -56,12 +80,22 @@ class ListCtrlLeft(wx.ListCtrl):
 
     @staticmethod
     def on_refresh():
+        """
+        调用load_data_left(LIBRARIES)，在词库内容修改之后刷新词库列表的显示
+        :return:
+        """
         window = wx.FindWindowByName('ListControlOnLeft', parent=None)
         ListCtrlLeft.fetch_lib()
         window.load_data_left(LIBRARIES)
 
     @staticmethod
     def on_lib_select(evt):
+        """
+        定义选择某词库事件，调用load_data_right(RECORDS)，刷新右侧单词卡片的显示。
+        刷新后显示当前选择的词库中的单词卡片。
+        :param evt:
+        :return:
+        """
         index = evt.GetIndex()
         sql = "SELECT * FROM record WHERE recordId LIKE '%" + LIBRARY_ID[index] + "'"
         cursor = DBFun.select('db_pymemo.db', sql)
@@ -73,6 +107,13 @@ class ListCtrlLeft(wx.ListCtrl):
         window.load_data_right(RECORDS)
 
     def on_lib_right_click(self, event):
+        """
+        定义右击某词库事件。
+        右击某词库，弹出菜单，提供对此词库进行操作的入口。
+        修改名称和描述，查看词库的信息，增加一条记录，设置，删除
+        :param event:
+        :return:
+        """
         index = event.GetIndex()
         menu = wx.Menu()
         item_rename = wx.MenuItem(menu, -1, "修改名称或描述".decode('utf-8'))
@@ -97,6 +138,13 @@ class ListCtrlLeft(wx.ListCtrl):
 
     @staticmethod
     def on_lib_rename(evt, i):
+        """
+        修改词库的名称和描述。
+        传递当前的词库名称和描述给Dialog.RenameLib，初始化修改词库名称和描述的对话框。
+        :param evt:
+        :param i: 选中词库在LIBRARIES字典中的编号
+        :return:
+        """
         lib_desc = ''
         lib_id = LIBRARY_ID[i]
         lib_name = LIBRARIES[LIBRARY_ID[i]].decode('utf-8')
@@ -111,6 +159,13 @@ class ListCtrlLeft(wx.ListCtrl):
 
     @staticmethod
     def on_item_info(evt, i):
+        """
+        查看词库的详细信息。
+        传递当前的词库信息lib_info（元组）给Dialog.LibInfo(lib_info)，初始化词库信息对话框。
+        :param evt:
+        :param i: 选中词库在LIBRARIES字典中的编号
+        :return:
+        """
         lib_info = ()
         lib_id = LIBRARY_ID[i]
         lib_name = LIBRARIES[LIBRARY_ID[i]].decode('utf-8')
@@ -127,6 +182,13 @@ class ListCtrlLeft(wx.ListCtrl):
 
     @staticmethod
     def on_item_add(evt, i):
+        """
+        在当前选择的词库中增加一张单词卡片。
+        传递LIBRARIES和LIBRARY_ID给Dialog.AddNewRecord(LIBRARIES, LIBRARY_ID[i])
+        :param evt:
+        :param i: 选中词库在LIBRARIES字典中的编号
+        :return:
+        """
         new_card_dlg = Dialog.AddNewRecord(LIBRARIES, LIBRARY_ID[i])
         new_card_dlg.ShowModal()
         new_card_dlg.Destroy()
@@ -134,12 +196,24 @@ class ListCtrlLeft(wx.ListCtrl):
 
     @staticmethod
     def on_lib_setting(evt, i):
+        """
+        对指定的词库进行设置
+        :param evt:
+        :param i: 选中词库在LIBRARIES字典中的编号
+        :return:
+        """
         setting_dlg = Dialog.SettingDialog(LIBRARIES, LIBRARY_ID[i])
         setting_dlg.ShowModal()
         setting_dlg.Destroy()
         pass
 
     def on_lib_delete(self, evt, i):
+        """
+        删除指定词库，如果是默认词库(孤儿院词库)那么就无法被删除。
+        :param evt:
+        :param i:
+        :return:
+        """
         lib_id = LIBRARY_ID[i]
         if lib_id == '000':
             msg_dlg = wx.MessageDialog(self, '默认词库无法被删除！'.decode('utf-8'),
@@ -155,7 +229,16 @@ class ListCtrlLeft(wx.ListCtrl):
 
 
 class ListCtrlRight(wx.ListCtrl):
+    """
+    初始化主界面右侧的单词卡片列表
+    """
     def __init__(self, parent, i):
+        """
+        继承wx.ListCtrl，并载入单词卡片
+        :param parent:
+        :param i:
+        :return:
+        """
         wx.ListCtrl.__init__(self, parent, i, style=wx.LC_REPORT | wx.LC_HRULES | wx.LC_SINGLE_SEL)
         self.parent = parent
         select_sql = 'SELECT * FROM record'
@@ -163,6 +246,11 @@ class ListCtrlRight(wx.ListCtrl):
         self.load_data_right(RECORDS)
 
     def load_data_right(self, RECORDS):
+        """
+        初始化单词卡片列表，内容为全局变量RECORDS
+        :param RECORDS:
+        :return:
+        """
         self.DeleteAllItems()
         self.DeleteAllColumns()
         self.list_head_name = ['记录ID'.decode('utf-8'),
@@ -186,12 +274,23 @@ class ListCtrlRight(wx.ListCtrl):
 
     @staticmethod
     def on_refresh():
+        """
+        在单词卡片信息修改之后，刷新右侧列表的显示。
+        调用load_data_right(RECORDS)
+        :return:
+        """
         window = wx.FindWindowByName('ListControlOnRight', parent=None)
         select_sql = "SELECT * FROM record"
         RECORDS = DBFun.select('db_pymemo.db', select_sql)
         window.load_data_right(RECORDS)
 
     def on_record_right_click(self, evt, record):
+        """
+        定义单词卡片右击事件，提供修改，查看详情，挂起或删除等操作的入口
+        :param evt:
+        :param record:
+        :return:
+        """
         index = evt.GetIndex()
         detail = record[index]
         menu = wx.Menu()
@@ -212,6 +311,12 @@ class ListCtrlRight(wx.ListCtrl):
 
     @staticmethod
     def on_record_update(evt, d):
+        """
+        修改单词卡片
+        :param evt:
+        :param d: 点击的单词卡片的详细信息（元组）
+        :return:
+        """
         record_update_dlg = Dialog.UpdateRecord(d)
         record_update_dlg.ShowModal()
         record_update_dlg.Destroy()
@@ -219,6 +324,12 @@ class ListCtrlRight(wx.ListCtrl):
 
     @staticmethod
     def on_record_info(evt, d):
+        """
+        查看单词卡片的详细信息
+        :param evt:
+        :param d: 点击的单词卡片的详细信息（元组）
+        :return:
+        """
         record_info_dlg = Dialog.RecordInfo(d)
         record_info_dlg.ShowModal()
         record_info_dlg.Destroy()
@@ -226,6 +337,14 @@ class ListCtrlRight(wx.ListCtrl):
 
     @staticmethod
     def on_record_delete(evt, d):
+        """
+        删除或挂起单词卡片
+        挂起：指暂停此单词卡片的学习
+        删除：指彻底从数据库删除
+        :param evt:
+        :param d: 点击的单词卡片的详细信息（元组）
+        :return:
+        """
         record_delete_dlg = Dialog.DeleteRecord(d)
         record_delete_dlg.ShowModal()
         record_delete_dlg.Destroy()
@@ -233,7 +352,17 @@ class ListCtrlRight(wx.ListCtrl):
 
 
 class CombinePanelRight(wx.Panel):
+    """
+    一个Panel，包含主界面上方的filter过滤器
+    """
     def __init__(self, parent, i, records):
+        """
+        初始化Panel和其中wx.ComboBox，并显示filter的内容
+        :param parent:
+        :param i:
+        :param records:
+        :return:
+        """
         wx.Panel.__init__(self, parent, i, style=wx.BORDER_NONE)
 
         filter_list = ['显示所有记录'.decode('utf-8'),
@@ -270,6 +399,22 @@ class CombinePanelRight(wx.Panel):
 
     @staticmethod
     def on_filter(e, ob, f, r):
+        """
+        根据选择的filter序号，调用对应的函数（这个函数指FrameFun.xxx()）对当前的RECORDS进行筛选
+        FrameFun.find_all()， 返回record表中所有的单词卡片
+        FrameFun.find_expired()，返回过期单词卡片
+        FrameFun.find_remembered()，返回已经记住的单词卡片
+        FrameFun.find_new()，返回暂未学习过的单词卡片
+        FrameFun.find_learned()，返回已经学习过的单词卡片
+        FrameFun.find_hard()，返回困难的单词卡片
+        FrameFun.find_today()，返回今天添加的单词卡片
+        最后将获取到的单词卡片列表作为参数，调用load_data_right。实现刷新右侧的单词卡片列表
+        :param e:
+        :param ob: wx.ComboBox对象
+        :param f: filter_list列表
+        :param r: RECORDS
+        :return:
+        """
         filter_key = 0
         # 获取到筛选LIST的序号
         for i, album in enumerate(f):
@@ -306,7 +451,19 @@ class CombinePanelRight(wx.Panel):
 
 
 class Memo(wx.Frame):
+    """
+    程序主体框架
+    """
     def __init__(self, parent, i, title, size):
+        """
+        初始化程序的窗口，菜单栏，工具栏
+        并调用私有函数_create_splitter_windows()，初始化软件的分隔窗布局
+        :param parent:
+        :param i: id
+        :param title: 软件名称
+        :param size: 窗口大小
+        :return:
+        """
         wx.Frame.__init__(self, parent, i, title=title, size=size)
         self._create_menu_bar()
         self._create_tool_bar()
@@ -315,6 +472,10 @@ class Memo(wx.Frame):
         self.Show(True)
 
     def _create_menu_bar(self):
+        """
+        菜单栏
+        :return:
+        """
         menu_bar = wx.MenuBar()
         file_menu = wx.Menu()
         tool_menu = wx.Menu()
@@ -348,6 +509,10 @@ class Memo(wx.Frame):
         self.SetMenuBar(menu_bar)
 
     def _create_tool_bar(self):
+        """
+        工具栏
+        :return:
+        """
         tool_id = {'import': wx.NewId(),
                    'new_lib': wx.NewId(),
                    'new_record': wx.NewId(),
@@ -373,6 +538,12 @@ class Memo(wx.Frame):
         tool_bar.Realize()
 
     def _create_splitter_windows(self):
+        """
+        实例化ListCtrlLeft，实现左侧词库列表的显示
+        实例化CombinePanelRight，实现右侧filter选择器的显示
+        实例化ListCtrlRight，实现右侧单词卡片列表的显示
+        :return:
+        """
         horizontal_box = wx.BoxSizer(wx.HORIZONTAL)
         splitter = wx.SplitterWindow(self, -1, style=wx.SP_LIVE_UPDATE | wx.SP_NOBORDER)
         splitter.SetMinimumPaneSize(250)
@@ -424,50 +595,94 @@ class Memo(wx.Frame):
         splitter.SplitVertically(panel_left, panel_right, 250)
 
     def on_quit(self, evt):
+        """
+        软件关闭函数
+        :param evt:
+        :return:
+        """
         self.Close()
-        evt.Skip()
 
     @staticmethod
     def on_setting(evt):
+        """
+        菜单栏/工具栏的设置事件，-1表示目前没有选择要设置的词库
+        :param evt:
+        :return:
+        """
         setting_dlg = Dialog.SettingDialog(LIBRARIES, -1)
         setting_dlg.ShowModal()
         setting_dlg.Destroy()
 
     @staticmethod
     def on_new_lib(evt):
+        """
+        菜单栏/工具栏的新建词库事件
+        :param evt:
+        :return:
+        """
         new_lib_dlg = Dialog.AddNewLib()
         new_lib_dlg.ShowModal()
         new_lib_dlg.Destroy()
 
     def on_import(self, evt):
+        """
+        菜单栏/工具栏的导入数据库事件
+        :param evt:
+        :return:
+        """
         import_dlg = Dialog.Import(self)
         import_dlg.ShowModal()
         import_dlg.Destroy()
 
     def on_export(self, evt):
+        """
+        菜单栏/工具栏的导出数据库事件
+        :param evt:
+        :return:
+        """
         export_dlg = Dialog.Export(self)
         export_dlg.ShowModal()
         export_dlg.Destroy()
 
     @staticmethod
     def on_new_record(evt):
+        """
+        菜单栏/工具栏的新建单词卡片事件
+        :param evt:
+        :return:
+        """
         new_card_dlg = Dialog.AddNewRecord(LIBRARIES, -1)
         new_card_dlg.ShowModal()
         new_card_dlg.Destroy()
 
     @staticmethod
     def on_study(evt):
+        """
+        菜单栏/工具栏的开始记忆单词卡片事件
+        :param evt:
+        :return:
+        """
         start_dlg = Dialog.SelectLib(LIBRARIES)
         start_dlg.ShowModal()
         start_dlg.Destroy()
 
     @staticmethod
     def on_check(evt):
+        """
+        菜单栏/工具栏的优化数据库事件
+        :param evt:
+        :return:
+        """
         check_dlg = Dialog.Check()
         check_dlg.ShowModal()
         check_dlg.Destroy()
 
     def on_guide(self, evt):
+        """
+        用户手册
+        :param evt:
+        :return:
+        """
         f = open("README.md", "r")
         msg = f.read().decode('utf-8')
         f.close()
@@ -476,6 +691,11 @@ class Memo(wx.Frame):
 
     @staticmethod
     def on_about(evt):
+        """
+        关于对话框
+        :param evt:
+        :return:
+        """
         about_dlg = Dialog.AboutDialog()
 
 if __name__ == '__main__':

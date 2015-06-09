@@ -1,10 +1,16 @@
 # -*- coding: utf-8 -*-
+# Copyright (c) 2015 - sealiu <iliuyang@foxmail.com>
 import DBFun
 import time
 import datetime
 
 
 def find_all(flag):
+    """
+    获取record表中的所有单词记录，并返回结果集
+    :param flag:
+    :return:
+    """
     if flag == -1:
         sql = "SELECT * FROM record"
     else:
@@ -14,7 +20,7 @@ def find_all(flag):
 
 def find_new(flag):
     """
-    找到新记录并返回
+    找到新单词卡片并返回
     :return:
     """
     if flag == -1:
@@ -60,6 +66,10 @@ def find_remembered():
 
 
 def find_learned():
+    """
+    找到已经记住的单词卡片并返回
+    :return:
+    """
     today = datetime.date.today().strftime('%Y/%m/%d')
     sql = "SELECT * FROM record WHERE reviewTime == '" + today + "'"
     learned_record = DBFun.select('db_pymemo.db', sql)
@@ -93,6 +103,13 @@ def find_today():
 
 
 def tuple_add_front(tp, v):
+    """
+    在元组的前面加入一个标志位
+    此标志位为：N（新卡片）S（正在学习的卡片）R（需要复习的卡片）
+    :param tp:
+    :param v:
+    :return:
+    """
     tp_list = list(tp)
     return [v] + tp_list
 

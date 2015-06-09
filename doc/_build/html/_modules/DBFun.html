@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>DBFun &mdash; PyMemo 1.0 文档</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
+    <link rel="top" title="PyMemo 1.0 文档" href="../index.html" />
+    <link rel="up" title="模块代码" href="index.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>导航</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="总目录"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python 模块索引"
+             >模块</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">PyMemo 1.0 文档</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">模块代码</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>DBFun 源代码</h1><div class="highlight"><pre>
+<span class="c"># -*- coding: utf-8 -*-</span>
+<span class="c"># Copyright (c) 2015 - sealiu &lt;iliuyang@foxmail.com&gt;</span>
+<span class="kn">import</span> <span class="nn">sqlite3</span>
+
+
+<div class="viewcode-block" id="connect_db"><a class="viewcode-back" href="../DBFun.html#DBFun.connect_db">[文档]</a><span class="k">def</span> <span class="nf">connect_db</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;connect the DataBase&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+
+</div>
+<div class="viewcode-block" id="select"><a class="viewcode-back" href="../DBFun.html#DBFun.select">[文档]</a><span class="k">def</span> <span class="nf">select</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">sql</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;execute the select sql&quot;&quot;&quot;</span>
+    <span class="n">conn</span> <span class="o">=</span> <span class="n">connect_db</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="n">conn</span><span class="o">.</span><span class="n">text_factory</span> <span class="o">=</span> <span class="nb">str</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sql</span><span class="p">)</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+    <span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">r</span>
+
+</div>
+<div class="viewcode-block" id="update"><a class="viewcode-back" href="../DBFun.html#DBFun.update">[文档]</a><span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">sql</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;execute update, delete and insert SQL&quot;&quot;&quot;</span>
+    <span class="n">conn</span> <span class="o">=</span> <span class="n">connect_db</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="n">conn</span><span class="o">.</span><span class="n">text_factory</span> <span class="o">=</span> <span class="nb">str</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sql</span><span class="p">)</span>
+    <span class="n">conn</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+
+    <span class="n">num</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">total_changes</span>
+    <span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">num</span>
+
+</div>
+<div class="viewcode-block" id="max_lib"><a class="viewcode-back" href="../DBFun.html#DBFun.max_lib">[文档]</a><span class="k">def</span> <span class="nf">max_lib</span><span class="p">(</span><span class="n">column</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;返回library中指定列最大值&quot;&quot;&quot;</span>
+    <span class="n">select_sql</span> <span class="o">=</span> <span class="s">&quot;SELECT max(&quot;</span> <span class="o">+</span> <span class="n">column</span> <span class="o">+</span> <span class="s">&quot;) FROM library&quot;</span>
+    <span class="n">result_list</span> <span class="o">=</span> <span class="n">select</span><span class="p">(</span><span class="s">&#39;db_pymemo.db&#39;</span><span class="p">,</span> <span class="n">select_sql</span><span class="p">)</span>
+    <span class="n">max_lib_id</span> <span class="o">=</span> <span class="n">result_list</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">max_lib_id</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">max_lib_id</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+</div>
+<div class="viewcode-block" id="max_record"><a class="viewcode-back" href="../DBFun.html#DBFun.max_record">[文档]</a><span class="k">def</span> <span class="nf">max_record</span><span class="p">(</span><span class="n">column</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;返回record中指定列的最大值&quot;&quot;&quot;</span>
+    <span class="n">select_sql</span> <span class="o">=</span> <span class="s">&quot;SELECT max(&quot;</span> <span class="o">+</span> <span class="n">column</span> <span class="o">+</span> <span class="s">&quot;) FROM record&quot;</span>
+    <span class="n">result_list</span> <span class="o">=</span> <span class="n">select</span><span class="p">(</span><span class="s">&#39;db_pymemo.db&#39;</span><span class="p">,</span> <span class="n">select_sql</span><span class="p">)</span>
+    <span class="n">max_record_id</span> <span class="o">=</span> <span class="n">result_list</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">max_record_id</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">max_record_id</span><span class="p">[:</span><span class="mi">5</span><span class="p">])</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>快速搜索</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="转向" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    输入相关的术语，模块，类或者函数名称进行搜索
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015, SEALiu.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.4</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

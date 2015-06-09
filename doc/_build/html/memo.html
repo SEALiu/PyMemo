@@ -1,0 +1,380 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>memo module &mdash; PyMemo 1.0 文档</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <link rel="top" title="PyMemo 1.0 文档" href="index.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>导航</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="总目录"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python 模块索引"
+             >模块</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">PyMemo 1.0 文档</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-memo">
+<span id="memo-module"></span><h1>memo module<a class="headerlink" href="#module-memo" title="永久链接至标题">¶</a></h1>
+<dl class="class">
+<dt id="memo.CombinePanelRight">
+<em class="property">class </em><code class="descclassname">memo.</code><code class="descname">CombinePanelRight</code><span class="sig-paren">(</span><em>parent</em>, <em>i</em>, <em>records</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/memo.html#CombinePanelRight"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#memo.CombinePanelRight" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<code class="xref py py-class docutils literal"><span class="pre">wx._windows.Panel</span></code></p>
+<p>一个Panel，包含主界面上方的filter过滤器</p>
+<dl class="staticmethod">
+<dt id="memo.CombinePanelRight.on_filter">
+<em class="property">static </em><code class="descname">on_filter</code><span class="sig-paren">(</span><em>e</em>, <em>ob</em>, <em>f</em>, <em>r</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/memo.html#CombinePanelRight.on_filter"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#memo.CombinePanelRight.on_filter" title="永久链接至目标">¶</a></dt>
+<dd><p>根据选择的filter序号，调用对应的函数（这个函数指FrameFun.xxx()）对当前的RECORDS进行筛选
+FrameFun.find_all()， 返回record表中所有的单词卡片
+FrameFun.find_expired()，返回过期单词卡片
+FrameFun.find_remembered()，返回已经记住的单词卡片
+FrameFun.find_new()，返回暂未学习过的单词卡片
+FrameFun.find_learned()，返回已经学习过的单词卡片
+FrameFun.find_hard()，返回困难的单词卡片
+FrameFun.find_today()，返回今天添加的单词卡片
+最后将获取到的单词卡片列表作为参数，调用load_data_right。实现刷新右侧的单词卡片列表
+:param e:
+:param ob: wx.ComboBox对象
+:param f: filter_list列表
+:param r: RECORDS
+:return:</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="memo.ListCtrlLeft">
+<em class="property">class </em><code class="descclassname">memo.</code><code class="descname">ListCtrlLeft</code><span class="sig-paren">(</span><em>parent</em>, <em>i</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/memo.html#ListCtrlLeft"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#memo.ListCtrlLeft" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<code class="xref py py-class docutils literal"><span class="pre">wx._controls.ListCtrl</span></code></p>
+<p>初始化主界面左侧的词库列表</p>
+<dl class="staticmethod">
+<dt id="memo.ListCtrlLeft.fetch_lib">
+<em class="property">static </em><code class="descname">fetch_lib</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/memo.html#ListCtrlLeft.fetch_lib"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#memo.ListCtrlLeft.fetch_lib" title="永久链接至目标">¶</a></dt>
+<dd><p>获取词库，并初始化全局变量LIBRARIES（字典）和LIBRARY_ID（列表）
+:return:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="memo.ListCtrlLeft.load_data_left">
+<code class="descname">load_data_left</code><span class="sig-paren">(</span><em>LIBRARIES</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/memo.html#ListCtrlLeft.load_data_left"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#memo.ListCtrlLeft.load_data_left" title="永久链接至目标">¶</a></dt>
+<dd><p>初始化词库列表，内容为全局变量字典LIBRARIES
+:param LIBRARIES:
+:return:</p>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="memo.ListCtrlLeft.on_item_add">
+<em class="property">static </em><code class="descname">on_item_add</code><span class="sig-paren">(</span><em>evt</em>, <em>i</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/memo.html#ListCtrlLeft.on_item_add"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#memo.ListCtrlLeft.on_item_add" title="永久链接至目标">¶</a></dt>
+<dd><p>在当前选择的词库中增加一张单词卡片。
+传递LIBRARIES和LIBRARY_ID给Dialog.AddNewRecord(LIBRARIES, LIBRARY_ID[i])
+:param evt:
+:param i: 选中词库在LIBRARIES字典中的编号
+:return:</p>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="memo.ListCtrlLeft.on_item_info">
+<em class="property">static </em><code class="descname">on_item_info</code><span class="sig-paren">(</span><em>evt</em>, <em>i</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/memo.html#ListCtrlLeft.on_item_info"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#memo.ListCtrlLeft.on_item_info" title="永久链接至目标">¶</a></dt>
+<dd><p>查看词库的详细信息。
+传递当前的词库信息lib_info（元组）给Dialog.LibInfo(lib_info)，初始化词库信息对话框。
+:param evt:
+:param i: 选中词库在LIBRARIES字典中的编号
+:return:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="memo.ListCtrlLeft.on_lib_delete">
+<code class="descname">on_lib_delete</code><span class="sig-paren">(</span><em>evt</em>, <em>i</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/memo.html#ListCtrlLeft.on_lib_delete"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#memo.ListCtrlLeft.on_lib_delete" title="永久链接至目标">¶</a></dt>
+<dd><p>删除指定词库，如果是默认词库(孤儿院词库)那么就无法被删除。
+:param evt:
+:param i:
+:return:</p>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="memo.ListCtrlLeft.on_lib_rename">
+<em class="property">static </em><code class="descname">on_lib_rename</code><span class="sig-paren">(</span><em>evt</em>, <em>i</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/memo.html#ListCtrlLeft.on_lib_rename"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#memo.ListCtrlLeft.on_lib_rename" title="永久链接至目标">¶</a></dt>
+<dd><p>修改词库的名称和描述。
+传递当前的词库名称和描述给Dialog.RenameLib，初始化修改词库名称和描述的对话框。
+:param evt:
+:param i: 选中词库在LIBRARIES字典中的编号
+:return:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="memo.ListCtrlLeft.on_lib_right_click">
+<code class="descname">on_lib_right_click</code><span class="sig-paren">(</span><em>event</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/memo.html#ListCtrlLeft.on_lib_right_click"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#memo.ListCtrlLeft.on_lib_right_click" title="永久链接至目标">¶</a></dt>
+<dd><p>定义右击某词库事件。
+右击某词库，弹出菜单，提供对此词库进行操作的入口。
+修改名称和描述，查看词库的信息，增加一条记录，设置，删除
+:param event:
+:return:</p>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="memo.ListCtrlLeft.on_lib_select">
+<em class="property">static </em><code class="descname">on_lib_select</code><span class="sig-paren">(</span><em>evt</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/memo.html#ListCtrlLeft.on_lib_select"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#memo.ListCtrlLeft.on_lib_select" title="永久链接至目标">¶</a></dt>
+<dd><p>定义选择某词库事件，调用load_data_right(RECORDS)，刷新右侧单词卡片的显示。
+刷新后显示当前选择的词库中的单词卡片。
+:param evt:
+:return:</p>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="memo.ListCtrlLeft.on_lib_setting">
+<em class="property">static </em><code class="descname">on_lib_setting</code><span class="sig-paren">(</span><em>evt</em>, <em>i</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/memo.html#ListCtrlLeft.on_lib_setting"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#memo.ListCtrlLeft.on_lib_setting" title="永久链接至目标">¶</a></dt>
+<dd><p>对指定的词库进行设置
+:param evt:
+:param i: 选中词库在LIBRARIES字典中的编号
+:return:</p>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="memo.ListCtrlLeft.on_refresh">
+<em class="property">static </em><code class="descname">on_refresh</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/memo.html#ListCtrlLeft.on_refresh"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#memo.ListCtrlLeft.on_refresh" title="永久链接至目标">¶</a></dt>
+<dd><p>调用load_data_left(LIBRARIES)，在词库内容修改之后刷新词库列表的显示
+:return:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="memo.ListCtrlLeft.on_size">
+<code class="descname">on_size</code><span class="sig-paren">(</span><em>event</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/memo.html#ListCtrlLeft.on_size"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#memo.ListCtrlLeft.on_size" title="永久链接至目标">¶</a></dt>
+<dd><p>控制列表项宽度占满整个列表，避免词库名称过长而显示不全
+:param event:
+:return:</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="memo.ListCtrlRight">
+<em class="property">class </em><code class="descclassname">memo.</code><code class="descname">ListCtrlRight</code><span class="sig-paren">(</span><em>parent</em>, <em>i</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/memo.html#ListCtrlRight"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#memo.ListCtrlRight" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<code class="xref py py-class docutils literal"><span class="pre">wx._controls.ListCtrl</span></code></p>
+<p>初始化主界面右侧的单词卡片列表</p>
+<dl class="method">
+<dt id="memo.ListCtrlRight.load_data_right">
+<code class="descname">load_data_right</code><span class="sig-paren">(</span><em>RECORDS</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/memo.html#ListCtrlRight.load_data_right"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#memo.ListCtrlRight.load_data_right" title="永久链接至目标">¶</a></dt>
+<dd><p>初始化单词卡片列表，内容为全局变量RECORDS
+:param RECORDS:
+:return:</p>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="memo.ListCtrlRight.on_record_delete">
+<em class="property">static </em><code class="descname">on_record_delete</code><span class="sig-paren">(</span><em>evt</em>, <em>d</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/memo.html#ListCtrlRight.on_record_delete"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#memo.ListCtrlRight.on_record_delete" title="永久链接至目标">¶</a></dt>
+<dd><p>删除或挂起单词卡片
+挂起：指暂停此单词卡片的学习
+删除：指彻底从数据库删除
+:param evt:
+:param d: 点击的单词卡片的详细信息（元组）
+:return:</p>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="memo.ListCtrlRight.on_record_info">
+<em class="property">static </em><code class="descname">on_record_info</code><span class="sig-paren">(</span><em>evt</em>, <em>d</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/memo.html#ListCtrlRight.on_record_info"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#memo.ListCtrlRight.on_record_info" title="永久链接至目标">¶</a></dt>
+<dd><p>查看单词卡片的详细信息
+:param evt:
+:param d: 点击的单词卡片的详细信息（元组）
+:return:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="memo.ListCtrlRight.on_record_right_click">
+<code class="descname">on_record_right_click</code><span class="sig-paren">(</span><em>evt</em>, <em>record</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/memo.html#ListCtrlRight.on_record_right_click"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#memo.ListCtrlRight.on_record_right_click" title="永久链接至目标">¶</a></dt>
+<dd><p>定义单词卡片右击事件，提供修改，查看详情，挂起或删除等操作的入口
+:param evt:
+:param record:
+:return:</p>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="memo.ListCtrlRight.on_record_update">
+<em class="property">static </em><code class="descname">on_record_update</code><span class="sig-paren">(</span><em>evt</em>, <em>d</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/memo.html#ListCtrlRight.on_record_update"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#memo.ListCtrlRight.on_record_update" title="永久链接至目标">¶</a></dt>
+<dd><p>修改单词卡片
+:param evt:
+:param d: 点击的单词卡片的详细信息（元组）
+:return:</p>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="memo.ListCtrlRight.on_refresh">
+<em class="property">static </em><code class="descname">on_refresh</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/memo.html#ListCtrlRight.on_refresh"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#memo.ListCtrlRight.on_refresh" title="永久链接至目标">¶</a></dt>
+<dd><p>在单词卡片信息修改之后，刷新右侧列表的显示。
+调用load_data_right(RECORDS)
+:return:</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="memo.Memo">
+<em class="property">class </em><code class="descclassname">memo.</code><code class="descname">Memo</code><span class="sig-paren">(</span><em>parent</em>, <em>i</em>, <em>title</em>, <em>size</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/memo.html#Memo"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#memo.Memo" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<code class="xref py py-class docutils literal"><span class="pre">wx._windows.Frame</span></code></p>
+<p>程序主体框架</p>
+<dl class="staticmethod">
+<dt id="memo.Memo.on_about">
+<em class="property">static </em><code class="descname">on_about</code><span class="sig-paren">(</span><em>evt</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/memo.html#Memo.on_about"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#memo.Memo.on_about" title="永久链接至目标">¶</a></dt>
+<dd><p>关于对话框
+:param evt:
+:return:</p>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="memo.Memo.on_check">
+<em class="property">static </em><code class="descname">on_check</code><span class="sig-paren">(</span><em>evt</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/memo.html#Memo.on_check"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#memo.Memo.on_check" title="永久链接至目标">¶</a></dt>
+<dd><p>菜单栏/工具栏的优化数据库事件
+:param evt:
+:return:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="memo.Memo.on_export">
+<code class="descname">on_export</code><span class="sig-paren">(</span><em>evt</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/memo.html#Memo.on_export"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#memo.Memo.on_export" title="永久链接至目标">¶</a></dt>
+<dd><p>菜单栏/工具栏的导出数据库事件
+:param evt:
+:return:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="memo.Memo.on_guide">
+<code class="descname">on_guide</code><span class="sig-paren">(</span><em>evt</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/memo.html#Memo.on_guide"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#memo.Memo.on_guide" title="永久链接至目标">¶</a></dt>
+<dd><p>用户手册
+:param evt:
+:return:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="memo.Memo.on_import">
+<code class="descname">on_import</code><span class="sig-paren">(</span><em>evt</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/memo.html#Memo.on_import"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#memo.Memo.on_import" title="永久链接至目标">¶</a></dt>
+<dd><p>菜单栏/工具栏的导入数据库事件
+:param evt:
+:return:</p>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="memo.Memo.on_new_lib">
+<em class="property">static </em><code class="descname">on_new_lib</code><span class="sig-paren">(</span><em>evt</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/memo.html#Memo.on_new_lib"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#memo.Memo.on_new_lib" title="永久链接至目标">¶</a></dt>
+<dd><p>菜单栏/工具栏的新建词库事件
+:param evt:
+:return:</p>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="memo.Memo.on_new_record">
+<em class="property">static </em><code class="descname">on_new_record</code><span class="sig-paren">(</span><em>evt</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/memo.html#Memo.on_new_record"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#memo.Memo.on_new_record" title="永久链接至目标">¶</a></dt>
+<dd><p>菜单栏/工具栏的新建单词卡片事件
+:param evt:
+:return:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="memo.Memo.on_quit">
+<code class="descname">on_quit</code><span class="sig-paren">(</span><em>evt</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/memo.html#Memo.on_quit"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#memo.Memo.on_quit" title="永久链接至目标">¶</a></dt>
+<dd><p>软件关闭函数
+:param evt:
+:return:</p>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="memo.Memo.on_setting">
+<em class="property">static </em><code class="descname">on_setting</code><span class="sig-paren">(</span><em>evt</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/memo.html#Memo.on_setting"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#memo.Memo.on_setting" title="永久链接至目标">¶</a></dt>
+<dd><p>菜单栏/工具栏的设置事件，-1表示目前没有选择要设置的词库
+:param evt:
+:return:</p>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="memo.Memo.on_study">
+<em class="property">static </em><code class="descname">on_study</code><span class="sig-paren">(</span><em>evt</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/memo.html#Memo.on_study"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#memo.Memo.on_study" title="永久链接至目标">¶</a></dt>
+<dd><p>菜单栏/工具栏的开始记忆单词卡片事件
+:param evt:
+:return:</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div role="note" aria-label="source link">
+    <h3>本页</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/memo.txt"
+            rel="nofollow">显示源代码</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>快速搜索</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="转向" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    输入相关的术语，模块，类或者函数名称进行搜索
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015, SEALiu.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.4</a>
+      
+      |
+      <a href="_sources/memo.txt"
+          rel="nofollow">Page source</a></li>
+    </div>
+
+    
+
+    
+  </body>
+</html>

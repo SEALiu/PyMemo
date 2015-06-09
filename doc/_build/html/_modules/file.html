@@ -1,0 +1,280 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>file &mdash; PyMemo 1.0 文档</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
+    <link rel="top" title="PyMemo 1.0 文档" href="../index.html" />
+    <link rel="up" title="模块代码" href="index.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>导航</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="总目录"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python 模块索引"
+             >模块</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">PyMemo 1.0 文档</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">模块代码</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>file 源代码</h1><div class="highlight"><pre>
+<span class="c"># -*- coding: utf-8 -*-</span>
+<span class="c"># Copyright (c) 2015 - sealiu &lt;iliuyang@foxmail.com&gt;</span>
+<span class="kn">import</span> <span class="nn">FrameFun</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+
+<div class="viewcode-block" id="fetch_statistic"><a class="viewcode-back" href="../file.html#file.fetch_statistic">[文档]</a><span class="k">def</span> <span class="nf">fetch_statistic</span><span class="p">(</span><span class="n">fn</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    获取NSR的统计数据</span>
+<span class="sd">    :param fn:</span>
+<span class="sd">    :return:</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">statistic</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">eachLine</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">eachLine</span><span class="o">.</span><span class="n">strip</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s">&#39;N&#39;</span><span class="p">:</span>
+            <span class="n">n</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">elif</span> <span class="n">eachLine</span><span class="o">.</span><span class="n">strip</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s">&#39;S&#39;</span><span class="p">:</span>
+            <span class="n">s</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">elif</span> <span class="n">eachLine</span><span class="o">.</span><span class="n">strip</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s">&#39;R&#39;</span><span class="p">:</span>
+            <span class="n">r</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">statistic</span><span class="p">[</span><span class="s">&#39;N&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="n">statistic</span><span class="p">[</span><span class="s">&#39;S&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">s</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="n">statistic</span><span class="p">[</span><span class="s">&#39;R&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">r</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">statistic</span>
+
+</div>
+<div class="viewcode-block" id="set_statistic"><a class="viewcode-back" href="../file.html#file.set_statistic">[文档]</a><span class="k">def</span> <span class="nf">set_statistic</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    设置NSR的统计数据</span>
+<span class="sd">    :param fn:</span>
+<span class="sd">    :param name:</span>
+<span class="sd">    :param value:</span>
+<span class="sd">    :return:</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">f1_list</span> <span class="o">=</span> <span class="n">read_rs</span><span class="p">(</span><span class="n">fn</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s">&#39;N&#39;</span><span class="p">:</span>
+        <span class="n">f1_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;N:&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span>
+    <span class="k">elif</span> <span class="n">name</span> <span class="o">==</span> <span class="s">&#39;S&#39;</span><span class="p">:</span>
+        <span class="n">f1_list</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;S:&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span>
+    <span class="k">elif</span> <span class="n">name</span> <span class="o">==</span> <span class="s">&#39;R&#39;</span><span class="p">:</span>
+        <span class="n">f1_list</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;R:&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span>
+    <span class="n">f2</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="s">&#39;w+&#39;</span><span class="p">)</span>
+    <span class="n">f2</span><span class="o">.</span><span class="n">writelines</span><span class="p">(</span><span class="n">f1_list</span><span class="p">)</span>
+    <span class="n">f2</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+</div>
+<div class="viewcode-block" id="write_rs"><a class="viewcode-back" href="../file.html#file.write_rs">[文档]</a><span class="k">def</span> <span class="nf">write_rs</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="n">ls</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    向指定文件中写入待学习内容，并更新NSR统计数据</span>
+<span class="sd">    :param fn:file_name</span>
+<span class="sd">    :param ls:NSR_list</span>
+<span class="sd">    :param v:NSR</span>
+<span class="sd">    :return:</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="s">&#39;a&#39;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">rows</span> <span class="ow">in</span> <span class="n">ls</span><span class="p">:</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">FrameFun</span><span class="o">.</span><span class="n">tuple_add_front</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%s%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="s">&#39; &#39;</span><span class="p">))</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="n">set_statistic</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">fetch_statistic</span><span class="p">(</span><span class="n">fn</span><span class="p">)[</span><span class="n">v</span><span class="p">])</span>
+    <span class="k">return</span> <span class="bp">True</span>
+
+</div>
+<div class="viewcode-block" id="read_rs"><a class="viewcode-back" href="../file.html#file.read_rs">[文档]</a><span class="k">def</span> <span class="nf">read_rs</span><span class="p">(</span><span class="n">fn</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    读指定文件</span>
+<span class="sd">    :param fn:</span>
+<span class="sd">    :return:</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">fn</span><span class="p">)</span>
+    <span class="n">f_list</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">f_list</span>
+
+</div>
+<div class="viewcode-block" id="is_exist"><a class="viewcode-back" href="../file.html#file.is_exist">[文档]</a><span class="k">def</span> <span class="nf">is_exist</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    文件name是否存在路径url下</span>
+<span class="sd">    :param url:</span>
+<span class="sd">    :param name:</span>
+<span class="sd">    :return:</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">dir_ls</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">dir_ls</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+
+</div>
+<div class="viewcode-block" id="exist_id"><a class="viewcode-back" href="../file.html#file.exist_id">[文档]</a><span class="k">def</span> <span class="nf">exist_id</span><span class="p">(</span><span class="n">fn</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    返回fn文件中已经存在的记录的id列表</span>
+<span class="sd">    :param fn: file_name</span>
+<span class="sd">    :return:</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">exist_ls</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">result_ls</span> <span class="o">=</span> <span class="n">read_rs</span><span class="p">(</span><span class="n">fn</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">rows</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">result_ls</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">index</span> <span class="o">&gt;=</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="n">exist_ls</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rows</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">10</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">exist_ls</span>
+
+</div>
+<div class="viewcode-block" id="filter_repeat"><a class="viewcode-back" href="../file.html#file.filter_repeat">[文档]</a><span class="k">def</span> <span class="nf">filter_repeat</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="n">ls</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    向recordstack_xxx.txt中新加入的单词卡片记录可能存在重复加入的现象，此函数就是为了避免这个情况。</span>
+<span class="sd">    :param fn:</span>
+<span class="sd">    :param ls:</span>
+<span class="sd">    :return:</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">e_id</span> <span class="o">=</span> <span class="n">exist_id</span><span class="p">(</span><span class="n">fn</span><span class="p">)</span>
+    <span class="n">ls_temp</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">ls</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">e_id</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">ls_temp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">ls_temp</span><span class="p">:</span>
+        <span class="n">ls</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">ls</span>
+
+</div>
+<div class="viewcode-block" id="fetch_nsr"><a class="viewcode-back" href="../file.html#file.fetch_nsr">[文档]</a><span class="k">def</span> <span class="nf">fetch_nsr</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="n">nsr</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    获取fn中的NSR_list，并分别返回</span>
+<span class="sd">    :param fn: file_name &lt;type str&gt;</span>
+<span class="sd">    :param nsr: N, S, R &lt;type str&gt;</span>
+<span class="sd">    :return:</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">nsr_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">new_ls</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">items</span> <span class="ow">in</span> <span class="n">read_rs</span><span class="p">(</span><span class="n">fn</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">items</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">nsr</span><span class="p">:</span>
+            <span class="n">nsr_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">items</span><span class="p">)</span>
+    <span class="n">ls</span> <span class="o">=</span> <span class="n">nsr_list</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+
+    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">ls</span><span class="p">:</span>
+        <span class="n">new_ls</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">split</span><span class="p">()))</span>
+    <span class="k">return</span> <span class="n">new_ls</span>
+
+</div>
+<div class="viewcode-block" id="write_nsr"><a class="viewcode-back" href="../file.html#file.write_nsr">[文档]</a><span class="k">def</span> <span class="nf">write_nsr</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="n">ls</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    将结果写入fn文件中</span>
+<span class="sd">    :param fn:</span>
+<span class="sd">    :param nsr:</span>
+<span class="sd">    :return:</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="s">&#39;a&#39;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">rows</span> <span class="ow">in</span> <span class="n">ls</span><span class="p">:</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">rows</span><span class="p">:</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%s%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="s">&#39; &#39;</span><span class="p">))</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="n">set_statistic</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">fetch_statistic</span><span class="p">(</span><span class="n">fn</span><span class="p">)[</span><span class="n">v</span><span class="p">])</span>
+
+</div>
+<div class="viewcode-block" id="reset_nsr"><a class="viewcode-back" href="../file.html#file.reset_nsr">[文档]</a><span class="k">def</span> <span class="nf">reset_nsr</span><span class="p">(</span><span class="n">fn</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    重置recordstack_xxx.txt文件</span>
+<span class="sd">    :param fn:</span>
+<span class="sd">    :return:</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="s">&#39;w&#39;</span><span class="p">)</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;N:0</span><span class="se">\n</span><span class="s">S:0</span><span class="se">\n</span><span class="s">R:0&#39;</span><span class="p">)</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+</div>
+<div class="viewcode-block" id="no_blank"><a class="viewcode-back" href="../file.html#file.no_blank">[文档]</a><span class="k">def</span> <span class="nf">no_blank</span><span class="p">(</span><span class="n">fn</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    清除文件中的空行</span>
+<span class="sd">    :param fn:</span>
+<span class="sd">    :return:</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="s">&quot;&quot;</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span>
+    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">t</span> <span class="o">==</span> <span class="s">&#39;&#39;</span><span class="p">:</span>
+            <span class="k">break</span>
+        <span class="k">elif</span> <span class="n">t</span> <span class="o">==</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">:</span>
+            <span class="k">pass</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">text</span> <span class="o">+=</span> <span class="n">t</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="n">f2</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="s">&#39;w&#39;</span><span class="p">)</span>
+    <span class="n">f2</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+    <span class="n">f2</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>快速搜索</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="转向" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    输入相关的术语，模块，类或者函数名称进行搜索
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015, SEALiu.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.4</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# Copyright (c) 2015 - sealiu <iliuyang@foxmail.com>
 import sqlite3
 
 

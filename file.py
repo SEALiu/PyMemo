@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# Copyright (c) 2015 - sealiu <iliuyang@foxmail.com>
 import FrameFun
 import os
 
@@ -66,6 +67,11 @@ def write_rs(fn, ls, v):
 
 
 def read_rs(fn):
+    """
+    读指定文件
+    :param fn:
+    :return:
+    """
     f = open(fn)
     f_list = f.readlines()
     f.close()
@@ -98,6 +104,12 @@ def exist_id(fn):
 
 
 def filter_repeat(fn, ls):
+    """
+    向recordstack_xxx.txt中新加入的单词卡片记录可能存在重复加入的现象，此函数就是为了避免这个情况。
+    :param fn:
+    :param ls:
+    :return:
+    """
     e_id = exist_id(fn)
     ls_temp = []
     for index, item in enumerate(ls):

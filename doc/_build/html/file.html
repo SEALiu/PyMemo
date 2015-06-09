@@ -1,0 +1,198 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>file module &mdash; PyMemo 1.0 文档</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <link rel="top" title="PyMemo 1.0 文档" href="index.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>导航</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="总目录"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python 模块索引"
+             >模块</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">PyMemo 1.0 文档</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-file">
+<span id="file-module"></span><h1>file module<a class="headerlink" href="#module-file" title="永久链接至标题">¶</a></h1>
+<dl class="function">
+<dt id="file.exist_id">
+<code class="descclassname">file.</code><code class="descname">exist_id</code><span class="sig-paren">(</span><em>fn</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/file.html#exist_id"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#file.exist_id" title="永久链接至目标">¶</a></dt>
+<dd><p>返回fn文件中已经存在的记录的id列表
+:param fn: file_name
+:return:</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="file.fetch_nsr">
+<code class="descclassname">file.</code><code class="descname">fetch_nsr</code><span class="sig-paren">(</span><em>fn</em>, <em>nsr</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/file.html#fetch_nsr"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#file.fetch_nsr" title="永久链接至目标">¶</a></dt>
+<dd><p>获取fn中的NSR_list，并分别返回
+:param fn: file_name &lt;type str&gt;
+:param nsr: N, S, R &lt;type str&gt;
+:return:</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="file.fetch_statistic">
+<code class="descclassname">file.</code><code class="descname">fetch_statistic</code><span class="sig-paren">(</span><em>fn</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/file.html#fetch_statistic"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#file.fetch_statistic" title="永久链接至目标">¶</a></dt>
+<dd><p>获取NSR的统计数据
+:param fn:
+:return:</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="file.filter_repeat">
+<code class="descclassname">file.</code><code class="descname">filter_repeat</code><span class="sig-paren">(</span><em>fn</em>, <em>ls</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/file.html#filter_repeat"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#file.filter_repeat" title="永久链接至目标">¶</a></dt>
+<dd><p>向recordstack_xxx.txt中新加入的单词卡片记录可能存在重复加入的现象，此函数就是为了避免这个情况。
+:param fn:
+:param ls:
+:return:</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="file.is_exist">
+<code class="descclassname">file.</code><code class="descname">is_exist</code><span class="sig-paren">(</span><em>url</em>, <em>name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/file.html#is_exist"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#file.is_exist" title="永久链接至目标">¶</a></dt>
+<dd><p>文件name是否存在路径url下
+:param url:
+:param name:
+:return:</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="file.no_blank">
+<code class="descclassname">file.</code><code class="descname">no_blank</code><span class="sig-paren">(</span><em>fn</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/file.html#no_blank"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#file.no_blank" title="永久链接至目标">¶</a></dt>
+<dd><p>清除文件中的空行
+:param fn:
+:return:</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="file.read_rs">
+<code class="descclassname">file.</code><code class="descname">read_rs</code><span class="sig-paren">(</span><em>fn</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/file.html#read_rs"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#file.read_rs" title="永久链接至目标">¶</a></dt>
+<dd><p>读指定文件
+:param fn:
+:return:</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="file.reset_nsr">
+<code class="descclassname">file.</code><code class="descname">reset_nsr</code><span class="sig-paren">(</span><em>fn</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/file.html#reset_nsr"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#file.reset_nsr" title="永久链接至目标">¶</a></dt>
+<dd><p>重置recordstack_xxx.txt文件
+:param fn:
+:return:</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="file.set_statistic">
+<code class="descclassname">file.</code><code class="descname">set_statistic</code><span class="sig-paren">(</span><em>fn</em>, <em>name</em>, <em>value</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/file.html#set_statistic"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#file.set_statistic" title="永久链接至目标">¶</a></dt>
+<dd><p>设置NSR的统计数据
+:param fn:
+:param name:
+:param value:
+:return:</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="file.write_nsr">
+<code class="descclassname">file.</code><code class="descname">write_nsr</code><span class="sig-paren">(</span><em>fn</em>, <em>ls</em>, <em>v</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/file.html#write_nsr"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#file.write_nsr" title="永久链接至目标">¶</a></dt>
+<dd><p>将结果写入fn文件中
+:param fn:
+:param nsr:
+:return:</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="file.write_rs">
+<code class="descclassname">file.</code><code class="descname">write_rs</code><span class="sig-paren">(</span><em>fn</em>, <em>ls</em>, <em>v</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/file.html#write_rs"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#file.write_rs" title="永久链接至目标">¶</a></dt>
+<dd><p>向指定文件中写入待学习内容，并更新NSR统计数据
+:param fn:file_name
+:param ls:NSR_list
+:param v:NSR
+:return:</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div role="note" aria-label="source link">
+    <h3>本页</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/file.txt"
+            rel="nofollow">显示源代码</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>快速搜索</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="转向" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    输入相关的术语，模块，类或者函数名称进行搜索
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015, SEALiu.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.4</a>
+      
+      |
+      <a href="_sources/file.txt"
+          rel="nofollow">Page source</a></li>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,523 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Dialog module &mdash; PyMemo 1.0 文档</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <link rel="top" title="PyMemo 1.0 文档" href="index.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>导航</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="总目录"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python 模块索引"
+             >模块</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">PyMemo 1.0 文档</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-Dialog">
+<span id="dialog-module"></span><h1>Dialog module<a class="headerlink" href="#module-Dialog" title="永久链接至标题">¶</a></h1>
+<dl class="class">
+<dt id="Dialog.AboutDialog">
+<em class="property">class </em><code class="descclassname">Dialog.</code><code class="descname">AboutDialog</code><a class="reference internal" href="_modules/Dialog.html#AboutDialog"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#Dialog.AboutDialog" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<code class="xref py py-class docutils literal"><span class="pre">wx._misc.AboutDialogInfo</span></code></p>
+<p>关于对话框</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="Dialog.AddNewLib">
+<em class="property">class </em><code class="descclassname">Dialog.</code><code class="descname">AddNewLib</code><a class="reference internal" href="_modules/Dialog.html#AddNewLib"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#Dialog.AddNewLib" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<code class="xref py py-class docutils literal"><span class="pre">wx._windows.Dialog</span></code></p>
+<p>增加一个词库对话框</p>
+<dl class="method">
+<dt id="Dialog.AddNewLib.on_submit">
+<code class="descname">on_submit</code><span class="sig-paren">(</span><em>evt</em>, <em>name</em>, <em>desc</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Dialog.html#AddNewLib.on_submit"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#Dialog.AddNewLib.on_submit" title="永久链接至目标">¶</a></dt>
+<dd><p>提交函数
+:param evt:
+:param name:
+:param desc:
+:return:</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="Dialog.AddNewRecord">
+<em class="property">class </em><code class="descclassname">Dialog.</code><code class="descname">AddNewRecord</code><span class="sig-paren">(</span><em>LIBRARIES</em>, <em>flag</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Dialog.html#AddNewRecord"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#Dialog.AddNewRecord" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<code class="xref py py-class docutils literal"><span class="pre">wx._windows.Dialog</span></code></p>
+<p>向指定词库增加一个新的单词卡片</p>
+<dl class="method">
+<dt id="Dialog.AddNewRecord.get_lib_id">
+<code class="descname">get_lib_id</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Dialog.html#AddNewRecord.get_lib_id"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#Dialog.AddNewRecord.get_lib_id" title="永久链接至目标">¶</a></dt>
+<dd><p>获取插入单词卡片的词库id
+:return:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Dialog.AddNewRecord.on_submit">
+<code class="descname">on_submit</code><span class="sig-paren">(</span><em>evt</em>, <em>ques</em>, <em>ans</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Dialog.html#AddNewRecord.on_submit"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#Dialog.AddNewRecord.on_submit" title="永久链接至目标">¶</a></dt>
+<dd><p>确认插入函数
+确保已经选择了一个插入单词卡片的词库
+:param evt:
+:param ques:
+:param ans:
+:return:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Dialog.AddNewRecord.set_lib_id">
+<code class="descname">set_lib_id</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Dialog.html#AddNewRecord.set_lib_id"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#Dialog.AddNewRecord.set_lib_id" title="永久链接至目标">¶</a></dt>
+<dd><p>指定插入单词卡片的词库id
+:param value:
+:return:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Dialog.AddNewRecord.test">
+<code class="descname">test</code><span class="sig-paren">(</span><em>evt</em>, <em>ob</em>, <em>lib</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Dialog.html#AddNewRecord.test"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#Dialog.AddNewRecord.test" title="永久链接至目标">¶</a></dt>
+<dd><p>其实这个和get/set_lib_id都没有什么卵用
+:param evt:
+:param ob:
+:param lib:
+:return:</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="Dialog.Check">
+<em class="property">class </em><code class="descclassname">Dialog.</code><code class="descname">Check</code><a class="reference internal" href="_modules/Dialog.html#Check"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#Dialog.Check" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<code class="xref py py-class docutils literal"><span class="pre">wx._windows.Dialog</span></code></p>
+<p>优化数据库</p>
+<dl class="staticmethod">
+<dt id="Dialog.Check.ClearBlank">
+<em class="property">static </em><code class="descname">ClearBlank</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Dialog.html#Check.ClearBlank"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#Dialog.Check.ClearBlank" title="永久链接至目标">¶</a></dt>
+<dd><p>清除空卡片
+:return:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Dialog.Check.OnCheck">
+<code class="descname">OnCheck</code><span class="sig-paren">(</span><em>evt</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Dialog.html#Check.OnCheck"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#Dialog.Check.OnCheck" title="永久链接至目标">¶</a></dt>
+<dd><p>执行优化函数
+:param evt:
+:return:</p>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="Dialog.Check.Reset">
+<em class="property">static </em><code class="descname">Reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Dialog.html#Check.Reset"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#Dialog.Check.Reset" title="永久链接至目标">¶</a></dt>
+<dd><p>重置词库的设置
+:return:</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="Dialog.DeleteLib">
+<em class="property">class </em><code class="descclassname">Dialog.</code><code class="descname">DeleteLib</code><span class="sig-paren">(</span><em>lib_name</em>, <em>lib_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Dialog.html#DeleteLib"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#Dialog.DeleteLib" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<code class="xref py py-class docutils literal"><span class="pre">wx._windows.Dialog</span></code></p>
+<p>删除词库对话框</p>
+<dl class="method">
+<dt id="Dialog.DeleteLib.on_delete">
+<code class="descname">on_delete</code><span class="sig-paren">(</span><em>evt</em>, <em>i</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Dialog.html#DeleteLib.on_delete"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#Dialog.DeleteLib.on_delete" title="永久链接至目标">¶</a></dt>
+<dd><p>确认删除函数
+:param evt:
+:param i:
+:return:</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="Dialog.DeleteRecord">
+<em class="property">class </em><code class="descclassname">Dialog.</code><code class="descname">DeleteRecord</code><span class="sig-paren">(</span><em>detail</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Dialog.html#DeleteRecord"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#Dialog.DeleteRecord" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<code class="xref py py-class docutils literal"><span class="pre">wx._windows.Dialog</span></code></p>
+<p>删除单词卡片对话框</p>
+<dl class="method">
+<dt id="Dialog.DeleteRecord.on_delete">
+<code class="descname">on_delete</code><span class="sig-paren">(</span><em>evt</em>, <em>i</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Dialog.html#DeleteRecord.on_delete"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#Dialog.DeleteRecord.on_delete" title="永久链接至目标">¶</a></dt>
+<dd><p>删除函数
+:param evt:
+:param i:
+:return:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Dialog.DeleteRecord.on_is_pause">
+<code class="descname">on_is_pause</code><span class="sig-paren">(</span><em>evt</em>, <em>i</em>, <em>flag</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Dialog.html#DeleteRecord.on_is_pause"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#Dialog.DeleteRecord.on_is_pause" title="永久链接至目标">¶</a></dt>
+<dd><p>挂起函数
+:param evt:
+:param i:
+:param flag:
+:return:</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="Dialog.Export">
+<em class="property">class </em><code class="descclassname">Dialog.</code><code class="descname">Export</code><span class="sig-paren">(</span><em>parent</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Dialog.html#Export"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#Dialog.Export" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<code class="xref py py-class docutils literal"><span class="pre">wx._windows.DirDialog</span></code></p>
+<p>导出数据库</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="Dialog.Import">
+<em class="property">class </em><code class="descclassname">Dialog.</code><code class="descname">Import</code><span class="sig-paren">(</span><em>parent</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Dialog.html#Import"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#Dialog.Import" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<code class="xref py py-class docutils literal"><span class="pre">wx._windows.FileDialog</span></code></p>
+<p>导入数据库</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="Dialog.LibInfo">
+<em class="property">class </em><code class="descclassname">Dialog.</code><code class="descname">LibInfo</code><span class="sig-paren">(</span><em>lib_info</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Dialog.html#LibInfo"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#Dialog.LibInfo" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<code class="xref py py-class docutils literal"><span class="pre">wx._windows.Dialog</span></code></p>
+<p>词库信息对话框</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="Dialog.MemoDialog">
+<em class="property">class </em><code class="descclassname">Dialog.</code><code class="descname">MemoDialog</code><span class="sig-paren">(</span><em>lib</em>, <em>i</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Dialog.html#MemoDialog"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#Dialog.MemoDialog" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<code class="xref py py-class docutils literal"><span class="pre">wx._windows.Dialog</span></code></p>
+<p>单词卡片的记忆对话框</p>
+<dl class="method">
+<dt id="Dialog.MemoDialog.NextCard">
+<code class="descname">NextCard</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Dialog.html#MemoDialog.NextCard"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#Dialog.MemoDialog.NextCard" title="永久链接至目标">¶</a></dt>
+<dd><p>抽取下一张单词卡片（调用fetch()函数），跟新剩余卡片数量（调用SetCardsLeft()）
+当抽取完之后将记忆的结果写入到recordstack_xxx.txt，并写入到数据库。</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">返回:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Dialog.MemoDialog.OnAgain">
+<code class="descname">OnAgain</code><span class="sig-paren">(</span><em>evt</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Dialog.html#MemoDialog.OnAgain"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#Dialog.MemoDialog.OnAgain" title="永久链接至目标">¶</a></dt>
+<dd><p>对单词卡片进行0分评价的操作
+:param evt:
+:return:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Dialog.MemoDialog.OnClose">
+<code class="descname">OnClose</code><span class="sig-paren">(</span><em>evt</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Dialog.html#MemoDialog.OnClose"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#Dialog.MemoDialog.OnClose" title="永久链接至目标">¶</a></dt>
+<dd><p>关闭函数，关闭时候将现在的self.n_list, self.r_list, self.s_list写入recordstack_xxx.txt
+关闭时当前显示的卡片被弹出（pop）但是却没有给出评价，需要让其回到原来的list
+没有背完的卡片应该写回recordstack_xxx.txt中
+写入数据库
+刷新界面
+:param evt:
+:return:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Dialog.MemoDialog.OnEasy">
+<code class="descname">OnEasy</code><span class="sig-paren">(</span><em>evt</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Dialog.html#MemoDialog.OnEasy"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#Dialog.MemoDialog.OnEasy" title="永久链接至目标">¶</a></dt>
+<dd><p>对单词卡片进行5分评价
+:param evt:
+:return:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Dialog.MemoDialog.OnGood">
+<code class="descname">OnGood</code><span class="sig-paren">(</span><em>evt</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Dialog.html#MemoDialog.OnGood"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#Dialog.MemoDialog.OnGood" title="永久链接至目标">¶</a></dt>
+<dd><p>对单词卡片进行4分评价
+:param evt:
+:return:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Dialog.MemoDialog.OnHard">
+<code class="descname">OnHard</code><span class="sig-paren">(</span><em>evt</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Dialog.html#MemoDialog.OnHard"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#Dialog.MemoDialog.OnHard" title="永久链接至目标">¶</a></dt>
+<dd><p>对单词卡片进行3分评价
+:param evt:
+:return:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Dialog.MemoDialog.OnShowAns">
+<code class="descname">OnShowAns</code><span class="sig-paren">(</span><em>evt</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Dialog.html#MemoDialog.OnShowAns"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#Dialog.MemoDialog.OnShowAns" title="永久链接至目标">¶</a></dt>
+<dd><p>显示答案事件
+显示答案（调用SetAnswer函数），禁用show_ans按钮
+:param evt:
+:return:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Dialog.MemoDialog.SetAnswer">
+<code class="descname">SetAnswer</code><span class="sig-paren">(</span><em>ans</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Dialog.html#MemoDialog.SetAnswer"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#Dialog.MemoDialog.SetAnswer" title="永久链接至目标">¶</a></dt>
+<dd><p>设置答案显示内容
+:param ans: 要显示的答案
+:return:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Dialog.MemoDialog.SetBtnAble">
+<code class="descname">SetBtnAble</code><span class="sig-paren">(</span><em>ef</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Dialog.html#MemoDialog.SetBtnAble"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#Dialog.MemoDialog.SetBtnAble" title="永久链接至目标">¶</a></dt>
+<dd><p>根据单词卡片的ef值设置哪些评价按钮可点击，哪些不可点击。
+:param ef:
+:return:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Dialog.MemoDialog.SetCardsLeft">
+<code class="descname">SetCardsLeft</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Dialog.html#MemoDialog.SetCardsLeft"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#Dialog.MemoDialog.SetCardsLeft" title="永久链接至目标">¶</a></dt>
+<dd><p>改变剩余卡片数量的显示
+:return:</p>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="Dialog.MemoDialog.ef">
+<em class="property">static </em><code class="descname">ef</code><span class="sig-paren">(</span><em>ef</em>, <em>q</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Dialog.html#MemoDialog.ef"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#Dialog.MemoDialog.ef" title="永久链接至目标">¶</a></dt>
+<dd><p>计算EF值
+:param ef:
+:param q:
+:return:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Dialog.MemoDialog.fetch">
+<code class="descname">fetch</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Dialog.html#MemoDialog.fetch"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#Dialog.MemoDialog.fetch" title="永久链接至目标">¶</a></dt>
+<dd><p>抽取卡片，其顺序是：新的，复习，正在学习
+:return:</p>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="Dialog.MemoDialog.interval">
+<em class="property">static </em><code class="descname">interval</code><span class="sig-paren">(</span><em>ef</em>, <em>interval</em>, <em>q</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Dialog.html#MemoDialog.interval"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#Dialog.MemoDialog.interval" title="永久链接至目标">¶</a></dt>
+<dd><p>计算间隔天数
+:param ef:
+:param interval:
+:param q:
+:return:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Dialog.MemoDialog.write_db">
+<code class="descname">write_db</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Dialog.html#MemoDialog.write_db"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#Dialog.MemoDialog.write_db" title="永久链接至目标">¶</a></dt>
+<dd><p>写入数据库函数
+:return:</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="Dialog.Prepare">
+<em class="property">class </em><code class="descclassname">Dialog.</code><code class="descname">Prepare</code><span class="sig-paren">(</span><em>i</em>, <em>lib</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Dialog.html#Prepare"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#Dialog.Prepare" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<code class="xref py py-class docutils literal"><span class="pre">wx._windows.Dialog</span></code></p>
+<p>展示选择开始记忆的词库的相关信息（有多少新卡片，多少正在学习的卡片，多少需要复习的卡片）
+看工作目录下是否存在recordstack_i，如果不存在则创建然后写入前三行: NSR的统计数据（0, 0, 0）
+根据设置中每日学习和复习向recordstack_xxx.txt中添加记录信息
+不足设置的每日学习和复习的数量则补足（有多少补多少）</p>
+<dl class="staticmethod">
+<dt id="Dialog.Prepare.on_setting">
+<em class="property">static </em><code class="descname">on_setting</code><span class="sig-paren">(</span><em>evt</em>, <em>lib</em>, <em>i</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Dialog.html#Prepare.on_setting"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#Dialog.Prepare.on_setting" title="永久链接至目标">¶</a></dt>
+<dd><p>设置词库学习计划函数
+:param evt:
+:param lib:
+:param i:
+:return:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Dialog.Prepare.on_study">
+<code class="descname">on_study</code><span class="sig-paren">(</span><em>evt</em>, <em>lib</em>, <em>i</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Dialog.html#Prepare.on_study"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#Dialog.Prepare.on_study" title="永久链接至目标">¶</a></dt>
+<dd><p>开始学习函数
+:param evt:
+:param lib:
+:param i:
+:return:</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="Dialog.RecordInfo">
+<em class="property">class </em><code class="descclassname">Dialog.</code><code class="descname">RecordInfo</code><span class="sig-paren">(</span><em>detail</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Dialog.html#RecordInfo"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#Dialog.RecordInfo" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<code class="xref py py-class docutils literal"><span class="pre">wx._windows.Dialog</span></code></p>
+<p>单词卡片详细信息对话框</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="Dialog.RenameLib">
+<em class="property">class </em><code class="descclassname">Dialog.</code><code class="descname">RenameLib</code><span class="sig-paren">(</span><em>old_name</em>, <em>old_desc</em>, <em>lib_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Dialog.html#RenameLib"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#Dialog.RenameLib" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<code class="xref py py-class docutils literal"><span class="pre">wx._windows.Dialog</span></code></p>
+<p>修改词库名称和描述对话框</p>
+<dl class="method">
+<dt id="Dialog.RenameLib.on_submit">
+<code class="descname">on_submit</code><span class="sig-paren">(</span><em>evt</em>, <em>name</em>, <em>desc</em>, <em>i</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Dialog.html#RenameLib.on_submit"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#Dialog.RenameLib.on_submit" title="永久链接至目标">¶</a></dt>
+<dd><p>提交函数
+:param evt:
+:param name: 未修改之前的名称
+:param desc: 未修改之前的描述
+:param i:
+:return:</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="Dialog.SelectLib">
+<em class="property">class </em><code class="descclassname">Dialog.</code><code class="descname">SelectLib</code><span class="sig-paren">(</span><em>lib</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Dialog.html#SelectLib"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#Dialog.SelectLib" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<code class="xref py py-class docutils literal"><span class="pre">wx._windows.Dialog</span></code></p>
+<p>开始记忆词库选择对话框</p>
+<dl class="method">
+<dt id="Dialog.SelectLib.on_click">
+<code class="descname">on_click</code><span class="sig-paren">(</span><em>evt</em>, <em>i</em>, <em>l</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Dialog.html#SelectLib.on_click"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#Dialog.SelectLib.on_click" title="永久链接至目标">¶</a></dt>
+<dd><p>处理点击事件，点了哪个词库即开始学习那个词库中的内容
+:param evt:
+:param i:
+:param l:
+:return:</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="Dialog.SettingDialog">
+<em class="property">class </em><code class="descclassname">Dialog.</code><code class="descname">SettingDialog</code><span class="sig-paren">(</span><em>LIBRARIES</em>, <em>flag</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Dialog.html#SettingDialog"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#Dialog.SettingDialog" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<code class="xref py py-class docutils literal"><span class="pre">wx._windows.Dialog</span></code></p>
+<p>设置对话框</p>
+<dl class="method">
+<dt id="Dialog.SettingDialog.OnSubmit">
+<code class="descname">OnSubmit</code><span class="sig-paren">(</span><em>evt</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Dialog.html#SettingDialog.OnSubmit"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#Dialog.SettingDialog.OnSubmit" title="永久链接至目标">¶</a></dt>
+<dd><p>确认设置函数
+:param evt:
+:return:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Dialog.SettingDialog.fetch_setting">
+<code class="descname">fetch_setting</code><span class="sig-paren">(</span><em>i</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Dialog.html#SettingDialog.fetch_setting"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#Dialog.SettingDialog.fetch_setting" title="永久链接至目标">¶</a></dt>
+<dd><p>获取未修改之前的词库设置
+:param i:
+:return:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Dialog.SettingDialog.on_close">
+<code class="descname">on_close</code><span class="sig-paren">(</span><em>e</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Dialog.html#SettingDialog.on_close"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#Dialog.SettingDialog.on_close" title="永久链接至目标">¶</a></dt>
+<dd><p>关闭函数
+:param e:
+:return:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Dialog.SettingDialog.test">
+<code class="descname">test</code><span class="sig-paren">(</span><em>evt</em>, <em>ob</em>, <em>lib</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Dialog.html#SettingDialog.test"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#Dialog.SettingDialog.test" title="永久链接至目标">¶</a></dt>
+<dd><p>和上面那个一样没卵用
+:param evt:
+:param ob:
+:param lib:
+:return:</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="Dialog.UpdateRecord">
+<em class="property">class </em><code class="descclassname">Dialog.</code><code class="descname">UpdateRecord</code><span class="sig-paren">(</span><em>detail</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Dialog.html#UpdateRecord"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#Dialog.UpdateRecord" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<code class="xref py py-class docutils literal"><span class="pre">wx._windows.Dialog</span></code></p>
+<p>修改单词卡片对话框</p>
+<dl class="method">
+<dt id="Dialog.UpdateRecord.on_submit">
+<code class="descname">on_submit</code><span class="sig-paren">(</span><em>e</em>, <em>q</em>, <em>a</em>, <em>i</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Dialog.html#UpdateRecord.on_submit"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#Dialog.UpdateRecord.on_submit" title="永久链接至目标">¶</a></dt>
+<dd><p>提交函数
+:param e:
+:param q: 修改后的问题
+:param a: 修改后的答案
+:param i: 单词卡片id
+:return:</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div role="note" aria-label="source link">
+    <h3>本页</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/Dialog.txt"
+            rel="nofollow">显示源代码</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>快速搜索</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="转向" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    输入相关的术语，模块，类或者函数名称进行搜索
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015, SEALiu.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.4</a>
+      
+      |
+      <a href="_sources/Dialog.txt"
+          rel="nofollow">Page source</a></li>
+    </div>
+
+    
+
+    
+  </body>
+</html>

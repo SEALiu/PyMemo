@@ -1,0 +1,798 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>memo &mdash; PyMemo 1.0 文档</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
+    <link rel="top" title="PyMemo 1.0 文档" href="../index.html" />
+    <link rel="up" title="模块代码" href="index.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>导航</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="总目录"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python 模块索引"
+             >模块</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">PyMemo 1.0 文档</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">模块代码</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>memo 源代码</h1><div class="highlight"><pre>
+<span class="c"># -*- coding: utf-8 -*-</span>
+<span class="c"># Copyright (c) 2015 - sealiu &lt;iliuyang@foxmail.com&gt;</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">wx</span>
+<span class="kn">import</span> <span class="nn">Dialog</span>
+<span class="kn">import</span> <span class="nn">DBFun</span>
+<span class="kn">import</span> <span class="nn">wx.lib.dialogs</span>
+<span class="kn">import</span> <span class="nn">FrameFun</span>
+
+<span class="n">LIBRARIES</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">RECORDS</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">LIBRARY_ID</span> <span class="o">=</span> <span class="p">[]</span>
+
+
+<div class="viewcode-block" id="ListCtrlLeft"><a class="viewcode-back" href="../memo.html#memo.ListCtrlLeft">[文档]</a><span class="k">class</span> <span class="nc">ListCtrlLeft</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">ListCtrl</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    初始化主界面左侧的词库列表</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        继承wx.ListCtrl，并载入词库列表</span>
+<span class="sd">        :param parent:</span>
+<span class="sd">        :param i:</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">wx</span><span class="o">.</span><span class="n">ListCtrl</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="n">wx</span><span class="o">.</span><span class="n">LC_REPORT</span>
+                                                                     <span class="o">|</span> <span class="n">wx</span><span class="o">.</span><span class="n">LC_HRULES</span>
+                                                                     <span class="o">|</span> <span class="n">wx</span><span class="o">.</span><span class="n">LC_NO_HEADER</span>
+                                                                     <span class="o">|</span> <span class="n">wx</span><span class="o">.</span><span class="n">LC_SINGLE_SEL</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parent</span> <span class="o">=</span> <span class="n">parent</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Bind</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">EVT_SIZE</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_size</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">load_data_left</span><span class="p">(</span><span class="n">LIBRARIES</span><span class="p">)</span>
+
+    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="ListCtrlLeft.fetch_lib"><a class="viewcode-back" href="../memo.html#memo.ListCtrlLeft.fetch_lib">[文档]</a>    <span class="k">def</span> <span class="nf">fetch_lib</span><span class="p">():</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        获取词库，并初始化全局变量LIBRARIES（字典）和LIBRARY_ID（列表）</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">select_sql</span> <span class="o">=</span> <span class="s">&quot;SELECT * FROM library&quot;</span>
+        <span class="n">result_list</span> <span class="o">=</span> <span class="n">DBFun</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s">&#39;db_pymemo.db&#39;</span><span class="p">,</span> <span class="n">select_sql</span><span class="p">)</span>
+        <span class="n">LIBRARIES</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+        <span class="n">LIBRARY_ID</span><span class="p">[:]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">rows</span> <span class="ow">in</span> <span class="n">result_list</span><span class="p">:</span>
+            <span class="n">LIBRARY_ID</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rows</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">LIBRARIES</span><span class="p">[</span><span class="n">rows</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="n">rows</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</div>
+<div class="viewcode-block" id="ListCtrlLeft.load_data_left"><a class="viewcode-back" href="../memo.html#memo.ListCtrlLeft.load_data_left">[文档]</a>    <span class="k">def</span> <span class="nf">load_data_left</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">LIBRARIES</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        初始化词库列表，内容为全局变量字典LIBRARIES</span>
+<span class="sd">        :param LIBRARIES:</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">DeleteAllItems</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fetch_lib</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">il</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">ImageList</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="mi">32</span><span class="p">)</span>
+        <span class="n">lib_img</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">Bitmap</span><span class="p">(</span><span class="s">&#39;images/32/library.png&#39;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">LIBRARIES</span><span class="p">)):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">il</span><span class="o">.</span><span class="n">Add</span><span class="p">(</span><span class="n">lib_img</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">SetImageList</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">il</span><span class="p">,</span> <span class="n">wx</span><span class="o">.</span><span class="n">IMAGE_LIST_SMALL</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">InsertColumn</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">element</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">LIBRARIES</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">Bind</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">EVT_LIST_ITEM_SELECTED</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_lib_select</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">Bind</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">EVT_LIST_ITEM_RIGHT_CLICK</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_lib_right_click</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">InsertStringItem</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">LIBRARIES</span><span class="p">[</span><span class="n">element</span><span class="p">]</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s">&#39;utf-8&#39;</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">SetItemImage</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">index</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="ListCtrlLeft.on_size"><a class="viewcode-back" href="../memo.html#memo.ListCtrlLeft.on_size">[文档]</a>    <span class="k">def</span> <span class="nf">on_size</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        控制列表项宽度占满整个列表，避免词库名称过长而显示不全</span>
+<span class="sd">        :param event:</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">GetSize</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">SetColumnWidth</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">size</span><span class="o">.</span><span class="n">x</span> <span class="o">-</span> <span class="mi">5</span><span class="p">)</span>
+        <span class="n">event</span><span class="o">.</span><span class="n">Skip</span><span class="p">()</span>
+
+</div>
+    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="ListCtrlLeft.on_refresh"><a class="viewcode-back" href="../memo.html#memo.ListCtrlLeft.on_refresh">[文档]</a>    <span class="k">def</span> <span class="nf">on_refresh</span><span class="p">():</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        调用load_data_left(LIBRARIES)，在词库内容修改之后刷新词库列表的显示</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">window</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">FindWindowByName</span><span class="p">(</span><span class="s">&#39;ListControlOnLeft&#39;</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+        <span class="n">ListCtrlLeft</span><span class="o">.</span><span class="n">fetch_lib</span><span class="p">()</span>
+        <span class="n">window</span><span class="o">.</span><span class="n">load_data_left</span><span class="p">(</span><span class="n">LIBRARIES</span><span class="p">)</span>
+</div>
+    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="ListCtrlLeft.on_lib_select"><a class="viewcode-back" href="../memo.html#memo.ListCtrlLeft.on_lib_select">[文档]</a>    <span class="k">def</span> <span class="nf">on_lib_select</span><span class="p">(</span><span class="n">evt</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        定义选择某词库事件，调用load_data_right(RECORDS)，刷新右侧单词卡片的显示。</span>
+<span class="sd">        刷新后显示当前选择的词库中的单词卡片。</span>
+<span class="sd">        :param evt:</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">index</span> <span class="o">=</span> <span class="n">evt</span><span class="o">.</span><span class="n">GetIndex</span><span class="p">()</span>
+        <span class="n">sql</span> <span class="o">=</span> <span class="s">&quot;SELECT * FROM record WHERE recordId LIKE &#39;%&quot;</span> <span class="o">+</span> <span class="n">LIBRARY_ID</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">+</span> <span class="s">&quot;&#39;&quot;</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">DBFun</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s">&#39;db_pymemo.db&#39;</span><span class="p">,</span> <span class="n">sql</span><span class="p">)</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">rows</span> <span class="ow">in</span> <span class="n">cursor</span><span class="p">:</span>
+            <span class="n">r</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span>
+        <span class="n">RECORDS</span> <span class="o">=</span> <span class="n">r</span>
+        <span class="n">window</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">FindWindowByName</span><span class="p">(</span><span class="s">&#39;ListControlOnRight&#39;</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+        <span class="n">window</span><span class="o">.</span><span class="n">load_data_right</span><span class="p">(</span><span class="n">RECORDS</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="ListCtrlLeft.on_lib_right_click"><a class="viewcode-back" href="../memo.html#memo.ListCtrlLeft.on_lib_right_click">[文档]</a>    <span class="k">def</span> <span class="nf">on_lib_right_click</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        定义右击某词库事件。</span>
+<span class="sd">        右击某词库，弹出菜单，提供对此词库进行操作的入口。</span>
+<span class="sd">        修改名称和描述，查看词库的信息，增加一条记录，设置，删除</span>
+<span class="sd">        :param event:</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">index</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="n">GetIndex</span><span class="p">()</span>
+        <span class="n">menu</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">Menu</span><span class="p">()</span>
+        <span class="n">item_rename</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">MenuItem</span><span class="p">(</span><span class="n">menu</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s">&quot;修改名称或描述&quot;</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s">&#39;utf-8&#39;</span><span class="p">))</span>
+        <span class="n">item_info</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">MenuItem</span><span class="p">(</span><span class="n">menu</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s">&quot;查看词库的信息&quot;</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s">&#39;utf-8&#39;</span><span class="p">))</span>
+        <span class="n">item_add</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">MenuItem</span><span class="p">(</span><span class="n">menu</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#39;增加一条记录&#39;</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s">&#39;utf-8&#39;</span><span class="p">))</span>
+        <span class="n">item_setting</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">MenuItem</span><span class="p">(</span><span class="n">menu</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#39;设置&#39;</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s">&#39;utf-8&#39;</span><span class="p">))</span>
+        <span class="n">item_delete</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">MenuItem</span><span class="p">(</span><span class="n">menu</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#39;删除这个词库&#39;</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s">&#39;utf-8&#39;</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Bind</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">EVT_MENU</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">evt</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="n">index</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_lib_rename</span><span class="p">(</span><span class="n">evt</span><span class="p">,</span> <span class="n">i</span><span class="p">),</span> <span class="n">item_rename</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Bind</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">EVT_MENU</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">evt</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="n">index</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_item_info</span><span class="p">(</span><span class="n">evt</span><span class="p">,</span> <span class="n">i</span><span class="p">),</span> <span class="n">item_info</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Bind</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">EVT_MENU</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">evt</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="n">index</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_item_add</span><span class="p">(</span><span class="n">evt</span><span class="p">,</span> <span class="n">i</span><span class="p">),</span> <span class="n">item_add</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Bind</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">EVT_MENU</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">evt</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="n">index</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_lib_setting</span><span class="p">(</span><span class="n">evt</span><span class="p">,</span> <span class="n">i</span><span class="p">),</span> <span class="n">item_setting</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Bind</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">EVT_MENU</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">evt</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="n">index</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_lib_delete</span><span class="p">(</span><span class="n">evt</span><span class="p">,</span> <span class="n">i</span><span class="p">),</span> <span class="n">item_delete</span><span class="p">)</span>
+
+        <span class="n">menu</span><span class="o">.</span><span class="n">AppendItem</span><span class="p">(</span><span class="n">item_rename</span><span class="p">)</span>
+        <span class="n">menu</span><span class="o">.</span><span class="n">AppendItem</span><span class="p">(</span><span class="n">item_info</span><span class="p">)</span>
+        <span class="n">menu</span><span class="o">.</span><span class="n">AppendItem</span><span class="p">(</span><span class="n">item_add</span><span class="p">)</span>
+        <span class="n">menu</span><span class="o">.</span><span class="n">AppendItem</span><span class="p">(</span><span class="n">item_setting</span><span class="p">)</span>
+        <span class="n">menu</span><span class="o">.</span><span class="n">AppendItem</span><span class="p">(</span><span class="n">item_delete</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">PopupMenu</span><span class="p">(</span><span class="n">menu</span><span class="p">)</span>
+        <span class="n">menu</span><span class="o">.</span><span class="n">Destroy</span><span class="p">()</span>
+</div>
+    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="ListCtrlLeft.on_lib_rename"><a class="viewcode-back" href="../memo.html#memo.ListCtrlLeft.on_lib_rename">[文档]</a>    <span class="k">def</span> <span class="nf">on_lib_rename</span><span class="p">(</span><span class="n">evt</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        修改词库的名称和描述。</span>
+<span class="sd">        传递当前的词库名称和描述给Dialog.RenameLib，初始化修改词库名称和描述的对话框。</span>
+<span class="sd">        :param evt:</span>
+<span class="sd">        :param i: 选中词库在LIBRARIES字典中的编号</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">lib_desc</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+        <span class="n">lib_id</span> <span class="o">=</span> <span class="n">LIBRARY_ID</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">lib_name</span> <span class="o">=</span> <span class="n">LIBRARIES</span><span class="p">[</span><span class="n">LIBRARY_ID</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s">&#39;utf-8&#39;</span><span class="p">)</span>
+        <span class="n">select_sql</span> <span class="o">=</span> <span class="s">&quot;SELECT * FROM library WHERE libId = &#39;&quot;</span> <span class="o">+</span> <span class="n">lib_id</span> <span class="o">+</span> <span class="s">&quot;&#39;&quot;</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">DBFun</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s">&#39;db_pymemo.db&#39;</span><span class="p">,</span> <span class="n">select_sql</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">rows</span> <span class="ow">in</span> <span class="n">cursor</span><span class="p">:</span>
+            <span class="n">lib_desc</span> <span class="o">=</span> <span class="n">rows</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s">&#39;utf-8&#39;</span><span class="p">)</span>
+        <span class="n">rename_dlg</span> <span class="o">=</span> <span class="n">Dialog</span><span class="o">.</span><span class="n">RenameLib</span><span class="p">(</span><span class="n">lib_name</span><span class="p">,</span> <span class="n">lib_desc</span><span class="p">,</span> <span class="n">lib_id</span><span class="p">)</span>
+        <span class="n">rename_dlg</span><span class="o">.</span><span class="n">ShowModal</span><span class="p">()</span>
+        <span class="n">rename_dlg</span><span class="o">.</span><span class="n">Destroy</span><span class="p">()</span>
+        <span class="k">pass</span>
+</div>
+    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="ListCtrlLeft.on_item_info"><a class="viewcode-back" href="../memo.html#memo.ListCtrlLeft.on_item_info">[文档]</a>    <span class="k">def</span> <span class="nf">on_item_info</span><span class="p">(</span><span class="n">evt</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        查看词库的详细信息。</span>
+<span class="sd">        传递当前的词库信息lib_info（元组）给Dialog.LibInfo(lib_info)，初始化词库信息对话框。</span>
+<span class="sd">        :param evt:</span>
+<span class="sd">        :param i: 选中词库在LIBRARIES字典中的编号</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">lib_info</span> <span class="o">=</span> <span class="p">()</span>
+        <span class="n">lib_id</span> <span class="o">=</span> <span class="n">LIBRARY_ID</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">lib_name</span> <span class="o">=</span> <span class="n">LIBRARIES</span><span class="p">[</span><span class="n">LIBRARY_ID</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s">&#39;utf-8&#39;</span><span class="p">)</span>
+
+        <span class="n">select_sql</span> <span class="o">=</span> <span class="s">&quot;SELECT * FROM library WHERE libId = &#39;&quot;</span> <span class="o">+</span> <span class="n">lib_id</span> <span class="o">+</span> <span class="s">&quot;&#39;&quot;</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">DBFun</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s">&#39;db_pymemo.db&#39;</span><span class="p">,</span> <span class="n">select_sql</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">rows</span> <span class="ow">in</span> <span class="n">cursor</span><span class="p">:</span>
+            <span class="n">lib_info</span> <span class="o">=</span> <span class="n">rows</span>
+
+        <span class="n">info_dlg</span> <span class="o">=</span> <span class="n">Dialog</span><span class="o">.</span><span class="n">LibInfo</span><span class="p">(</span><span class="n">lib_info</span><span class="p">)</span>
+        <span class="n">info_dlg</span><span class="o">.</span><span class="n">ShowModal</span><span class="p">()</span>
+        <span class="n">info_dlg</span><span class="o">.</span><span class="n">Destroy</span><span class="p">()</span>
+        <span class="k">pass</span>
+</div>
+    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="ListCtrlLeft.on_item_add"><a class="viewcode-back" href="../memo.html#memo.ListCtrlLeft.on_item_add">[文档]</a>    <span class="k">def</span> <span class="nf">on_item_add</span><span class="p">(</span><span class="n">evt</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        在当前选择的词库中增加一张单词卡片。</span>
+<span class="sd">        传递LIBRARIES和LIBRARY_ID给Dialog.AddNewRecord(LIBRARIES, LIBRARY_ID[i])</span>
+<span class="sd">        :param evt:</span>
+<span class="sd">        :param i: 选中词库在LIBRARIES字典中的编号</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">new_card_dlg</span> <span class="o">=</span> <span class="n">Dialog</span><span class="o">.</span><span class="n">AddNewRecord</span><span class="p">(</span><span class="n">LIBRARIES</span><span class="p">,</span> <span class="n">LIBRARY_ID</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="n">new_card_dlg</span><span class="o">.</span><span class="n">ShowModal</span><span class="p">()</span>
+        <span class="n">new_card_dlg</span><span class="o">.</span><span class="n">Destroy</span><span class="p">()</span>
+        <span class="k">pass</span>
+</div>
+    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="ListCtrlLeft.on_lib_setting"><a class="viewcode-back" href="../memo.html#memo.ListCtrlLeft.on_lib_setting">[文档]</a>    <span class="k">def</span> <span class="nf">on_lib_setting</span><span class="p">(</span><span class="n">evt</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        对指定的词库进行设置</span>
+<span class="sd">        :param evt:</span>
+<span class="sd">        :param i: 选中词库在LIBRARIES字典中的编号</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">setting_dlg</span> <span class="o">=</span> <span class="n">Dialog</span><span class="o">.</span><span class="n">SettingDialog</span><span class="p">(</span><span class="n">LIBRARIES</span><span class="p">,</span> <span class="n">LIBRARY_ID</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="n">setting_dlg</span><span class="o">.</span><span class="n">ShowModal</span><span class="p">()</span>
+        <span class="n">setting_dlg</span><span class="o">.</span><span class="n">Destroy</span><span class="p">()</span>
+        <span class="k">pass</span>
+</div>
+<div class="viewcode-block" id="ListCtrlLeft.on_lib_delete"><a class="viewcode-back" href="../memo.html#memo.ListCtrlLeft.on_lib_delete">[文档]</a>    <span class="k">def</span> <span class="nf">on_lib_delete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">evt</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        删除指定词库，如果是默认词库(孤儿院词库)那么就无法被删除。</span>
+<span class="sd">        :param evt:</span>
+<span class="sd">        :param i:</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">lib_id</span> <span class="o">=</span> <span class="n">LIBRARY_ID</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">lib_id</span> <span class="o">==</span> <span class="s">&#39;000&#39;</span><span class="p">:</span>
+            <span class="n">msg_dlg</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">MessageDialog</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s">&#39;默认词库无法被删除！&#39;</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s">&#39;utf-8&#39;</span><span class="p">),</span>
+                               <span class="s">&#39;提示&#39;</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s">&#39;utf-8&#39;</span><span class="p">),</span>
+                               <span class="n">wx</span><span class="o">.</span><span class="n">OK</span> <span class="o">|</span> <span class="n">wx</span><span class="o">.</span><span class="n">ICON_WARNING</span><span class="p">)</span>
+            <span class="n">msg_dlg</span><span class="o">.</span><span class="n">ShowModal</span><span class="p">()</span>
+            <span class="n">msg_dlg</span><span class="o">.</span><span class="n">Destroy</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">lib_name</span> <span class="o">=</span> <span class="n">LIBRARIES</span><span class="p">[</span><span class="n">LIBRARY_ID</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s">&#39;utf-8&#39;</span><span class="p">)</span>
+            <span class="n">delete_dlg</span> <span class="o">=</span> <span class="n">Dialog</span><span class="o">.</span><span class="n">DeleteLib</span><span class="p">(</span><span class="n">lib_name</span><span class="p">,</span> <span class="n">lib_id</span><span class="p">)</span>
+            <span class="n">delete_dlg</span><span class="o">.</span><span class="n">ShowModal</span><span class="p">()</span>
+            <span class="n">delete_dlg</span><span class="o">.</span><span class="n">Destroy</span><span class="p">()</span>
+
+</div></div>
+<div class="viewcode-block" id="ListCtrlRight"><a class="viewcode-back" href="../memo.html#memo.ListCtrlRight">[文档]</a><span class="k">class</span> <span class="nc">ListCtrlRight</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">ListCtrl</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    初始化主界面右侧的单词卡片列表</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        继承wx.ListCtrl，并载入单词卡片</span>
+<span class="sd">        :param parent:</span>
+<span class="sd">        :param i:</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">wx</span><span class="o">.</span><span class="n">ListCtrl</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="n">wx</span><span class="o">.</span><span class="n">LC_REPORT</span> <span class="o">|</span> <span class="n">wx</span><span class="o">.</span><span class="n">LC_HRULES</span> <span class="o">|</span> <span class="n">wx</span><span class="o">.</span><span class="n">LC_SINGLE_SEL</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parent</span> <span class="o">=</span> <span class="n">parent</span>
+        <span class="n">select_sql</span> <span class="o">=</span> <span class="s">&#39;SELECT * FROM record&#39;</span>
+        <span class="n">RECORDS</span> <span class="o">=</span> <span class="n">DBFun</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s">&#39;db_pymemo.db&#39;</span><span class="p">,</span> <span class="n">select_sql</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">load_data_right</span><span class="p">(</span><span class="n">RECORDS</span><span class="p">)</span>
+
+<div class="viewcode-block" id="ListCtrlRight.load_data_right"><a class="viewcode-back" href="../memo.html#memo.ListCtrlRight.load_data_right">[文档]</a>    <span class="k">def</span> <span class="nf">load_data_right</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">RECORDS</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        初始化单词卡片列表，内容为全局变量RECORDS</span>
+<span class="sd">        :param RECORDS:</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">DeleteAllItems</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">DeleteAllColumns</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">list_head_name</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;记录ID&#39;</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s">&#39;utf-8&#39;</span><span class="p">),</span>
+                               <span class="s">&#39;正面&#39;</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s">&#39;utf-8&#39;</span><span class="p">),</span>
+                               <span class="s">&#39;反面&#39;</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s">&#39;utf-8&#39;</span><span class="p">),</span>
+                               <span class="s">&#39;添加时间&#39;</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s">&#39;utf-8&#39;</span><span class="p">),</span>
+                               <span class="s">&#39;复习时间&#39;</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s">&#39;utf-8&#39;</span><span class="p">),</span>
+                               <span class="s">&#39;修改时间&#39;</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s">&#39;utf-8&#39;</span><span class="p">),</span>
+                               <span class="s">&#39;间隔天数&#39;</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s">&#39;utf-8&#39;</span><span class="p">),</span>
+                               <span class="s">&#39;E-Fator&#39;</span><span class="p">,</span>
+                               <span class="s">&#39;是否挂起&#39;</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s">&#39;utf-8&#39;</span><span class="p">)</span>
+                               <span class="p">]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">list_head_name</span><span class="p">)):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">InsertColumn</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">list_head_name</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="n">wx</span><span class="o">.</span><span class="n">LIST_AUTOSIZE</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">RECORDS</span><span class="p">:</span>
+            <span class="n">index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">InsertStringItem</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">maxint</span><span class="p">,</span> <span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">Bind</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">EVT_LIST_ITEM_RIGHT_CLICK</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">e</span><span class="p">,</span> <span class="n">record</span><span class="o">=</span><span class="n">RECORDS</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_record_right_click</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">record</span><span class="p">))</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">list_head_name</span><span class="p">)):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">SetStringItem</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">[</span><span class="n">j</span><span class="p">])</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s">&#39;utf-8&#39;</span><span class="p">))</span>
+</div>
+    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="ListCtrlRight.on_refresh"><a class="viewcode-back" href="../memo.html#memo.ListCtrlRight.on_refresh">[文档]</a>    <span class="k">def</span> <span class="nf">on_refresh</span><span class="p">():</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        在单词卡片信息修改之后，刷新右侧列表的显示。</span>
+<span class="sd">        调用load_data_right(RECORDS)</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">window</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">FindWindowByName</span><span class="p">(</span><span class="s">&#39;ListControlOnRight&#39;</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+        <span class="n">select_sql</span> <span class="o">=</span> <span class="s">&quot;SELECT * FROM record&quot;</span>
+        <span class="n">RECORDS</span> <span class="o">=</span> <span class="n">DBFun</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s">&#39;db_pymemo.db&#39;</span><span class="p">,</span> <span class="n">select_sql</span><span class="p">)</span>
+        <span class="n">window</span><span class="o">.</span><span class="n">load_data_right</span><span class="p">(</span><span class="n">RECORDS</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="ListCtrlRight.on_record_right_click"><a class="viewcode-back" href="../memo.html#memo.ListCtrlRight.on_record_right_click">[文档]</a>    <span class="k">def</span> <span class="nf">on_record_right_click</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">evt</span><span class="p">,</span> <span class="n">record</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        定义单词卡片右击事件，提供修改，查看详情，挂起或删除等操作的入口</span>
+<span class="sd">        :param evt:</span>
+<span class="sd">        :param record:</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">index</span> <span class="o">=</span> <span class="n">evt</span><span class="o">.</span><span class="n">GetIndex</span><span class="p">()</span>
+        <span class="n">detail</span> <span class="o">=</span> <span class="n">record</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+        <span class="n">menu</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">Menu</span><span class="p">()</span>
+        <span class="n">record_update</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">MenuItem</span><span class="p">(</span><span class="n">menu</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s">&quot;修改&quot;</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s">&#39;utf-8&#39;</span><span class="p">))</span>
+        <span class="n">record_info</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">MenuItem</span><span class="p">(</span><span class="n">menu</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s">&quot;详细信息&quot;</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s">&#39;utf-8&#39;</span><span class="p">))</span>
+        <span class="n">record_delete</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">MenuItem</span><span class="p">(</span><span class="n">menu</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s">&quot;挂起/删除&quot;</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s">&#39;utf-8&#39;</span><span class="p">))</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">Bind</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">EVT_MENU</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">e</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="n">detail</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_record_update</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">d</span><span class="p">),</span> <span class="n">record_update</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Bind</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">EVT_MENU</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">e</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="n">detail</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_record_info</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">d</span><span class="p">),</span> <span class="n">record_info</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Bind</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">EVT_MENU</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">e</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="n">detail</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_record_delete</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">d</span><span class="p">),</span> <span class="n">record_delete</span><span class="p">)</span>
+
+        <span class="n">menu</span><span class="o">.</span><span class="n">AppendItem</span><span class="p">(</span><span class="n">record_update</span><span class="p">)</span>
+        <span class="n">menu</span><span class="o">.</span><span class="n">AppendItem</span><span class="p">(</span><span class="n">record_info</span><span class="p">)</span>
+        <span class="n">menu</span><span class="o">.</span><span class="n">AppendItem</span><span class="p">(</span><span class="n">record_delete</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">PopupMenu</span><span class="p">(</span><span class="n">menu</span><span class="p">)</span>
+        <span class="n">menu</span><span class="o">.</span><span class="n">Destroy</span><span class="p">()</span>
+</div>
+    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="ListCtrlRight.on_record_update"><a class="viewcode-back" href="../memo.html#memo.ListCtrlRight.on_record_update">[文档]</a>    <span class="k">def</span> <span class="nf">on_record_update</span><span class="p">(</span><span class="n">evt</span><span class="p">,</span> <span class="n">d</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        修改单词卡片</span>
+<span class="sd">        :param evt:</span>
+<span class="sd">        :param d: 点击的单词卡片的详细信息（元组）</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">record_update_dlg</span> <span class="o">=</span> <span class="n">Dialog</span><span class="o">.</span><span class="n">UpdateRecord</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+        <span class="n">record_update_dlg</span><span class="o">.</span><span class="n">ShowModal</span><span class="p">()</span>
+        <span class="n">record_update_dlg</span><span class="o">.</span><span class="n">Destroy</span><span class="p">()</span>
+        <span class="k">pass</span>
+</div>
+    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="ListCtrlRight.on_record_info"><a class="viewcode-back" href="../memo.html#memo.ListCtrlRight.on_record_info">[文档]</a>    <span class="k">def</span> <span class="nf">on_record_info</span><span class="p">(</span><span class="n">evt</span><span class="p">,</span> <span class="n">d</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        查看单词卡片的详细信息</span>
+<span class="sd">        :param evt:</span>
+<span class="sd">        :param d: 点击的单词卡片的详细信息（元组）</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">record_info_dlg</span> <span class="o">=</span> <span class="n">Dialog</span><span class="o">.</span><span class="n">RecordInfo</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+        <span class="n">record_info_dlg</span><span class="o">.</span><span class="n">ShowModal</span><span class="p">()</span>
+        <span class="n">record_info_dlg</span><span class="o">.</span><span class="n">Destroy</span><span class="p">()</span>
+        <span class="k">pass</span>
+</div>
+    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="ListCtrlRight.on_record_delete"><a class="viewcode-back" href="../memo.html#memo.ListCtrlRight.on_record_delete">[文档]</a>    <span class="k">def</span> <span class="nf">on_record_delete</span><span class="p">(</span><span class="n">evt</span><span class="p">,</span> <span class="n">d</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        删除或挂起单词卡片</span>
+<span class="sd">        挂起：指暂停此单词卡片的学习</span>
+<span class="sd">        删除：指彻底从数据库删除</span>
+<span class="sd">        :param evt:</span>
+<span class="sd">        :param d: 点击的单词卡片的详细信息（元组）</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">record_delete_dlg</span> <span class="o">=</span> <span class="n">Dialog</span><span class="o">.</span><span class="n">DeleteRecord</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+        <span class="n">record_delete_dlg</span><span class="o">.</span><span class="n">ShowModal</span><span class="p">()</span>
+        <span class="n">record_delete_dlg</span><span class="o">.</span><span class="n">Destroy</span><span class="p">()</span>
+        <span class="k">pass</span>
+
+</div></div>
+<div class="viewcode-block" id="CombinePanelRight"><a class="viewcode-back" href="../memo.html#memo.CombinePanelRight">[文档]</a><span class="k">class</span> <span class="nc">CombinePanelRight</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">Panel</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    一个Panel，包含主界面上方的filter过滤器</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">records</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        初始化Panel和其中wx.ComboBox，并显示filter的内容</span>
+<span class="sd">        :param parent:</span>
+<span class="sd">        :param i:</span>
+<span class="sd">        :param records:</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">wx</span><span class="o">.</span><span class="n">Panel</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="n">wx</span><span class="o">.</span><span class="n">BORDER_NONE</span><span class="p">)</span>
+
+        <span class="n">filter_list</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;显示所有记录&#39;</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s">&#39;utf-8&#39;</span><span class="p">),</span>
+                     <span class="s">&#39;已到期的&#39;</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s">&#39;utf-8&#39;</span><span class="p">),</span>
+                     <span class="s">&#39;已记住的&#39;</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s">&#39;utf-8&#39;</span><span class="p">),</span>
+                     <span class="s">&#39;今天待学习的&#39;</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s">&#39;utf-8&#39;</span><span class="p">),</span>
+                     <span class="s">&#39;今天已学习的&#39;</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s">&#39;utf-8&#39;</span><span class="p">),</span>
+                     <span class="s">&#39;始终记不住的&#39;</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s">&#39;utf-8&#39;</span><span class="p">),</span>
+                     <span class="s">&#39;今天添加的&#39;</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s">&#39;utf-8&#39;</span><span class="p">)]</span>
+        <span class="n">horizontal_box</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">BoxSizer</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">HORIZONTAL</span><span class="p">)</span>
+        <span class="n">lib_combo_box</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">ComboBox</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                                    <span class="n">pos</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>
+                                    <span class="n">choices</span><span class="o">=</span><span class="n">filter_list</span><span class="p">,</span>
+                                    <span class="n">style</span><span class="o">=</span><span class="n">wx</span><span class="o">.</span><span class="n">CB_READONLY</span>
+                                    <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Bind</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">EVT_COMBOBOX</span><span class="p">,</span>
+                  <span class="k">lambda</span> <span class="n">evt</span><span class="p">,</span> <span class="n">ob</span><span class="o">=</span><span class="n">lib_combo_box</span><span class="p">,</span> <span class="n">f</span><span class="o">=</span><span class="n">filter_list</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_filter</span><span class="p">(</span><span class="n">evt</span><span class="p">,</span> <span class="n">ob</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">RECORDS</span><span class="p">),</span>
+                  <span class="n">lib_combo_box</span><span class="p">)</span>
+        <span class="n">lib_combo_box</span><span class="o">.</span><span class="n">SetSelection</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="c"># go = wx.BitmapButton(self,</span>
+        <span class="c">#                      -1,</span>
+        <span class="c">#                      wx.Bitmap(&#39;images/other-size/search26.png&#39;),</span>
+        <span class="c">#                      size=(32, 32)</span>
+        <span class="c">#                      )</span>
+        <span class="c"># search_ctrl = wx.TextCtrl(self, -1, size=(300, -1))</span>
+
+        <span class="n">horizontal_box</span><span class="o">.</span><span class="n">Add</span><span class="p">(</span><span class="n">lib_combo_box</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">wx</span><span class="o">.</span><span class="n">TOP</span> <span class="o">|</span> <span class="n">wx</span><span class="o">.</span><span class="n">LEFT</span> <span class="o">|</span> <span class="n">wx</span><span class="o">.</span><span class="n">BOTTOM</span><span class="p">,</span> <span class="n">border</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+        <span class="c"># horizontal_box.Add(search_ctrl, 0, wx.TOP | wx.LEFT | wx.BOTTOM, border=6)</span>
+        <span class="c"># horizontal_box.Add(go, 0, wx.ALL, border=6)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">SetSizer</span><span class="p">(</span><span class="n">horizontal_box</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Centre</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Show</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>
+
+    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="CombinePanelRight.on_filter"><a class="viewcode-back" href="../memo.html#memo.CombinePanelRight.on_filter">[文档]</a>    <span class="k">def</span> <span class="nf">on_filter</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">ob</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">r</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        根据选择的filter序号，调用对应的函数（这个函数指FrameFun.xxx()）对当前的RECORDS进行筛选</span>
+<span class="sd">        FrameFun.find_all()， 返回record表中所有的单词卡片</span>
+<span class="sd">        FrameFun.find_expired()，返回过期单词卡片</span>
+<span class="sd">        FrameFun.find_remembered()，返回已经记住的单词卡片</span>
+<span class="sd">        FrameFun.find_new()，返回暂未学习过的单词卡片</span>
+<span class="sd">        FrameFun.find_learned()，返回已经学习过的单词卡片</span>
+<span class="sd">        FrameFun.find_hard()，返回困难的单词卡片</span>
+<span class="sd">        FrameFun.find_today()，返回今天添加的单词卡片</span>
+<span class="sd">        最后将获取到的单词卡片列表作为参数，调用load_data_right。实现刷新右侧的单词卡片列表</span>
+<span class="sd">        :param e:</span>
+<span class="sd">        :param ob: wx.ComboBox对象</span>
+<span class="sd">        :param f: filter_list列表</span>
+<span class="sd">        :param r: RECORDS</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">filter_key</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="c"># 获取到筛选LIST的序号</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">album</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
+            <span class="c"># filter_dic[i] = album</span>
+            <span class="k">if</span> <span class="n">album</span> <span class="o">==</span> <span class="n">ob</span><span class="o">.</span><span class="n">GetValue</span><span class="p">():</span>
+                <span class="n">filter_key</span> <span class="o">=</span> <span class="n">i</span>
+
+        <span class="k">if</span> <span class="n">filter_key</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">r</span> <span class="o">=</span> <span class="n">FrameFun</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+            <span class="k">pass</span>
+        <span class="k">elif</span> <span class="n">filter_key</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">r</span> <span class="o">=</span> <span class="n">FrameFun</span><span class="o">.</span><span class="n">find_expired</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+            <span class="k">pass</span>
+        <span class="k">elif</span> <span class="n">filter_key</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">r</span> <span class="o">=</span> <span class="n">FrameFun</span><span class="o">.</span><span class="n">find_remembered</span><span class="p">()</span>
+            <span class="k">pass</span>
+        <span class="k">elif</span> <span class="n">filter_key</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="n">new_list</span> <span class="o">=</span> <span class="n">FrameFun</span><span class="o">.</span><span class="n">find_new</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)[:</span><span class="mi">50</span><span class="p">]</span>
+            <span class="n">review_list</span> <span class="o">=</span> <span class="n">FrameFun</span><span class="o">.</span><span class="n">find_expired</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)[:</span><span class="mi">50</span><span class="p">]</span>
+            <span class="n">r</span> <span class="o">=</span> <span class="n">new_list</span> <span class="o">+</span> <span class="n">review_list</span>
+            <span class="k">pass</span>
+        <span class="k">elif</span> <span class="n">filter_key</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
+            <span class="n">r</span> <span class="o">=</span> <span class="n">FrameFun</span><span class="o">.</span><span class="n">find_learned</span><span class="p">()</span>
+            <span class="k">pass</span>
+        <span class="k">elif</span> <span class="n">filter_key</span> <span class="o">==</span> <span class="mi">5</span><span class="p">:</span>
+            <span class="n">r</span> <span class="o">=</span> <span class="n">FrameFun</span><span class="o">.</span><span class="n">find_hard</span><span class="p">()</span>
+            <span class="k">pass</span>
+        <span class="k">elif</span> <span class="n">filter_key</span> <span class="o">==</span> <span class="mi">6</span><span class="p">:</span>
+            <span class="n">r</span> <span class="o">=</span> <span class="n">FrameFun</span><span class="o">.</span><span class="n">find_today</span><span class="p">()</span>
+            <span class="k">pass</span>
+        <span class="n">RECORDS</span> <span class="o">=</span> <span class="n">r</span>
+        <span class="n">window</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">FindWindowByName</span><span class="p">(</span><span class="s">&#39;ListControlOnRight&#39;</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+        <span class="n">window</span><span class="o">.</span><span class="n">load_data_right</span><span class="p">(</span><span class="n">RECORDS</span><span class="p">)</span>
+
+</div></div>
+<div class="viewcode-block" id="Memo"><a class="viewcode-back" href="../memo.html#memo.Memo">[文档]</a><span class="k">class</span> <span class="nc">Memo</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">Frame</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    程序主体框架</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">size</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        初始化程序的窗口，菜单栏，工具栏</span>
+<span class="sd">        并调用私有函数_create_splitter_windows()，初始化软件的分隔窗布局</span>
+<span class="sd">        :param parent:</span>
+<span class="sd">        :param i: id</span>
+<span class="sd">        :param title: 软件名称</span>
+<span class="sd">        :param size: 窗口大小</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">wx</span><span class="o">.</span><span class="n">Frame</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">size</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_create_menu_bar</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_create_tool_bar</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_create_splitter_windows</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Centre</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Show</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_create_menu_bar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        菜单栏</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">menu_bar</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">MenuBar</span><span class="p">()</span>
+        <span class="n">file_menu</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">Menu</span><span class="p">()</span>
+        <span class="n">tool_menu</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">Menu</span><span class="p">()</span>
+        <span class="n">help_menu</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">Menu</span><span class="p">()</span>
+
+        <span class="n">menu_bar</span><span class="o">.</span><span class="n">Append</span><span class="p">(</span><span class="n">file_menu</span><span class="p">,</span> <span class="s">&#39;文件&#39;</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s">&#39;utf-8&#39;</span><span class="p">))</span>
+        <span class="n">menu_bar</span><span class="o">.</span><span class="n">Append</span><span class="p">(</span><span class="n">tool_menu</span><span class="p">,</span> <span class="s">&#39;工具&#39;</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s">&#39;utf-8&#39;</span><span class="p">))</span>
+        <span class="n">menu_bar</span><span class="o">.</span><span class="n">Append</span><span class="p">(</span><span class="n">help_menu</span><span class="p">,</span> <span class="s">&#39;帮助&#39;</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s">&#39;utf-8&#39;</span><span class="p">))</span>
+
+        <span class="n">new_lib_item</span> <span class="o">=</span> <span class="n">file_menu</span><span class="o">.</span><span class="n">Append</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#39;添加一个词库&#39;</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s">&#39;utf-8&#39;</span><span class="p">))</span>
+        <span class="n">new_record_item</span> <span class="o">=</span> <span class="n">file_menu</span><span class="o">.</span><span class="n">Append</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#39;添加一条记录&#39;</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s">&#39;utf-8&#39;</span><span class="p">))</span>
+        <span class="n">setting</span> <span class="o">=</span> <span class="n">file_menu</span><span class="o">.</span><span class="n">Append</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#39;偏好设置&#39;</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s">&#39;utf-8&#39;</span><span class="p">))</span>
+        <span class="n">file_menu</span><span class="o">.</span><span class="n">AppendSeparator</span><span class="p">()</span>
+        <span class="n">quit_item</span> <span class="o">=</span> <span class="n">file_menu</span><span class="o">.</span><span class="n">Append</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#39;离开&#39;</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s">&#39;utf-8&#39;</span><span class="p">))</span>
+
+        <span class="n">study_item</span> <span class="o">=</span> <span class="n">tool_menu</span><span class="o">.</span><span class="n">Append</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#39;开始学习&#39;</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s">&#39;utf-8&#39;</span><span class="p">))</span>
+        <span class="n">check</span> <span class="o">=</span> <span class="n">tool_menu</span><span class="o">.</span><span class="n">Append</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#39;优化数据库&#39;</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s">&#39;utf-8&#39;</span><span class="p">))</span>
+
+        <span class="n">guide_item</span> <span class="o">=</span> <span class="n">help_menu</span><span class="o">.</span><span class="n">Append</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">ID_HELP</span><span class="p">,</span> <span class="s">&#39;用户手册&#39;</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s">&#39;utf-8&#39;</span><span class="p">))</span>
+        <span class="n">about_item</span> <span class="o">=</span> <span class="n">help_menu</span><span class="o">.</span><span class="n">Append</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">ID_ABOUT</span><span class="p">,</span> <span class="s">&#39;关于&#39;</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s">&#39;utf-8&#39;</span><span class="p">))</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">Bind</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">EVT_MENU</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_new_lib</span><span class="p">,</span> <span class="n">new_lib_item</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Bind</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">EVT_MENU</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_new_record</span><span class="p">,</span> <span class="n">new_record_item</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Bind</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">EVT_MENU</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_setting</span><span class="p">,</span> <span class="n">setting</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Bind</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">EVT_MENU</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_quit</span><span class="p">,</span> <span class="n">quit_item</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Bind</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">EVT_MENU</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_study</span><span class="p">,</span> <span class="n">study_item</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Bind</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">EVT_MENU</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_check</span><span class="p">,</span> <span class="n">check</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Bind</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">EVT_MENU</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_guide</span><span class="p">,</span> <span class="n">guide_item</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Bind</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">EVT_MENU</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_about</span><span class="p">,</span> <span class="n">about_item</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">SetMenuBar</span><span class="p">(</span><span class="n">menu_bar</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_create_tool_bar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        工具栏</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">tool_id</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;import&#39;</span><span class="p">:</span> <span class="n">wx</span><span class="o">.</span><span class="n">NewId</span><span class="p">(),</span>
+                   <span class="s">&#39;new_lib&#39;</span><span class="p">:</span> <span class="n">wx</span><span class="o">.</span><span class="n">NewId</span><span class="p">(),</span>
+                   <span class="s">&#39;new_record&#39;</span><span class="p">:</span> <span class="n">wx</span><span class="o">.</span><span class="n">NewId</span><span class="p">(),</span>
+                   <span class="s">&#39;setting&#39;</span><span class="p">:</span> <span class="n">wx</span><span class="o">.</span><span class="n">NewId</span><span class="p">(),</span>
+                   <span class="s">&#39;learn&#39;</span><span class="p">:</span> <span class="n">wx</span><span class="o">.</span><span class="n">NewId</span><span class="p">()}</span>
+        <span class="n">tool_bar</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">CreateToolBar</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="n">wx</span><span class="o">.</span><span class="n">TB_FLAT</span> <span class="o">|</span> <span class="n">wx</span><span class="o">.</span><span class="n">TB_TEXT</span> <span class="o">|</span> <span class="n">wx</span><span class="o">.</span><span class="n">TB_HORZ_LAYOUT</span><span class="p">)</span>
+        <span class="n">quit_item</span> <span class="o">=</span> <span class="n">tool_bar</span><span class="o">.</span><span class="n">AddLabelTool</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">ID_EXIT</span><span class="p">,</span> <span class="s">&#39;退出&#39;</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s">&#39;utf-8&#39;</span><span class="p">),</span> <span class="n">wx</span><span class="o">.</span><span class="n">Bitmap</span><span class="p">(</span><span class="s">&#39;images/32/quit.png&#39;</span><span class="p">))</span>
+        <span class="n">tool_bar</span><span class="o">.</span><span class="n">AddSeparator</span><span class="p">()</span>
+        <span class="c"># import_item = tool_bar.AddLabelTool(tool_id[&#39;import&#39;], &#39;导入词库&#39;, wx.Bitmap(&#39;images/32/import.png&#39;))</span>
+        <span class="n">new_lib</span> <span class="o">=</span> <span class="n">tool_bar</span><span class="o">.</span><span class="n">AddLabelTool</span><span class="p">(</span><span class="n">tool_id</span><span class="p">[</span><span class="s">&#39;new_lib&#39;</span><span class="p">],</span> <span class="s">&#39;新建词库&#39;</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s">&#39;utf-8&#39;</span><span class="p">),</span> <span class="n">wx</span><span class="o">.</span><span class="n">Bitmap</span><span class="p">(</span><span class="s">&#39;images/32/library_add.png&#39;</span><span class="p">))</span>
+        <span class="n">new_record</span> <span class="o">=</span> <span class="n">tool_bar</span><span class="o">.</span><span class="n">AddLabelTool</span><span class="p">(</span><span class="n">tool_id</span><span class="p">[</span><span class="s">&#39;new_record&#39;</span><span class="p">],</span> <span class="s">&#39;添加记录&#39;</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s">&#39;utf-8&#39;</span><span class="p">),</span> <span class="n">wx</span><span class="o">.</span><span class="n">Bitmap</span><span class="p">(</span><span class="s">&#39;images/32/card_add.png&#39;</span><span class="p">))</span>
+        <span class="n">setting</span> <span class="o">=</span> <span class="n">tool_bar</span><span class="o">.</span><span class="n">AddLabelTool</span><span class="p">(</span><span class="n">tool_id</span><span class="p">[</span><span class="s">&#39;setting&#39;</span><span class="p">],</span> <span class="s">&#39;设置&#39;</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s">&#39;utf-8&#39;</span><span class="p">),</span> <span class="n">wx</span><span class="o">.</span><span class="n">Bitmap</span><span class="p">(</span><span class="s">&#39;images/32/setting.png&#39;</span><span class="p">))</span>
+        <span class="n">tool_bar</span><span class="o">.</span><span class="n">AddSeparator</span><span class="p">()</span>
+        <span class="n">study</span> <span class="o">=</span> <span class="n">tool_bar</span><span class="o">.</span><span class="n">AddLabelTool</span><span class="p">(</span><span class="n">tool_id</span><span class="p">[</span><span class="s">&#39;learn&#39;</span><span class="p">],</span> <span class="s">&#39;开始学习&#39;</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s">&#39;utf-8&#39;</span><span class="p">),</span> <span class="n">wx</span><span class="o">.</span><span class="n">Bitmap</span><span class="p">(</span><span class="s">&#39;images/32/words_learn.png&#39;</span><span class="p">))</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">Bind</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">EVT_TOOL</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_quit</span><span class="p">,</span> <span class="n">quit_item</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Bind</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">EVT_TOOL</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_setting</span><span class="p">,</span> <span class="n">setting</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Bind</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">EVT_TOOL</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_new_lib</span><span class="p">,</span> <span class="n">new_lib</span><span class="p">)</span>
+        <span class="c"># self.Bind(wx.EVT_TOOL, self.on_import, import_item)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Bind</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">EVT_TOOL</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_new_record</span><span class="p">,</span> <span class="n">new_record</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Bind</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">EVT_TOOL</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_study</span><span class="p">,</span> <span class="n">study</span><span class="p">)</span>
+
+        <span class="n">tool_bar</span><span class="o">.</span><span class="n">Realize</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_create_splitter_windows</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        实例化ListCtrlLeft，实现左侧词库列表的显示</span>
+<span class="sd">        实例化CombinePanelRight，实现右侧filter选择器的显示</span>
+<span class="sd">        实例化ListCtrlRight，实现右侧单词卡片列表的显示</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">horizontal_box</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">BoxSizer</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">HORIZONTAL</span><span class="p">)</span>
+        <span class="n">splitter</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">SplitterWindow</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="n">wx</span><span class="o">.</span><span class="n">SP_LIVE_UPDATE</span> <span class="o">|</span> <span class="n">wx</span><span class="o">.</span><span class="n">SP_NOBORDER</span><span class="p">)</span>
+        <span class="n">splitter</span><span class="o">.</span><span class="n">SetMinimumPaneSize</span><span class="p">(</span><span class="mi">250</span><span class="p">)</span>
+        <span class="n">vertical_box_left</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">BoxSizer</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">VERTICAL</span><span class="p">)</span>
+        <span class="n">panel_left</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">Panel</span><span class="p">(</span><span class="n">splitter</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">panel_left</span><span class="o">.</span><span class="n">SetBackgroundColour</span><span class="p">(</span><span class="s">&#39;white&#39;</span><span class="p">)</span>
+        <span class="n">panel_left_top</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">Panel</span><span class="p">(</span><span class="n">panel_left</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">panel_left_top</span><span class="o">.</span><span class="n">SetBackgroundColour</span><span class="p">(</span><span class="s">&#39;#53728c&#39;</span><span class="p">)</span>
+        <span class="n">panel_left_str</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">StaticText</span><span class="p">(</span><span class="n">panel_left_top</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#39;记忆库&#39;</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s">&#39;utf-8&#39;</span><span class="p">),</span> <span class="n">pos</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">30</span><span class="p">))</span>
+        <span class="n">panel_left_str</span><span class="o">.</span><span class="n">SetForegroundColour</span><span class="p">(</span><span class="s">&#39;white&#39;</span><span class="p">)</span>
+
+        <span class="n">panel_left_bottom</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">Panel</span><span class="p">(</span><span class="n">panel_left</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="n">wx</span><span class="o">.</span><span class="n">BORDER_NONE</span><span class="p">)</span>
+        <span class="n">vertical_box_left_bottom</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">BoxSizer</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">VERTICAL</span><span class="p">)</span>
+        <span class="n">list_1</span> <span class="o">=</span> <span class="n">ListCtrlLeft</span><span class="p">(</span><span class="n">panel_left_bottom</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">list_1</span><span class="o">.</span><span class="n">SetName</span><span class="p">(</span><span class="s">&#39;ListControlOnLeft&#39;</span><span class="p">)</span>
+        <span class="n">vertical_box_left_bottom</span><span class="o">.</span><span class="n">Add</span><span class="p">(</span><span class="n">list_1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">wx</span><span class="o">.</span><span class="n">EXPAND</span><span class="p">)</span>
+        <span class="n">panel_left_bottom</span><span class="o">.</span><span class="n">SetSizer</span><span class="p">(</span><span class="n">vertical_box_left_bottom</span><span class="p">)</span>
+        <span class="n">panel_left_bottom</span><span class="o">.</span><span class="n">SetBackgroundColour</span><span class="p">(</span><span class="s">&#39;white&#39;</span><span class="p">)</span>
+
+        <span class="n">vertical_box_left</span><span class="o">.</span><span class="n">Add</span><span class="p">(</span><span class="n">panel_left_top</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">wx</span><span class="o">.</span><span class="n">EXPAND</span><span class="p">)</span>
+        <span class="n">vertical_box_left</span><span class="o">.</span><span class="n">Add</span><span class="p">(</span><span class="n">panel_left_bottom</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">wx</span><span class="o">.</span><span class="n">EXPAND</span><span class="p">)</span>
+
+        <span class="n">panel_left</span><span class="o">.</span><span class="n">SetSizer</span><span class="p">(</span><span class="n">vertical_box_left</span><span class="p">)</span>
+
+        <span class="c"># right</span>
+        <span class="n">vertical_box_right</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">BoxSizer</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">VERTICAL</span><span class="p">)</span>
+        <span class="n">panel_right</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">Panel</span><span class="p">(</span><span class="n">splitter</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">vertical_box_right_top</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">BoxSizer</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">VERTICAL</span><span class="p">)</span>
+        <span class="n">panel_right_top</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">Panel</span><span class="p">(</span><span class="n">panel_right</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">40</span><span class="p">),</span> <span class="n">style</span><span class="o">=</span><span class="n">wx</span><span class="o">.</span><span class="n">NO_BORDER</span><span class="p">)</span>
+        <span class="n">combine</span> <span class="o">=</span> <span class="n">CombinePanelRight</span><span class="p">(</span><span class="n">panel_right_top</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">RECORDS</span><span class="p">)</span>
+        <span class="n">vertical_box_right_top</span><span class="o">.</span><span class="n">Add</span><span class="p">(</span><span class="n">combine</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">wx</span><span class="o">.</span><span class="n">EXPAND</span><span class="p">)</span>
+        <span class="n">panel_right_top</span><span class="o">.</span><span class="n">SetSizer</span><span class="p">(</span><span class="n">vertical_box_right_top</span><span class="p">)</span>
+
+        <span class="n">panel_right_bottom</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">Panel</span><span class="p">(</span><span class="n">panel_right</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="n">wx</span><span class="o">.</span><span class="n">BORDER_NONE</span><span class="p">)</span>
+        <span class="n">vertical_box_right_bottom</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">BoxSizer</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">VERTICAL</span><span class="p">)</span>
+        <span class="n">list2</span> <span class="o">=</span> <span class="n">ListCtrlRight</span><span class="p">(</span><span class="n">panel_right_bottom</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">list2</span><span class="o">.</span><span class="n">SetName</span><span class="p">(</span><span class="s">&#39;ListControlOnRight&#39;</span><span class="p">)</span>
+        <span class="n">vertical_box_right_bottom</span><span class="o">.</span><span class="n">Add</span><span class="p">(</span><span class="n">list2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">wx</span><span class="o">.</span><span class="n">EXPAND</span><span class="p">)</span>
+        <span class="n">panel_right_bottom</span><span class="o">.</span><span class="n">SetSizer</span><span class="p">(</span><span class="n">vertical_box_right_bottom</span><span class="p">)</span>
+        <span class="n">panel_right_bottom</span><span class="o">.</span><span class="n">SetBackgroundColour</span><span class="p">(</span><span class="s">&#39;white&#39;</span><span class="p">)</span>
+
+        <span class="n">vertical_box_right</span><span class="o">.</span><span class="n">Add</span><span class="p">(</span><span class="n">panel_right_top</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">wx</span><span class="o">.</span><span class="n">EXPAND</span><span class="p">)</span>
+        <span class="n">vertical_box_right</span><span class="o">.</span><span class="n">Add</span><span class="p">(</span><span class="n">panel_right_bottom</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">wx</span><span class="o">.</span><span class="n">EXPAND</span><span class="p">)</span>
+
+        <span class="n">panel_right</span><span class="o">.</span><span class="n">SetSizer</span><span class="p">(</span><span class="n">vertical_box_right</span><span class="p">)</span>
+
+        <span class="n">horizontal_box</span><span class="o">.</span><span class="n">Add</span><span class="p">(</span><span class="n">splitter</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">wx</span><span class="o">.</span><span class="n">EXPAND</span> <span class="o">|</span> <span class="n">wx</span><span class="o">.</span><span class="n">TOP</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">SetSizer</span><span class="p">(</span><span class="n">horizontal_box</span><span class="p">)</span>
+        <span class="n">splitter</span><span class="o">.</span><span class="n">SplitVertically</span><span class="p">(</span><span class="n">panel_left</span><span class="p">,</span> <span class="n">panel_right</span><span class="p">,</span> <span class="mi">250</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Memo.on_quit"><a class="viewcode-back" href="../memo.html#memo.Memo.on_quit">[文档]</a>    <span class="k">def</span> <span class="nf">on_quit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">evt</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        软件关闭函数</span>
+<span class="sd">        :param evt:</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Close</span><span class="p">()</span>
+</div>
+    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="Memo.on_setting"><a class="viewcode-back" href="../memo.html#memo.Memo.on_setting">[文档]</a>    <span class="k">def</span> <span class="nf">on_setting</span><span class="p">(</span><span class="n">evt</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        菜单栏/工具栏的设置事件，-1表示目前没有选择要设置的词库</span>
+<span class="sd">        :param evt:</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">setting_dlg</span> <span class="o">=</span> <span class="n">Dialog</span><span class="o">.</span><span class="n">SettingDialog</span><span class="p">(</span><span class="n">LIBRARIES</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">setting_dlg</span><span class="o">.</span><span class="n">ShowModal</span><span class="p">()</span>
+        <span class="n">setting_dlg</span><span class="o">.</span><span class="n">Destroy</span><span class="p">()</span>
+</div>
+    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="Memo.on_new_lib"><a class="viewcode-back" href="../memo.html#memo.Memo.on_new_lib">[文档]</a>    <span class="k">def</span> <span class="nf">on_new_lib</span><span class="p">(</span><span class="n">evt</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        菜单栏/工具栏的新建词库事件</span>
+<span class="sd">        :param evt:</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">new_lib_dlg</span> <span class="o">=</span> <span class="n">Dialog</span><span class="o">.</span><span class="n">AddNewLib</span><span class="p">()</span>
+        <span class="n">new_lib_dlg</span><span class="o">.</span><span class="n">ShowModal</span><span class="p">()</span>
+        <span class="n">new_lib_dlg</span><span class="o">.</span><span class="n">Destroy</span><span class="p">()</span>
+</div>
+<div class="viewcode-block" id="Memo.on_import"><a class="viewcode-back" href="../memo.html#memo.Memo.on_import">[文档]</a>    <span class="k">def</span> <span class="nf">on_import</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">evt</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        菜单栏/工具栏的导入数据库事件</span>
+<span class="sd">        :param evt:</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">import_dlg</span> <span class="o">=</span> <span class="n">Dialog</span><span class="o">.</span><span class="n">Import</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">import_dlg</span><span class="o">.</span><span class="n">ShowModal</span><span class="p">()</span>
+        <span class="n">import_dlg</span><span class="o">.</span><span class="n">Destroy</span><span class="p">()</span>
+</div>
+<div class="viewcode-block" id="Memo.on_export"><a class="viewcode-back" href="../memo.html#memo.Memo.on_export">[文档]</a>    <span class="k">def</span> <span class="nf">on_export</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">evt</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        菜单栏/工具栏的导出数据库事件</span>
+<span class="sd">        :param evt:</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">export_dlg</span> <span class="o">=</span> <span class="n">Dialog</span><span class="o">.</span><span class="n">Export</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">export_dlg</span><span class="o">.</span><span class="n">ShowModal</span><span class="p">()</span>
+        <span class="n">export_dlg</span><span class="o">.</span><span class="n">Destroy</span><span class="p">()</span>
+</div>
+    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="Memo.on_new_record"><a class="viewcode-back" href="../memo.html#memo.Memo.on_new_record">[文档]</a>    <span class="k">def</span> <span class="nf">on_new_record</span><span class="p">(</span><span class="n">evt</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        菜单栏/工具栏的新建单词卡片事件</span>
+<span class="sd">        :param evt:</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">new_card_dlg</span> <span class="o">=</span> <span class="n">Dialog</span><span class="o">.</span><span class="n">AddNewRecord</span><span class="p">(</span><span class="n">LIBRARIES</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">new_card_dlg</span><span class="o">.</span><span class="n">ShowModal</span><span class="p">()</span>
+        <span class="n">new_card_dlg</span><span class="o">.</span><span class="n">Destroy</span><span class="p">()</span>
+</div>
+    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="Memo.on_study"><a class="viewcode-back" href="../memo.html#memo.Memo.on_study">[文档]</a>    <span class="k">def</span> <span class="nf">on_study</span><span class="p">(</span><span class="n">evt</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        菜单栏/工具栏的开始记忆单词卡片事件</span>
+<span class="sd">        :param evt:</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">start_dlg</span> <span class="o">=</span> <span class="n">Dialog</span><span class="o">.</span><span class="n">SelectLib</span><span class="p">(</span><span class="n">LIBRARIES</span><span class="p">)</span>
+        <span class="n">start_dlg</span><span class="o">.</span><span class="n">ShowModal</span><span class="p">()</span>
+        <span class="n">start_dlg</span><span class="o">.</span><span class="n">Destroy</span><span class="p">()</span>
+</div>
+    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="Memo.on_check"><a class="viewcode-back" href="../memo.html#memo.Memo.on_check">[文档]</a>    <span class="k">def</span> <span class="nf">on_check</span><span class="p">(</span><span class="n">evt</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        菜单栏/工具栏的优化数据库事件</span>
+<span class="sd">        :param evt:</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">check_dlg</span> <span class="o">=</span> <span class="n">Dialog</span><span class="o">.</span><span class="n">Check</span><span class="p">()</span>
+        <span class="n">check_dlg</span><span class="o">.</span><span class="n">ShowModal</span><span class="p">()</span>
+        <span class="n">check_dlg</span><span class="o">.</span><span class="n">Destroy</span><span class="p">()</span>
+</div>
+<div class="viewcode-block" id="Memo.on_guide"><a class="viewcode-back" href="../memo.html#memo.Memo.on_guide">[文档]</a>    <span class="k">def</span> <span class="nf">on_guide</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">evt</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        用户手册</span>
+<span class="sd">        :param evt:</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&quot;README.md&quot;</span><span class="p">,</span> <span class="s">&quot;r&quot;</span><span class="p">)</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s">&#39;utf-8&#39;</span><span class="p">)</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="n">dlg</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">lib</span><span class="o">.</span><span class="n">dialogs</span><span class="o">.</span><span class="n">ScrolledMessageDialog</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="s">&quot;用户手册&quot;</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s">&#39;utf-8&#39;</span><span class="p">))</span>
+        <span class="n">dlg</span><span class="o">.</span><span class="n">ShowModal</span><span class="p">()</span>
+</div>
+    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="Memo.on_about"><a class="viewcode-back" href="../memo.html#memo.Memo.on_about">[文档]</a>    <span class="k">def</span> <span class="nf">on_about</span><span class="p">(</span><span class="n">evt</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        关于对话框</span>
+<span class="sd">        :param evt:</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">about_dlg</span> <span class="o">=</span> <span class="n">Dialog</span><span class="o">.</span><span class="n">AboutDialog</span><span class="p">()</span>
+</div></div>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="nb">reload</span><span class="p">(</span><span class="n">sys</span><span class="p">)</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">setdefaultencoding</span><span class="p">(</span><span class="s">&#39;utf-8&#39;</span><span class="p">)</span>
+    <span class="n">app</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">App</span><span class="p">()</span>
+    <span class="n">Memo</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#39;PyMemo&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">500</span><span class="p">))</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">MainLoop</span><span class="p">()</span>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>快速搜索</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="转向" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    输入相关的术语，模块，类或者函数名称进行搜索
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015, SEALiu.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.4</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>
