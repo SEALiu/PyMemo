@@ -1,6 +1,8 @@
 # PyMemo
 毕业设计——单词记忆软件
 
+**文档：`doc/_build/html/index.html`**
+
 ----
 
 这是我的一项毕业设计，课题为：基于Python的单词记忆软件开发。
@@ -9,13 +11,15 @@
 
 ----
 
-Python: 2.7.9
+Python：2.7.9
 
 GUI：wxpython2.7.9
 
 IDE：PyCharm
 
-DB: SQLite3
+DB：SQLite3
+
+文档生成：sphinx
 
 ----
 
