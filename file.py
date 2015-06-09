@@ -160,16 +160,17 @@ def no_blank(fn):
     :param fn:
     :return:
     """
-    name = fn
+    text = ""
     f = open(fn, 'r')
-    f2 = open('no_blank.txt', 'w')
     while True:
-        text = f.readline()
-        if text == '':
+        t = f.readline()
+        if t == '':
             break
-        elif text == os.linesep:
+        elif t == '\n':
             pass
         else:
-            f2.write(text)
-    os.remove(fn)
-    os.rename('no_blank.txt', name)
+            text += t
+    f.close()
+    f2 = open(fn, 'w')
+    f2.write(text)
+    f2.close()
