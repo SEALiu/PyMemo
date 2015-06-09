@@ -2,10 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="09d777a0-516b-4436-9365-587facb31efa" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db_pymemo.db" afterPath="$PROJECT_DIR$/db_pymemo.db" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/PyMemo.iml" afterPath="$PROJECT_DIR$/.idea/PyMemo.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/file.py" afterPath="$PROJECT_DIR$/file.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="PyMemo.iws" />
@@ -49,10 +45,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="memo.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="memo.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/memo.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="9641" max-vertical-offset="10560">
+            <state vertical-scroll-proportion="0.16610925" vertical-offset="9641" max-vertical-offset="10560">
               <caret line="455" column="30" selection-start-line="455" selection-start-column="30" selection-end-line="455" selection-end-column="30" />
               <folding>
                 <element signature="e#24#34#0" expanded="true" />
@@ -91,10 +87,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="file.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="file.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/file.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.75473803" vertical-offset="1589" max-vertical-offset="2486">
+            <state vertical-scroll-proportion="0.0" vertical-offset="1589" max-vertical-offset="2486">
               <caret line="171" column="21" selection-start-line="171" selection-start-column="21" selection-end-line="171" selection-end-column="21" />
               <folding>
                 <element signature="e#24#39#0" expanded="true" />
@@ -1490,22 +1486,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/memo.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="9641" max-vertical-offset="10560">
-          <caret line="455" column="30" selection-start-line="455" selection-start-column="30" selection-end-line="455" selection-end-column="30" />
-          <folding>
-            <element signature="e#24#34#0" expanded="true" />
-            <element signature="e#233#662#0" expanded="false" />
-            <element signature="e#1680#1772#0" expanded="false" />
-            <element signature="e#18091#18123#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/file.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.75473803" vertical-offset="1589" max-vertical-offset="2486">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1589" max-vertical-offset="2486">
           <caret line="171" column="21" selection-start-line="171" selection-start-column="21" selection-end-line="171" selection-end-column="21" />
           <folding>
             <element signature="e#24#39#0" expanded="true" />
@@ -1516,6 +1499,19 @@
             <element signature="e#2134#2485#0" expanded="false" />
             <element signature="e#2518#2783#0" expanded="false" />
             <element signature="e#2809#2941#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/memo.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.16610925" vertical-offset="9641" max-vertical-offset="10560">
+          <caret line="455" column="30" selection-start-line="455" selection-start-column="30" selection-end-line="455" selection-end-column="30" />
+          <folding>
+            <element signature="e#24#34#0" expanded="true" />
+            <element signature="e#233#662#0" expanded="false" />
+            <element signature="e#1680#1772#0" expanded="false" />
+            <element signature="e#18091#18123#0" expanded="false" />
           </folding>
         </state>
       </provider>
