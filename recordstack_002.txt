@@ -1,0 +1,7 @@
+N:4
+S:0
+R:0
+N 00015002 brainless a.笨的，没脑子的 2015/06/13 None None -1.0 2.5 False 
+N 00016002 aware a.意识到的，察觉的 2015/06/13 None None -1.0 2.5 False 
+N 00018002 burdensome a.沉重的，麻烦的 2015/06/13 None None -1.0 2.5 False 
+N 00019002 by-product n.副产品 2015/06/13 None None -1.0 2.5 False 
