@@ -379,8 +379,19 @@ class AddNewRecord(wx.Dialog):
         v_box.Add(h_box_btn, 1, wx.EXPAND | wx.LEFT | wx.RIGHT, 10)
 
         panel.SetSizer(v_box)
+        self.Bind(wx.EVT_CLOSE, self.OnClose)
         self.Centre()
         self.Show(True)
+
+    def OnClose(self, evt):
+        """
+        关闭时候再把插入词库的id重置为-1
+        :param evt:
+        :return:
+        """
+        self.set_lib_id(-1)
+        self.Destroy()
+        pass
 
     def set_lib_id(self, value):
         """
@@ -419,8 +430,7 @@ class AddNewRecord(wx.Dialog):
             self.record_ans.SetValue('')
             next_record_id = DBFun.max_record('recordId') + 1
             record_id = str(next_record_id).zfill(5) + self.get_lib_id()
-            # 重置，避免第二次由于 self.get_lib_id() != -1, 导致没有选择词库也可以插入记录。
-            self.set_lib_id(-1)
+
             # addTime: type is str
             add_time = time.strftime('%Y/%m/%d', time.localtime(time.time()))
             insert_sql = "INSERT INTO record(recordId, ques, ans, addTime) VALUES" \
