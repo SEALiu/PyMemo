@@ -1,12 +1,17 @@
-N:3
-S:6
+N:0
+S:14
 R:0
-N 00022001 champion n.冠军，v.拥护 2015/06/13 None None -1.0 2.5 False 
-N 00009001 baptism n.(基督教的)洗礼 2015/06/13 None None -1.0 2.5 False 
-N 00021001 cash n.现金 2015/06/13 None None -1.0 2.5 False 
-S 00001001 abnormal a.不正常的，反常的 2015/06/13 None None 0 1.7 False 
-S 00002001 abound vi.大量存在 2015/06/13 None None 0 1.7 False 
-S 00008001 bankrupt vt.使破产，a.破产的，n.破产者 2015/06/13 None None 0 1.7 False 
-S 00012001 brag v.夸张，吹牛 2015/06/13 None None 0 1.7 False 
-S 00014001 chore n.杂物，例行公事，令人厌烦的工作 2015/06/13 None None 0 1.7 False 
-S 00017001 bare a.赤裸的 2015/06/13 None None 0 1.7 False 
+S 00021001 cash n.现金 2015/06/13 2015/06/14 None 0 1.7 False 
+S 00022001 champion n.冠军，v.拥护 2015/06/13 2015/06/14 None 0 1.7 False 
+S 00001001 abnormal a.不正常的，反常的 2015/06/13 2015/06/14 None 0 1.3 False 
+S 00005001 arrange v.整理，排列 2015/06/13 2015/06/14 None 0 1.7 False 
+S 00002001 abound vi.大量存在 2015/06/13 2015/06/14 None 0 1.3 False 
+S 00003001 absent-minded a.心不在焉的 2015/06/13 2015/06/14 None 0 1.3 False 
+S 00004001 ambiguous a.模棱两可 2015/06/13 2015/06/13 None 0 1.66 False 
+S 00006001 bad-tempered a.脾气坏的 2015/06/13 2015/06/14 None 0 1.3 False 
+S 00007001 bald a.秃头的，光秃的 2015/06/13 2015/06/13 None 0 1.3 False 
+S 00008001 bankrupt vt.使破产，a.破产的，n.破产者 2015/06/13 2015/06/14 None 0 1.3 False 
+S 00009001 baptism n.(基督教的)洗礼 2015/06/13 2015/06/14 None 0 1.7 False 
+S 00010001 bark v.（狗）吠，叫,n.树皮 2015/06/13 2015/06/14 2015/06/13 0 1.7 False 
+S 00014001 chore n.杂物，例行公事，令人厌烦的工作 2015/06/13 2015/06/14 None 0 1.3 False 
+S 00020001 candidate n.候选人 2015/06/13 2015/06/14 None 0 1.7 False 

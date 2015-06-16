@@ -1,3 +1,5 @@
-N:0
+N:2
 S:0
 R:0
+N 00024000 review v.复习 2015/06/16 None None -1.0 2.5 False 
+N 00025000 dictionary n.字典，词典 2015/06/16 None None -1.0 2.5 False 
