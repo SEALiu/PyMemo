@@ -130,7 +130,7 @@ class LibInfo(wx.Dialog):
 
         v_box = wx.BoxSizer(wx.VERTICAL)
 
-        panel = wx.Panel(self, -1)
+        panel = wx.Panel(self, -1, style=wx.BORDER)
         panel.SetBackgroundColour('white')
         v_box_panel = wx.BoxSizer(wx.VERTICAL)
         lib_id = wx.StaticText(panel, -1, '词库ID：'.decode('utf-8') + lib_info[0])
@@ -176,7 +176,6 @@ class DeleteLib(wx.Dialog):
         wx.Dialog.__init__(self, None, -1, '删除'.decode('utf-8') + lib_name + '词库'.decode('utf-8'), size=(-1, 180),
                            style=wx.CAPTION | wx.SYSTEM_MENU | wx.CLOSE_BOX)
         panel = wx.Panel(self, -1)
-        panel.SetBackgroundColour('white')
         v_box = wx.BoxSizer(wx.VERTICAL)
         info_text = wx.StaticText(panel, -1, lib_name + '词库将被删除，词库中的记录会被转移至孤儿院。\n你确定要这样做么？'.decode('utf-8'))
         h_box = wx.BoxSizer(wx.HORIZONTAL)
@@ -586,6 +585,7 @@ class SettingDialog(wx.Dialog):
 
         lib_text = wx.StaticText(panel_combo, -1, "选择设置词库：".decode('utf-8'))
         lib_combo_box = wx.ComboBox(panel_combo, choices=lib_items, style=wx.CB_READONLY)
+        lib_combo_box.Bind(wx.EVT_COMBOBOX, lambda evt, ob=lib_combo_box, l=lib_items: self.OnChooseLib(evt, ob, l))
 
         # 逆转LIBRARIES字典，以便于根据词库名称获取词库的ID，避免访问数据库。
         reverse_lib = {v: k for k, v in LIBRARIES.items()}
@@ -616,30 +616,20 @@ class SettingDialog(wx.Dialog):
         self.show_rest = wx.CheckBox(panel_top,
                             label='在复习的时候显示剩余卡片数'.decode('utf-8'),
                             style=wx.CHK_3STATE)
-        if self.old_setting:
-            if self.old_setting[2] == 'True':
-                self.show_rest.SetValue(True)
-            elif self.old_setting[2] == 'False':
-                self.show_rest.SetValue(False)
-        else:
-            self.show_rest.SetValue(True)
 
         text1 = wx.StaticText(panel_top, label="每日学习卡片上限（张）".decode('utf-8'))
         text2 = wx.StaticText(panel_top, label="每日复习卡片上限（张）".decode('utf-8'))
 
         self.study_limit = wx.SpinCtrl(panel_top, -1)
         self.study_limit.SetRange(1, 200)
-        if self.old_setting:
-            self.study_limit.SetValue(int(self.old_setting[1]))
-        else:
-            self.study_limit.SetValue(50)
 
         self.review_limit = wx.SpinCtrl(panel_top, -1)
         self.review_limit.SetRange(1, 200)
+
         if self.old_setting:
-            self.review_limit.SetValue(int(self.old_setting[0]))
+            self.SetOld()
         else:
-            self.review_limit.SetValue(50)
+            self.SetDefault()
 
         h_box_g1.Add(text1, 0, wx.ALIGN_CENTER_VERTICAL)
         h_box_g1.Add(self.study_limit, 0, wx.LEFT, 15)
@@ -675,6 +665,45 @@ class SettingDialog(wx.Dialog):
 
         panel.SetSizer(v_box)
         self.Centre()
+
+    def SetDefault(self):
+        """
+        默认设置
+        :return:
+        """
+        self.study_limit.SetValue(50)
+        self.review_limit.SetValue(50)
+        self.show_rest.SetValue(True)
+        pass
+
+    def SetOld(self):
+        """
+        按所选词库设置
+        :return:
+        """
+        self.study_limit.SetValue(int(self.old_setting[1]))
+        self.review_limit.SetValue(int(self.old_setting[0]))
+        if self.old_setting[2] == 'True':
+                self.show_rest.SetValue(True)
+        elif self.old_setting[2] == 'False':
+            self.show_rest.SetValue(False)
+        pass
+
+    def OnChooseLib(self, evt, ob, l):
+        """
+        根据选框的选择，动态改变下面的设置
+        :param evt:
+        :param ob:
+        :param l:
+        :return:
+        """
+        lib_key = 0
+        # 获取到筛选LIST的序号
+        for i, album in enumerate(l):
+            if album == ob.GetValue():
+                lib_key = i
+        print lib_key
+        pass
 
     def test(self, evt, ob, lib):
         """
@@ -738,7 +767,7 @@ class SettingDialog(wx.Dialog):
         for rows in result_list:
             ls.append(rows[4])
             ls.append(rows[5])
-            ls.append(rows[-3])
+            ls.append(rows[-1])
         return ls
 
 
